@@ -1,0 +1,23 @@
+{
+  "UPS_CC-grantor": {
+    "object_owner": {
+		"schema_roles" : [
+		{
+          "schema" : "S4HCTM_1",
+          "roles" : [ "s4hctm::access_role_g#"]
+        }
+        ]       
+    },
+   
+    "application_user": {
+
+		"schema_roles" : [
+		{
+          "schema" : "S4HCTM_1",
+          "roles" : [ "s4hctm::access_role"]
+        }
+        ]      
+    }
+    
+  }
+}
