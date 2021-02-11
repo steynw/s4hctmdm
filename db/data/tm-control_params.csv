@@ -1,8 +1,0 @@
-id;uid;category;grp;name;val;active;notes;user
-1001;1001;S4;Admin;schedule_manual;1;1;this is some notes;I815462
-1002;1002;TM;Admin;logging;1;1;this is some logs;I815462
-1003;1003;TM;Feeds;ticket;1;1;this is some logs for ticket;I815462
-1004;1004;TM;Feeds;journal;1;1;this is some logs for journal;I815462
-1005;1005;TM;Feeds;events;1;1;this is some logs for events;I815462
-1006;1006;TM;Feeds;attendance;1;1;this is some logs for attendance;I815462
-1007;1007;TM;Feeds;scanning;1;1;this is some logs for scanning;I815462

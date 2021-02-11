@@ -1,0 +1,8 @@
+{
+  "tm.control_params": {
+    "target": {
+      "object": "TM_CONTROL_PARAMS",
+      "schema": "S4HCTM_1"
+    }
+  }
+}
