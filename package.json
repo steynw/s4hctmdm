@@ -20,7 +20,7 @@
   ],
   "scripts": {
     "start": "cds run",
-    "env": "cp ./default-env.json ./db/default-env.json && cp ./default-env.json ./srv/default-env.json"
+    "env": "cp ./default-env.json ./db/default-env.json"
   },
   "cds": {
     "build": {
