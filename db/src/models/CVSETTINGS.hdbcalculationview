@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CVSETTINGS" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="CVSETTINGS.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="tm.control_params">
+    <resourceUri>tm.control_params</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews/>
+<logicalModel id="tm.control_params">
+  <attributes>
+    <attribute id="ID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ID"/>
+      <keyMapping columnObjectName="tm.control_params" columnName="ID"/>
+    </attribute>
+    <attribute id="UID" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="UID"/>
+      <keyMapping columnObjectName="tm.control_params" columnName="UID"/>
+    </attribute>
+    <attribute id="CATEGORY" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CATEGORY"/>
+      <keyMapping columnObjectName="tm.control_params" columnName="CATEGORY"/>
+    </attribute>
+    <attribute id="GRP" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="GRP"/>
+      <keyMapping columnObjectName="tm.control_params" columnName="GRP"/>
+    </attribute>
+    <attribute id="NAME" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NAME"/>
+      <keyMapping columnObjectName="tm.control_params" columnName="NAME"/>
+    </attribute>
+    <attribute id="VAL" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="VAL"/>
+      <keyMapping columnObjectName="tm.control_params" columnName="VAL"/>
+    </attribute>
+    <attribute id="ACTIVE" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ACTIVE"/>
+      <keyMapping columnObjectName="tm.control_params" columnName="ACTIVE"/>
+    </attribute>
+    <attribute id="NOTES" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NOTES"/>
+      <keyMapping columnObjectName="tm.control_params" columnName="NOTES"/>
+    </attribute>
+    <attribute id="USER" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="USER"/>
+      <keyMapping columnObjectName="tm.control_params" columnName="USER"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
