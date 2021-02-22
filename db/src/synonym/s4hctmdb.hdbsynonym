@@ -2,7 +2,13 @@
   "tm.control_params": {
     "target": {
       "object": "TM_CONTROL_PARAMS",
-      "schema": "S4HCTM_1"
+      "schema": "S4HCTM"
+    }
+  },
+  "tm.postings": {
+    "target": {
+      "object": "TM_POSTINGS",
+      "schema": "S4HCTM"
     }
   }
 }

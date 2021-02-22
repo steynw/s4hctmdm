@@ -3,7 +3,7 @@
     "object_owner": {
 		"schema_roles" : [
 		{
-          "schema" : "S4HCTM_1",
+          "schema" : "S4HCTM",
           "roles" : [ "s4hctm::access_role_g#"]
         }
         ]       
@@ -13,7 +13,7 @@
 
 		"schema_roles" : [
 		{
-          "schema" : "S4HCTM_1",
+          "schema" : "S4HCTM",
           "roles" : [ "s4hctm::access_role"]
         }
         ]      
