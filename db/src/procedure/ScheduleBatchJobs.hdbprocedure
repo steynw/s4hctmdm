@@ -1,0 +1,24 @@
+PROCEDURE "ScheduleBatchJobs"
+( 
+    out O_RESULT string    
+) 
+    LANGUAGE SQLSCRIPT
+    SQL SECURITY DEFINER 
+    AS
+BEGIN
+
+	-- Initialize Variables   
+	declare S_MESSAGE string;
+	
+	-- Copy Event Category
+	call "CopyEventCategory"(S_MESSAGE);
+	
+	O_RESULT := '1.';
+	select CONCAT(:O_RESULT, :S_MESSAGE) into O_RESULT from dummy;	
+
+	-- Copy GL Hierarchy
+	call "CopyFunctionalAreaHierarchy"(S_MESSAGE);	
+
+	select CONCAT(CONCAT(CONCAT(:O_RESULT, '<br> 2.'), :S_MESSAGE), '</br>') into O_RESULT from dummy;
+	
+ END;

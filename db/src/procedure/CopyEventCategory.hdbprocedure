@@ -1,0 +1,34 @@
+PROCEDURE "CopyEventCategory"
+( 
+    out O_RESULT nvarchar(50)    
+) 
+    LANGUAGE SQLSCRIPT
+    SQL SECURITY DEFINER 
+    AS
+BEGIN
+
+	-- Initialize Variables   
+	declare S_QUERY string;
+	
+	-- Reset Flag
+	O_RESULT := 'Error !!!. Something went wrong';
+
+	-- Delete data for the Year range
+	truncate table "EventCategory";
+
+	-- Copy the Data
+	insert into "EventCategory"
+	select 
+		"EventStart",
+		"EventEnd",
+		"Arena",
+		"Suites",
+		"Parking",
+		"Lounge",
+		"Upsell"
+	 from "YY1_EventCategory";
+	
+	-- Success
+	O_RESULT := 'Success. Event Categories copied.';
+	
+ END;

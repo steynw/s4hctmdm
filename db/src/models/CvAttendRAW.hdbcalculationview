@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Privilege="http://www.sap.com/ndb/BiModelPrivilege.ecore" id="CvAttendRAW" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Raw table tm.attend_prd"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="tm.attend_prd">
+    <resourceUri>tm.attend_prd</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_ATTEND">
+    <viewAttributes>
+      <viewAttribute id="event_id"/>
+      <viewAttribute id="seq_num"/>
+      <viewAttribute id="access_type"/>
+      <viewAttribute id="acct_id"/>
+      <viewAttribute id="action_time"/>
+      <viewAttribute id="channel_ind"/>
+      <viewAttribute id="comp"/>
+      <viewAttribute id="event_date"/>
+      <viewAttribute id="event_name"/>
+      <viewAttribute id="gate"/>
+      <viewAttribute id="mobile"/>
+      <viewAttribute id="plan_event_id"/>
+      <viewAttribute id="plan_event_name"/>
+      <viewAttribute id="price_code"/>
+      <viewAttribute id="print_count"/>
+      <viewAttribute id="result_code"/>
+      <viewAttribute id="result_type"/>
+      <viewAttribute id="row_id"/>
+      <viewAttribute id="row_name"/>
+      <viewAttribute id="scan_type"/>
+      <viewAttribute id="seat_num"/>
+      <viewAttribute id="section_id"/>
+      <viewAttribute id="section_name"/>
+      <viewAttribute id="source_system"/>
+      <viewAttribute id="ticket_acct_id"/>
+      <viewAttribute id="ticket_type"/>
+      <viewAttribute id="upd_datetime"/>
+      <viewAttribute id="valid"/>
+      <viewAttribute id="sap_uid"/>
+      <viewAttribute id="sap_container_id"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="AttendanceNum1" datatype="INTEGER" expressionLanguage="SQL">
+        <formula>1</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="tm.attend_prd"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="P_ATTEND">
+  <attributes>
+    <attribute id="event_id" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="event_id"/>
+      <keyMapping columnObjectName="P_ATTEND" columnName="event_id"/>
+    </attribute>
+    <attribute id="seq_num" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="seq_num"/>
+      <keyMapping columnObjectName="P_ATTEND" columnName="seq_num"/>
+    </attribute>
+    <attribute id="access_type" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="access_type"/>
+      <keyMapping columnObjectName="P_ATTEND" columnName="access_type"/>
+    </attribute>
+    <attribute id="acct_id" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="acct_id"/>
+      <keyMapping columnObjectName="P_ATTEND" columnName="acct_id"/>
+    </attribute>
+    <attribute id="action_time" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="action_time"/>
+      <keyMapping columnObjectName="P_ATTEND" columnName="action_time"/>
+    </attribute>
+    <attribute id="channel_ind" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="channel_ind"/>
+      <keyMapping columnObjectName="P_ATTEND" columnName="channel_ind"/>
+    </attribute>
+    <attribute id="comp" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="comp"/>
+      <keyMapping columnObjectName="P_ATTEND" columnName="comp"/>
+    </attribute>
+    <attribute id="event_date" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="event_date"/>
+      <keyMapping columnObjectName="P_ATTEND" columnName="event_date"/>
+    </attribute>
+    <attribute id="event_name" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="event_name"/>
+      <keyMapping columnObjectName="P_ATTEND" columnName="event_name"/>
+    </attribute>
+    <attribute id="gate" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="gate"/>
+      <keyMapping columnObjectName="P_ATTEND" columnName="gate"/>
+    </attribute>
+    <attribute id="mobile" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="mobile"/>
+      <keyMapping columnObjectName="P_ATTEND" columnName="mobile"/>
+    </attribute>
+    <attribute id="plan_event_id" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="plan_event_id"/>
+      <keyMapping columnObjectName="P_ATTEND" columnName="plan_event_id"/>
+    </attribute>
+    <attribute id="plan_event_name" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="plan_event_name"/>
+      <keyMapping columnObjectName="P_ATTEND" columnName="plan_event_name"/>
+    </attribute>
+    <attribute id="price_code" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="price_code"/>
+      <keyMapping columnObjectName="P_ATTEND" columnName="price_code"/>
+    </attribute>
+    <attribute id="print_count" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="print_count"/>
+      <keyMapping columnObjectName="P_ATTEND" columnName="print_count"/>
+    </attribute>
+    <attribute id="result_code" order="17" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="result_code"/>
+      <keyMapping columnObjectName="P_ATTEND" columnName="result_code"/>
+    </attribute>
+    <attribute id="result_type" order="18" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="result_type"/>
+      <keyMapping columnObjectName="P_ATTEND" columnName="result_type"/>
+    </attribute>
+    <attribute id="row_id" order="19" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="row_id"/>
+      <keyMapping columnObjectName="P_ATTEND" columnName="row_id"/>
+    </attribute>
+    <attribute id="row_name" order="20" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="row_name"/>
+      <keyMapping columnObjectName="P_ATTEND" columnName="row_name"/>
+    </attribute>
+    <attribute id="scan_type" order="21" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="scan_type"/>
+      <keyMapping columnObjectName="P_ATTEND" columnName="scan_type"/>
+    </attribute>
+    <attribute id="seat_num" order="22" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="seat_num"/>
+      <keyMapping columnObjectName="P_ATTEND" columnName="seat_num"/>
+    </attribute>
+    <attribute id="section_id" order="23" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="section_id"/>
+      <keyMapping columnObjectName="P_ATTEND" columnName="section_id"/>
+    </attribute>
+    <attribute id="section_name" order="24" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="section_name"/>
+      <keyMapping columnObjectName="P_ATTEND" columnName="section_name"/>
+    </attribute>
+    <attribute id="source_system" order="25" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="source_system"/>
+      <keyMapping columnObjectName="P_ATTEND" columnName="source_system"/>
+    </attribute>
+    <attribute id="ticket_acct_id" order="26" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ticket_acct_id"/>
+      <keyMapping columnObjectName="P_ATTEND" columnName="ticket_acct_id"/>
+    </attribute>
+    <attribute id="ticket_type" order="27" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ticket_type"/>
+      <keyMapping columnObjectName="P_ATTEND" columnName="ticket_type"/>
+    </attribute>
+    <attribute id="upd_datetime" order="28" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="upd_datetime"/>
+      <keyMapping columnObjectName="P_ATTEND" columnName="upd_datetime"/>
+    </attribute>
+    <attribute id="valid" order="29" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="valid"/>
+      <keyMapping columnObjectName="P_ATTEND" columnName="valid"/>
+    </attribute>
+    <attribute id="sap_uid" order="30" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="sap_uid"/>
+      <keyMapping columnObjectName="P_ATTEND" columnName="sap_uid"/>
+    </attribute>
+    <attribute id="sap_container_id" order="31" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="sap_container_id"/>
+      <keyMapping columnObjectName="P_ATTEND" columnName="sap_container_id"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="AttendanceNum1" order="1" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="AttendanceNum1"/>
+      <measureMapping columnObjectName="P_ATTEND" columnName="AttendanceNum1"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="92" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="P_ATTEND" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="76" y="261"/>
+      <rectangleSize height="30" width="160"/>
+    </shape></shapes>
+</layout>
+</Calculation:scenario>

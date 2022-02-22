@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CvRevShareProceeds" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="CvRevenueProceeds"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="tm.revenue_share_prd">
+    <resourceUri>tm.revenue_share_prd</resourceUri>
+  </DataSource>
+  <DataSource id="tm.face_value_prd">
+    <resourceUri>tm.face_value_prd</resourceUri>
+  </DataSource>
+  <DataSource id="P_RevShare2$$$$tm.revenue_share_prd$$">
+    <resourceUri>tm.revenue_share_prd</resourceUri>
+  </DataSource>
+  <DataSource id="P_RevShare3$$$$tm.revenue_share_prd$$">
+    <resourceUri>tm.revenue_share_prd</resourceUri>
+  </DataSource>
+  <DataSource id="P_RevShare4$$$$tm.revenue_share_prd$$">
+    <resourceUri>tm.revenue_share_prd</resourceUri>
+  </DataSource>
+  <DataSource id="P_RevShare5$$$$tm.revenue_share_prd$$">
+    <resourceUri>tm.revenue_share_prd</resourceUri>
+  </DataSource>
+  <DataSource id="P_RevShare6$$$$tm.revenue_share_prd$$">
+    <resourceUri>tm.revenue_share_prd</resourceUri>
+  </DataSource>
+  <DataSource id="P_TMCharge2$$$$tm.face_value_prd$$">
+    <resourceUri>tm.face_value_prd</resourceUri>
+  </DataSource>
+  <DataSource id="P_TMCharge3$$$$tm.face_value_prd$$">
+    <resourceUri>tm.face_value_prd</resourceUri>
+  </DataSource>
+  <DataSource id="P_TMCharge4$$$$tm.face_value_prd$$">
+    <resourceUri>tm.face_value_prd</resourceUri>
+  </DataSource>
+  <DataSource id="P_TMCharge5$$$$tm.face_value_prd$$">
+    <resourceUri>tm.face_value_prd</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_RevShare1" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="date"/>
+      <viewAttribute id="event"/>
+      <viewAttribute id="RevenueShare"/>
+    
+      <viewAttribute id="event_id"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="ChargeType" datatype="NVARCHAR" length="20" expressionLanguage="SQL">
+        <formula>'Service Charge Rev Share'</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="tm.revenue_share_prd">
+      <mapping xsi:type="Calculation:AttributeMapping" target="RevenueShare" source="serviceChargeRevShare"/>
+    </input>
+    <filter>&quot;RevenueShare&quot; != 0</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_TMCharge1" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="date"/>
+      <viewAttribute id="event"/>
+      <viewAttribute id="TMCharge"/>
+      <viewAttribute id="event_id"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="ChargeType" datatype="NVARCHAR" length="20" expressionLanguage="SQL">
+        <formula>'Face Value'</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="tm.face_value_prd">
+      <mapping xsi:type="Calculation:AttributeMapping" target="TMCharge" source="faceValue"/>
+    </input>
+    <filter>&quot;TMCharge&quot; != 0</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:UnionView" id="Union_1">
+    <viewAttributes>
+      <viewAttribute id="date"/>
+      <viewAttribute id="event"/>
+      <viewAttribute datatype="VARCHAR" length="10" id="Source"/>
+      <viewAttribute id="ChargeType"/>
+      <viewAttribute id="RevenueShare" aggregationType="sum"/>
+      <viewAttribute id="TMCharge" aggregationType="sum"/>
+    
+      <viewAttribute id="event_id" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="U_RevShare" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="date" source="date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event" source="event"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="Source" null="false" value="RevShare"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="RevenueShare" source="RevenueShare"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ChargeType" source="ChargeType"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="TMCharge" null="false" value="0"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_id" source="event_id"/>
+    </input>
+    <input node="U_TMCharge" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="date" source="date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event" source="event"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="Source" null="false" value="TMCharge"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="RevenueShare" null="false" value="0"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ChargeType" source="ChargeType"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TMCharge" source="TMCharge"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_id" source="event_id"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:UnionView" id="U_RevShare">
+    <viewAttributes>
+      <viewAttribute id="date"/>
+      <viewAttribute id="event"/>
+      <viewAttribute id="RevenueShare" aggregationType="sum"/>
+      <viewAttribute id="ChargeType"/>
+    
+      <viewAttribute id="event_id" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="P_RevShare1" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="date" source="date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event" source="event"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="RevenueShare" source="RevenueShare"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ChargeType" source="ChargeType"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_id" source="event_id"/>
+    </input>
+    <input node="P_RevShare2" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="date" source="date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event" source="event"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="RevenueShare" source="RevenueShare"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ChargeType" source="ChargeType"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_id" source="event_id"/>
+    </input>
+    <input node="P_RevShare3" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="date" source="date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event" source="event"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="RevenueShare" source="RevenueShare"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ChargeType" source="ChargeType"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_id" source="event_id"/>
+    </input>
+    <input node="P_RevShare4" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="date" source="date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event" source="event"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="RevenueShare" source="RevenueShare"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ChargeType" source="ChargeType"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_id" source="event_id"/>
+    </input>
+    <input node="P_RevShare5" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="date" source="date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event" source="event"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="RevenueShare" source="RevenueShare"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ChargeType" source="ChargeType"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_id" source="event_id"/>
+    </input>
+    <input node="P_RevShare6" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="date" source="date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event" source="event"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="RevenueShare" source="RevenueShare"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ChargeType" source="ChargeType"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_id" source="event_id"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:UnionView" id="U_TMCharge">
+    <viewAttributes>
+      <viewAttribute id="date"/>
+      <viewAttribute id="event"/>
+      <viewAttribute id="ChargeType"/>
+    
+      <viewAttribute id="TMCharge" aggregationType="sum"/>
+      <viewAttribute id="event_id" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="P_TMCharge1" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="date" source="date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event" source="event"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TMCharge" source="TMCharge"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ChargeType" source="ChargeType"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_id" source="event_id"/>
+    </input>
+    <input node="P_TMCharge2" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="date" source="date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event" source="event"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TMCharge" source="TMCharge"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ChargeType" source="ChargeType"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_id" source="event_id"/>
+    </input>
+    <input node="P_TMCharge3" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="date" source="date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event" source="event"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TMCharge" source="TMCharge"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ChargeType" source="ChargeType"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_id" source="event_id"/>
+    </input>
+    <input node="P_TMCharge4" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="date" source="date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event" source="event"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TMCharge" source="TMCharge"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ChargeType" source="ChargeType"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_id" source="event_id"/>
+    </input>
+  
+    <input node="P_TMCharge5">
+      <mapping xsi:type="Calculation:AttributeMapping" target="date" source="date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event" source="event"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ChargeType" source="ChargeType"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TMCharge" source="TMCharge"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_id" source="event_id"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_RevShare2" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="date"/>
+      <viewAttribute id="event"/>
+      <viewAttribute id="RevenueShare"/>
+    
+      <viewAttribute id="event_id"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="ChargeType" datatype="NVARCHAR" length="20" expressionLanguage="SQL">
+        <formula>'Order Fee Rev Share'</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input emptyUnionBehavior="undefined" node="P_RevShare2$$$$tm.revenue_share_prd$$">
+      <mapping xsi:type="Calculation:AttributeMapping" target="RevenueShare" source="orderFeeRevShare"/>
+    </input>
+    <filter>&quot;RevenueShare&quot; != 0</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_RevShare3" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="date"/>
+      <viewAttribute id="event"/>
+      <viewAttribute id="RevenueShare"/>
+    
+      <viewAttribute id="event_id"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="ChargeType" datatype="NVARCHAR" length="20" expressionLanguage="SQL">
+        <formula>'Other Rev Share'</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input emptyUnionBehavior="undefined" node="P_RevShare3$$$$tm.revenue_share_prd$$">
+      <mapping xsi:type="Calculation:AttributeMapping" target="RevenueShare" source="otherRevShare"/>
+    </input>
+    <filter>&quot;RevenueShare&quot; != 0</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_RevShare4" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="date"/>
+      <viewAttribute id="event"/>
+      <viewAttribute id="RevenueShare"/>
+    
+      <viewAttribute id="event_id"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="ChargeType" datatype="NVARCHAR" length="20" expressionLanguage="SQL">
+        <formula>'Delivery Fee Rev Share'</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input emptyUnionBehavior="undefined" node="P_RevShare4$$$$tm.revenue_share_prd$$">
+      <mapping xsi:type="Calculation:AttributeMapping" target="RevenueShare" source="deliveryFeeRevShare"/>
+    </input>
+    <filter>&quot;RevenueShare&quot; != 0</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_RevShare5" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="date"/>
+      <viewAttribute id="event"/>
+      <viewAttribute id="RevenueShare"/>
+    
+      <viewAttribute id="event_id"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="ChargeType" datatype="NVARCHAR" length="20" expressionLanguage="SQL">
+        <formula>'VIP Rev Share'</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input emptyUnionBehavior="undefined" node="P_RevShare5$$$$tm.revenue_share_prd$$">
+      <mapping xsi:type="Calculation:AttributeMapping" target="RevenueShare" source="vipRevShare"/>
+    </input>
+    <filter>&quot;RevenueShare&quot; != 0</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_RevShare6" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="date"/>
+      <viewAttribute id="event"/>
+      <viewAttribute id="RevenueShare"/>
+    
+      <viewAttribute id="event_id"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="ChargeType" datatype="NVARCHAR" length="20" expressionLanguage="SQL">
+        <formula>'Premium Rev Share'</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input emptyUnionBehavior="undefined" node="P_RevShare6$$$$tm.revenue_share_prd$$">
+      <mapping xsi:type="Calculation:AttributeMapping" target="RevenueShare" source="premiumRevShare"/>
+    </input>
+    <filter>&quot;RevenueShare&quot; != 0</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_TMCharge2" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="date"/>
+      <viewAttribute id="event"/>
+      <viewAttribute id="TMCharge"/>
+    
+      <viewAttribute id="event_id"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="ChargeType" datatype="NVARCHAR" length="20" expressionLanguage="SQL">
+        <formula>'Facility Fee'</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input emptyUnionBehavior="undefined" node="P_TMCharge2$$$$tm.face_value_prd$$">
+      <mapping xsi:type="Calculation:AttributeMapping" target="TMCharge" source="facilityFees"/>
+    </input>
+    <filter>&quot;TMCharge&quot; != 0</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_TMCharge3" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="date"/>
+      <viewAttribute id="event"/>
+      <viewAttribute id="TMCharge"/>
+    
+      <viewAttribute id="event_id"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="ChargeType" datatype="NVARCHAR" length="20" expressionLanguage="SQL">
+        <formula>'Inside Charges'</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input emptyUnionBehavior="undefined" node="P_TMCharge3$$$$tm.face_value_prd$$">
+      <mapping xsi:type="Calculation:AttributeMapping" target="TMCharge" source="insideCharges"/>
+    </input>
+    <filter>&quot;TMCharge&quot; != 0</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_TMCharge4" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="date"/>
+      <viewAttribute id="event"/>
+      <viewAttribute id="TMCharge"/>
+    
+      <viewAttribute id="event_id"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="ChargeType" datatype="NVARCHAR" length="20" expressionLanguage="SQL">
+        <formula>'Face Value'</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input emptyUnionBehavior="undefined" node="P_TMCharge4$$$$tm.face_value_prd$$">
+      <mapping xsi:type="Calculation:AttributeMapping" target="TMCharge" source="ccInsideCharges"/>
+    </input>
+    <filter>&quot;TMCharge&quot; != 0</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_TMCharge5" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="date"/>
+      <viewAttribute id="event"/>
+      <viewAttribute id="TMCharge"/>
+      <viewAttribute id="event_id"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="ChargeType" datatype="NVARCHAR" length="20" expressionLanguage="SQL">
+        <formula>'Adjustment'</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input emptyUnionBehavior="undefined" node="P_TMCharge5$$$$tm.face_value_prd$$">
+      <mapping xsi:type="Calculation:AttributeMapping" target="TMCharge" source="amount"/>
+    </input>
+    <filter>&quot;TMCharge&quot; != 0</filter>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Union_1">
+  <attributes>
+    <attribute id="sap_add_date" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="date"/>
+      <keyMapping columnObjectName="Union_1" columnName="date"/>
+    </attribute>
+    <attribute id="event_name" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="event"/>
+      <keyMapping columnObjectName="Union_1" columnName="event"/>
+    </attribute>
+    <attribute id="Source" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Source"/>
+      <keyMapping columnObjectName="Union_1" columnName="Source"/>
+    </attribute>
+  
+    <attribute id="ChargeType" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ChargeType"/>
+  
+      <keyMapping columnObjectName="Union_1" columnName="ChargeType"/>
+  
+    </attribute>
+  
+    <attribute id="event_id" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="event_id"/>
+  
+      <keyMapping columnObjectName="Union_1" columnName="event_id"/>
+  
+    </attribute>
+  </attributes>
+  <calculatedAttributes>
+  
+    <calculatedAttribute id="retail_mop" order="7" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="r"/>
+  
+      <keyCalculation datatype="NVARCHAR" expressionLanguage="SQL" length="4">
+  
+        <formula>'WIRE'</formula>
+  
+      </keyCalculation>
+  
+    </calculatedAttribute>
+  </calculatedAttributes>
+  <baseMeasures>
+    <measure id="RevenueShare" order="5" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="serviceChargeRevShare"/>
+      <measureMapping columnObjectName="Union_1" columnName="RevenueShare"/>
+    </measure>
+    <measure id="TMCharge" order="6" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="ticketSales"/>
+      <measureMapping columnObjectName="Union_1" columnName="TMCharge"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="1342.4217260401897" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="P_RevShare1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="1141.9999999999998" y="596.9999976158142"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="P_TMCharge1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="1772" y="596.9999976158142"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="1342.4217260401897" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="U_RevShare" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="710.5714285714282" y="356.9999988079071"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="U_TMCharge" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="1588.6666666666665" y="369.4999988079071"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="P_RevShare2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="302.0000000000002" y="596.9999976158142"/>
+      <rectangleSize width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="P_RevShare3" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="721.9999999999998" y="596.9999976158142"/>
+      <rectangleSize width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="P_RevShare4" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92.00000000000023" y="596.9999976158142"/>
+      <rectangleSize width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="P_RevShare5" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="512.0000000000002" y="596.9999976158142"/>
+      <rectangleSize width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="P_RevShare6" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="931.9999999999998" y="596.9999976158142"/>
+      <rectangleSize width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="P_TMCharge2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="1562" y="596.9999976158142"/>
+      <rectangleSize width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="P_TMCharge3" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="2192" y="596.9999976158142"/>
+      <rectangleSize width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="P_TMCharge4" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="1982" y="596.9999976158142"/>
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="P_TMCharge5" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="1352" y="596.9999976158142"/>
+      <rectangleSize width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

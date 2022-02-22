@@ -1,0 +1,10 @@
+COLUMN TABLE "GLAccountText" (
+	"ChartOfAccounts" NVARCHAR(4) NOT NULL ,
+	"ChartOfAccounts_Text" NVARCHAR(50),
+	"GLAccount" NVARCHAR(10) NOT NULL ,
+	"Language" NVARCHAR(2) NOT NULL ,
+	"GLAccountName" NVARCHAR(20),
+	"GLAccountLongName" NVARCHAR(50),
+	"LastChangeDateTime" DATE,
+	PRIMARY KEY ("ChartOfAccounts", "GLAccount", "Language" )
+) UNLOAD PRIORITY 5 AUTO MERGE 

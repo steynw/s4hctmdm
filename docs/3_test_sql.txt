@@ -1,0 +1,30 @@
+select * from "TM_JOURNAL";
+
+-- No Posting in S4H 
+update "TM_JOURNAL" set "PostingDate" = '2020-03-01';
+SELECT "AssignmentReference" , "DocumentItemText" , "CompanyCode" , "FiscalYear" , "WBSElement" , "AccountingDocumentType" , "GLAccount" , "DebitCreditCode" , "PostingDate" , SUM("AmountInTransactionCurrency") AS "AmountInTransactionCurrency"  
+FROM  "S4HCTMDM_1"."CvPostJournalEntry" 
+WHERE "PostingDate" = '2020-03-01'
+GROUP BY "AssignmentReference" , "DocumentItemText" , "CompanyCode" , "FiscalYear" , "WBSElement" , "AccountingDocumentType" , "GLAccount" , "DebitCreditCode" , "PostingDate"
+HAVING SUM("AmountInTransactionCurrency") != 0
+;
+
+-- All Posting in S4H
+update "TM_JOURNAL" set "PostingDate" = '2020-02-20';
+SELECT "AssignmentReference" , "DocumentItemText" , "CompanyCode" , "FiscalYear" , "WBSElement" , "AccountingDocumentType" , "GLAccount" , "DebitCreditCode" , "PostingDate" , SUM("AmountInTransactionCurrency") AS "AmountInTransactionCurrency"  
+FROM  "S4HCTMDM_1"."CvPostJournalEntry" 
+WHERE "PostingDate" = '2020-02-20'
+GROUP BY "AssignmentReference" , "DocumentItemText" , "CompanyCode" , "FiscalYear" , "WBSElement" , "AccountingDocumentType" , "GLAccount" , "DebitCreditCode" , "PostingDate"
+HAVING SUM("AmountInTransactionCurrency") != 0
+;
+
+-- Some postings in S4H
+update "TM_JOURNAL" set "PostingDate" = '2020-01-31' WHERE "AssignmentReference" = 'TAP';
+SELECT "AssignmentReference" , "DocumentItemText" , "CompanyCode" , "FiscalYear" , "WBSElement" , "AccountingDocumentType" , "GLAccount" , "DebitCreditCode" , "PostingDate" , SUM("AmountInTransactionCurrency") AS "AmountInTransactionCurrency"  
+FROM  "S4HCTMDM_1"."CvPostJournalEntry" 
+WHERE "PostingDate" = '2020-02-20'
+GROUP BY "AssignmentReference" , "DocumentItemText" , "CompanyCode" , "FiscalYear" , "WBSElement" , "AccountingDocumentType" , "GLAccount" , "DebitCreditCode" , "PostingDate"
+HAVING SUM("AmountInTransactionCurrency") != 0
+;
+
+select current_user from dummy;

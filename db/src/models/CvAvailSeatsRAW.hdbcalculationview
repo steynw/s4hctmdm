@@ -1,0 +1,652 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Privilege="http://www.sap.com/ndb/BiModelPrivilege.ecore" id="CvAvailSeatsRAW" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Raw table tm.avail_seats_prd"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="tm.avail_seats_prd">
+    <resourceUri>tm.avail_seats_prd</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_AVAIL">
+    <viewAttributes>
+      <viewAttribute id="access_control_system_ip"/>
+      <viewAttribute id="access_control_system_port"/>
+      <viewAttribute id="action"/>
+      <viewAttribute id="actual_class_id"/>
+      <viewAttribute id="aisle"/>
+      <viewAttribute id="attribute"/>
+      <viewAttribute id="barcode_event_slot_max"/>
+      <viewAttribute id="barcode_event_slot_min"/>
+      <viewAttribute id="barcode_season_key"/>
+      <viewAttribute id="barcode_seatcode_adjustment"/>
+      <viewAttribute id="block_full_price"/>
+      <viewAttribute id="block_id"/>
+      <viewAttribute id="block_purchase_price"/>
+      <viewAttribute id="class_code"/>
+      <viewAttribute id="class_color"/>
+      <viewAttribute id="class_id"/>
+      <viewAttribute id="class_name"/>
+      <viewAttribute id="config_id"/>
+      <viewAttribute id="digit_server_id"/>
+      <viewAttribute id="direction"/>
+      <viewAttribute id="display_status"/>
+      <viewAttribute id="dist_name"/>
+      <viewAttribute id="dist_status"/>
+      <viewAttribute id="enabled"/>
+      <viewAttribute id="event_date"/>
+      <viewAttribute id="event_day"/>
+      <viewAttribute id="event_id"/>
+      <viewAttribute id="event_name"/>
+      <viewAttribute id="event_sort"/>
+      <viewAttribute id="event_time"/>
+      <viewAttribute id="event_type"/>
+      <viewAttribute id="event_type_code"/>
+      <viewAttribute id="export_datetime"/>
+      <viewAttribute id="full_price_ticket_type_code"/>
+      <viewAttribute id="ga"/>
+      <viewAttribute id="host_integeregration_enabled"/>
+      <viewAttribute id="host_synch_status"/>
+      <viewAttribute id="im_mode"/>
+      <viewAttribute id="kill"/>
+      <viewAttribute id="last_seat"/>
+      <viewAttribute id="num_seats"/>
+      <viewAttribute id="offsale_datetime"/>
+      <viewAttribute id="onsale_datetime"/>
+      <viewAttribute id="org_id"/>
+      <viewAttribute id="org_name"/>
+      <viewAttribute id="oss_offsale_datetime"/>
+      <viewAttribute id="oss_onsale_datetime"/>
+      <viewAttribute id="pc_color"/>
+      <viewAttribute id="pc_licfee"/>
+      <viewAttribute id="pc_offsale_datetime"/>
+      <viewAttribute id="pc_onsale_datetime"/>
+      <viewAttribute id="pc_other1"/>
+      <viewAttribute id="pc_other2"/>
+      <viewAttribute id="pc_other3"/>
+      <viewAttribute id="pc_other4"/>
+      <viewAttribute id="pc_other5"/>
+      <viewAttribute id="pc_other6"/>
+      <viewAttribute id="pc_other7"/>
+      <viewAttribute id="pc_other8"/>
+      <viewAttribute id="pc_tax"/>
+      <viewAttribute id="pc_ticket"/>
+      <viewAttribute id="plan_id"/>
+      <viewAttribute id="plan_type"/>
+      <viewAttribute id="portal_high"/>
+      <viewAttribute id="portal_low"/>
+      <viewAttribute id="portal_mid_seat_num"/>
+      <viewAttribute id="price"/>
+      <viewAttribute id="price_code"/>
+      <viewAttribute id="price_code_desc"/>
+      <viewAttribute id="price_code_group"/>
+      <viewAttribute id="printeger_section_name"/>
+      <viewAttribute id="printeger_ticket_ind"/>
+      <viewAttribute id="printegered_price"/>
+      <viewAttribute id="quality"/>
+      <viewAttribute id="reserved"/>
+      <viewAttribute id="row_barcode_index"/>
+      <viewAttribute id="row_barcode_index_high"/>
+      <viewAttribute id="row_id"/>
+      <viewAttribute id="row_index"/>
+      <viewAttribute id="row_info1"/>
+      <viewAttribute id="row_info2"/>
+      <viewAttribute id="row_info3"/>
+      <viewAttribute id="row_info4"/>
+      <viewAttribute id="row_info5"/>
+      <viewAttribute id="row_name"/>
+      <viewAttribute id="row_name_right"/>
+      <viewAttribute id="row_sort"/>
+      <viewAttribute id="season_id"/>
+      <viewAttribute id="seat_code_high"/>
+      <viewAttribute id="seat_code_low"/>
+      <viewAttribute id="seat_increment"/>
+      <viewAttribute id="seat_num"/>
+      <viewAttribute id="section_id"/>
+      <viewAttribute id="section_info1"/>
+      <viewAttribute id="section_info2"/>
+      <viewAttribute id="section_info3"/>
+      <viewAttribute id="section_info4"/>
+      <viewAttribute id="section_info5"/>
+      <viewAttribute id="section_name"/>
+      <viewAttribute id="section_name_right"/>
+      <viewAttribute id="section_sort"/>
+      <viewAttribute id="section_type"/>
+      <viewAttribute id="sell_type"/>
+      <viewAttribute id="sellable"/>
+      <viewAttribute id="seq_num"/>
+      <viewAttribute id="status"/>
+      <viewAttribute id="tax_rate_a"/>
+      <viewAttribute id="tax_rate_b"/>
+      <viewAttribute id="tax_rate_c"/>
+      <viewAttribute id="team"/>
+      <viewAttribute id="teamname"/>
+      <viewAttribute id="ticket_type"/>
+      <viewAttribute id="ticket_type_code"/>
+      <viewAttribute id="tm_event_name"/>
+      <viewAttribute id="tm_price_level"/>
+      <viewAttribute id="tm_row_name"/>
+      <viewAttribute id="tm_section_name"/>
+      <viewAttribute id="total_events"/>
+      <viewAttribute id="unsold_qual_id"/>
+      <viewAttribute id="unsold_type"/>
+      <viewAttribute id="sap_uid"/>
+      <viewAttribute id="sap_container_id"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="tm.avail_seats_prd"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="P_AVAIL">
+  <attributes>
+    <attribute id="access_control_system_ip" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="access_control_system_ip"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="access_control_system_ip"/>
+    </attribute>
+    <attribute id="access_control_system_port" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="access_control_system_port"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="access_control_system_port"/>
+    </attribute>
+    <attribute id="action" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="action"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="action"/>
+    </attribute>
+    <attribute id="actual_class_id" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="actual_class_id"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="actual_class_id"/>
+    </attribute>
+    <attribute id="aisle" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="aisle"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="aisle"/>
+    </attribute>
+    <attribute id="attribute" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="attribute"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="attribute"/>
+    </attribute>
+    <attribute id="barcode_event_slot_max" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="barcode_event_slot_max"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="barcode_event_slot_max"/>
+    </attribute>
+    <attribute id="barcode_event_slot_min" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="barcode_event_slot_min"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="barcode_event_slot_min"/>
+    </attribute>
+    <attribute id="barcode_season_key" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="barcode_season_key"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="barcode_season_key"/>
+    </attribute>
+    <attribute id="barcode_seatcode_adjustment" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="barcode_seatcode_adjustment"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="barcode_seatcode_adjustment"/>
+    </attribute>
+    <attribute id="block_id" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="block_id"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="block_id"/>
+    </attribute>
+    <attribute id="class_code" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="class_code"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="class_code"/>
+    </attribute>
+    <attribute id="class_color" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="class_color"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="class_color"/>
+    </attribute>
+    <attribute id="class_id" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="class_id"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="class_id"/>
+    </attribute>
+    <attribute id="class_name" order="17" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="class_name"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="class_name"/>
+    </attribute>
+    <attribute id="config_id" order="18" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="config_id"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="config_id"/>
+    </attribute>
+    <attribute id="digit_server_id" order="19" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="digit_server_id"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="digit_server_id"/>
+    </attribute>
+    <attribute id="direction" order="20" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="direction"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="direction"/>
+    </attribute>
+    <attribute id="display_status" order="21" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="display_status"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="display_status"/>
+    </attribute>
+    <attribute id="dist_name" order="22" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="dist_name"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="dist_name"/>
+    </attribute>
+    <attribute id="dist_status" order="23" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="dist_status"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="dist_status"/>
+    </attribute>
+    <attribute id="enabled" order="24" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="enabled"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="enabled"/>
+    </attribute>
+    <attribute id="event_date" order="25" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="event_date"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="event_date"/>
+    </attribute>
+    <attribute id="event_day" order="26" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="event_day"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="event_day"/>
+    </attribute>
+    <attribute id="event_id" order="27" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="event_id"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="event_id"/>
+    </attribute>
+    <attribute id="event_name" order="28" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="event_name"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="event_name"/>
+    </attribute>
+    <attribute id="event_sort" order="29" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="event_sort"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="event_sort"/>
+    </attribute>
+    <attribute id="event_time" order="30" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="event_time"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="event_time"/>
+    </attribute>
+    <attribute id="event_type" order="31" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="event_type"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="event_type"/>
+    </attribute>
+    <attribute id="event_type_code" order="32" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="event_type_code"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="event_type_code"/>
+    </attribute>
+    <attribute id="export_datetime" order="33" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="export_datetime"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="export_datetime"/>
+    </attribute>
+    <attribute id="full_price_ticket_type_code" order="34" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="full_price_ticket_type_code"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="full_price_ticket_type_code"/>
+    </attribute>
+    <attribute id="ga" order="35" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ga"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="ga"/>
+    </attribute>
+    <attribute id="host_integeregration_enabled" order="36" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="host_integeregration_enabled"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="host_integeregration_enabled"/>
+    </attribute>
+    <attribute id="host_synch_status" order="37" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="host_synch_status"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="host_synch_status"/>
+    </attribute>
+    <attribute id="im_mode" order="38" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="im_mode"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="im_mode"/>
+    </attribute>
+    <attribute id="kill" order="39" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="kill"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="kill"/>
+    </attribute>
+    <attribute id="last_seat" order="40" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="last_seat"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="last_seat"/>
+    </attribute>
+    <attribute id="offsale_datetime" order="42" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="offsale_datetime"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="offsale_datetime"/>
+    </attribute>
+    <attribute id="onsale_datetime" order="43" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="onsale_datetime"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="onsale_datetime"/>
+    </attribute>
+    <attribute id="org_id" order="44" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="org_id"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="org_id"/>
+    </attribute>
+    <attribute id="org_name" order="45" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="org_name"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="org_name"/>
+    </attribute>
+    <attribute id="oss_offsale_datetime" order="46" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="oss_offsale_datetime"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="oss_offsale_datetime"/>
+    </attribute>
+    <attribute id="oss_onsale_datetime" order="47" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="oss_onsale_datetime"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="oss_onsale_datetime"/>
+    </attribute>
+    <attribute id="pc_color" order="48" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="pc_color"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="pc_color"/>
+    </attribute>
+    <attribute id="pc_offsale_datetime" order="50" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="pc_offsale_datetime"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="pc_offsale_datetime"/>
+    </attribute>
+    <attribute id="pc_onsale_datetime" order="51" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="pc_onsale_datetime"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="pc_onsale_datetime"/>
+    </attribute>
+    <attribute id="plan_id" order="62" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="plan_id"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="plan_id"/>
+    </attribute>
+    <attribute id="plan_type" order="63" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="plan_type"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="plan_type"/>
+    </attribute>
+    <attribute id="portal_high" order="64" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="portal_high"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="portal_high"/>
+    </attribute>
+    <attribute id="portal_low" order="65" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="portal_low"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="portal_low"/>
+    </attribute>
+    <attribute id="portal_mid_seat_num" order="66" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="portal_mid_seat_num"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="portal_mid_seat_num"/>
+    </attribute>
+    <attribute id="price" order="67" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="price"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="price"/>
+    </attribute>
+    <attribute id="price_code" order="68" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="price_code"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="price_code"/>
+    </attribute>
+    <attribute id="price_code_desc" order="69" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="price_code_desc"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="price_code_desc"/>
+    </attribute>
+    <attribute id="price_code_group" order="70" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="price_code_group"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="price_code_group"/>
+    </attribute>
+    <attribute id="printeger_section_name" order="71" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="printeger_section_name"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="printeger_section_name"/>
+    </attribute>
+    <attribute id="printeger_ticket_ind" order="72" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="printeger_ticket_ind"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="printeger_ticket_ind"/>
+    </attribute>
+    <attribute id="quality" order="74" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="quality"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="quality"/>
+    </attribute>
+    <attribute id="reserved" order="75" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="reserved"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="reserved"/>
+    </attribute>
+    <attribute id="row_barcode_index" order="76" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="row_barcode_index"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="row_barcode_index"/>
+    </attribute>
+    <attribute id="row_barcode_index_high" order="77" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="row_barcode_index_high"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="row_barcode_index_high"/>
+    </attribute>
+    <attribute id="row_id" order="78" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="row_id"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="row_id"/>
+    </attribute>
+    <attribute id="row_index" order="79" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="row_index"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="row_index"/>
+    </attribute>
+    <attribute id="row_info1" order="80" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="row_info1"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="row_info1"/>
+    </attribute>
+    <attribute id="row_info2" order="81" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="row_info2"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="row_info2"/>
+    </attribute>
+    <attribute id="row_info3" order="82" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="row_info3"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="row_info3"/>
+    </attribute>
+    <attribute id="row_info4" order="83" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="row_info4"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="row_info4"/>
+    </attribute>
+    <attribute id="row_info5" order="84" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="row_info5"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="row_info5"/>
+    </attribute>
+    <attribute id="row_name" order="85" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="row_name"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="row_name"/>
+    </attribute>
+    <attribute id="row_name_right" order="86" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="row_name_right"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="row_name_right"/>
+    </attribute>
+    <attribute id="row_sort" order="87" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="row_sort"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="row_sort"/>
+    </attribute>
+    <attribute id="season_id" order="88" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="season_id"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="season_id"/>
+    </attribute>
+    <attribute id="seat_code_high" order="89" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="seat_code_high"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="seat_code_high"/>
+    </attribute>
+    <attribute id="seat_code_low" order="90" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="seat_code_low"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="seat_code_low"/>
+    </attribute>
+    <attribute id="seat_increment" order="91" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="seat_increment"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="seat_increment"/>
+    </attribute>
+    <attribute id="seat_num" order="92" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="seat_num"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="seat_num"/>
+    </attribute>
+    <attribute id="section_id" order="93" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="section_id"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="section_id"/>
+    </attribute>
+    <attribute id="section_info1" order="94" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="section_info1"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="section_info1"/>
+    </attribute>
+    <attribute id="section_info2" order="95" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="section_info2"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="section_info2"/>
+    </attribute>
+    <attribute id="section_info3" order="96" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="section_info3"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="section_info3"/>
+    </attribute>
+    <attribute id="section_info4" order="97" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="section_info4"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="section_info4"/>
+    </attribute>
+    <attribute id="section_info5" order="98" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="section_info5"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="section_info5"/>
+    </attribute>
+    <attribute id="section_name" order="99" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="section_name"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="section_name"/>
+    </attribute>
+    <attribute id="section_name_right" order="100" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="section_name_right"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="section_name_right"/>
+    </attribute>
+    <attribute id="section_sort" order="101" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="section_sort"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="section_sort"/>
+    </attribute>
+    <attribute id="section_type" order="102" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="section_type"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="section_type"/>
+    </attribute>
+    <attribute id="sell_type" order="103" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="sell_type"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="sell_type"/>
+    </attribute>
+    <attribute id="sellable" order="104" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="sellable"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="sellable"/>
+    </attribute>
+    <attribute id="seq_num" order="105" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="seq_num"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="seq_num"/>
+    </attribute>
+    <attribute id="status" order="106" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="status"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="status"/>
+    </attribute>
+    <attribute id="team" order="110" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="team"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="team"/>
+    </attribute>
+    <attribute id="teamname" order="111" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="teamname"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="teamname"/>
+    </attribute>
+    <attribute id="ticket_type" order="112" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ticket_type"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="ticket_type"/>
+    </attribute>
+    <attribute id="ticket_type_code" order="113" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ticket_type_code"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="ticket_type_code"/>
+    </attribute>
+    <attribute id="tm_event_name" order="114" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="tm_event_name"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="tm_event_name"/>
+    </attribute>
+    <attribute id="tm_price_level" order="115" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="tm_price_level"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="tm_price_level"/>
+    </attribute>
+    <attribute id="tm_row_name" order="116" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="tm_row_name"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="tm_row_name"/>
+    </attribute>
+    <attribute id="tm_section_name" order="117" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="tm_section_name"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="tm_section_name"/>
+    </attribute>
+    <attribute id="total_events" order="118" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="total_events"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="total_events"/>
+    </attribute>
+    <attribute id="unsold_qual_id" order="119" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="unsold_qual_id"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="unsold_qual_id"/>
+    </attribute>
+    <attribute id="unsold_type" order="120" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="unsold_type"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="unsold_type"/>
+    </attribute>
+    <attribute id="sap_uid" order="121" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="sap_uid"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="sap_uid"/>
+    </attribute>
+    <attribute id="sap_container_id" order="122" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="sap_container_id"/>
+      <keyMapping columnObjectName="P_AVAIL" columnName="sap_container_id"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="block_full_price" order="11" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="block_full_price"/>
+      <measureMapping columnObjectName="P_AVAIL" columnName="block_full_price"/>
+    </measure>
+    <measure id="block_purchase_price" order="13" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="block_purchase_price"/>
+      <measureMapping columnObjectName="P_AVAIL" columnName="block_purchase_price"/>
+    </measure>
+    <measure id="num_seats" order="41" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="num_seats"/>
+      <measureMapping columnObjectName="P_AVAIL" columnName="num_seats"/>
+    </measure>
+    <measure id="pc_licfee" order="49" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_licfee"/>
+      <measureMapping columnObjectName="P_AVAIL" columnName="pc_licfee"/>
+    </measure>
+    <measure id="pc_other1" order="52" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other1"/>
+      <measureMapping columnObjectName="P_AVAIL" columnName="pc_other1"/>
+    </measure>
+    <measure id="pc_other2" order="53" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other2"/>
+      <measureMapping columnObjectName="P_AVAIL" columnName="pc_other2"/>
+    </measure>
+    <measure id="pc_other3" order="54" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other3"/>
+      <measureMapping columnObjectName="P_AVAIL" columnName="pc_other3"/>
+    </measure>
+    <measure id="pc_other4" order="55" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other4"/>
+      <measureMapping columnObjectName="P_AVAIL" columnName="pc_other4"/>
+    </measure>
+    <measure id="pc_other5" order="56" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other5"/>
+      <measureMapping columnObjectName="P_AVAIL" columnName="pc_other5"/>
+    </measure>
+    <measure id="pc_other6" order="57" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other6"/>
+      <measureMapping columnObjectName="P_AVAIL" columnName="pc_other6"/>
+    </measure>
+    <measure id="pc_other7" order="58" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other7"/>
+      <measureMapping columnObjectName="P_AVAIL" columnName="pc_other7"/>
+    </measure>
+    <measure id="pc_other8" order="59" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other8"/>
+      <measureMapping columnObjectName="P_AVAIL" columnName="pc_other8"/>
+    </measure>
+    <measure id="pc_tax" order="60" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_tax"/>
+      <measureMapping columnObjectName="P_AVAIL" columnName="pc_tax"/>
+    </measure>
+    <measure id="pc_ticket" order="61" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_ticket"/>
+      <measureMapping columnObjectName="P_AVAIL" columnName="pc_ticket"/>
+    </measure>
+    <measure id="printegered_price" order="73" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="printegered_price"/>
+      <measureMapping columnObjectName="P_AVAIL" columnName="printegered_price"/>
+    </measure>
+    <measure id="tax_rate_a" order="107" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="tax_rate_a"/>
+      <measureMapping columnObjectName="P_AVAIL" columnName="tax_rate_a"/>
+    </measure>
+    <measure id="tax_rate_b" order="108" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="tax_rate_b"/>
+      <measureMapping columnObjectName="P_AVAIL" columnName="tax_rate_b"/>
+    </measure>
+    <measure id="tax_rate_c" order="109" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="tax_rate_c"/>
+      <measureMapping columnObjectName="P_AVAIL" columnName="tax_rate_c"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="92" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="P_AVAIL" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="76" y="261"/>
+      <rectangleSize height="30" width="160"/>
+    </shape></shapes>
+</layout>
+</Calculation:scenario>

@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Privilege="http://www.sap.com/ndb/BiModelPrivilege.ecore" id="CvEventsRAW" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Raw table tm.events_prd"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="tm.events_prd">
+    <resourceUri>tm.events_prd</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_EVENTS">
+    <viewAttributes>
+      <viewAttribute id="add_date"/>
+      <viewAttribute id="arena_name"/>
+      <viewAttribute id="barcode_status"/>
+      <viewAttribute id="dsps_allowed"/>
+      <viewAttribute id="dw_event_id"/>
+      <viewAttribute id="enabled"/>
+      <viewAttribute id="event_date"/>
+      <viewAttribute id="event_day"/>
+      <viewAttribute id="event_id"/>
+      <viewAttribute id="event_name"/>
+      <viewAttribute id="event_name_long"/>
+      <viewAttribute id="event_report_group"/>
+      <viewAttribute id="event_sort"/>
+      <viewAttribute id="event_time"/>
+      <viewAttribute id="event_type"/>
+      <viewAttribute id="exchange_price_opt"/>
+      <viewAttribute id="fse"/>
+      <viewAttribute id="game_number"/>
+      <viewAttribute id="major_category"/>
+      <viewAttribute id="maxeventdate"/>
+      <viewAttribute id="min_events"/>
+      <viewAttribute id="minor_category"/>
+      <viewAttribute id="org_name"/>
+      <viewAttribute id="plan"/>
+      <viewAttribute id="plan_abv"/>
+      <viewAttribute id="plan_type"/>
+      <viewAttribute id="print_ticket_ind"/>
+      <viewAttribute id="returnable"/>
+      <viewAttribute id="season_id"/>
+      <viewAttribute id="season_name"/>
+      <viewAttribute id="seq_num"/>
+      <viewAttribute id="team"/>
+      <viewAttribute id="tm_event_name"/>
+      <viewAttribute id="total_events"/>
+      <viewAttribute id="upd_date"/>
+      <viewAttribute id="upd_user"/>
+      <viewAttribute id="line1"/>
+      <viewAttribute id="line2"/>
+      <viewAttribute id="line3"/>
+      <viewAttribute id="line4"/>
+      <viewAttribute id="line5"/>
+      <viewAttribute id="line6"/>
+      <viewAttribute id="line7"/>
+      <viewAttribute id="line8"/>
+      <viewAttribute id="line9"/>
+      <viewAttribute id="line10"/>
+      <viewAttribute id="sap_uid"/>
+      <viewAttribute id="sap_container_id"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="tm.events_prd"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="P_EVENTS">
+  <attributes>
+    <attribute id="add_date" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="add_date"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="add_date"/>
+    </attribute>
+    <attribute id="arena_name" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="arena_name"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="arena_name"/>
+    </attribute>
+    <attribute id="barcode_status" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="barcode_status"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="barcode_status"/>
+    </attribute>
+    <attribute id="dsps_allowed" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="dsps_allowed"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="dsps_allowed"/>
+    </attribute>
+    <attribute id="dw_event_id" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="dw_event_id"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="dw_event_id"/>
+    </attribute>
+    <attribute id="enabled" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="enabled"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="enabled"/>
+    </attribute>
+    <attribute id="event_date" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="event_date"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="event_date"/>
+    </attribute>
+    <attribute id="event_day" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="event_day"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="event_day"/>
+    </attribute>
+    <attribute id="event_id" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="event_id"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="event_id"/>
+    </attribute>
+    <attribute id="event_name" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="event_name"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="event_name"/>
+    </attribute>
+    <attribute id="event_name_long" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="event_name_long"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="event_name_long"/>
+    </attribute>
+    <attribute id="event_report_group" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="event_report_group"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="event_report_group"/>
+    </attribute>
+    <attribute id="event_sort" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="event_sort"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="event_sort"/>
+    </attribute>
+    <attribute id="event_time" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="event_time"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="event_time"/>
+    </attribute>
+    <attribute id="event_type" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="event_type"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="event_type"/>
+    </attribute>
+    <attribute id="exchange_price_opt" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="exchange_price_opt"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="exchange_price_opt"/>
+    </attribute>
+    <attribute id="fse" order="17" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="fse"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="fse"/>
+    </attribute>
+    <attribute id="game_number" order="18" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="game_number"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="game_number"/>
+    </attribute>
+    <attribute id="major_category" order="19" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="major_category"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="major_category"/>
+    </attribute>
+    <attribute id="maxeventdate" order="20" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="maxeventdate"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="maxeventdate"/>
+    </attribute>
+    <attribute id="min_events" order="21" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="min_events"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="min_events"/>
+    </attribute>
+    <attribute id="minor_category" order="22" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="minor_category"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="minor_category"/>
+    </attribute>
+    <attribute id="org_name" order="23" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="org_name"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="org_name"/>
+    </attribute>
+    <attribute id="plan" order="24" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="plan"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="plan"/>
+    </attribute>
+    <attribute id="plan_abv" order="25" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="plan_abv"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="plan_abv"/>
+    </attribute>
+    <attribute id="plan_type" order="26" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="plan_type"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="plan_type"/>
+    </attribute>
+    <attribute id="print_ticket_ind" order="27" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="print_ticket_ind"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="print_ticket_ind"/>
+    </attribute>
+    <attribute id="returnable" order="28" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="returnable"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="returnable"/>
+    </attribute>
+    <attribute id="season_id" order="29" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="season_id"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="season_id"/>
+    </attribute>
+    <attribute id="season_name" order="30" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="season_name"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="season_name"/>
+    </attribute>
+    <attribute id="seq_num" order="31" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="seq_num"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="seq_num"/>
+    </attribute>
+    <attribute id="team" order="32" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="team"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="team"/>
+    </attribute>
+    <attribute id="tm_event_name" order="33" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="tm_event_name"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="tm_event_name"/>
+    </attribute>
+    <attribute id="total_events" order="34" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="total_events"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="total_events"/>
+    </attribute>
+    <attribute id="upd_date" order="35" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="upd_date"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="upd_date"/>
+    </attribute>
+    <attribute id="upd_user" order="36" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="upd_user"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="upd_user"/>
+    </attribute>
+    <attribute id="line1" order="37" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="line1"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="line1"/>
+    </attribute>
+    <attribute id="line2" order="38" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="line2"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="line2"/>
+    </attribute>
+    <attribute id="line3" order="39" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="line3"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="line3"/>
+    </attribute>
+    <attribute id="line4" order="40" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="line4"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="line4"/>
+    </attribute>
+    <attribute id="line5" order="41" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="line5"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="line5"/>
+    </attribute>
+    <attribute id="line6" order="42" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="line6"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="line6"/>
+    </attribute>
+    <attribute id="line7" order="43" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="line7"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="line7"/>
+    </attribute>
+    <attribute id="line8" order="44" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="line8"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="line8"/>
+    </attribute>
+    <attribute id="line9" order="45" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="line9"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="line9"/>
+    </attribute>
+    <attribute id="line10" order="46" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="line10"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="line10"/>
+    </attribute>
+    <attribute id="sap_uid" order="47" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="sap_uid"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="sap_uid"/>
+    </attribute>
+    <attribute id="sap_container_id" order="48" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="sap_container_id"/>
+      <keyMapping columnObjectName="P_EVENTS" columnName="sap_container_id"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures>
+    <measure id="COUNT_EVENTID" order="49" aggregationType="sum" measureType="simple" calculatedMeasureType="counter" aggregatable="true" datatype="BIGINT" length="">
+      <descriptions defaultDescription="Count of EventID"/>
+      <exceptionAggregation>
+        <attribute attributeName="event_id"/>
+      </exceptionAggregation>
+      <formula>1</formula>
+      </measure>
+  </calculatedMeasures>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="92" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="P_EVENTS" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="76" y="261"/>
+      <rectangleSize height="30" width="160"/>
+    </shape></shapes>
+</layout>
+</Calculation:scenario>

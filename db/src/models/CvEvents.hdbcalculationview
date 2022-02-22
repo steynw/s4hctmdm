@@ -1,0 +1,2027 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:DataFoundation="http://www.sap.com/ndb/BiModelDataFoundation.ecore" xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" id="CvEvents" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="CvEvents">
+  <comment text=""/>
+</descriptions>
+<localVariables/> 
+<variableMappings/>   
+<dataSources>   
+  <DataSource id="CvTicketFacts">   
+    <resourceUri>CvTicketFacts</resourceUri>   
+  </DataSource>   
+  <DataSource id="CvAttendFacts">   
+    <resourceUri>CvAttendFacts</resourceUri>   
+  </DataSource>   
+  <DataSource id="CvAvailSeatsFacts">   
+    <resourceUri>CvAvailSeatsFacts</resourceUri>   
+  </DataSource>   
+  <DataSource id="CvEnterpriseProject">   
+    <resourceUri>CvEnterpriseProject</resourceUri>   
+  </DataSource>   
+  <DataSource id="tm.events_prd">   
+    <resourceUri>tm.events_prd</resourceUri>   
+  </DataSource>   
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:UnionView" id="Union_1">
+    <viewAttributes>
+      <viewAttribute id="Project"/>
+      <viewAttribute id="TicketsSoldTM"/>
+      <viewAttribute id="TicketsSoldCompTM"/>
+      <viewAttribute id="TicketsSoldPaidTM"/>
+      <viewAttribute id="PaidTicketsSuitesTM"/>
+      <viewAttribute id="PaidTicketsArenaTM"/>
+      <viewAttribute id="CompTicketsSuitesTM"/>
+      <viewAttribute id="CompTicketsArenaTM"/>
+      <viewAttribute id="TicketsUnsoldTM" aggregationType="sum"/>
+      <viewAttribute id="TicketsUnsoldArenaTM" aggregationType="sum"/>
+      <viewAttribute id="TicketsUnsoldSuitesTM" aggregationType="sum"/>
+      <viewAttribute id="TicketsUnsoldParkingTM" aggregationType="sum"/>
+      <viewAttribute datatype="NVARCHAR" length="10" id="DATASOURCE"/>
+      <viewAttribute id="PaidTicketsSuitesS4" aggregationType="sum"/>
+    
+      <viewAttribute id="PaidTicketsArenaS4"/>
+      <viewAttribute id="CompTicketsArenaS4"/>
+      <viewAttribute id="DropTicketsSuitesS4"/>
+      <viewAttribute id="DropTicketsArenaS4"/>
+      <viewAttribute id="GrossPotentialTicketSalesS4"/>
+      <viewAttribute id="CompTicketsSuitesS4"/>
+    
+      <viewAttribute id="AttendanceArenaTM" aggregationType="sum"/>
+      <viewAttribute id="AttendanceSuitesTM" aggregationType="sum"/>
+      <viewAttribute id="AttendanceParkingTM" aggregationType="sum"/>
+    
+      <viewAttribute id="AttendanceLoungeTM" aggregationType="sum"/>
+    
+      <viewAttribute id="PlannedEndDate" aggregationType="min"/>
+      <viewAttribute id="ProjectDescription"/>
+      <viewAttribute id="ProjectCreationDateTime" aggregationType="min"/>
+      <viewAttribute id="ProjectCreatedByUser"/>
+      <viewAttribute id="Currency"/>
+      <viewAttribute id="FunctionalArea"/>
+      <viewAttribute id="ControllingArea"/>
+      <viewAttribute id="CompanyCode"/>
+      <viewAttribute id="ProfitCenter"/>
+      <viewAttribute id="PlannedStartDate" aggregationType="min"/>
+      <viewAttribute id="Type"/>
+      <viewAttribute id="TypeDesc"/>
+      <viewAttribute id="SubType"/>
+      <viewAttribute id="SubTypeDesc"/>
+      <viewAttribute id="Rank" aggregationType="sum"/>
+      <viewAttribute id="EventStartTime" aggregationType="min"/>
+      <viewAttribute id="DoorsOpen" aggregationType="min"/>
+      <viewAttribute id="ClubOpen"/>
+      <viewAttribute id="LoungeOpen"/>
+      <viewAttribute id="SuitesOpen"/>
+      <viewAttribute id="CompareCode"/>
+      <viewAttribute id="PromotionalItem"/>
+      <viewAttribute id="PromotionalItemDesc"/>
+      <viewAttribute id="EventInTicketMaster"/>
+      <viewAttribute id="MerchDeal"/>
+      <viewAttribute id="EventMoved"/>
+      <viewAttribute id="EventCancelled"/>
+      <viewAttribute id="Weather"/>
+      <viewAttribute id="Budget"/>
+      <viewAttribute id="BudgetDesc"/>
+      <viewAttribute id="Actual"/>
+      <viewAttribute id="ActualDesc"/>
+      <viewAttribute id="EventManager"/>
+      <viewAttribute id="EventManagerDesc"/>
+      <viewAttribute id="Promoter"/>
+      <viewAttribute id="PromoterDesc"/>
+      <viewAttribute id="Agency"/>
+      <viewAttribute id="AgencyDesc"/>
+      <viewAttribute id="RentDeal"/>
+      <viewAttribute id="Genre"/>
+      <viewAttribute id="GenreDesc"/>
+      <viewAttribute id="EventDate"/>
+    
+      <viewAttribute id="ParkingRate" aggregationType="sum"/>
+    
+      <viewAttribute id="CapacityS4"/>
+    
+      <viewAttribute id="ValueUnsoldArenaTM" aggregationType="sum"/>
+      <viewAttribute id="ValueUnsoldSuitesTM" aggregationType="sum"/>
+      <viewAttribute id="ValueUnsoldParkingTM" aggregationType="sum"/>
+    
+      <viewAttribute id="PurchasePriceArenaTM" aggregationType="sum"/>
+      <viewAttribute id="PurchasePriceSuitesTM" aggregationType="sum"/>
+      <viewAttribute id="GrossTicketReceiptsS4"/>
+      <viewAttribute id="PurchasePriceLoungeTM" aggregationType="sum"/>
+      <viewAttribute id="PurchasePriceParkingTM" aggregationType="sum"/>
+    
+      <viewAttribute id="MultiType"/>
+    
+      <viewAttribute id="ProcessingStatus"/>
+    
+      <viewAttribute id="EventDirector"/>
+      <viewAttribute id="EventDirectorDesc"/>
+    
+      <viewAttribute id="ArchticsEventDate"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="P_TICKETS" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Project" source="Project"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TicketsSoldTM" source="TicketsSoldTM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TicketsSoldCompTM" source="TicketsSoldCompTM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TicketsSoldPaidTM" source="TicketsSoldPaidTM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PaidTicketsSuitesTM" source="PaidTicketsSuitesTM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PaidTicketsArenaTM" source="PaidTicketsArenaTM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompTicketsSuitesTM" source="CompTicketsSuitesTM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompTicketsArenaTM" source="CompTicketsArenaTM"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="TicketsUnsoldTM" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="TicketsUnsoldArenaTM" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="TicketsUnsoldSuitesTM" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="TicketsUnsoldParkingTM" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="DATASOURCE" null="false" value="TMTICKETS"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="PaidTicketsSuitesS4" null="true" value=""/>
+    
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="PaidTicketsArenaS4" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CompTicketsArenaS4" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="DropTicketsSuitesS4" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="DropTicketsArenaS4" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="GrossPotentialTicketSalesS4" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CompTicketsSuitesS4" null="true" value=""/>
+    
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="AttendanceArenaTM" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="AttendanceSuitesTM" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="AttendanceParkingTM" null="true" value=""/>
+    
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="AttendanceLoungeTM" null="true" value=""/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedEndDate" source="PlannedEndDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectDescription" source="ProjectDescription"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectCreationDateTime" source="ProjectCreationDateTime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectCreatedByUser" source="ProjectCreatedByUser"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Currency" source="Currency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FunctionalArea" source="FunctionalArea"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ControllingArea" source="ControllingArea"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProfitCenter" source="ProfitCenter"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedStartDate" source="PlannedStartDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Type" source="Type"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TypeDesc" source="TypeDesc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SubType" source="SubType"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SubTypeDesc" source="SubTypeDesc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Rank" source="Rank"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventStartTime" source="EventStartTime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DoorsOpen" source="DoorsOpen"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ClubOpen" source="ClubOpen"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LoungeOpen" source="LoungeOpen"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SuitesOpen" source="SuitesOpen"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompareCode" source="CompareCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PromotionalItem" source="PromotionalItem"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PromotionalItemDesc" source="PromotionalItemDesc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventInTicketMaster" source="EventInTicketMaster"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MerchDeal" source="MerchDeal"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventMoved" source="EventMoved"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventCancelled" source="EventCancelled"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Weather" source="Weather"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Budget" source="Budget"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BudgetDesc" source="BudgetDesc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Actual" source="Actual"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ActualDesc" source="ActualDesc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventManager" source="EventManager"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventManagerDesc" source="EventManagerDesc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Promoter" source="Promoter"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PromoterDesc" source="PromoterDesc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Agency" source="Agency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AgencyDesc" source="AgencyDesc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="RentDeal" source="RentDeal"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Genre" source="Genre"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GenreDesc" source="GenreDesc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventDate" source="EventDate"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="ParkingRate" source="ParkingRate"/>
+    
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CapacityS4" null="true" value=""/>
+    
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="ValueUnsoldArenaTM" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="ValueUnsoldSuitesTM" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="ValueUnsoldParkingTM" null="true" value=""/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchasePriceArenaTM" source="PurchasePriceArenaTM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchasePriceSuitesTM" source="PurchasePriceSuitesTM"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="GrossTicketReceiptsS4" null="true" value=""/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchasePriceLoungeTM" source="PurchasePriceLoungeTM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchasePriceParkingTM" source="PurchasePriceParkingTM"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="MultiType" source="MultiType"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProcessingStatus" source="ProcessingStatus"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventDirector" source="EventDirector"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventDirectorDesc" source="EventDirectorDesc"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="ArchticsEventDate" source="ArchticsEventDate"/>
+    </input>
+  
+    <input node="P_ATTEND" emptyUnionBehavior="NO_ROW">
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="Project" source="Project"/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="TicketsSoldTM" null="true" value=""/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="TicketsSoldCompTM" null="true" value=""/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="TicketsSoldPaidTM" null="true" value=""/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="PaidTicketsSuitesTM" null="true" value=""/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="PaidTicketsArenaTM" null="true" value=""/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CompTicketsSuitesTM" null="true" value=""/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CompTicketsArenaTM" null="true" value=""/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="TicketsUnsoldTM" null="true" value=""/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="TicketsUnsoldArenaTM" null="true" value=""/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="TicketsUnsoldSuitesTM" null="true" value=""/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="TicketsUnsoldParkingTM" null="true" value=""/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="DATASOURCE" null="false" value="TMATTEND"/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="PaidTicketsSuitesS4" null="true" value=""/>
+  
+    
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="PaidTicketsArenaS4" null="true" value=""/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CompTicketsArenaS4" null="true" value=""/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="DropTicketsSuitesS4" null="true" value=""/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="DropTicketsArenaS4" null="true" value=""/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="GrossPotentialTicketSalesS4" null="true" value=""/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CompTicketsSuitesS4" null="true" value=""/>
+  
+    
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="AttendanceArenaTM" source="AttendanceArenaTM"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="AttendanceSuitesTM" source="AttendanceSuitesTM"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="AttendanceParkingTM" source="AttendanceParkingTM"/>
+  
+    
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="AttendanceLoungeTM" source="AttendanceLoungeTM"/>
+  
+    
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedEndDate" source="PlannedEndDate"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectDescription" source="ProjectDescription"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectCreationDateTime" source="ProjectCreationDateTime"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectCreatedByUser" source="ProjectCreatedByUser"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="Currency" source="Currency"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="FunctionalArea" source="FunctionalArea"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="ControllingArea" source="ControllingArea"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProfitCenter" source="ProfitCenter"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedStartDate" source="PlannedStartDate"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="Type" source="Type"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="TypeDesc" source="TypeDesc"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="SubType" source="SubType"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="SubTypeDesc" source="SubTypeDesc"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="Rank" source="Rank"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventStartTime" source="EventStartTime"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="DoorsOpen" source="DoorsOpen"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="ClubOpen" source="ClubOpen"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="LoungeOpen" source="LoungeOpen"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="SuitesOpen" source="SuitesOpen"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompareCode" source="CompareCode"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="PromotionalItem" source="PromotionalItem"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="PromotionalItemDesc" source="PromotionalItemDesc"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventInTicketMaster" source="EventInTicketMaster"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="MerchDeal" source="MerchDeal"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventMoved" source="EventMoved"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventCancelled" source="EventCancelled"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="Weather" source="Weather"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="Budget" source="Budget"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="BudgetDesc" source="BudgetDesc"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="Actual" source="Actual"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="ActualDesc" source="ActualDesc"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventManager" source="EventManager"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventManagerDesc" source="EventManagerDesc"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="Promoter" source="Promoter"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="PromoterDesc" source="PromoterDesc"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="Agency" source="Agency"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="AgencyDesc" source="AgencyDesc"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="RentDeal" source="RentDeal"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="Genre" source="Genre"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="GenreDesc" source="GenreDesc"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventDate" source="EventDate"/>
+  
+    
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="ParkingRate" source="ParkingRate"/>
+  
+    
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CapacityS4" null="true" value=""/>
+  
+    
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="ValueUnsoldArenaTM" null="true" value=""/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="ValueUnsoldSuitesTM" null="true" value=""/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="ValueUnsoldParkingTM" null="true" value=""/>
+  
+    
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="PurchasePriceArenaTM" null="true" value=""/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="PurchasePriceSuitesTM" null="true" value=""/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="GrossTicketReceiptsS4" null="true" value=""/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="PurchasePriceLoungeTM" null="true" value=""/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="PurchasePriceParkingTM" null="true" value=""/>
+  
+    
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="MultiType" source="MultiType"/>
+  
+    
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProcessingStatus" source="ProcessingStatus"/>
+  
+    
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventDirector" source="EventDirector"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventDirectorDesc" source="EventDirectorDesc"/>
+  
+    
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="ArchticsEventDate" source="ArchticsEventDate"/>
+  
+    </input>
+    <input node="P_AVAIL" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Project" source="Project"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="TicketsSoldTM" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="TicketsSoldCompTM" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="TicketsSoldPaidTM" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="PaidTicketsSuitesTM" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="PaidTicketsArenaTM" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CompTicketsSuitesTM" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CompTicketsArenaTM" null="true" value=""/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TicketsUnsoldTM" source="TicketsUnsoldTM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TicketsUnsoldArenaTM" source="TicketsUnsoldArenaTM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TicketsUnsoldSuitesTM" source="TicketsUnsoldSuitesTM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TicketsUnsoldParkingTM" source="TicketsUnsoldParkingTM"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="DATASOURCE" null="false" value="TMAVAIL"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="PaidTicketsSuitesS4" null="true" value=""/>
+    
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="PaidTicketsArenaS4" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CompTicketsArenaS4" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="DropTicketsSuitesS4" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="DropTicketsArenaS4" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="GrossPotentialTicketSalesS4" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CompTicketsSuitesS4" null="true" value=""/>
+    
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="AttendanceArenaTM" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="AttendanceSuitesTM" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="AttendanceParkingTM" null="true" value=""/>
+    
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="AttendanceLoungeTM" null="true" value=""/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedEndDate" source="PlannedEndDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectDescription" source="ProjectDescription"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectCreationDateTime" source="ProjectCreationDateTime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectCreatedByUser" source="ProjectCreatedByUser"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Currency" source="Currency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FunctionalArea" source="FunctionalArea"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ControllingArea" source="ControllingArea"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProfitCenter" source="ProfitCenter"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedStartDate" source="PlannedStartDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Type" source="Type"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TypeDesc" source="TypeDesc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SubType" source="SubType"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SubTypeDesc" source="SubTypeDesc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Rank" source="Rank"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventStartTime" source="EventStartTime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DoorsOpen" source="DoorsOpen"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ClubOpen" source="ClubOpen"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LoungeOpen" source="LoungeOpen"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SuitesOpen" source="SuitesOpen"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompareCode" source="CompareCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PromotionalItem" source="PromotionalItem"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PromotionalItemDesc" source="PromotionalItemDesc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventInTicketMaster" source="EventInTicketMaster"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MerchDeal" source="MerchDeal"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventMoved" source="EventMoved"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventCancelled" source="EventCancelled"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Weather" source="Weather"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Budget" source="Budget"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BudgetDesc" source="BudgetDesc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Actual" source="Actual"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ActualDesc" source="ActualDesc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventManager" source="EventManager"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventManagerDesc" source="EventManagerDesc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Promoter" source="Promoter"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PromoterDesc" source="PromoterDesc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Agency" source="Agency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AgencyDesc" source="AgencyDesc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="RentDeal" source="RentDeal"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Genre" source="Genre"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GenreDesc" source="GenreDesc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventDate" source="EventDate"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="ParkingRate" source="ParkingRate"/>
+    
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CapacityS4" null="true" value=""/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="ValueUnsoldArenaTM" source="ValueUnsoldArenaTM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ValueUnsoldSuitesTM" source="ValueUnsoldSuitesTM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ValueUnsoldParkingTM" source="ValueUnsoldParkingTM"/>
+    
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="PurchasePriceArenaTM" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="PurchasePriceSuitesTM" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="GrossTicketReceiptsS4" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="PurchasePriceLoungeTM" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="PurchasePriceParkingTM" null="true" value=""/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="MultiType" source="MultiType"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProcessingStatus" source="ProcessingStatus"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventDirector" source="EventDirector"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventDirectorDesc" source="EventDirectorDesc"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="ArchticsEventDate" source="ArchticsEventDate"/>
+    </input>
+  
+    <input node="S4_PROJECTDATA" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Project" source="Project"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="TicketsSoldTM" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="TicketsSoldCompTM" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="TicketsSoldPaidTM" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="PaidTicketsSuitesTM" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="PaidTicketsArenaTM" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CompTicketsSuitesTM" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CompTicketsArenaTM" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="TicketsUnsoldTM" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="TicketsUnsoldArenaTM" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="TicketsUnsoldSuitesTM" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="TicketsUnsoldParkingTM" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="DATASOURCE" null="false" value="S4PROJECT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PaidTicketsSuitesS4" source="PaidTicketsSuitesS4"/>
+    
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="PaidTicketsArenaS4" source="PaidTicketsArenaS4"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompTicketsArenaS4" source="CompTicketsArenaS4"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="DropTicketsSuitesS4" source="DropTicketsSuitesS4"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="DropTicketsArenaS4" source="DropTicketsArenaS4"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="GrossPotentialTicketSalesS4" source="GrossPotentialTicketSalesS4"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompTicketsSuitesS4" source="CompTicketsSuitesS4"/>
+  
+    
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="AttendanceArenaTM" null="true" value=""/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="AttendanceSuitesTM" null="true" value=""/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="AttendanceParkingTM" null="true" value=""/>
+  
+    
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="AttendanceLoungeTM" null="true" value=""/>
+  
+    
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedEndDate" source="PlannedEndDate"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectDescription" source="ProjectDescription"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectCreationDateTime" source="ProjectCreationDateTime"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectCreatedByUser" source="ProjectCreatedByUser"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="Currency" source="Currency"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="FunctionalArea" source="FunctionalArea"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="ControllingArea" source="ControllingArea"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProfitCenter" source="ProfitCenter"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedStartDate" source="PlannedStartDate"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="Type" source="Type"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="TypeDesc" source="TypeDesc"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="SubType" source="SubType"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="SubTypeDesc" source="SubTypeDesc"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="Rank" source="Rank"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventStartTime" source="EventStartTime"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="DoorsOpen" source="DoorsOpen"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="ClubOpen" source="ClubOpen"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="LoungeOpen" source="LoungeOpen"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="SuitesOpen" source="SuitesOpen"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompareCode" source="CompareCode"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="PromotionalItem" source="PromotionalItem"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="PromotionalItemDesc" source="PromotionalItemDesc"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventInTicketMaster" source="EventInTicketMaster"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="MerchDeal" source="MerchDeal"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventMoved" source="EventMoved"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventCancelled" source="EventCancelled"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="Weather" source="Weather"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="Budget" source="Budget"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="BudgetDesc" source="BudgetDesc"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="Actual" source="Actual"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="ActualDesc" source="ActualDesc"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventManager" source="EventManager"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventManagerDesc" source="EventManagerDesc"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="Promoter" source="Promoter"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="PromoterDesc" source="PromoterDesc"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="Agency" source="Agency"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="AgencyDesc" source="AgencyDesc"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="RentDeal" source="RentDeal"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="Genre" source="Genre"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="GenreDesc" source="GenreDesc"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventDate" source="PlannedEndDate"/>
+  
+    
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="ParkingRate" source="ParkingRate"/>
+  
+    
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="CapacityS4" source="CapacityS4"/>
+  
+    
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="ValueUnsoldArenaTM" null="true" value=""/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="ValueUnsoldSuitesTM" null="true" value=""/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="ValueUnsoldParkingTM" null="true" value=""/>
+  
+    
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="PurchasePriceArenaTM" null="true" value=""/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="PurchasePriceSuitesTM" null="true" value=""/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="GrossTicketReceiptsS4" source="GrossTicketReceiptsS4"/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="PurchasePriceLoungeTM" null="true" value=""/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="PurchasePriceParkingTM" null="true" value=""/>
+  
+    
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="MultiType" source="MultiType"/>
+  
+    
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProcessingStatus" source="ProcessingStatus"/>
+  
+    
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventDirector" source="EventDirector"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventDirectorDesc" source="EventDirectorDesc"/>
+  
+    
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="ArchticsEventDate" null="true" value=""/>
+  
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:AggregationView" id="P_TICKETS">
+    <viewAttributes>
+      <viewAttribute id="Project"/>
+      <viewAttribute id="TicketsSoldTM"/>
+      <viewAttribute id="TicketsSoldCompTM"/>
+      <viewAttribute id="TicketsSoldPaidTM"/>
+      <viewAttribute id="PaidTicketsSuitesTM"/>
+      <viewAttribute id="PaidTicketsArenaTM"/>
+      <viewAttribute id="CompTicketsSuitesTM"/>
+      <viewAttribute id="CompTicketsArenaTM"/>
+    
+      <viewAttribute id="PlannedEndDate"/>
+      <viewAttribute id="ProjectDescription"/>
+      <viewAttribute id="ProjectCreationDateTime"/>
+      <viewAttribute id="ProjectCreatedByUser"/>
+      <viewAttribute id="Currency"/>
+      <viewAttribute id="FunctionalArea"/>
+      <viewAttribute id="ControllingArea"/>
+      <viewAttribute id="CompanyCode"/>
+      <viewAttribute id="ProfitCenter"/>
+      <viewAttribute id="PlannedStartDate"/>
+      <viewAttribute id="Type"/>
+      <viewAttribute id="TypeDesc"/>
+      <viewAttribute id="SubType"/>
+      <viewAttribute id="SubTypeDesc"/>
+      <viewAttribute id="Rank"/>
+      <viewAttribute id="EventStartTime"/>
+      <viewAttribute id="DoorsOpen"/>
+      <viewAttribute id="ClubOpen"/>
+      <viewAttribute id="LoungeOpen"/>
+      <viewAttribute id="SuitesOpen"/>
+      <viewAttribute id="CompareCode"/>
+      <viewAttribute id="PromotionalItem"/>
+      <viewAttribute id="PromotionalItemDesc"/>
+      <viewAttribute id="EventInTicketMaster"/>
+      <viewAttribute id="MerchDeal"/>
+      <viewAttribute id="EventMoved"/>
+      <viewAttribute id="EventCancelled"/>
+      <viewAttribute id="Weather"/>
+      <viewAttribute id="Budget"/>
+      <viewAttribute id="BudgetDesc"/>
+      <viewAttribute id="Actual"/>
+      <viewAttribute id="ActualDesc"/>
+      <viewAttribute id="EventManager"/>
+      <viewAttribute id="EventManagerDesc"/>
+      <viewAttribute id="Promoter"/>
+      <viewAttribute id="PromoterDesc"/>
+      <viewAttribute id="Agency"/>
+      <viewAttribute id="AgencyDesc"/>
+      <viewAttribute id="RentDeal"/>
+      <viewAttribute id="Genre"/>
+      <viewAttribute id="GenreDesc"/>
+      <viewAttribute id="EventDate"/>
+      <viewAttribute id="ParkingRate"/>
+      <viewAttribute id="PurchasePriceArenaTM" aggregationType="sum"/>
+      <viewAttribute id="PurchasePriceSuitesTM" aggregationType="sum"/>
+      <viewAttribute id="PurchasePriceLoungeTM" aggregationType="sum"/>
+      <viewAttribute id="PurchasePriceParkingTM" aggregationType="sum"/>
+      <viewAttribute id="MultiType"/>
+      <viewAttribute id="ProcessingStatus"/>
+      <viewAttribute id="EventDirector"/>
+      <viewAttribute id="EventDirectorDesc"/>
+      <viewAttribute id="ArchticsEventDate"/>
+    
+    
+    
+    
+    
+    
+    
+    
+      <viewAttribute id="PaidTicketsParkingTM"/>
+      <viewAttribute id="CompTicketsParkingTM"/>
+      <viewAttribute id="PaidTicketsLoungeTM"/>
+      <viewAttribute id="CompTicketsLoungeTM"/></viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="CvTicketFacts">
+      <mapping xsi:type="Calculation:AttributeMapping" target="TicketsSoldTM" source="TicketsSold"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TicketsSoldCompTM" source="TicketsSoldComp"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TicketsSoldPaidTM" source="TicketsSoldPaid"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PaidTicketsSuitesTM" source="PaidTicketsSuites"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PaidTicketsArenaTM" source="PaidTicketsArena"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompTicketsSuitesTM" source="CompTicketsSuites"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompTicketsArenaTM" source="CompTicketsArena"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PaidTicketsParkingTM" source="PaidTicketsParking"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompTicketsParkingTM" source="CompTicketsParking"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PaidTicketsLoungeTM" source="PaidTicketsLounge"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompTicketsLoungeTM" source="CompTicketsLounge"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchasePriceArenaTM" source="PurchasePriceArena"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchasePriceSuitesTM" source="PurchasePriceSuites"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchasePriceLoungeTM" source="PurchasePriceLounge"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchasePriceParkingTM" source="PurchasePriceParking"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventDate" source="PlannedEndDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ArchticsEventDate" source="EventDate"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:AggregationView" id="P_ATTEND">
+    <viewAttributes>
+      <viewAttribute id="Project"/>
+    
+      <viewAttribute id="AttendanceArenaTM"/>
+      <viewAttribute id="AttendanceSuitesTM"/>
+      <viewAttribute id="AttendanceParkingTM"/>
+    
+      <viewAttribute id="AttendanceLoungeTM"/>
+    
+      <viewAttribute id="PlannedEndDate"/>
+      <viewAttribute id="ProjectDescription"/>
+      <viewAttribute id="ProjectCreationDateTime"/>
+      <viewAttribute id="ProjectCreatedByUser"/>
+      <viewAttribute id="Currency"/>
+      <viewAttribute id="FunctionalArea"/>
+      <viewAttribute id="ControllingArea"/>
+      <viewAttribute id="CompanyCode"/>
+      <viewAttribute id="ProfitCenter"/>
+      <viewAttribute id="PlannedStartDate"/>
+      <viewAttribute id="Type"/>
+      <viewAttribute id="TypeDesc"/>
+      <viewAttribute id="SubType"/>
+      <viewAttribute id="SubTypeDesc"/>
+      <viewAttribute id="Rank"/>
+      <viewAttribute id="EventStartTime"/>
+      <viewAttribute id="DoorsOpen"/>
+      <viewAttribute id="ClubOpen"/>
+      <viewAttribute id="LoungeOpen"/>
+      <viewAttribute id="SuitesOpen"/>
+      <viewAttribute id="CompareCode"/>
+      <viewAttribute id="PromotionalItem"/>
+      <viewAttribute id="PromotionalItemDesc"/>
+      <viewAttribute id="EventInTicketMaster"/>
+      <viewAttribute id="MerchDeal"/>
+      <viewAttribute id="EventMoved"/>
+      <viewAttribute id="EventCancelled"/>
+      <viewAttribute id="Weather"/>
+      <viewAttribute id="Budget"/>
+      <viewAttribute id="BudgetDesc"/>
+      <viewAttribute id="Actual"/>
+      <viewAttribute id="ActualDesc"/>
+      <viewAttribute id="EventManager"/>
+      <viewAttribute id="EventManagerDesc"/>
+      <viewAttribute id="Promoter"/>
+      <viewAttribute id="PromoterDesc"/>
+      <viewAttribute id="Agency"/>
+      <viewAttribute id="AgencyDesc"/>
+      <viewAttribute id="RentDeal"/>
+      <viewAttribute id="Genre"/>
+      <viewAttribute id="GenreDesc"/>
+      <viewAttribute id="EventDate"/>
+    
+      <viewAttribute id="ParkingRate"/>
+    
+      <viewAttribute id="MultiType"/>
+    
+      <viewAttribute id="ProcessingStatus"/>
+    
+      <viewAttribute id="EventDirector"/>
+      <viewAttribute id="EventDirectorDesc"/>
+    
+      <viewAttribute id="ArchticsEventDate"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="CvAttendFacts">
+      <mapping xsi:type="Calculation:AttributeMapping" target="AttendanceArenaTM" source="AttendanceArena"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AttendanceSuitesTM" source="AttendanceSuites"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AttendanceParkingTM" source="AttendanceParking"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AttendanceLoungeTM" source="AttendanceLounge"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventDate" source="PlannedEndDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ArchticsEventDate" source="EventDate"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:AggregationView" id="P_AVAIL">
+    <viewAttributes>
+      <viewAttribute id="Project"/>
+      <viewAttribute id="TicketsUnsoldTM"/>
+      <viewAttribute id="TicketsUnsoldArenaTM"/>
+      <viewAttribute id="TicketsUnsoldSuitesTM"/>
+      <viewAttribute id="TicketsUnsoldParkingTM"/>
+    
+      <viewAttribute id="PlannedEndDate"/>
+      <viewAttribute id="ProjectDescription"/>
+      <viewAttribute id="ProjectCreationDateTime"/>
+      <viewAttribute id="ProjectCreatedByUser"/>
+      <viewAttribute id="Currency"/>
+      <viewAttribute id="FunctionalArea"/>
+      <viewAttribute id="ControllingArea"/>
+      <viewAttribute id="CompanyCode"/>
+      <viewAttribute id="ProfitCenter"/>
+      <viewAttribute id="PlannedStartDate"/>
+      <viewAttribute id="Type"/>
+      <viewAttribute id="TypeDesc"/>
+      <viewAttribute id="SubType"/>
+      <viewAttribute id="SubTypeDesc"/>
+      <viewAttribute id="Rank"/>
+      <viewAttribute id="EventStartTime"/>
+      <viewAttribute id="DoorsOpen"/>
+      <viewAttribute id="ClubOpen"/>
+      <viewAttribute id="LoungeOpen"/>
+      <viewAttribute id="SuitesOpen"/>
+      <viewAttribute id="CompareCode"/>
+      <viewAttribute id="PromotionalItem"/>
+      <viewAttribute id="PromotionalItemDesc"/>
+      <viewAttribute id="EventInTicketMaster"/>
+      <viewAttribute id="MerchDeal"/>
+      <viewAttribute id="EventMoved"/>
+      <viewAttribute id="EventCancelled"/>
+      <viewAttribute id="Weather"/>
+      <viewAttribute id="Budget"/>
+      <viewAttribute id="BudgetDesc"/>
+      <viewAttribute id="Actual"/>
+      <viewAttribute id="ActualDesc"/>
+      <viewAttribute id="EventManager"/>
+      <viewAttribute id="EventManagerDesc"/>
+      <viewAttribute id="Promoter"/>
+      <viewAttribute id="PromoterDesc"/>
+      <viewAttribute id="Agency"/>
+      <viewAttribute id="AgencyDesc"/>
+      <viewAttribute id="RentDeal"/>
+      <viewAttribute id="Genre"/>
+      <viewAttribute id="GenreDesc"/>
+      <viewAttribute id="EventDate"/>
+    
+      <viewAttribute id="ParkingRate"/>
+    
+      <viewAttribute id="ValueUnsoldArenaTM" aggregationType="sum"/>
+      <viewAttribute id="ValueUnsoldSuitesTM" aggregationType="sum"/>
+      <viewAttribute id="ValueUnsoldParkingTM" aggregationType="sum"/>
+    
+      <viewAttribute id="MultiType"/>
+    
+      <viewAttribute id="ProcessingStatus"/>
+    
+      <viewAttribute id="EventDirector"/>
+      <viewAttribute id="EventDirectorDesc"/>
+    
+      <viewAttribute id="ArchticsEventDate"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="CvAvailSeatsFacts">
+      <mapping xsi:type="Calculation:AttributeMapping" target="TicketsUnsoldTM" source="TicketsUnsold"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TicketsUnsoldArenaTM" source="TicketsUnsoldArena"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TicketsUnsoldSuitesTM" source="TicketsUnsoldSuites"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TicketsUnsoldParkingTM" source="TicketsUnsoldParking"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="ValueUnsoldArenaTM" source="ValueUnsoldArena"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ValueUnsoldSuitesTM" source="ValueUnsoldSuites"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ValueUnsoldParkingTM" source="ValueUnsoldParking"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventDate" source="PlannedEndDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ArchticsEventDate" source="EventDate"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:AggregationView" id="S4_PROJECTDATA">
+    <viewAttributes>
+      <viewAttribute id="Project"/>
+      <viewAttribute id="PaidTicketsSuitesS4"/>
+    
+      <viewAttribute id="PaidTicketsArenaS4"/>
+      <viewAttribute id="CompTicketsArenaS4"/>
+      <viewAttribute id="DropTicketsSuitesS4"/>
+      <viewAttribute id="DropTicketsArenaS4"/>
+      <viewAttribute id="GrossPotentialTicketSalesS4"/>
+    
+      <viewAttribute id="CompTicketsSuitesS4"/>
+      <viewAttribute id="PlannedEndDate"/>
+    
+      <viewAttribute id="ProjectDescription"/>
+      <viewAttribute id="ProjectCreationDateTime"/>
+      <viewAttribute id="ProjectCreatedByUser"/>
+      <viewAttribute id="Currency"/>
+      <viewAttribute id="FunctionalArea"/>
+      <viewAttribute id="ControllingArea"/>
+      <viewAttribute id="CompanyCode"/>
+      <viewAttribute id="ProfitCenter"/>
+      <viewAttribute id="PlannedStartDate"/>
+      <viewAttribute id="Type"/>
+      <viewAttribute id="TypeDesc"/>
+      <viewAttribute id="SubType"/>
+      <viewAttribute id="SubTypeDesc"/>
+      <viewAttribute id="Rank"/>
+      <viewAttribute id="EventStartTime"/>
+      <viewAttribute id="DoorsOpen"/>
+      <viewAttribute id="ClubOpen"/>
+      <viewAttribute id="LoungeOpen"/>
+      <viewAttribute id="SuitesOpen"/>
+      <viewAttribute id="CompareCode"/>
+      <viewAttribute id="PromotionalItem"/>
+      <viewAttribute id="PromotionalItemDesc"/>
+      <viewAttribute id="EventInTicketMaster"/>
+      <viewAttribute id="MerchDeal"/>
+      <viewAttribute id="EventMoved"/>
+      <viewAttribute id="EventCancelled"/>
+      <viewAttribute id="Weather"/>
+      <viewAttribute id="Budget"/>
+      <viewAttribute id="BudgetDesc"/>
+      <viewAttribute id="Actual"/>
+      <viewAttribute id="ActualDesc"/>
+      <viewAttribute id="EventManager"/>
+      <viewAttribute id="EventManagerDesc"/>
+      <viewAttribute id="Promoter"/>
+      <viewAttribute id="PromoterDesc"/>
+      <viewAttribute id="Agency"/>
+      <viewAttribute id="AgencyDesc"/>
+      <viewAttribute id="RentDeal"/>
+      <viewAttribute id="Genre"/>
+      <viewAttribute id="GenreDesc"/>
+    
+      <viewAttribute id="ParkingRate"/>
+    
+      <viewAttribute id="CapacityS4"/>
+    
+      <viewAttribute id="GrossTicketReceiptsS4"/>
+    
+      <viewAttribute id="MultiType"/>
+    
+      <viewAttribute id="ProcessingStatus"/>
+    
+      <viewAttribute id="EventDirector"/>
+      <viewAttribute id="EventDirectorDesc"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="CvEnterpriseProject">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PaidTicketsSuitesS4" source="PaidTicketsSuites"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="PaidTicketsArenaS4" source="PaidTicketsArena"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompTicketsArenaS4" source="CompTicketsArena"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DropTicketsSuitesS4" source="DropTicketsSuites"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DropTicketsArenaS4" source="DropTicketsArena"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GrossPotentialTicketSalesS4" source="GrossPotentialTicketSales"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompTicketsSuitesS4" source="CompTicketsSuite"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectCreationDateTime" source="CreationDateTime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectCreatedByUser" source="CreatedByUser"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="CapacityS4" source="Capacity"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="GrossTicketReceiptsS4" source="GrossTicketReceipts"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="Project"/>
+      <viewAttribute id="TicketsSoldTM"/>
+      <viewAttribute id="TicketsSoldCompTM"/>
+      <viewAttribute id="TicketsSoldPaidTM"/>
+      <viewAttribute id="PaidTicketsSuitesTM"/>
+      <viewAttribute id="PaidTicketsArenaTM"/>
+      <viewAttribute id="CompTicketsSuitesTM"/>
+      <viewAttribute id="CompTicketsArenaTM"/>
+      <viewAttribute id="TicketsUnsoldTM"/>
+      <viewAttribute id="TicketsUnsoldArenaTM"/>
+      <viewAttribute id="TicketsUnsoldSuitesTM"/>
+      <viewAttribute id="TicketsUnsoldParkingTM"/>
+      <viewAttribute id="DATASOURCE"/>
+      <viewAttribute id="PaidTicketsSuitesS4"/>
+    
+      <viewAttribute id="PaidTicketsArenaS4"/>
+      <viewAttribute id="CompTicketsSuitesS4"/>
+      <viewAttribute id="CompTicketsArenaS4"/>
+      <viewAttribute id="DropTicketsSuitesS4"/>
+      <viewAttribute id="DropTicketsArenaS4"/>
+      <viewAttribute id="GrossPotentialTicketSalesS4"/>
+    
+      <viewAttribute id="AttendanceArenaTM"/>
+      <viewAttribute id="AttendanceSuitesTM"/>
+      <viewAttribute id="AttendanceParkingTM"/>
+    
+      <viewAttribute id="AttendanceLoungeTM"/>
+    
+      <viewAttribute id="PlannedEndDate"/>
+      <viewAttribute id="ProjectDescription"/>
+      <viewAttribute id="ProjectCreationDateTime"/>
+      <viewAttribute id="ProjectCreatedByUser"/>
+      <viewAttribute id="Currency"/>
+      <viewAttribute id="FunctionalArea"/>
+      <viewAttribute id="ControllingArea"/>
+      <viewAttribute id="CompanyCode"/>
+      <viewAttribute id="ProfitCenter"/>
+      <viewAttribute id="PlannedStartDate"/>
+      <viewAttribute id="Type"/>
+      <viewAttribute id="TypeDesc"/>
+      <viewAttribute id="SubType"/>
+      <viewAttribute id="SubTypeDesc"/>
+      <viewAttribute id="Rank"/>
+      <viewAttribute id="EventStartTime"/>
+      <viewAttribute id="DoorsOpen"/>
+      <viewAttribute id="ClubOpen"/>
+      <viewAttribute id="LoungeOpen"/>
+      <viewAttribute id="SuitesOpen"/>
+      <viewAttribute id="CompareCode"/>
+      <viewAttribute id="PromotionalItem"/>
+      <viewAttribute id="PromotionalItemDesc"/>
+      <viewAttribute id="EventInTicketMaster"/>
+      <viewAttribute id="MerchDeal"/>
+      <viewAttribute id="EventMoved"/>
+      <viewAttribute id="EventCancelled"/>
+      <viewAttribute id="Weather"/>
+      <viewAttribute id="Budget"/>
+      <viewAttribute id="BudgetDesc"/>
+      <viewAttribute id="Actual"/>
+      <viewAttribute id="ActualDesc"/>
+      <viewAttribute id="EventManager"/>
+      <viewAttribute id="EventManagerDesc"/>
+      <viewAttribute id="Promoter"/>
+      <viewAttribute id="PromoterDesc"/>
+      <viewAttribute id="Agency"/>
+      <viewAttribute id="AgencyDesc"/>
+      <viewAttribute id="RentDeal"/>
+      <viewAttribute id="Genre"/>
+      <viewAttribute id="GenreDesc"/>
+      <viewAttribute id="EventDate"/>
+    
+      <viewAttribute id="ParkingRate"/>
+    
+      <viewAttribute id="Opponent"/>
+    
+      <viewAttribute id="CapacityS4"/>
+    
+      <viewAttribute id="ValueUnsoldArenaTM"/>
+      <viewAttribute id="ValueUnsoldSuitesTM"/>
+      <viewAttribute id="ValueUnsoldParkingTM"/>
+    
+      <viewAttribute id="PurchasePriceArenaTM"/>
+      <viewAttribute id="PurchasePriceSuitesTM"/>
+      <viewAttribute id="GrossTicketReceiptsS4"/>
+      <viewAttribute id="PurchasePriceLoungeTM"/>
+      <viewAttribute id="PurchasePriceParkingTM"/>
+    
+      <viewAttribute id="MultiType"/>
+    
+      <viewAttribute id="ProcessingStatus"/>
+    
+      <viewAttribute id="EventDirector"/>
+      <viewAttribute id="EventDirectorDesc"/>
+    
+      <viewAttribute id="ArchticsEventDate"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_DUMMY" datatype="INTEGER" expressionLanguage="SQL">
+        <formula>1</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="Join_1"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="Project"/>
+      <viewAttribute id="TicketsSoldTM" aggregationType="sum"/>
+      <viewAttribute id="TicketsSoldCompTM" aggregationType="sum"/>
+      <viewAttribute id="TicketsSoldPaidTM" aggregationType="sum"/>
+      <viewAttribute id="PaidTicketsSuitesTM" aggregationType="sum"/>
+      <viewAttribute id="PaidTicketsArenaTM" aggregationType="sum"/>
+      <viewAttribute id="CompTicketsSuitesTM" aggregationType="sum"/>
+      <viewAttribute id="CompTicketsArenaTM" aggregationType="sum"/>
+      <viewAttribute id="TicketsUnsoldTM" aggregationType="sum"/>
+      <viewAttribute id="TicketsUnsoldArenaTM" aggregationType="sum"/>
+      <viewAttribute id="TicketsUnsoldSuitesTM" aggregationType="sum"/>
+      <viewAttribute id="TicketsUnsoldParkingTM" aggregationType="sum"/>
+      <viewAttribute id="DATASOURCE"/>
+      <viewAttribute id="PaidTicketsSuitesS4" aggregationType="sum"/>
+      <viewAttribute id="PaidTicketsArenaS4" aggregationType="sum"/>
+      <viewAttribute id="CompTicketsSuitesS4" aggregationType="sum"/>
+      <viewAttribute id="CompTicketsArenaS4" aggregationType="sum"/>
+      <viewAttribute id="DropTicketsSuitesS4" aggregationType="sum"/>
+      <viewAttribute id="DropTicketsArenaS4" aggregationType="sum"/>
+      <viewAttribute id="GrossPotentialTicketSalesS4" aggregationType="sum"/>
+      <viewAttribute id="AttendanceArenaTM" aggregationType="sum"/>
+      <viewAttribute id="AttendanceSuitesTM" aggregationType="sum"/>
+      <viewAttribute id="AttendanceParkingTM" aggregationType="sum"/>
+      <viewAttribute id="AttendanceLoungeTM" aggregationType="sum"/>
+      <viewAttribute id="PlannedEndDate" aggregationType="min"/>
+      <viewAttribute id="ProjectDescription"/>
+      <viewAttribute id="ProjectCreationDateTime" aggregationType="min"/>
+      <viewAttribute id="ProjectCreatedByUser"/>
+      <viewAttribute id="Currency"/>
+      <viewAttribute id="FunctionalArea"/>
+      <viewAttribute id="ControllingArea"/>
+      <viewAttribute id="CompanyCode"/>
+      <viewAttribute id="ProfitCenter"/>
+      <viewAttribute id="PlannedStartDate" aggregationType="min"/>
+      <viewAttribute id="Type"/>
+      <viewAttribute id="TypeDesc"/>
+      <viewAttribute id="SubType"/>
+      <viewAttribute id="SubTypeDesc"/>
+      <viewAttribute id="Rank" aggregationType="sum"/>
+      <viewAttribute id="EventStartTime" aggregationType="min"/>
+      <viewAttribute id="DoorsOpen" aggregationType="min"/>
+      <viewAttribute id="ClubOpen"/>
+      <viewAttribute id="LoungeOpen"/>
+      <viewAttribute id="SuitesOpen"/>
+      <viewAttribute id="CompareCode"/>
+      <viewAttribute id="PromotionalItem"/>
+      <viewAttribute id="PromotionalItemDesc"/>
+      <viewAttribute id="EventInTicketMaster"/>
+      <viewAttribute id="MerchDeal"/>
+      <viewAttribute id="EventMoved"/>
+      <viewAttribute id="EventCancelled"/>
+      <viewAttribute id="Weather"/>
+      <viewAttribute id="Budget"/>
+      <viewAttribute id="BudgetDesc"/>
+      <viewAttribute id="Actual"/>
+      <viewAttribute id="ActualDesc"/>
+      <viewAttribute id="EventManager"/>
+      <viewAttribute id="EventManagerDesc"/>
+      <viewAttribute id="Promoter"/>
+      <viewAttribute id="PromoterDesc"/>
+      <viewAttribute id="Agency"/>
+      <viewAttribute id="AgencyDesc"/>
+      <viewAttribute id="RentDeal"/>
+      <viewAttribute id="Genre"/>
+      <viewAttribute id="GenreDesc"/>
+      <viewAttribute id="EventDate"/>
+      <viewAttribute id="ParkingRate" aggregationType="sum"/>
+      <viewAttribute id="Opponent" aggregationType="max"/>
+    
+      <viewAttribute id="CapacityS4"/>
+    
+      <viewAttribute id="ValueUnsoldArenaTM" aggregationType="sum"/>
+      <viewAttribute id="ValueUnsoldSuitesTM" aggregationType="sum"/>
+      <viewAttribute id="ValueUnsoldParkingTM" aggregationType="sum"/>
+    
+      <viewAttribute id="PurchasePriceArenaTM" aggregationType="sum"/>
+      <viewAttribute id="PurchasePriceSuitesTM" aggregationType="sum"/>
+      <viewAttribute id="GrossTicketReceiptsS4"/>
+      <viewAttribute id="PurchasePriceLoungeTM" aggregationType="sum"/>
+      <viewAttribute id="PurchasePriceParkingTM" aggregationType="sum"/>
+    
+      <viewAttribute id="MultiType"/>
+    
+      <viewAttribute id="ProcessingStatus"/>
+    
+      <viewAttribute id="EventDirector"/>
+      <viewAttribute id="EventDirectorDesc"/>
+    
+      <viewAttribute id="ArchticsEventDate"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Union_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Project" source="Project"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TicketsSoldTM" source="TicketsSoldTM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TicketsSoldCompTM" source="TicketsSoldCompTM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TicketsSoldPaidTM" source="TicketsSoldPaidTM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PaidTicketsSuitesTM" source="PaidTicketsSuitesTM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PaidTicketsArenaTM" source="PaidTicketsArenaTM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompTicketsSuitesTM" source="CompTicketsSuitesTM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompTicketsArenaTM" source="CompTicketsArenaTM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TicketsUnsoldTM" source="TicketsUnsoldTM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TicketsUnsoldArenaTM" source="TicketsUnsoldArenaTM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TicketsUnsoldSuitesTM" source="TicketsUnsoldSuitesTM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TicketsUnsoldParkingTM" source="TicketsUnsoldParkingTM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DATASOURCE" source="DATASOURCE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PaidTicketsSuitesS4" source="PaidTicketsSuitesS4"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PaidTicketsArenaS4" source="PaidTicketsArenaS4"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompTicketsArenaS4" source="CompTicketsArenaS4"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DropTicketsSuitesS4" source="DropTicketsSuitesS4"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DropTicketsArenaS4" source="DropTicketsArenaS4"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GrossPotentialTicketSalesS4" source="GrossPotentialTicketSalesS4"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompTicketsSuitesS4" source="CompTicketsSuitesS4"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AttendanceArenaTM" source="AttendanceArenaTM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AttendanceSuitesTM" source="AttendanceSuitesTM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AttendanceParkingTM" source="AttendanceParkingTM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AttendanceLoungeTM" source="AttendanceLoungeTM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedEndDate" source="PlannedEndDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectDescription" source="ProjectDescription"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectCreationDateTime" source="ProjectCreationDateTime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectCreatedByUser" source="ProjectCreatedByUser"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Currency" source="Currency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FunctionalArea" source="FunctionalArea"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ControllingArea" source="ControllingArea"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProfitCenter" source="ProfitCenter"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedStartDate" source="PlannedStartDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Type" source="Type"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TypeDesc" source="TypeDesc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SubType" source="SubType"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SubTypeDesc" source="SubTypeDesc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Rank" source="Rank"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventStartTime" source="EventStartTime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DoorsOpen" source="DoorsOpen"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ClubOpen" source="ClubOpen"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LoungeOpen" source="LoungeOpen"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SuitesOpen" source="SuitesOpen"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompareCode" source="CompareCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PromotionalItem" source="PromotionalItem"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PromotionalItemDesc" source="PromotionalItemDesc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventInTicketMaster" source="EventInTicketMaster"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MerchDeal" source="MerchDeal"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventMoved" source="EventMoved"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventCancelled" source="EventCancelled"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Weather" source="Weather"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Budget" source="Budget"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BudgetDesc" source="BudgetDesc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Actual" source="Actual"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ActualDesc" source="ActualDesc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventManager" source="EventManager"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventManagerDesc" source="EventManagerDesc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Promoter" source="Promoter"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PromoterDesc" source="PromoterDesc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Agency" source="Agency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AgencyDesc" source="AgencyDesc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="RentDeal" source="RentDeal"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Genre" source="Genre"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GenreDesc" source="GenreDesc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventDate" source="EventDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ParkingRate" source="ParkingRate"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="CapacityS4" source="CapacityS4"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="ValueUnsoldArenaTM" source="ValueUnsoldArenaTM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ValueUnsoldSuitesTM" source="ValueUnsoldSuitesTM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ValueUnsoldParkingTM" source="ValueUnsoldParkingTM"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchasePriceArenaTM" source="PurchasePriceArenaTM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchasePriceSuitesTM" source="PurchasePriceSuitesTM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GrossTicketReceiptsS4" source="GrossTicketReceiptsS4"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchasePriceLoungeTM" source="PurchasePriceLoungeTM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchasePriceParkingTM" source="PurchasePriceParkingTM"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="MultiType" source="MultiType"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProcessingStatus" source="ProcessingStatus"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventDirector" source="EventDirector"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventDirectorDesc" source="EventDirectorDesc"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="ArchticsEventDate" source="ArchticsEventDate"/>
+    </input>
+    <input node="SHARKS_CUDA_OPPONENT">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Opponent" source="Opponent"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Project" source="line10"/>
+    </input>
+    <joinAttribute name="Project"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:AggregationView" id="SHARKS_CUDA_OPPONENT" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="Opponent" aggregationType="max"/>
+    
+      <viewAttribute id="line10"/>
+      <viewAttribute id="event_name"/></viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="tm.events_prd">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Opponent" source="team"/>
+    </input>
+    <filter>left (&quot;event_name&quot;,3) IN ('EBC','ESH')</filter>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Projection_1">
+  <attributes>
+    <attribute id="Project" order="1" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="ProjectDescription">
+      <descriptions defaultDescription="Project"/>
+      <keyMapping columnObjectName="Projection_1" columnName="Project"/>
+    </attribute>
+    <attribute id="ProjectDescription" order="2" displayAttribute="false" attributeHierarchyActive="false" hidden="true">
+      <descriptions defaultDescription="ProjectDescription"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ProjectDescription"/>
+    </attribute>
+  
+    <attribute id="DATASOURCE" order="18" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DATASOURCE"/>
+  
+      <keyMapping columnObjectName="Projection_1" columnName="DATASOURCE"/>
+  
+    </attribute>
+  
+    <attribute id="PlannedEndDate" order="42" displayAttribute="false" attributeHierarchyActive="false" semanticType="date">
+      <descriptions defaultDescription="PlannedEndDate"/>
+  
+      <keyMapping columnObjectName="Projection_1" columnName="PlannedEndDate"/>
+  
+    </attribute>
+    <attribute id="ProjectCreationDateTime" order="43" displayAttribute="false" attributeHierarchyActive="false" semanticType="date">
+      <descriptions defaultDescription="ProjectCreationDateTime"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ProjectCreationDateTime"/>
+    </attribute>
+    <attribute id="ProjectCreatedByUser" order="44" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProjectCreatedByUser"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ProjectCreatedByUser"/>
+    </attribute>
+    <attribute id="Currency" order="45" displayAttribute="false" attributeHierarchyActive="false" semanticType="currencyCode">
+      <descriptions defaultDescription="Currency"/>
+      <keyMapping columnObjectName="Projection_1" columnName="Currency"/>
+    </attribute>
+    <attribute id="FunctionalArea" order="46" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FunctionalArea"/>
+      <keyMapping columnObjectName="Projection_1" columnName="FunctionalArea"/>
+    </attribute>
+    <attribute id="ControllingArea" order="47" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ControllingArea"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ControllingArea"/>
+    </attribute>
+    <attribute id="CompanyCode" order="48" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CompanyCode"/>
+      <keyMapping columnObjectName="Projection_1" columnName="CompanyCode"/>
+    </attribute>
+    <attribute id="ProfitCenter" order="49" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProfitCenter"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ProfitCenter"/>
+    </attribute>
+    <attribute id="PlannedStartDate" order="50" displayAttribute="false" attributeHierarchyActive="false" semanticType="date">
+      <descriptions defaultDescription="PlannedStartDate"/>
+      <keyMapping columnObjectName="Projection_1" columnName="PlannedStartDate"/>
+    </attribute>
+    <attribute id="Type" order="51" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="TypeDesc">
+      <descriptions defaultDescription="Type"/>
+      <keyMapping columnObjectName="Projection_1" columnName="Type"/>
+    </attribute>
+    <attribute id="TypeDesc" order="52" displayAttribute="false" attributeHierarchyActive="false" hidden="true">
+      <descriptions defaultDescription="TypeDesc"/>
+      <keyMapping columnObjectName="Projection_1" columnName="TypeDesc"/>
+    </attribute>
+    <attribute id="SubType" order="53" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="SubTypeDesc">
+      <descriptions defaultDescription="SubType"/>
+      <keyMapping columnObjectName="Projection_1" columnName="SubType"/>
+    </attribute>
+    <attribute id="SubTypeDesc" order="54" displayAttribute="false" attributeHierarchyActive="false" hidden="true">
+      <descriptions defaultDescription="SubTypeDesc"/>
+      <keyMapping columnObjectName="Projection_1" columnName="SubTypeDesc"/>
+    </attribute>
+    <attribute id="Rank" order="55" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Rank"/>
+      <keyMapping columnObjectName="Projection_1" columnName="Rank"/>
+    </attribute>
+    <attribute id="EventStartTime" order="56" displayAttribute="false" attributeHierarchyActive="false" semanticType="date">
+      <descriptions defaultDescription="EventStartTime"/>
+      <keyMapping columnObjectName="Projection_1" columnName="EventStartTime"/>
+    </attribute>
+    <attribute id="DoorsOpen" order="57" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DoorsOpen"/>
+      <keyMapping columnObjectName="Projection_1" columnName="DoorsOpen"/>
+    </attribute>
+    <attribute id="ClubOpen" order="58" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ClubOpen"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ClubOpen"/>
+    </attribute>
+    <attribute id="LoungeOpen" order="59" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LoungeOpen"/>
+      <keyMapping columnObjectName="Projection_1" columnName="LoungeOpen"/>
+    </attribute>
+    <attribute id="SuitesOpen" order="60" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SuitesOpen"/>
+      <keyMapping columnObjectName="Projection_1" columnName="SuitesOpen"/>
+    </attribute>
+    <attribute id="CompareCode" order="61" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CompareCode"/>
+      <keyMapping columnObjectName="Projection_1" columnName="CompareCode"/>
+    </attribute>
+    <attribute id="PromotionalItem" order="62" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="PromotionalItemDesc">
+      <descriptions defaultDescription="PromotionalItem"/>
+      <keyMapping columnObjectName="Projection_1" columnName="PromotionalItem"/>
+    </attribute>
+    <attribute id="PromotionalItemDesc" order="63" displayAttribute="false" attributeHierarchyActive="false" hidden="true">
+      <descriptions defaultDescription="PromotionalItemDesc"/>
+      <keyMapping columnObjectName="Projection_1" columnName="PromotionalItemDesc"/>
+    </attribute>
+    <attribute id="EventInTicketMaster" order="64" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventInTicketMaster"/>
+      <keyMapping columnObjectName="Projection_1" columnName="EventInTicketMaster"/>
+    </attribute>
+    <attribute id="MerchDeal" order="65" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MerchDeal"/>
+      <keyMapping columnObjectName="Projection_1" columnName="MerchDeal"/>
+    </attribute>
+    <attribute id="EventMoved" order="66" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventMoved"/>
+      <keyMapping columnObjectName="Projection_1" columnName="EventMoved"/>
+    </attribute>
+    <attribute id="EventCancelled" order="67" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventCancelled"/>
+      <keyMapping columnObjectName="Projection_1" columnName="EventCancelled"/>
+    </attribute>
+    <attribute id="Weather" order="68" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Weather"/>
+      <keyMapping columnObjectName="Projection_1" columnName="Weather"/>
+    </attribute>
+    <attribute id="Budget" order="69" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="BudgetDesc">
+      <descriptions defaultDescription="Budget"/>
+      <keyMapping columnObjectName="Projection_1" columnName="Budget"/>
+    </attribute>
+    <attribute id="BudgetDesc" order="70" displayAttribute="false" attributeHierarchyActive="false" hidden="true">
+      <descriptions defaultDescription="BudgetDesc"/>
+      <keyMapping columnObjectName="Projection_1" columnName="BudgetDesc"/>
+    </attribute>
+    <attribute id="Actual" order="71" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="ActualDesc">
+      <descriptions defaultDescription="Actual"/>
+      <keyMapping columnObjectName="Projection_1" columnName="Actual"/>
+    </attribute>
+    <attribute id="ActualDesc" order="72" displayAttribute="false" attributeHierarchyActive="false" hidden="true">
+      <descriptions defaultDescription="ActualDesc"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ActualDesc"/>
+    </attribute>
+    <attribute id="EventManager" order="73" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="EventManagerDesc">
+      <descriptions defaultDescription="EventManager"/>
+      <keyMapping columnObjectName="Projection_1" columnName="EventManager"/>
+    </attribute>
+    <attribute id="EventManagerDesc" order="74" displayAttribute="false" attributeHierarchyActive="false" hidden="true">
+      <descriptions defaultDescription="EventManagerDesc"/>
+      <keyMapping columnObjectName="Projection_1" columnName="EventManagerDesc"/>
+    </attribute>
+    <attribute id="Promoter" order="75" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="PromoterDesc">
+      <descriptions defaultDescription="Promoter"/>
+      <keyMapping columnObjectName="Projection_1" columnName="Promoter"/>
+    </attribute>
+    <attribute id="PromoterDesc" order="76" displayAttribute="false" attributeHierarchyActive="false" hidden="true">
+      <descriptions defaultDescription="PromoterDesc"/>
+      <keyMapping columnObjectName="Projection_1" columnName="PromoterDesc"/>
+    </attribute>
+    <attribute id="Agency" order="77" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="AgencyDesc">
+      <descriptions defaultDescription="Agency"/>
+      <keyMapping columnObjectName="Projection_1" columnName="Agency"/>
+    </attribute>
+    <attribute id="AgencyDesc" order="78" displayAttribute="false" attributeHierarchyActive="false" hidden="true">
+      <descriptions defaultDescription="AgencyDesc"/>
+      <keyMapping columnObjectName="Projection_1" columnName="AgencyDesc"/>
+    </attribute>
+    <attribute id="RentDeal" order="79" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="RentDeal"/>
+      <keyMapping columnObjectName="Projection_1" columnName="RentDeal"/>
+    </attribute>
+    <attribute id="Genre" order="80" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="GenreDesc">
+      <descriptions defaultDescription="Genre"/>
+      <keyMapping columnObjectName="Projection_1" columnName="Genre"/>
+    </attribute>
+    <attribute id="GenreDesc" order="81" displayAttribute="false" attributeHierarchyActive="false" hidden="true">
+      <descriptions defaultDescription="GenreDesc"/>
+      <keyMapping columnObjectName="Projection_1" columnName="GenreDesc"/>
+    </attribute>
+    <attribute id="ParkingRate" order="82" displayAttribute="false" attributeHierarchyActive="false" semanticType="amount">
+      <descriptions defaultDescription="ParkingRate"/>
+      <unitCurrencyAttribute attributeName="Currency"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ParkingRate"/>
+    </attribute>
+    <attribute id="Opponent" order="83" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Opponent"/>
+      <keyMapping columnObjectName="Projection_1" columnName="Opponent"/>
+    </attribute>
+    <attribute id="MultiType" order="93" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MultiType"/>
+      <keyMapping columnObjectName="Projection_1" columnName="MultiType"/>
+    </attribute>
+    <attribute id="ProcessingStatus" order="94" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProcessingStatus"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ProcessingStatus"/>
+    </attribute>
+    <attribute id="EventDirector" order="95" descriptionColumnName="EventDirectorDesc" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventDirector"/>
+      <keyMapping columnObjectName="Projection_1" columnName="EventDirector"/>
+    </attribute>
+    <attribute id="EventDirectorDesc" hidden="true" order="96" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventDirectorDesc"/>
+      <keyMapping columnObjectName="Projection_1" columnName="EventDirectorDesc"/>
+    </attribute>
+    <attribute id="ArchticsEventDate" order="97" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ArchticsEventDate"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ArchticsEventDate"/>
+    </attribute>
+    <attribute id="EventDate$local">
+      <descriptions defaultDescription="EventDate"/>
+      <keyMapping columnObjectName="Projection_1" columnName="EventDate"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="TicketsSoldTM" order="7" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="TicketsSoldTM"/>
+      <measureMapping columnObjectName="Projection_1" columnName="TicketsSoldTM"/>
+    </measure>
+    <measure id="TicketsSoldCompTM" order="8" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="TicketsSoldCompTM"/>
+      <measureMapping columnObjectName="Projection_1" columnName="TicketsSoldCompTM"/>
+    </measure>
+    <measure id="TicketsSoldPaidTM" order="9" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="TicketsSoldPaidTM"/>
+      <measureMapping columnObjectName="Projection_1" columnName="TicketsSoldPaidTM"/>
+    </measure>
+    <measure id="PaidTicketsSuitesTM" order="10" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="PaidTicketsSuitesTM"/>
+      <measureMapping columnObjectName="Projection_1" columnName="PaidTicketsSuitesTM"/>
+    </measure>
+    <measure id="PaidTicketsArenaTM" order="11" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="PaidTicketsArenaTM"/>
+      <measureMapping columnObjectName="Projection_1" columnName="PaidTicketsArenaTM"/>
+    </measure>
+    <measure id="CompTicketsSuitesTM" order="12" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="CompTicketsSuitesTM"/>
+      <measureMapping columnObjectName="Projection_1" columnName="CompTicketsSuitesTM"/>
+    </measure>
+    <measure id="CompTicketsArenaTM" order="13" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="CompTicketsArenaTM"/>
+      <measureMapping columnObjectName="Projection_1" columnName="CompTicketsArenaTM"/>
+    </measure>
+    <measure id="TicketsUnsoldTM" order="14" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="TicketsUnsoldTM"/>
+      <measureMapping columnObjectName="Projection_1" columnName="TicketsUnsoldTM"/>
+    </measure>
+    <measure id="TicketsUnsoldArenaTM" order="15" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="TicketsUnsoldArenaTM"/>
+      <measureMapping columnObjectName="Projection_1" columnName="TicketsUnsoldArenaTM"/>
+    </measure>
+    <measure id="TicketsUnsoldSuitesTM" order="16" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="TicketsUnsoldSuitesTM"/>
+      <measureMapping columnObjectName="Projection_1" columnName="TicketsUnsoldSuitesTM"/>
+    </measure>
+    <measure id="TicketsUnsoldParkingTM" order="17" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="TicketsUnsoldParkingTM"/>
+      <measureMapping columnObjectName="Projection_1" columnName="TicketsUnsoldParkingTM"/>
+    </measure>
+    <measure id="PaidTicketsSuitesS4" order="19" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="PaidTicketsSuitesS4"/>
+      <measureMapping columnObjectName="Projection_1" columnName="PaidTicketsSuitesS4"/>
+    </measure>
+  
+    <measure id="PaidTicketsArenaS4" order="22" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="PaidTicketsArenaS4"/>
+      <measureMapping columnObjectName="Projection_1" columnName="PaidTicketsArenaS4"/>
+    </measure>
+    <measure id="CompTicketsSuitesS4" order="23" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="CompTicketsSuitesS4"/>
+      <measureMapping columnObjectName="Projection_1" columnName="CompTicketsSuitesS4"/>
+    </measure>
+    <measure id="CompTicketsArenaS4" order="24" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="CompTicketsArenaS4"/>
+      <measureMapping columnObjectName="Projection_1" columnName="CompTicketsArenaS4"/>
+    </measure>
+    <measure id="DropTicketsSuitesS4" order="25" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="DropTicketsSuitesS4"/>
+      <measureMapping columnObjectName="Projection_1" columnName="DropTicketsSuitesS4"/>
+    </measure>
+    <measure id="DropTicketsArenaS4" order="26" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="DropTicketsArenaS4"/>
+      <measureMapping columnObjectName="Projection_1" columnName="DropTicketsArenaS4"/>
+    </measure>
+    <measure id="GrossPotentialTicketSalesS4" order="27" aggregationType="sum" measureType="amount" semanticType="amount">
+      <descriptions defaultDescription="GrossPotentialTicketSalesS4"/>
+      <unitCurrencyAttribute attributeName="Currency"/>
+      <measureMapping columnObjectName="Projection_1" columnName="GrossPotentialTicketSalesS4"/>
+    </measure>
+  
+    <measure id="AttendanceArenaTM" order="28" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="AttendanceArenaTM"/>
+      <measureMapping columnObjectName="Projection_1" columnName="AttendanceArenaTM"/>
+    </measure>
+    <measure id="AttendanceSuitesTM" order="29" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="AttendanceSuitesTM"/>
+      <measureMapping columnObjectName="Projection_1" columnName="AttendanceSuitesTM"/>
+    </measure>
+    <measure id="AttendanceParkingTM" order="30" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="AttendanceParkingTM"/>
+      <measureMapping columnObjectName="Projection_1" columnName="AttendanceParkingTM"/>
+    </measure>
+  
+    <measure id="AttendanceLoungeTM" order="32" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="AttendanceLoungeTM"/>
+      <measureMapping columnObjectName="Projection_1" columnName="AttendanceLoungeTM"/>
+    </measure>
+    <measure id="CapacityS4" order="84" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="CapacityS4"/>
+      <measureMapping columnObjectName="Projection_1" columnName="CapacityS4"/>
+    </measure>
+  
+    <measure id="ValueUnsoldArenaTM" order="85" aggregationType="sum" measureType="amount" semanticType="amount">
+      <descriptions defaultDescription="ValueUnsoldArenaTM"/>
+  
+      <unitCurrencyAttribute attributeName="Currency"/>
+      <measureMapping columnObjectName="Projection_1" columnName="ValueUnsoldArenaTM"/>
+    </measure>
+    <measure id="ValueUnsoldSuitesTM" order="86" aggregationType="sum" measureType="amount" semanticType="amount">
+      <descriptions defaultDescription="ValueUnsoldSuitesTM"/>
+      <unitCurrencyAttribute attributeName="Currency"/>
+      <measureMapping columnObjectName="Projection_1" columnName="ValueUnsoldSuitesTM"/>
+    </measure>
+    <measure id="ValueUnsoldParkingTM" order="87" aggregationType="sum" measureType="amount" semanticType="amount">
+      <descriptions defaultDescription="ValueUnsoldParkingTM"/>
+      <unitCurrencyAttribute attributeName="Currency"/>
+      <measureMapping columnObjectName="Projection_1" columnName="ValueUnsoldParkingTM"/>
+    </measure>
+  
+    <measure id="PurchasePriceArenaTM" order="88" aggregationType="sum" measureType="amount" semanticType="amount">
+      <descriptions defaultDescription="PurchasePriceArenaTM"/>
+  
+      <unitCurrencyAttribute attributeName="Currency"/>
+      <measureMapping columnObjectName="Projection_1" columnName="PurchasePriceArenaTM"/>
+    </measure>
+    <measure id="PurchasePriceSuitesTM" order="89" aggregationType="sum" measureType="amount" semanticType="amount">
+      <descriptions defaultDescription="PurchasePriceSuitesTM"/>
+      <unitCurrencyAttribute attributeName="Currency"/>
+      <measureMapping columnObjectName="Projection_1" columnName="PurchasePriceSuitesTM"/>
+    </measure>
+    <measure id="GrossTicketReceiptsS4" order="90" aggregationType="sum" measureType="amount" semanticType="amount">
+      <descriptions defaultDescription="GrossTicketReceiptsS4"/>
+      <unitCurrencyAttribute attributeName="Currency"/>
+      <measureMapping columnObjectName="Projection_1" columnName="GrossTicketReceiptsS4"/>
+    </measure>
+    <measure id="PurchasePriceLoungeTM" order="91" aggregationType="sum" measureType="amount" semanticType="amount">
+      <descriptions defaultDescription="PurchasePriceLoungeTM"/>
+      <unitCurrencyAttribute attributeName="Currency"/>
+      <measureMapping columnObjectName="Projection_1" columnName="PurchasePriceLoungeTM"/>
+    </measure>
+    <measure id="PurchasePriceParkingTM" order="92" aggregationType="sum" measureType="amount" semanticType="amount">
+      <descriptions defaultDescription="PurchasePriceParkingTM"/>
+      <unitCurrencyAttribute attributeName="Currency"/>
+      <measureMapping columnObjectName="Projection_1" columnName="PurchasePriceParkingTM"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures>
+    <measure id="AvgTicketPrice" order="3" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="13" scale="2" expressionLanguage="SQL">
+      <descriptions defaultDescription="AvgTicketPrice"/>
+      <formula>CASE 
+	 WHEN &quot;TicketsSold&quot; &gt; 0 then &quot;GrossTicketReceipts&quot; / &quot;TicketsSold&quot;
+	 WHEN &quot;TicketsSold&quot; &lt; 0 then &quot;GrossTicketReceipts&quot; / &quot;TicketsSold&quot;
+	 ELSE 0
+ END
+
+</formula>
+    </measure>
+  
+    <measure id="GrossTicketReceipts" order="4" aggregationType="sum" measureType="amount" datatype="DECIMAL" length="13" scale="2" expressionLanguage="COLUMN_ENGINE" semanticType="amount">
+      <descriptions defaultDescription="GrossTicketReceipts"/>
+  
+      <unitCurrencyAttribute attributeName="Currency"/>
+      <formula>&quot;GrossTicketReceiptsS4&quot; + &quot;PurchasePriceArenaTM&quot; + &quot;PurchasePriceSuitesTM&quot;</formula>
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      </measure>
+    <measure id="GrossPotentialTicketSales" order="5" aggregationType="sum" measureType="amount" datatype="DECIMAL" length="13" scale="2" expressionLanguage="COLUMN_ENGINE" semanticType="amount">
+      <descriptions defaultDescription="GrossPotentialTicketSales">
+        <comment text=""/>
+      </descriptions>
+      <unitCurrencyAttribute attributeName="Currency"/>
+      <formula>&quot;GrossPotentialTicketSalesS4&quot; +
+&quot;PurchasePriceArenaTM&quot; + &quot;PurchasePriceSuitesTM&quot; +
+&quot;ValueUnsoldArenaTM&quot;</formula>
+      
+      
+      
+      
+      
+      
+      </measure>
+    <measure id="Capacity" order="6" aggregationType="sum" measureType="simple" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
+      <descriptions defaultDescription="Capacity">
+        <comment text="S4 + TM Arena-only Paid + Comp + Unsold "/>
+      </descriptions>
+      <formula>&quot;CapacityS4&quot; + 
+&quot;PaidTicketsArenaTM&quot; + &quot;CompTicketsArenaTM&quot; +
+&quot;TicketsUnsoldArenaTM&quot;</formula>
+      
+      
+      
+      
+      </measure>
+    <measure id="NoShowSuites" order="20" aggregationType="sum" measureType="simple" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
+      <descriptions defaultDescription="NoShowSuites"/>
+      <formula>&quot;PaidTicketsSuitesTM&quot; + &quot;CompTicketsSuitesTM&quot; + &quot;PaidTicketsSuitesS4&quot; + &quot;CompTicketsSuitesS4&quot;
+- &quot;AttendanceSuitesTM&quot; - &quot;DropTicketsSuitesS4&quot;</formula>
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      </measure>
+  
+    <measure id="NoShowArena" order="21" aggregationType="sum" measureType="simple" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
+      <descriptions defaultDescription="NoShowArena"/>
+      <formula>&quot;PaidTicketsArenaTM&quot; + &quot;CompTicketsArenaTM&quot; + &quot;PaidTicketsArenaS4&quot; + &quot;CompTicketsArenaS4&quot;
+- &quot;AttendanceArenaTM&quot; - &quot;DropTicketsArenaS4&quot;</formula>
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      </measure>
+    <measure id="OverallAttendance" order="31" aggregationType="sum" measureType="simple" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
+      <descriptions defaultDescription="OverallAttendance">
+        <comment text="Arena + Suites"/>
+      </descriptions>
+      <formula>&quot;AttendanceArenaTM&quot; + &quot;AttendanceSuitesTM&quot; + &quot;DropTicketsArenaS4&quot; + &quot;DropTicketsSuitesS4&quot;</formula>
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      </measure>
+  
+    <measure id="TicketsSold" order="33" aggregationType="sum" measureType="simple" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
+      <descriptions defaultDescription="TicketsSold"/>
+      <formula>&quot;PaidTicketsSuitesTM&quot; + &quot;CompTicketsSuitesTM&quot; +
+&quot;PaidTicketsArenaTM&quot; + &quot;CompTicketsArenaTM&quot; +
+&quot;PaidTicketsSuitesS4&quot; + &quot;CompTicketsSuitesS4&quot; +
+&quot;PaidTicketsArenaS4&quot; + &quot;CompTicketsArenaS4&quot;</formula>
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      </measure>
+  
+    <measure id="TicketsUnsold" order="34" aggregationType="sum" measureType="simple" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
+      <descriptions defaultDescription="TicketsUnsold"/>
+      <formula>&quot;TicketsUnsoldArenaTM&quot; + &quot;TicketsUnsoldSuitesTM&quot;</formula>
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      </measure>
+    <measure id="ParkingEmptySpaceCount" order="35" aggregationType="sum" measureType="simple" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
+      <descriptions defaultDescription="ParkingEmptySpaceCount"/>
+      <formula>&quot;TicketsUnsoldParkingTM&quot;</formula>
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      </measure>
+    <measure id="PaidTicketsSuites" order="36" aggregationType="sum" measureType="simple" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
+      <descriptions defaultDescription="PaidTicketsSuites"/>
+      <formula>&quot;PaidTicketsSuitesS4&quot; + &quot;PaidTicketsSuitesTM&quot; </formula>
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      </measure>
+    <measure id="PaidTicketsArena" order="37" aggregationType="sum" measureType="simple" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
+      <descriptions defaultDescription="PaidTicketsArena"/>
+      <formula>&quot;PaidTicketsArenaS4&quot; + &quot;PaidTicketsArenaTM&quot;</formula>
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      </measure>
+    <measure id="CompTicketsArena" order="38" aggregationType="sum" measureType="simple" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
+      <descriptions defaultDescription="CompTicketsArena"/>
+      <formula>&quot;CompTicketsArenaTM&quot; + &quot;CompTicketsArenaS4&quot;</formula>
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      </measure>
+    <measure id="CompTicketsSuites" order="39" aggregationType="sum" measureType="simple" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
+      <descriptions defaultDescription="CompTicketsSuites"/>
+      <formula>&quot;CompTicketsSuitesTM&quot; + &quot;CompTicketsSuitesS4&quot;</formula>
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      </measure>
+    <measure id="DropTicketsSuites" order="40" aggregationType="sum" measureType="simple" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
+      <descriptions defaultDescription="DropTicketsSuites"/>
+      <formula>&quot;AttendanceSuitesTM&quot; + &quot;DropTicketsSuitesS4&quot;</formula>
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      </measure>
+    <measure id="DropTicketsArena" order="41" aggregationType="sum" measureType="simple" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
+      <descriptions defaultDescription="DropTicketsArena"/>
+      <formula>&quot;AttendanceArenaTM&quot; + &quot;DropTicketsArenaS4&quot;</formula>
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      </measure>
+  </calculatedMeasures>
+  <restrictedMeasures/>
+  <localDimensions>
+    <localDimension id="EventHierarchy">
+      <attributeRef xsi:type="DataFoundation:Attribute">Type</attributeRef>
+      <attributeRef xsi:type="DataFoundation:Attribute">SubType</attributeRef>
+      <attributeRef xsi:type="DataFoundation:Attribute">Project</attributeRef>
+      <hierarchies>
+        <hierarchy xsi:type="Dimension:LeveledHierarchy" id="EventHierarchy" aggregateAllNodes="true" orphanedNodesHandling="ROOT_NODES" rootNodeVisibility="ADD_ROOT_NODE" withRootNode="true" nodeStyle="NAME_PATH_ENFORCED" cacheEnabled="true" cycleHandling="BREAKUP" emptyValueIsNull="true">
+          <descriptions defaultDescription="EventHierarchy"/>
+          <unassignedMemberProperties mode="FALSE"/>
+          <levels>
+            <level levelAttribute="Type" levelType="MDLEVEL_TYPE_REGULAR" order="1" orderAttribute="Type" sortDirection="ASC"/>
+            <level levelAttribute="SubType" levelType="MDLEVEL_TYPE_REGULAR" order="2" orderAttribute="SubType" sortDirection="ASC"/>
+            <level levelAttribute="Project" levelType="MDLEVEL_TYPE_REGULAR" order="3" orderAttribute="Project" sortDirection="ASC"/>
+          </levels>
+        </hierarchy>
+      </hierarchies>
+    </localDimension>
+  </localDimensions>
+
+  <sharedDimensions>
+
+    <logicalJoin associatedObjectUri="CvTimeDim">
+
+      <attributes>
+
+        <attributeRef>EventDate$local</attributeRef>
+
+      </attributes>
+
+      <associatedAttributeNames>
+
+        <attributeName>DATE_SQL</attributeName>
+
+      </associatedAttributeNames>
+
+      <properties cardinality="CN_1" joinType="leftOuter" joinOperator="Equal"/>
+
+      <associatedAttributeFeatures>
+
+        <attributeReference alias="EventDate" attributeName="DATE_SQL">
+
+          <descriptions defaultDescription="EventDate"/>
+
+        </attributeReference>
+
+      </associatedAttributeFeatures>
+
+    </logicalJoin>
+
+  </sharedDimensions>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="739" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="704" y="523"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="P_TICKETS" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="362" y="706"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="P_ATTEND" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="783" y="706"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="P_AVAIL" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="573" y="706"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="S4_PROJECTDATA" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="706"/>
+      <rectangleSize height="30" width="221"/>
+    </shape>
+  
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="703" y="251"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="703" y="356"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Union_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="SHARKS_CUDA_OPPONENT" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="230"/>
+    </shape>
+    <shape expanded="true" modelObjectName="SHARKS_CUDA_OPPONENT" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="938" y="538"/>
+      <rectangleSize height="30" width="249"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="StarJoinViewNodeInput" modelObjectType="repository">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="CvTimeDim" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+      <upperLeftCorner x="394" y="34"/>
+      <rectangleSize width="178"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

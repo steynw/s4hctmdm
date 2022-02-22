@@ -1,0 +1,10 @@
+{
+    "role": {
+        "name": "odata_access",
+        "schema_privileges": [
+        {
+            "privileges": ["CREATE ANY", "SELECT", "SELECT METADATA", "SELECT CDS METADATA"]
+        }
+        ]
+    }
+}

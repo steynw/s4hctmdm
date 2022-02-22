@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CvRetailProceeds" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="CvRetailProceeds"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="tm.retailnonticket_prd">
+    <resourceUri>tm.retailnonticket_prd</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_Tickets">
+    <viewAttributes>
+      <viewAttribute id="add_datetime"/>
+      <viewAttribute id="event_name"/>
+      <viewAttribute id="retail_mop"/>
+      <viewAttribute id="event_date"/>
+      <viewAttribute id="num_seats"/>
+      <viewAttribute id="retail_operator_type"/>
+    
+      <viewAttribute id="retail_service_charge"/>
+      <viewAttribute id="retail_purchase_price"/>
+      <viewAttribute id="retail_face_value"/>
+      <viewAttribute id="retail_facility_fee"/>
+      <viewAttribute keepFlag="true" id="sap_uid"/>
+    
+      <viewAttribute id="sap_add_date"/>
+      <viewAttribute id="major_category_name"/>
+      <viewAttribute id="minor_category_name"/>
+      <viewAttribute id="venue_name"/>
+    
+      <viewAttribute id="acct_id"/>
+    
+      <viewAttribute id="event_id"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_retail_face_value" datatype="DECIMAL" length="13" scale="2" expressionLanguage="SQL">
+        <formula>&quot;retail_face_value&quot; * TO_DECIMAL(&quot;num_seats&quot;,13,2)</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_retail_facility_fee" datatype="DECIMAL" length="13" scale="2" expressionLanguage="SQL">
+        <formula>&quot;retail_facility_fee&quot;*TO_DECIMAL(&quot;num_seats&quot;,13,2)</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_retail_service_charge" datatype="DECIMAL" length="13" scale="2" expressionLanguage="SQL">
+        <formula>&quot;retail_service_charge&quot;*TO_DECIMAL(&quot;num_seats&quot;,13,2)</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="tm.retailnonticket_prd"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="P_Tickets">
+  <attributes>
+    <attribute id="add_datetime" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="add_datetime"/>
+      <keyMapping columnObjectName="P_Tickets" columnName="add_datetime"/>
+    </attribute>
+    <attribute id="event_name" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="event_name"/>
+      <keyMapping columnObjectName="P_Tickets" columnName="event_name"/>
+    </attribute>
+    <attribute id="sell_location" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="retail_operator_type"/>
+      <keyMapping columnObjectName="P_Tickets" columnName="retail_operator_type"/>
+    </attribute>
+    <attribute id="retail_mop" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="retail_mop"/>
+      <keyMapping columnObjectName="P_Tickets" columnName="retail_mop"/>
+    </attribute>
+    <attribute id="event_date" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="event_date"/>
+      <keyMapping columnObjectName="P_Tickets" columnName="event_date"/>
+    </attribute>
+    <attribute id="sap_uid" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="sap_uid"/>
+      <keyMapping columnObjectName="P_Tickets" columnName="sap_uid"/>
+    </attribute>
+  
+    <attribute id="sap_add_date" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="sap_add_date"/>
+  
+      <keyMapping columnObjectName="P_Tickets" columnName="sap_add_date"/>
+  
+    </attribute>
+    <attribute id="major_category_name" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="major_category_name"/>
+      <keyMapping columnObjectName="P_Tickets" columnName="major_category_name"/>
+    </attribute>
+    <attribute id="minor_category_name" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="minor_category_name"/>
+      <keyMapping columnObjectName="P_Tickets" columnName="minor_category_name"/>
+    </attribute>
+    <attribute id="venue_name" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="venue_name"/>
+      <keyMapping columnObjectName="P_Tickets" columnName="venue_name"/>
+    </attribute>
+    <attribute id="acct_id" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="acct_id"/>
+      <keyMapping columnObjectName="P_Tickets" columnName="acct_id"/>
+    </attribute>
+  
+    <attribute id="event_id" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="event_id"/>
+  
+      <keyMapping columnObjectName="P_Tickets" columnName="event_id"/>
+  
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="num_seats" order="12" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="num_seats"/>
+      <measureMapping columnObjectName="P_Tickets" columnName="num_seats"/>
+    </measure>
+    <measure id="retail_face_value" order="13" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="retail_face_value"/>
+      <measureMapping columnObjectName="P_Tickets" columnName="CC_retail_face_value"/>
+    </measure>
+    <measure id="retail_facility_fee" order="14" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="retail_facility_fee"/>
+      <measureMapping columnObjectName="P_Tickets" columnName="CC_retail_facility_fee"/>
+    </measure>
+    <measure id="retail_service_charge" order="15" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="retail_service_charge"/>
+      <measureMapping columnObjectName="P_Tickets" columnName="CC_retail_service_charge"/>
+    </measure></baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="92" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="P_Tickets" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape></shapes>
+</layout>
+</Calculation:scenario>

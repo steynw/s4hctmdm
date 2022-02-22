@@ -1,0 +1,11 @@
+COLUMN TABLE "GLAccountHierarchyNodeT" (
+	"GLAccountHierarchy" NVARCHAR(42) NOT NULL ,
+	"HierarchyNode" NVARCHAR(50) NOT NULL ,
+	"ValidityEndDate" SECONDDATE NOT NULL ,
+	"Language" NVARCHAR(2) NOT NULL ,
+	"HierarchyNodeText" NVARCHAR(50),
+	"HierarchyNodeShortText" NVARCHAR(20),
+	"ValidityStartDate" DATE,
+	"NodeType" NVARCHAR(1),
+	PRIMARY KEY ("GLAccountHierarchy", "HierarchyNode", "ValidityEndDate", "Language")
+) UNLOAD PRIORITY 5 AUTO MERGE 

@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CvHostProceeds" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="CvHostProceeds"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="tm.ticket_prd">
+    <resourceUri>tm.ticket_prd</resourceUri>
+  </DataSource>
+  <DataSource id="P_Refund$$$$tm.ticket_prd$$">
+    <resourceUri>tm.ticket_prd</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_Sale" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="event_name"/>
+      <viewAttribute id="sell_location"/>
+      <viewAttribute id="order_num"/>
+      <viewAttribute id="owed_amount"/>
+      <viewAttribute id="paid_amount"/>
+      <viewAttribute id="full_price"/>
+      <viewAttribute id="retail_facility_fee"/>
+      <viewAttribute id="retail_service_charge"/>
+      <viewAttribute id="retail_face_value"/>
+      <viewAttribute id="retail_price_level"/>
+      <viewAttribute id="purchase_price"/>
+    
+      <viewAttribute id="retail_mop"/>
+      <viewAttribute id="tran_type"/>
+      <viewAttribute id="add_datetime"/>
+      <viewAttribute id="ticket_status"/>
+    
+      <viewAttribute id="sap_add_date"/>
+    
+      <viewAttribute id="num_seats"/>
+      <viewAttribute id="sap_uid"/>
+    
+      <viewAttribute id="acct_id"/>
+    
+      <viewAttribute id="event_id"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_num_seats" datatype="INTEGER" expressionLanguage="SQL">
+        <formula>ABS(&quot;num_seats&quot;)</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_purchase_price" datatype="DECIMAL" length="12" scale="2" expressionLanguage="SQL">
+        <formula>abs (&quot;purchase_price&quot;)</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="tm.ticket_prd"/>
+    <filter>&quot;order_num&quot; = 0 and &quot;ticket_status&quot; IN ('A','R')</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_Refund" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="event_name"/>
+      <viewAttribute id="sell_location"/>
+      <viewAttribute id="other_info_10"/>
+      <viewAttribute id="other_info_9"/>
+      <viewAttribute id="order_num"/>
+      <viewAttribute id="owed_amount"/>
+      <viewAttribute id="paid_amount"/>
+      <viewAttribute id="pc_other1"/>
+      <viewAttribute id="full_price"/>
+      <viewAttribute id="retail_facility_fee"/>
+      <viewAttribute id="retail_service_charge"/>
+      <viewAttribute id="retail_face_value"/>
+      <viewAttribute id="retail_price_level"/>
+      <viewAttribute id="purchase_price"/>
+      <viewAttribute id="retail_mop"/>
+      <viewAttribute id="tran_type"/>
+      <viewAttribute id="ticket_status"/>
+    
+      <viewAttribute id="add_datetime"/>
+      <viewAttribute id="sap_return_date"/>
+    
+      <viewAttribute id="num_seats"/>
+      <viewAttribute id="sap_uid"/>
+    
+      <viewAttribute id="acct_id"/>
+    
+      <viewAttribute id="event_id"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input emptyUnionBehavior="undefined" node="P_Refund$$$$tm.ticket_prd$$"/>
+    <filter>&quot;order_num&quot; = 0 and &quot;ticket_status&quot; = 'R'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:UnionView" id="U_Tickets">
+    <viewAttributes>
+      <viewAttribute id="event_name"/>
+      <viewAttribute id="sell_location"/>
+      <viewAttribute id="order_num" aggregationType="sum"/>
+      <viewAttribute id="owed_amount" aggregationType="sum"/>
+      <viewAttribute id="paid_amount" aggregationType="sum"/>
+      <viewAttribute id="full_price" aggregationType="sum"/>
+      <viewAttribute id="retail_facility_fee" aggregationType="sum"/>
+      <viewAttribute id="retail_service_charge" aggregationType="sum"/>
+      <viewAttribute id="retail_face_value" aggregationType="sum"/>
+      <viewAttribute id="retail_price_level" aggregationType="sum"/>
+      <viewAttribute id="purchase_price" aggregationType="sum"/>
+      <viewAttribute id="retail_mop"/>
+      <viewAttribute id="tran_type"/>
+      <viewAttribute datatype="NVARCHAR" length="1" id="ticket_status"/>
+    
+      <viewAttribute id="add_datetime" aggregationType="min"/>
+      <viewAttribute id="sap_add_date"/>
+    
+      <viewAttribute id="num_seats" aggregationType="sum"/>
+      <viewAttribute id="sap_uid" aggregationType="sum" keepFlag="true"/>
+    
+      <viewAttribute datatype="VARCHAR" length="15" id="System"/>
+    
+      <viewAttribute id="acct_id" aggregationType="sum"/>
+    
+      <viewAttribute id="event_id" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_retail_face_value" datatype="DECIMAL" length="13" scale="2" expressionLanguage="SQL">
+        <formula>&quot;retail_face_value&quot; * TO_DECIMAL(&quot;num_seats&quot;,13,2)</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_retail_facility_fee" datatype="DECIMAL" length="13" scale="2" expressionLanguage="SQL">
+        <formula>&quot;retail_facility_fee&quot; * TO_DECIMAL(&quot;num_seats&quot;, 13,2)</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_retail_service_charge" datatype="DECIMAL" length="13" scale="2" expressionLanguage="SQL">
+        <formula>&quot;retail_service_charge&quot; * TO_DECIMAL(&quot;num_seats&quot;, 13,2)</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="P_Sale" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_name" source="event_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="sell_location" source="sell_location"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="order_num" source="order_num"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="owed_amount" source="owed_amount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="paid_amount" source="paid_amount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="full_price" source="full_price"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_facility_fee" source="retail_facility_fee"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_service_charge" source="retail_service_charge"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_face_value" source="retail_face_value"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_price_level" source="retail_price_level"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="purchase_price" source="CC_purchase_price"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_mop" source="retail_mop"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tran_type" source="tran_type"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="ticket_status" null="false" value="A"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="add_datetime" source="add_datetime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="sap_add_date" source="sap_add_date"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="num_seats" source="CC_num_seats"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="sap_uid" source="sap_uid"/>
+    
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="System" null="false" value="Host"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="acct_id" source="acct_id"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_id" source="event_id"/>
+    </input>
+    <input node="P_Refund" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_name" source="event_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="sell_location" source="sell_location"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="order_num" source="order_num"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="owed_amount" source="owed_amount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="paid_amount" source="paid_amount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="full_price" source="full_price"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_facility_fee" source="retail_facility_fee"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_service_charge" source="retail_service_charge"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_face_value" source="retail_face_value"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_price_level" source="retail_price_level"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="purchase_price" source="purchase_price"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_mop" source="retail_mop"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tran_type" source="tran_type"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="ticket_status" null="false" value="R"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="add_datetime" source="add_datetime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="sap_add_date" source="sap_return_date"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="num_seats" source="num_seats"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="sap_uid" source="sap_uid"/>
+    
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="System" null="false" value="Host"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="acct_id" source="acct_id"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_id" source="event_id"/>
+    </input></calculationView>
+</calculationViews>
+<logicalModel id="U_Tickets">
+  <attributes>
+    <attribute id="order_num" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="order_num"/>
+      <keyMapping columnObjectName="U_Tickets" columnName="order_num"/>
+    </attribute>
+    <attribute id="event_name" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="event_name"/>
+      <keyMapping columnObjectName="U_Tickets" columnName="event_name"/>
+    </attribute>
+    <attribute id="sell_location" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="sell_location"/>
+      <keyMapping columnObjectName="U_Tickets" columnName="sell_location"/>
+    </attribute>
+    <attribute id="retail_mop" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="retail_mop"/>
+      <keyMapping columnObjectName="U_Tickets" columnName="retail_mop"/>
+    </attribute>
+    <attribute id="tran_type" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="tran_type"/>
+      <keyMapping columnObjectName="U_Tickets" columnName="tran_type"/>
+    </attribute>
+    <attribute id="ticket_status" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ticket_status"/>
+      <keyMapping columnObjectName="U_Tickets" columnName="ticket_status"/>
+    </attribute>
+  
+    <attribute id="add_datetime" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="add_datetime"/>
+  
+      <keyMapping columnObjectName="U_Tickets" columnName="add_datetime"/>
+  
+    </attribute>
+    <attribute id="sap_add_date" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="sap_add_date"/>
+      <keyMapping columnObjectName="U_Tickets" columnName="sap_add_date"/>
+    </attribute>
+  
+    <attribute id="sap_uid" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="sap_uid"/>
+  
+      <keyMapping columnObjectName="U_Tickets" columnName="sap_uid"/>
+  
+    </attribute>
+  
+    <attribute id="System" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="System"/>
+  
+      <keyMapping columnObjectName="U_Tickets" columnName="System"/>
+  
+    </attribute>
+    <attribute id="acct_id" order="17" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="acct_id"/>
+      <keyMapping columnObjectName="U_Tickets" columnName="acct_id"/>
+    </attribute>
+  
+    <attribute id="event_id" order="18" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="event_id"/>
+  
+      <keyMapping columnObjectName="U_Tickets" columnName="event_id"/>
+  
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="owed_amount" order="11" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="owed_amount"/>
+      <measureMapping columnObjectName="U_Tickets" columnName="owed_amount"/>
+    </measure>
+    <measure id="paid_amount" order="12" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="paid_amount"/>
+      <measureMapping columnObjectName="U_Tickets" columnName="paid_amount"/>
+    </measure>
+  
+    <measure id="num_seats" order="13" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="num_seats"/>
+      <measureMapping columnObjectName="U_Tickets" columnName="num_seats"/>
+    </measure>
+    <measure id="retail_facility_fee" order="14" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="retail_facility_fee"/>
+      <measureMapping columnObjectName="U_Tickets" columnName="CC_retail_facility_fee"/>
+    </measure>
+    <measure id="retail_face_value" order="15" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="retail_face_value"/>
+      <measureMapping columnObjectName="U_Tickets" columnName="CC_retail_face_value"/>
+    </measure>
+    <measure id="retail_service_charge" order="16" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="retail_service_charge"/>
+      <measureMapping columnObjectName="U_Tickets" columnName="CC_retail_service_charge"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="221" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="P_Sale" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="356"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="P_Refund" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="302" y="356"/>
+      <rectangleSize width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="U_Tickets" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="221" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape></shapes>
+</layout>
+</Calculation:scenario>

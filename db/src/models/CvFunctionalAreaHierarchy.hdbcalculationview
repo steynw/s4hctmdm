@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" id="CvFunctionalAreaHierarchy" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="CvFunctionalAreaHierarchy"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="FunctionalAreaHierNode">
+    <resourceUri>FunctionalAreaHierNode</resourceUri>
+  </DataSource>
+  <DataSource id="FunctionalAreaHierNodeT">
+    <resourceUri>FunctionalAreaHierNodeT</resourceUri>
+  </DataSource>
+  <DataSource id="FunctionalAreaText">
+    <resourceUri>FunctionalAreaText</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="FunctionalAreaHierarchy"/>
+      <viewAttribute id="HierarchyNode"/>
+      <viewAttribute id="ValidityEndDate"/>
+      <viewAttribute id="ValidityStartDate"/>
+      <viewAttribute id="ParentNode"/>
+      <viewAttribute id="HierarchyVersion"/>
+      <viewAttribute id="FunctionalArea"/>
+      <viewAttribute id="SequenceNumber"/>
+      <viewAttribute id="HierarchyNodeLevel"/>
+      <viewAttribute id="NodeType"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="FunctionalAreaHierNode"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <viewAttributes>
+      <viewAttribute id="FunctionalAreaHierarchy"/>
+      <viewAttribute id="HierarchyNode"/>
+      <viewAttribute id="ValidityEndDate"/>
+      <viewAttribute id="Language"/>
+      <viewAttribute id="NodeType"/>
+      <viewAttribute id="HierarchyNodeText"/>
+      <viewAttribute id="ValidityStartDate"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="FunctionalAreaHierNodeT"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="C1_1" joinType="textTable" languageColumn="Language">
+    <viewAttributes>
+      <viewAttribute id="FunctionalAreaHierarchy"/>
+      <viewAttribute id="HierarchyNode"/>
+      <viewAttribute id="ValidityEndDate"/>
+      <viewAttribute id="ValidityStartDate"/>
+      <viewAttribute id="ParentNode"/>
+      <viewAttribute id="HierarchyVersion"/>
+      <viewAttribute id="FunctionalArea"/>
+      <viewAttribute id="SequenceNumber"/>
+      <viewAttribute id="HierarchyNodeLevel"/>
+      <viewAttribute id="NodeType"/>
+      <viewAttribute id="HierarchyNodeText"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="FunctionalAreaHierarchy" source="FunctionalAreaHierarchy"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="HierarchyNode" source="HierarchyNode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ValidityEndDate" source="ValidityEndDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ValidityStartDate" source="ValidityStartDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ParentNode" source="ParentNode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="HierarchyVersion" source="HierarchyVersion"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FunctionalArea" source="FunctionalArea"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SequenceNumber" source="SequenceNumber"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="HierarchyNodeLevel" source="HierarchyNodeLevel"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NodeType" source="NodeType"/>
+    </input>
+    <input node="Projection_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="HierarchyNodeText" source="HierarchyNodeText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FunctionalAreaHierarchy" source="FunctionalAreaHierarchy"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="HierarchyNode" source="HierarchyNode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NodeType" source="NodeType"/>
+    </input>
+    <joinAttribute name="FunctionalAreaHierarchy"/>
+    <joinAttribute name="HierarchyNode"/>
+    <joinAttribute name="NodeType"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2" cardinality="C1_1" joinType="textTable" languageColumn="Language">
+    <viewAttributes>
+      <viewAttribute id="FunctionalAreaHierarchy"/>
+      <viewAttribute id="HierarchyNode"/>
+      <viewAttribute id="ValidityEndDate"/>
+      <viewAttribute id="ValidityStartDate"/>
+      <viewAttribute id="ParentNode"/>
+      <viewAttribute id="HierarchyVersion"/>
+      <viewAttribute id="FunctionalArea"/>
+      <viewAttribute id="SequenceNumber"/>
+      <viewAttribute id="HierarchyNodeLevel"/>
+      <viewAttribute id="NodeType"/>
+      <viewAttribute id="HierarchyNodeText"/>
+      <viewAttribute id="FunctionalAreaName"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_HierarchyNodeText" datatype="NVARCHAR" length="50" expressionLanguage="SQL">
+        <formula>CASE &quot;NodeType&quot; 
+	 WHEN 'L' then &quot;FunctionalAreaName&quot;
+	 ELSE &quot;HierarchyNodeText&quot;
+ END</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="Join_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="FunctionalAreaHierarchy" source="FunctionalAreaHierarchy"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="HierarchyNode" source="HierarchyNode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ValidityEndDate" source="ValidityEndDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ValidityStartDate" source="ValidityStartDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ParentNode" source="ParentNode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="HierarchyVersion" source="HierarchyVersion"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FunctionalArea" source="FunctionalArea"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SequenceNumber" source="SequenceNumber"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="HierarchyNodeLevel" source="HierarchyNodeLevel"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NodeType" source="NodeType"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="HierarchyNodeText" source="HierarchyNodeText"/>
+    </input>
+    <input node="Projection_3">
+      <mapping xsi:type="Calculation:AttributeMapping" target="FunctionalAreaName" source="FunctionalAreaName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FunctionalArea" source="FunctionalArea"/>
+    </input>
+    <joinAttribute name="FunctionalArea"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_3">
+    <viewAttributes>
+      <viewAttribute id="FunctionalAreaName"/>
+    
+      <viewAttribute id="FunctionalArea"/>
+      <viewAttribute id="Language"/></viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="FunctionalAreaText"/>
+  </calculationView>
+</calculationViews>
+<inlineHierarchy xsi:type="Dimension:ParentChildHierarchy" id="FunctAreaHierarchy" aggregateAllNodes="true" orphanedNodesHandling="ROOT_NODES" rootNodeVisibility="ADD_ROOT_NODE_IF_DEFINED" cacheEnabled="true" cycleHandling="BREAKUP" emptyValueIsNull="true">
+  <descriptions defaultDescription="FunctionalAreaHierarchy"/>
+  <unassignedMemberProperties mode="TRUE" name="_NA_" drillable="true" includeNulls="true" nullConvertValue="_#_">
+    <caption label="Not Assigned"/>
+    <nullCaption label="Null"/>
+  </unassignedMemberProperties>
+  <attributeParentPair attribute="HierarchyNode" parentAttribute="ParentNode">
+    <rootNode/>
+  </attributeParentPair>
+  <edgeAttribute attribute="HierarchyNodeText"/>
+</inlineHierarchy>
+<logicalModel id="Join_2">
+  <attributes>
+    <attribute id="FunctionalAreaHierarchy" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FunctionalAreaHierarchy"/>
+      <keyMapping columnObjectName="Join_2" columnName="FunctionalAreaHierarchy"/>
+    </attribute>
+    <attribute id="HierarchyNode" order="2" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="HierarchyNodeText">
+      <descriptions defaultDescription="HierarchyNode"/>
+      <keyMapping columnObjectName="Join_2" columnName="HierarchyNode"/>
+    </attribute>
+    <attribute id="ParentNode" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ParentNode"/>
+      <keyMapping columnObjectName="Join_2" columnName="ParentNode"/>
+    </attribute>
+    <attribute id="FunctionalArea" order="4" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="FunctionalAreaName">
+      <descriptions defaultDescription="FunctionalArea"/>
+      <keyMapping columnObjectName="Join_2" columnName="FunctionalArea"/>
+    </attribute>
+    <attribute id="HierarchyNodeText" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="HierarchyNodeText"/>
+      <keyMapping columnObjectName="Join_2" columnName="CC_HierarchyNodeText"/>
+    </attribute>
+    <attribute id="FunctionalAreaName" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FunctionalAreaName"/>
+      <keyMapping columnObjectName="Join_2" columnName="FunctionalAreaName"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="241" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="223" y="491"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="411" y="491"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="250" y="349"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="136"/>
+    </shape>
+    <shape modelObjectName="Projection_2" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="136"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="253" y="212"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_1" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_3" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="136"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_3" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="431" y="354"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

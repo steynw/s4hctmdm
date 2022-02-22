@@ -1,0 +1,1873 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Privilege="http://www.sap.com/ndb/BiModelPrivilege.ecore" id="CvTicketFactsNew" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="CvTicketFactsNew"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="CvTicketsBase">
+    <resourceUri>CvTicketsBase</resourceUri>
+  </DataSource>
+  <DataSource id="CvEventAttributes">
+    <resourceUri>CvEventAttributes</resourceUri>
+  </DataSource>
+  <DataSource id="CvEnterpriseProject">
+    <resourceUri>CvEnterpriseProject</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_TICKET_FACTS">
+    <viewAttributes>
+      <viewAttribute id="event_id" keepFlag="true"/>
+      <viewAttribute id="acct_id" keepFlag="true"/>
+      <viewAttribute id="num_seats"/>
+      <viewAttribute id="paid_amount"/>
+      <viewAttribute id="owed_amount"/>
+      <viewAttribute id="full_price"/>
+      <viewAttribute keepFlag="true" id="order_num"/>
+      <viewAttribute keepFlag="true" id="sap_add_date"/>
+    
+      <viewAttribute id="purchase_price"/>
+    
+      <viewAttribute id="sell_location"/>
+      <viewAttribute id="pc_ticket"/>
+      <viewAttribute id="pc_licfee"/>
+      <viewAttribute id="pc_other1"/>
+      <viewAttribute id="pc_other2"/>
+      <viewAttribute id="pc_other3"/>
+      <viewAttribute id="pc_other4"/>
+      <viewAttribute id="pc_other5"/>
+      <viewAttribute id="pc_other6"/>
+      <viewAttribute id="pc_other7"/>
+      <viewAttribute id="pc_other8"/>
+      <viewAttribute id="pc_tax"/>
+      <viewAttribute id="disc_amount"/>
+      <viewAttribute id="ticket_status"/>
+    
+      <viewAttribute id="sap_container_id"/>
+      <viewAttribute id="acct_rep_full_name"/>
+      <viewAttribute id="acct_rep_id"/>
+      <viewAttribute id="add_datetime"/>
+      <viewAttribute id="add_user"/>
+      <viewAttribute id="block_purchase_price"/>
+      <viewAttribute id="class_name"/>
+      <viewAttribute id="comp_code"/>
+      <viewAttribute id="comp_name"/>
+      <viewAttribute id="contract_id"/>
+      <viewAttribute id="delivered_date"/>
+      <viewAttribute id="delivery_addr1"/>
+      <viewAttribute id="delivery_addr2"/>
+      <viewAttribute id="delivery_addr3"/>
+      <viewAttribute id="delivery_city"/>
+      <viewAttribute id="delivery_country"/>
+      <viewAttribute id="delivery_instructions"/>
+      <viewAttribute id="delivery_method"/>
+      <viewAttribute id="delivery_method_name"/>
+      <viewAttribute id="delivery_name_first"/>
+      <viewAttribute id="delivery_name_last"/>
+      <viewAttribute id="delivery_phone"/>
+      <viewAttribute id="delivery_phone_formatted"/>
+      <viewAttribute id="delivery_state"/>
+      <viewAttribute id="delivery_zip"/>
+      <viewAttribute id="delivery_zip_formatted"/>
+      <viewAttribute id="disc_code"/>
+      <viewAttribute id="expanded"/>
+      <viewAttribute id="group_flag"/>
+      <viewAttribute id="group_sales_name"/>
+      <viewAttribute id="info"/>
+      <viewAttribute id="last_seat"/>
+      <viewAttribute id="ledger_id"/>
+      <viewAttribute id="order_line_item"/>
+      <viewAttribute id="order_line_item_seq"/>
+      <viewAttribute id="orig_acct_rep_id"/>
+      <viewAttribute id="orig_datetime"/>
+      <viewAttribute id="other_info_1"/>
+      <viewAttribute id="other_info_10"/>
+      <viewAttribute id="other_info_2"/>
+      <viewAttribute id="other_info_3"/>
+      <viewAttribute id="other_info_4"/>
+      <viewAttribute id="other_info_5"/>
+      <viewAttribute id="other_info_6"/>
+      <viewAttribute id="other_info_7"/>
+      <viewAttribute id="other_info_8"/>
+      <viewAttribute id="other_info_9"/>
+      <viewAttribute id="paid"/>
+      <viewAttribute id="plan_datetime"/>
+      <viewAttribute id="plan_event_id"/>
+      <viewAttribute id="plan_event_name"/>
+      <viewAttribute id="price_code"/>
+      <viewAttribute id="price_code_desc"/>
+      <viewAttribute id="pricing_method"/>
+      <viewAttribute id="promo_code"/>
+      <viewAttribute id="renewal_ind"/>
+      <viewAttribute id="retail_acct_add_date"/>
+      <viewAttribute id="retail_acct_num"/>
+      <viewAttribute id="retail_face_value"/>
+      <viewAttribute id="retail_face_value_tax"/>
+      <viewAttribute id="retail_facility_fee"/>
+      <viewAttribute id="retail_mask"/>
+      <viewAttribute id="retail_mop"/>
+      <viewAttribute id="retail_price_level"/>
+      <viewAttribute id="retail_qualifiers"/>
+      <viewAttribute id="retail_service_charge"/>
+      <viewAttribute id="retail_service_charge_tax"/>
+      <viewAttribute id="retail_distance_charge"/>
+      <viewAttribute id="retail_system_name"/>
+      <viewAttribute id="retail_ticket_type"/>
+      <viewAttribute id="return_datetime"/>
+      <viewAttribute id="return_reason"/>
+      <viewAttribute id="return_reason_desc"/>
+      <viewAttribute id="row_id"/>
+      <viewAttribute id="row_name"/>
+      <viewAttribute id="sales_source_date"/>
+      <viewAttribute id="sales_source_name"/>
+      <viewAttribute id="seat_num"/>
+      <viewAttribute id="section_id"/>
+      <viewAttribute id="section_name"/>
+      <viewAttribute id="seq_id"/>
+      <viewAttribute id="seq_num"/>
+      <viewAttribute id="surchg_amount"/>
+      <viewAttribute id="surchg_code_desc"/>
+      <viewAttribute id="tax_rate_a"/>
+      <viewAttribute id="tax_rate_b"/>
+      <viewAttribute id="tax_rate_c"/>
+      <viewAttribute id="ticket_seq_id"/>
+      <viewAttribute id="ticket_type"/>
+      <viewAttribute id="ticket_type_category"/>
+      <viewAttribute id="total_events"/>
+      <viewAttribute id="tran_type"/>
+      <viewAttribute id="upd_datetime"/>
+      <viewAttribute id="upd_user"/>
+    
+      <viewAttribute id="sap_return_date"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_COMP_FLAG_COL" datatype="NVARCHAR" length="1" expressionLanguage="SQL">
+        <formula>CASE 
+	 WHEN (&quot;owed_amount&quot; = 0 and &quot;paid_amount&quot; = 0) then 'Y'
+	 ELSE 'N'
+ END</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="CvTicketsBase"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_EVENT_ATTR">
+    <viewAttributes>
+      <viewAttribute id="EventID"/>
+      <viewAttribute id="EventName"/>
+      <viewAttribute id="EventDate"/>
+      <viewAttribute id="EventPrefix"/>
+      <viewAttribute id="EventSuffix"/>
+      <viewAttribute id="Arena"/>
+      <viewAttribute id="Suites"/>
+      <viewAttribute id="Parking"/>
+      <viewAttribute id="Lounge"/>
+      <viewAttribute id="Upsell"/>
+      <viewAttribute id="EventCategory"/>
+    
+      <viewAttribute id="Opponent"/>
+      <viewAttribute id="Project"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="CvEventAttributes"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="event_id" aggregationType="sum"/>
+      <viewAttribute id="acct_id" aggregationType="sum"/>
+      <viewAttribute id="num_seats" aggregationType="sum"/>
+      <viewAttribute id="paid_amount" aggregationType="sum"/>
+      <viewAttribute id="owed_amount" aggregationType="sum"/>
+      <viewAttribute id="full_price" aggregationType="sum"/>
+      <viewAttribute id="CC_COMP_FLAG_COL"/>
+    
+      <viewAttribute id="EventDate"/>
+      <viewAttribute id="Arena"/>
+      <viewAttribute id="Suites"/>
+      <viewAttribute id="Parking"/>
+      <viewAttribute id="Lounge"/>
+      <viewAttribute id="Upsell"/>
+      <viewAttribute id="EventCategory"/>
+    
+      <viewAttribute id="Opponent"/>
+      <viewAttribute id="Project"/>
+    
+      <viewAttribute id="purchase_price" aggregationType="sum"/>
+    
+      <viewAttribute id="EventName"/>
+    
+      <viewAttribute id="sell_location"/>
+      <viewAttribute id="pc_ticket" aggregationType="sum"/>
+      <viewAttribute id="pc_licfee" aggregationType="sum"/>
+      <viewAttribute id="pc_other1" aggregationType="sum"/>
+      <viewAttribute id="pc_other2" aggregationType="sum"/>
+      <viewAttribute id="pc_other3" aggregationType="sum"/>
+      <viewAttribute id="pc_other4" aggregationType="sum"/>
+      <viewAttribute id="pc_other5" aggregationType="sum"/>
+      <viewAttribute id="pc_other6" aggregationType="sum"/>
+      <viewAttribute id="pc_other7" aggregationType="sum"/>
+      <viewAttribute id="pc_other8" aggregationType="sum"/>
+      <viewAttribute id="pc_tax" aggregationType="sum"/>
+      <viewAttribute id="disc_amount" aggregationType="sum"/>
+      <viewAttribute id="ticket_status"/>
+      <viewAttribute id="order_num" aggregationType="sum"/>
+    
+      <viewAttribute id="sap_container_id"/>
+      <viewAttribute id="acct_rep_full_name"/>
+      <viewAttribute id="acct_rep_id"/>
+      <viewAttribute id="add_datetime"/>
+      <viewAttribute id="add_user"/>
+      <viewAttribute id="block_purchase_price"/>
+      <viewAttribute id="class_name"/>
+      <viewAttribute id="comp_code"/>
+      <viewAttribute id="comp_name"/>
+      <viewAttribute id="contract_id"/>
+      <viewAttribute id="delivered_date"/>
+      <viewAttribute id="delivery_addr1"/>
+      <viewAttribute id="delivery_addr2"/>
+      <viewAttribute id="delivery_addr3"/>
+      <viewAttribute id="delivery_city"/>
+      <viewAttribute id="delivery_country"/>
+      <viewAttribute id="delivery_instructions"/>
+      <viewAttribute id="delivery_method"/>
+      <viewAttribute id="delivery_method_name"/>
+      <viewAttribute id="delivery_name_first"/>
+      <viewAttribute id="delivery_name_last"/>
+      <viewAttribute id="delivery_phone"/>
+      <viewAttribute id="delivery_phone_formatted"/>
+      <viewAttribute id="delivery_state"/>
+      <viewAttribute id="delivery_zip"/>
+      <viewAttribute id="delivery_zip_formatted"/>
+      <viewAttribute id="disc_code"/>
+      <viewAttribute id="expanded"/>
+      <viewAttribute id="group_flag"/>
+      <viewAttribute id="group_sales_name"/>
+      <viewAttribute id="info"/>
+      <viewAttribute id="last_seat"/>
+      <viewAttribute id="ledger_id"/>
+      <viewAttribute id="order_line_item"/>
+      <viewAttribute id="order_line_item_seq"/>
+      <viewAttribute id="orig_acct_rep_id"/>
+      <viewAttribute id="orig_datetime"/>
+      <viewAttribute id="other_info_1"/>
+      <viewAttribute id="other_info_10"/>
+      <viewAttribute id="other_info_2"/>
+      <viewAttribute id="other_info_3"/>
+      <viewAttribute id="other_info_4"/>
+      <viewAttribute id="other_info_5"/>
+      <viewAttribute id="other_info_6"/>
+      <viewAttribute id="other_info_7"/>
+      <viewAttribute id="other_info_8"/>
+      <viewAttribute id="other_info_9"/>
+      <viewAttribute id="paid"/>
+      <viewAttribute id="plan_datetime"/>
+      <viewAttribute id="plan_event_id"/>
+      <viewAttribute id="plan_event_name"/>
+      <viewAttribute id="price_code"/>
+      <viewAttribute id="price_code_desc"/>
+      <viewAttribute id="pricing_method"/>
+      <viewAttribute id="promo_code"/>
+      <viewAttribute id="renewal_ind"/>
+      <viewAttribute id="retail_acct_add_date"/>
+      <viewAttribute id="retail_acct_num"/>
+      <viewAttribute id="retail_face_value"/>
+      <viewAttribute id="retail_face_value_tax"/>
+      <viewAttribute id="retail_facility_fee"/>
+      <viewAttribute id="retail_mask"/>
+      <viewAttribute id="retail_mop"/>
+      <viewAttribute id="retail_price_level"/>
+      <viewAttribute id="retail_qualifiers"/>
+      <viewAttribute id="retail_service_charge"/>
+      <viewAttribute id="retail_service_charge_tax"/>
+      <viewAttribute id="retail_distance_charge"/>
+      <viewAttribute id="retail_system_name"/>
+      <viewAttribute id="retail_ticket_type"/>
+      <viewAttribute id="return_datetime"/>
+      <viewAttribute id="return_reason"/>
+      <viewAttribute id="return_reason_desc"/>
+      <viewAttribute id="row_id"/>
+      <viewAttribute id="row_name"/>
+      <viewAttribute id="sales_source_date"/>
+      <viewAttribute id="sales_source_name"/>
+      <viewAttribute id="seat_num"/>
+      <viewAttribute id="section_id"/>
+      <viewAttribute id="section_name"/>
+      <viewAttribute id="seq_id"/>
+      <viewAttribute id="seq_num"/>
+      <viewAttribute id="surchg_amount"/>
+      <viewAttribute id="surchg_code_desc"/>
+      <viewAttribute id="tax_rate_a"/>
+      <viewAttribute id="tax_rate_b"/>
+      <viewAttribute id="tax_rate_c"/>
+      <viewAttribute id="ticket_seq_id"/>
+      <viewAttribute id="ticket_type"/>
+      <viewAttribute id="ticket_type_category"/>
+      <viewAttribute id="total_events"/>
+      <viewAttribute id="tran_type"/>
+      <viewAttribute id="upd_datetime"/>
+      <viewAttribute id="upd_user"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="P_TICKET_FACTS">
+      <mapping xsi:type="Calculation:AttributeMapping" target="acct_id" source="acct_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="num_seats" source="num_seats"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="paid_amount" source="paid_amount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="owed_amount" source="owed_amount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="full_price" source="full_price"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_COMP_FLAG_COL" source="CC_COMP_FLAG_COL"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_id" source="event_id"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="purchase_price" source="purchase_price"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="sell_location" source="sell_location"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_ticket" source="pc_ticket"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_licfee" source="pc_licfee"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other1" source="pc_other1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other2" source="pc_other2"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other3" source="pc_other3"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other4" source="pc_other4"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other5" source="pc_other5"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other6" source="pc_other6"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other7" source="pc_other7"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other8" source="pc_other8"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_tax" source="pc_tax"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="disc_amount" source="disc_amount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ticket_status" source="ticket_status"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="order_num" source="order_num"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="sap_container_id" source="sap_container_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="acct_rep_full_name" source="acct_rep_full_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="acct_rep_id" source="acct_rep_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="add_datetime" source="add_datetime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="add_user" source="add_user"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="block_purchase_price" source="block_purchase_price"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="class_name" source="class_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="comp_code" source="comp_code"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="comp_name" source="comp_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="contract_id" source="contract_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="delivered_date" source="delivered_date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="delivery_addr1" source="delivery_addr1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="delivery_addr2" source="delivery_addr2"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="delivery_addr3" source="delivery_addr3"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="delivery_city" source="delivery_city"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="delivery_country" source="delivery_country"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="delivery_instructions" source="delivery_instructions"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="delivery_method" source="delivery_method"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="delivery_method_name" source="delivery_method_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="delivery_name_first" source="delivery_name_first"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="delivery_name_last" source="delivery_name_last"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="delivery_phone" source="delivery_phone"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="delivery_phone_formatted" source="delivery_phone_formatted"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="delivery_state" source="delivery_state"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="delivery_zip" source="delivery_zip"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="delivery_zip_formatted" source="delivery_zip_formatted"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="disc_code" source="disc_code"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="expanded" source="expanded"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="group_flag" source="group_flag"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="group_sales_name" source="group_sales_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="info" source="info"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="last_seat" source="last_seat"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ledger_id" source="ledger_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="order_line_item" source="order_line_item"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="order_line_item_seq" source="order_line_item_seq"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="orig_acct_rep_id" source="orig_acct_rep_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="orig_datetime" source="orig_datetime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="other_info_1" source="other_info_1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="other_info_10" source="other_info_10"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="other_info_2" source="other_info_2"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="other_info_3" source="other_info_3"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="other_info_4" source="other_info_4"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="other_info_5" source="other_info_5"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="other_info_6" source="other_info_6"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="other_info_7" source="other_info_7"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="other_info_8" source="other_info_8"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="other_info_9" source="other_info_9"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="paid" source="paid"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="plan_datetime" source="plan_datetime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="plan_event_id" source="plan_event_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="plan_event_name" source="plan_event_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="price_code" source="price_code"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="price_code_desc" source="price_code_desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pricing_method" source="pricing_method"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="promo_code" source="promo_code"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="renewal_ind" source="renewal_ind"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_acct_add_date" source="retail_acct_add_date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_acct_num" source="retail_acct_num"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_face_value" source="retail_face_value"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_face_value_tax" source="retail_face_value_tax"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_facility_fee" source="retail_facility_fee"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_mask" source="retail_mask"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_mop" source="retail_mop"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_price_level" source="retail_price_level"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_qualifiers" source="retail_qualifiers"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_service_charge" source="retail_service_charge"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_service_charge_tax" source="retail_service_charge_tax"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_distance_charge" source="retail_distance_charge"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_system_name" source="retail_system_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_ticket_type" source="retail_ticket_type"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="return_datetime" source="return_datetime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="return_reason" source="return_reason"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="return_reason_desc" source="return_reason_desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="row_id" source="row_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="row_name" source="row_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="sales_source_date" source="sales_source_date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="sales_source_name" source="sales_source_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="seat_num" source="seat_num"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="section_id" source="section_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="section_name" source="section_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="seq_id" source="seq_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="seq_num" source="seq_num"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="surchg_amount" source="surchg_amount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="surchg_code_desc" source="surchg_code_desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tax_rate_a" source="tax_rate_a"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tax_rate_b" source="tax_rate_b"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tax_rate_c" source="tax_rate_c"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ticket_seq_id" source="ticket_seq_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ticket_type" source="ticket_type"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ticket_type_category" source="ticket_type_category"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="total_events" source="total_events"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tran_type" source="tran_type"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="upd_datetime" source="upd_datetime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="upd_user" source="upd_user"/>
+    </input>
+    <input node="P_EVENT_ATTR">
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventDate" source="EventDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Arena" source="Arena"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Suites" source="Suites"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Parking" source="Parking"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Lounge" source="Lounge"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Upsell" source="Upsell"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Opponent" source="Opponent"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Project" source="Project"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventCategory" source="EventCategory"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventName" source="EventName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_id" source="EventID"/>
+    </input>
+    <joinAttribute name="event_id"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2" cardinality="CN_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="event_id" aggregationType="sum"/>
+      <viewAttribute id="acct_id" aggregationType="sum"/>
+      <viewAttribute id="num_seats" aggregationType="sum"/>
+      <viewAttribute id="paid_amount" aggregationType="sum"/>
+      <viewAttribute id="owed_amount" aggregationType="sum"/>
+      <viewAttribute id="full_price" aggregationType="sum"/>
+      <viewAttribute id="CC_COMP_FLAG_COL"/>
+      <viewAttribute id="EventDate"/>
+      <viewAttribute id="Arena"/>
+      <viewAttribute id="Suites"/>
+      <viewAttribute id="Parking"/>
+      <viewAttribute id="Lounge"/>
+      <viewAttribute id="Upsell"/>
+      <viewAttribute id="EventCategory"/>
+      <viewAttribute id="Opponent"/>
+      <viewAttribute id="Project"/>
+      <viewAttribute id="ProjectDescription"/>
+      <viewAttribute id="Currency"/>
+      <viewAttribute id="FunctionalArea"/>
+      <viewAttribute id="ControllingArea"/>
+      <viewAttribute id="CompanyCode"/>
+      <viewAttribute id="ProfitCenter"/>
+      <viewAttribute id="PlannedEndDate" aggregationType="min"/>
+      <viewAttribute id="PlannedStartDate" aggregationType="min"/>
+      <viewAttribute id="Type"/>
+      <viewAttribute id="SubType"/>
+      <viewAttribute id="Rank" aggregationType="sum"/>
+      <viewAttribute id="EventStartTime" aggregationType="min"/>
+      <viewAttribute id="DoorsOpen" aggregationType="min"/>
+      <viewAttribute id="ClubOpen"/>
+      <viewAttribute id="LoungeOpen"/>
+      <viewAttribute id="SuitesOpen"/>
+      <viewAttribute id="CompareCode"/>
+      <viewAttribute id="PromotionalItem"/>
+      <viewAttribute id="EventInTicketMaster"/>
+      <viewAttribute id="MerchDeal"/>
+      <viewAttribute id="EventMoved"/>
+      <viewAttribute id="Budget"/>
+      <viewAttribute id="Actual"/>
+      <viewAttribute id="EventManager"/>
+      <viewAttribute id="Promoter"/>
+      <viewAttribute id="Agency"/>
+      <viewAttribute id="RentDeal"/>
+      <viewAttribute id="ParkingRate" aggregationType="sum"/>
+      <viewAttribute id="Weather"/>
+      <viewAttribute id="Genre"/>
+    
+      <viewAttribute id="ProjectCreationDateTime"/>
+      <viewAttribute id="ProjectCreatedByUser"/>
+    
+      <viewAttribute id="TypeDesc"/>
+      <viewAttribute id="SubTypeDesc"/>
+      <viewAttribute id="PromotionalItemDesc"/>
+      <viewAttribute id="BudgetDesc"/>
+      <viewAttribute id="ActualDesc"/>
+      <viewAttribute id="EventManagerDesc"/>
+      <viewAttribute id="PromoterDesc"/>
+      <viewAttribute id="AgencyDesc"/>
+      <viewAttribute id="GenreDesc"/>
+      <viewAttribute id="EventDirector"/>
+      <viewAttribute id="EventDirectorDesc"/>
+      <viewAttribute id="EventCancelled"/>
+    
+      <viewAttribute id="purchase_price" aggregationType="sum"/>
+    
+      <viewAttribute id="EventName"/>
+    
+      <viewAttribute id="MultiType"/>
+    
+      <viewAttribute id="ProcessingStatus"/>
+    
+      <viewAttribute id="sell_location"/>
+      <viewAttribute id="pc_ticket" aggregationType="sum"/>
+      <viewAttribute id="pc_licfee" aggregationType="sum"/>
+      <viewAttribute id="pc_other1" aggregationType="sum"/>
+      <viewAttribute id="pc_other2" aggregationType="sum"/>
+      <viewAttribute id="pc_other3" aggregationType="sum"/>
+      <viewAttribute id="pc_other4" aggregationType="sum"/>
+      <viewAttribute id="pc_other5" aggregationType="sum"/>
+      <viewAttribute id="pc_other6" aggregationType="sum"/>
+      <viewAttribute id="pc_other7" aggregationType="sum"/>
+      <viewAttribute id="pc_other8" aggregationType="sum"/>
+      <viewAttribute id="pc_tax" aggregationType="sum"/>
+      <viewAttribute id="disc_amount" aggregationType="sum"/>
+      <viewAttribute id="ticket_status"/>
+      <viewAttribute id="order_num" aggregationType="sum"/>
+    
+      <viewAttribute id="sap_container_id"/>
+      <viewAttribute id="acct_rep_full_name"/>
+      <viewAttribute id="acct_rep_id"/>
+      <viewAttribute id="add_datetime"/>
+      <viewAttribute id="add_user"/>
+      <viewAttribute id="block_purchase_price"/>
+      <viewAttribute id="class_name"/>
+      <viewAttribute id="comp_code"/>
+      <viewAttribute id="comp_name"/>
+      <viewAttribute id="contract_id"/>
+      <viewAttribute id="delivered_date"/>
+      <viewAttribute id="delivery_addr1"/>
+      <viewAttribute id="delivery_addr2"/>
+      <viewAttribute id="delivery_addr3"/>
+      <viewAttribute id="delivery_city"/>
+      <viewAttribute id="delivery_country"/>
+      <viewAttribute id="delivery_instructions"/>
+      <viewAttribute id="delivery_method"/>
+      <viewAttribute id="delivery_method_name"/>
+      <viewAttribute id="delivery_name_first"/>
+      <viewAttribute id="delivery_name_last"/>
+      <viewAttribute id="delivery_phone"/>
+      <viewAttribute id="delivery_phone_formatted"/>
+      <viewAttribute id="delivery_state"/>
+      <viewAttribute id="delivery_zip"/>
+      <viewAttribute id="delivery_zip_formatted"/>
+      <viewAttribute id="disc_code"/>
+      <viewAttribute id="expanded"/>
+      <viewAttribute id="group_flag"/>
+      <viewAttribute id="group_sales_name"/>
+      <viewAttribute id="info"/>
+      <viewAttribute id="last_seat"/>
+      <viewAttribute id="ledger_id"/>
+      <viewAttribute id="order_line_item"/>
+      <viewAttribute id="order_line_item_seq"/>
+      <viewAttribute id="orig_acct_rep_id"/>
+      <viewAttribute id="orig_datetime"/>
+      <viewAttribute id="other_info_1"/>
+      <viewAttribute id="other_info_10"/>
+      <viewAttribute id="other_info_2"/>
+      <viewAttribute id="other_info_3"/>
+      <viewAttribute id="other_info_4"/>
+      <viewAttribute id="other_info_5"/>
+      <viewAttribute id="other_info_6"/>
+      <viewAttribute id="other_info_7"/>
+      <viewAttribute id="other_info_8"/>
+      <viewAttribute id="other_info_9"/>
+      <viewAttribute id="paid"/>
+      <viewAttribute id="plan_datetime"/>
+      <viewAttribute id="plan_event_id"/>
+      <viewAttribute id="plan_event_name"/>
+      <viewAttribute id="price_code"/>
+      <viewAttribute id="price_code_desc"/>
+      <viewAttribute id="pricing_method"/>
+      <viewAttribute id="promo_code"/>
+      <viewAttribute id="renewal_ind"/>
+      <viewAttribute id="retail_acct_add_date"/>
+      <viewAttribute id="retail_acct_num"/>
+      <viewAttribute id="retail_face_value"/>
+      <viewAttribute id="retail_face_value_tax"/>
+      <viewAttribute id="retail_facility_fee"/>
+      <viewAttribute id="retail_mask"/>
+      <viewAttribute id="retail_mop"/>
+      <viewAttribute id="retail_price_level"/>
+      <viewAttribute id="retail_qualifiers"/>
+      <viewAttribute id="retail_service_charge"/>
+      <viewAttribute id="retail_service_charge_tax"/>
+      <viewAttribute id="retail_distance_charge"/>
+      <viewAttribute id="retail_system_name"/>
+      <viewAttribute id="retail_ticket_type"/>
+      <viewAttribute id="return_datetime"/>
+      <viewAttribute id="return_reason"/>
+      <viewAttribute id="return_reason_desc"/>
+      <viewAttribute id="row_id"/>
+      <viewAttribute id="row_name"/>
+      <viewAttribute id="sales_source_date"/>
+      <viewAttribute id="sales_source_name"/>
+      <viewAttribute id="seat_num"/>
+      <viewAttribute id="section_id"/>
+      <viewAttribute id="section_name"/>
+      <viewAttribute id="seq_id"/>
+      <viewAttribute id="seq_num"/>
+      <viewAttribute id="surchg_amount"/>
+      <viewAttribute id="surchg_code_desc"/>
+      <viewAttribute id="tax_rate_a"/>
+      <viewAttribute id="tax_rate_b"/>
+      <viewAttribute id="tax_rate_c"/>
+      <viewAttribute id="ticket_seq_id"/>
+      <viewAttribute id="ticket_type"/>
+      <viewAttribute id="ticket_type_category"/>
+      <viewAttribute id="total_events"/>
+      <viewAttribute id="tran_type"/>
+      <viewAttribute id="upd_datetime"/>
+      <viewAttribute id="upd_user"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="acct_id" source="acct_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="num_seats" source="num_seats"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="paid_amount" source="paid_amount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="owed_amount" source="owed_amount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="full_price" source="full_price"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_COMP_FLAG_COL" source="CC_COMP_FLAG_COL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventDate" source="EventDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Arena" source="Arena"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Suites" source="Suites"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Parking" source="Parking"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Lounge" source="Lounge"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Upsell" source="Upsell"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Opponent" source="Opponent"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Project" source="Project"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_id" source="event_id"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventCategory" source="EventCategory"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="purchase_price" source="purchase_price"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventName" source="EventName"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="sell_location" source="sell_location"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_ticket" source="pc_ticket"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_licfee" source="pc_licfee"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other1" source="pc_other1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other2" source="pc_other2"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other3" source="pc_other3"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other4" source="pc_other4"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other5" source="pc_other5"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other6" source="pc_other6"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other7" source="pc_other7"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other8" source="pc_other8"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_tax" source="pc_tax"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="disc_amount" source="disc_amount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ticket_status" source="ticket_status"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="order_num" source="order_num"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="sap_container_id" source="sap_container_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="acct_rep_full_name" source="acct_rep_full_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="acct_rep_id" source="acct_rep_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="add_datetime" source="add_datetime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="add_user" source="add_user"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="block_purchase_price" source="block_purchase_price"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="class_name" source="class_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="comp_code" source="comp_code"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="comp_name" source="comp_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="contract_id" source="contract_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="delivered_date" source="delivered_date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="delivery_addr1" source="delivery_addr1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="delivery_addr2" source="delivery_addr2"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="delivery_addr3" source="delivery_addr3"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="delivery_city" source="delivery_city"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="delivery_country" source="delivery_country"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="delivery_instructions" source="delivery_instructions"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="delivery_method" source="delivery_method"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="delivery_method_name" source="delivery_method_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="delivery_name_first" source="delivery_name_first"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="delivery_name_last" source="delivery_name_last"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="delivery_phone" source="delivery_phone"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="delivery_phone_formatted" source="delivery_phone_formatted"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="delivery_state" source="delivery_state"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="delivery_zip" source="delivery_zip"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="delivery_zip_formatted" source="delivery_zip_formatted"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="disc_code" source="disc_code"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="expanded" source="expanded"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="group_flag" source="group_flag"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="group_sales_name" source="group_sales_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="info" source="info"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="last_seat" source="last_seat"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ledger_id" source="ledger_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="order_line_item" source="order_line_item"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="order_line_item_seq" source="order_line_item_seq"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="orig_acct_rep_id" source="orig_acct_rep_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="orig_datetime" source="orig_datetime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="other_info_1" source="other_info_1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="other_info_10" source="other_info_10"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="other_info_2" source="other_info_2"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="other_info_3" source="other_info_3"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="other_info_4" source="other_info_4"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="other_info_5" source="other_info_5"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="other_info_6" source="other_info_6"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="other_info_7" source="other_info_7"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="other_info_8" source="other_info_8"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="other_info_9" source="other_info_9"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="paid" source="paid"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="plan_datetime" source="plan_datetime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="plan_event_id" source="plan_event_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="plan_event_name" source="plan_event_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="price_code" source="price_code"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="price_code_desc" source="price_code_desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pricing_method" source="pricing_method"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="promo_code" source="promo_code"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="renewal_ind" source="renewal_ind"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_acct_add_date" source="retail_acct_add_date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_acct_num" source="retail_acct_num"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_face_value" source="retail_face_value"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_face_value_tax" source="retail_face_value_tax"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_facility_fee" source="retail_facility_fee"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_mask" source="retail_mask"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_mop" source="retail_mop"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_price_level" source="retail_price_level"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_qualifiers" source="retail_qualifiers"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_service_charge" source="retail_service_charge"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_service_charge_tax" source="retail_service_charge_tax"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_distance_charge" source="retail_distance_charge"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_system_name" source="retail_system_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_ticket_type" source="retail_ticket_type"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="return_datetime" source="return_datetime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="return_reason" source="return_reason"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="return_reason_desc" source="return_reason_desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="row_id" source="row_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="row_name" source="row_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="sales_source_date" source="sales_source_date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="sales_source_name" source="sales_source_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="seat_num" source="seat_num"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="section_id" source="section_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="section_name" source="section_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="seq_id" source="seq_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="seq_num" source="seq_num"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="surchg_amount" source="surchg_amount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="surchg_code_desc" source="surchg_code_desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tax_rate_a" source="tax_rate_a"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tax_rate_b" source="tax_rate_b"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tax_rate_c" source="tax_rate_c"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ticket_seq_id" source="ticket_seq_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ticket_type" source="ticket_type"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ticket_type_category" source="ticket_type_category"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="total_events" source="total_events"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tran_type" source="tran_type"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="upd_datetime" source="upd_datetime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="upd_user" source="upd_user"/>
+    </input>
+    <input node="P_PROJ_ATTR">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectDescription" source="ProjectDescription"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Currency" source="Currency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FunctionalArea" source="FunctionalArea"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ControllingArea" source="ControllingArea"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProfitCenter" source="ProfitCenter"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedEndDate" source="PlannedEndDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedStartDate" source="PlannedStartDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Type" source="Type"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SubType" source="SubType"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Rank" source="Rank"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventStartTime" source="EventStartTime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DoorsOpen" source="DoorsOpen"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ClubOpen" source="ClubOpen"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LoungeOpen" source="LoungeOpen"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SuitesOpen" source="SuitesOpen"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompareCode" source="CompareCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PromotionalItem" source="PromotionalItem"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventInTicketMaster" source="EventInTicketMaster"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MerchDeal" source="MerchDeal"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventMoved" source="EventMoved"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Budget" source="Budget"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Actual" source="Actual"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventManager" source="EventManager"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Promoter" source="Promoter"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Agency" source="Agency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="RentDeal" source="RentDeal"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ParkingRate" source="ParkingRate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Weather" source="Weather"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Genre" source="Genre"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectCreationDateTime" source="ProjectCreationDateTime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectCreatedByUser" source="ProjectCreatedByUser"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TypeDesc" source="TypeDesc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SubTypeDesc" source="SubTypeDesc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PromotionalItemDesc" source="PromotionalItemDesc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BudgetDesc" source="BudgetDesc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ActualDesc" source="ActualDesc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventManagerDesc" source="EventManagerDesc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PromoterDesc" source="PromoterDesc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AgencyDesc" source="AgencyDesc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GenreDesc" source="GenreDesc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventDirector" source="EventDirector"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventDirectorDesc" source="EventDirectorDesc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventCancelled" source="EventCancelled"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MultiType" source="MultiType"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProcessingStatus" source="ProcessingStatus"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Project" source="Project"/>
+    </input>
+    <joinAttribute name="Project"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_PROJ_ATTR">
+    <viewAttributes>
+      <viewAttribute id="ProjectDescription"/>
+      <viewAttribute id="Currency"/>
+      <viewAttribute id="FunctionalArea"/>
+      <viewAttribute id="ControllingArea"/>
+      <viewAttribute id="CompanyCode"/>
+      <viewAttribute id="ProfitCenter"/>
+      <viewAttribute id="PlannedEndDate"/>
+      <viewAttribute id="PlannedStartDate"/>
+      <viewAttribute id="Type"/>
+      <viewAttribute id="SubType"/>
+      <viewAttribute id="Rank"/>
+      <viewAttribute id="EventStartTime"/>
+      <viewAttribute id="DoorsOpen"/>
+      <viewAttribute id="ClubOpen"/>
+      <viewAttribute id="LoungeOpen"/>
+      <viewAttribute id="SuitesOpen"/>
+      <viewAttribute id="CompareCode"/>
+      <viewAttribute id="PromotionalItem"/>
+      <viewAttribute id="EventInTicketMaster"/>
+      <viewAttribute id="MerchDeal"/>
+      <viewAttribute id="EventMoved"/>
+      <viewAttribute id="Budget"/>
+      <viewAttribute id="Actual"/>
+      <viewAttribute id="EventManager"/>
+      <viewAttribute id="Promoter"/>
+      <viewAttribute id="Agency"/>
+      <viewAttribute id="RentDeal"/>
+      <viewAttribute id="ParkingRate"/>
+      <viewAttribute id="Weather"/>
+      <viewAttribute id="Genre"/>
+      <viewAttribute id="ProjectCreationDateTime"/>
+      <viewAttribute id="ProjectCreatedByUser"/>
+      <viewAttribute id="TypeDesc"/>
+      <viewAttribute id="SubTypeDesc"/>
+      <viewAttribute id="PromotionalItemDesc"/>
+      <viewAttribute id="BudgetDesc"/>
+      <viewAttribute id="ActualDesc"/>
+      <viewAttribute id="EventManagerDesc"/>
+      <viewAttribute id="PromoterDesc"/>
+      <viewAttribute id="AgencyDesc"/>
+      <viewAttribute id="GenreDesc"/>
+      <viewAttribute id="EventDirector"/>
+      <viewAttribute id="EventDirectorDesc"/>
+      <viewAttribute id="EventCancelled"/>
+      <viewAttribute id="MultiType"/>
+      <viewAttribute id="ProcessingStatus"/>
+    
+    
+    
+    
+    
+    
+      <viewAttribute id="Project"/></viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="CvEnterpriseProject">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectCreationDateTime" source="CreationDateTime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectCreatedByUser" source="CreatedByUser"/>
+    </input>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_2">
+  <attributes>
+    <attribute id="EventID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventID"/>
+      <keyMapping columnObjectName="Join_2" columnName="event_id"/>
+    </attribute>
+    <attribute id="AccountID" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="AccountID"/>
+      <keyMapping columnObjectName="Join_2" columnName="acct_id"/>
+    </attribute>
+    <attribute id="CompFlag" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CompFlag"/>
+      <keyMapping columnObjectName="Join_2" columnName="CC_COMP_FLAG_COL"/>
+    </attribute>
+  
+    <attribute id="EventDate" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventDate"/>
+  
+      <keyMapping columnObjectName="Join_2" columnName="EventDate"/>
+  
+    </attribute>
+    <attribute id="ArenaFlag" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ArenaFlag"/>
+      <keyMapping columnObjectName="Join_2" columnName="Arena"/>
+    </attribute>
+    <attribute id="SuitesFlag" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SuitesFlag"/>
+      <keyMapping columnObjectName="Join_2" columnName="Suites"/>
+    </attribute>
+    <attribute id="ParkingFlag" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ParkingFlag"/>
+      <keyMapping columnObjectName="Join_2" columnName="Parking"/>
+    </attribute>
+    <attribute id="LoungeFlag" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LoungeFlag"/>
+      <keyMapping columnObjectName="Join_2" columnName="Lounge"/>
+    </attribute>
+    <attribute id="UpsellFlag" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="UpsellFlag"/>
+      <keyMapping columnObjectName="Join_2" columnName="Upsell"/>
+    </attribute>
+    <attribute id="EventCategory" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventCategory"/>
+      <keyMapping columnObjectName="Join_2" columnName="EventCategory"/>
+    </attribute>
+  
+    <attribute id="Opponent" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Opponent"/>
+  
+      <keyMapping columnObjectName="Join_2" columnName="Opponent"/>
+  
+    </attribute>
+    <attribute id="Project" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Project"/>
+      <keyMapping columnObjectName="Join_2" columnName="Project"/>
+    </attribute>
+  
+    <attribute id="ProjectDescription" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProjectDescription"/>
+  
+      <keyMapping columnObjectName="Join_2" columnName="ProjectDescription"/>
+  
+    </attribute>
+  
+    <attribute id="ProjectCreationDateTime" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProjectCreationDateTime"/>
+  
+      <keyMapping columnObjectName="Join_2" columnName="ProjectCreationDateTime"/>
+  
+    </attribute>
+    <attribute id="ProjectCreatedByUser" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProjectCreatedByUser"/>
+      <keyMapping columnObjectName="Join_2" columnName="ProjectCreatedByUser"/>
+    </attribute>
+  
+    <attribute id="Currency" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Currency"/>
+  
+      <keyMapping columnObjectName="Join_2" columnName="Currency"/>
+  
+    </attribute>
+    <attribute id="FunctionalArea" order="17" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FunctionalArea"/>
+      <keyMapping columnObjectName="Join_2" columnName="FunctionalArea"/>
+    </attribute>
+    <attribute id="ControllingArea" order="18" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ControllingArea"/>
+      <keyMapping columnObjectName="Join_2" columnName="ControllingArea"/>
+    </attribute>
+    <attribute id="CompanyCode" order="19" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CompanyCode"/>
+      <keyMapping columnObjectName="Join_2" columnName="CompanyCode"/>
+    </attribute>
+    <attribute id="ProfitCenter" order="20" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProfitCenter"/>
+      <keyMapping columnObjectName="Join_2" columnName="ProfitCenter"/>
+    </attribute>
+    <attribute id="PlannedEndDate" order="21" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PlannedEndDate"/>
+      <keyMapping columnObjectName="Join_2" columnName="PlannedEndDate"/>
+    </attribute>
+    <attribute id="PlannedStartDate" order="22" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PlannedStartDate"/>
+      <keyMapping columnObjectName="Join_2" columnName="PlannedStartDate"/>
+    </attribute>
+    <attribute id="Type" order="23" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Type"/>
+      <keyMapping columnObjectName="Join_2" columnName="Type"/>
+    </attribute>
+    <attribute id="TypeDesc" order="24" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TypeDesc"/>
+      <keyMapping columnObjectName="Join_2" columnName="TypeDesc"/>
+    </attribute>
+    <attribute id="SubType" order="25" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SubType"/>
+      <keyMapping columnObjectName="Join_2" columnName="SubType"/>
+    </attribute>
+    <attribute id="SubTypeDesc" order="26" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SubTypeDesc"/>
+      <keyMapping columnObjectName="Join_2" columnName="SubTypeDesc"/>
+    </attribute>
+    <attribute id="Rank" order="27" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Rank"/>
+      <keyMapping columnObjectName="Join_2" columnName="Rank"/>
+    </attribute>
+    <attribute id="EventStartTime" order="28" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventStartTime"/>
+      <keyMapping columnObjectName="Join_2" columnName="EventStartTime"/>
+    </attribute>
+    <attribute id="DoorsOpen" order="29" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DoorsOpen"/>
+      <keyMapping columnObjectName="Join_2" columnName="DoorsOpen"/>
+    </attribute>
+    <attribute id="ClubOpen" order="30" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ClubOpen"/>
+      <keyMapping columnObjectName="Join_2" columnName="ClubOpen"/>
+    </attribute>
+    <attribute id="LoungeOpen" order="31" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LoungeOpen"/>
+      <keyMapping columnObjectName="Join_2" columnName="LoungeOpen"/>
+    </attribute>
+    <attribute id="SuitesOpen" order="32" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SuitesOpen"/>
+      <keyMapping columnObjectName="Join_2" columnName="SuitesOpen"/>
+    </attribute>
+    <attribute id="CompareCode" order="33" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CompareCode"/>
+      <keyMapping columnObjectName="Join_2" columnName="CompareCode"/>
+    </attribute>
+    <attribute id="PromotionalItem" order="34" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PromotionalItem"/>
+      <keyMapping columnObjectName="Join_2" columnName="PromotionalItem"/>
+    </attribute>
+    <attribute id="PromotionalItemDesc" order="35" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PromotionalItemDesc"/>
+      <keyMapping columnObjectName="Join_2" columnName="PromotionalItemDesc"/>
+    </attribute>
+    <attribute id="EventInTicketMaster" order="36" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventInTicketMaster"/>
+      <keyMapping columnObjectName="Join_2" columnName="EventInTicketMaster"/>
+    </attribute>
+    <attribute id="MerchDeal" order="37" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MerchDeal"/>
+      <keyMapping columnObjectName="Join_2" columnName="MerchDeal"/>
+    </attribute>
+    <attribute id="EventMoved" order="38" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventMoved"/>
+      <keyMapping columnObjectName="Join_2" columnName="EventMoved"/>
+    </attribute>
+    <attribute id="EventCancelled" order="39" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventCancelled"/>
+      <keyMapping columnObjectName="Join_2" columnName="EventCancelled"/>
+    </attribute>
+    <attribute id="Budget" order="40" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Budget"/>
+      <keyMapping columnObjectName="Join_2" columnName="Budget"/>
+    </attribute>
+    <attribute id="BudgetDesc" order="41" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BudgetDesc"/>
+      <keyMapping columnObjectName="Join_2" columnName="BudgetDesc"/>
+    </attribute>
+    <attribute id="Actual" order="42" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Actual"/>
+      <keyMapping columnObjectName="Join_2" columnName="Actual"/>
+    </attribute>
+    <attribute id="ActualDesc" order="43" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ActualDesc"/>
+      <keyMapping columnObjectName="Join_2" columnName="ActualDesc"/>
+    </attribute>
+    <attribute id="EventManager" order="44" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventManager"/>
+      <keyMapping columnObjectName="Join_2" columnName="EventManager"/>
+    </attribute>
+    <attribute id="EventManagerDesc" order="45" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventManagerDesc"/>
+      <keyMapping columnObjectName="Join_2" columnName="EventManagerDesc"/>
+    </attribute>
+    <attribute id="Promoter" order="46" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Promoter"/>
+      <keyMapping columnObjectName="Join_2" columnName="Promoter"/>
+    </attribute>
+    <attribute id="PromoterDesc" order="47" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PromoterDesc"/>
+      <keyMapping columnObjectName="Join_2" columnName="PromoterDesc"/>
+    </attribute>
+    <attribute id="Agency" order="48" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Agency"/>
+      <keyMapping columnObjectName="Join_2" columnName="Agency"/>
+    </attribute>
+    <attribute id="AgencyDesc" order="49" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="AgencyDesc"/>
+      <keyMapping columnObjectName="Join_2" columnName="AgencyDesc"/>
+    </attribute>
+    <attribute id="EventDirector" order="50" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventDirector"/>
+      <keyMapping columnObjectName="Join_2" columnName="EventDirector"/>
+    </attribute>
+    <attribute id="EventDirectorDesc" order="51" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventDirectorDesc"/>
+      <keyMapping columnObjectName="Join_2" columnName="EventDirectorDesc"/>
+    </attribute>
+    <attribute id="RentDeal" order="52" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="RentDeal"/>
+      <keyMapping columnObjectName="Join_2" columnName="RentDeal"/>
+    </attribute>
+    <attribute id="ParkingRate" order="53" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ParkingRate"/>
+      <keyMapping columnObjectName="Join_2" columnName="ParkingRate"/>
+    </attribute>
+    <attribute id="Weather" order="54" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Weather"/>
+      <keyMapping columnObjectName="Join_2" columnName="Weather"/>
+    </attribute>
+    <attribute id="Genre" order="55" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Genre"/>
+      <keyMapping columnObjectName="Join_2" columnName="Genre"/>
+    </attribute>
+    <attribute id="GenreDesc" order="56" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="GenreDesc"/>
+      <keyMapping columnObjectName="Join_2" columnName="GenreDesc"/>
+    </attribute>
+  
+    <attribute id="EventName" order="75" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventName"/>
+  
+      <keyMapping columnObjectName="Join_2" columnName="EventName"/>
+  
+    </attribute>
+  
+    <attribute id="MultiType" order="76" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MultiType"/>
+  
+      <keyMapping columnObjectName="Join_2" columnName="MultiType"/>
+  
+    </attribute>
+  
+    <attribute id="ProcessingStatus" order="77" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProcessingStatus"/>
+  
+      <keyMapping columnObjectName="Join_2" columnName="ProcessingStatus"/>
+  
+    </attribute>
+  
+    <attribute id="sell_location" order="78" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="sell_location"/>
+  
+      <keyMapping columnObjectName="Join_2" columnName="sell_location"/>
+  
+    </attribute>
+    <attribute id="ticket_status" order="91" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ticket_status"/>
+      <keyMapping columnObjectName="Join_2" columnName="ticket_status"/>
+    </attribute>
+    <attribute id="order_num" order="92" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="order_num"/>
+      <keyMapping columnObjectName="Join_2" columnName="order_num"/>
+    </attribute>
+  
+    <attribute id="sap_container_id" order="93" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="sap_container_id"/>
+  
+      <keyMapping columnObjectName="Join_2" columnName="sap_container_id"/>
+  
+    </attribute>
+    <attribute id="acct_rep_full_name" order="94" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="acct_rep_full_name"/>
+      <keyMapping columnObjectName="Join_2" columnName="acct_rep_full_name"/>
+    </attribute>
+    <attribute id="acct_rep_id" order="95" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="acct_rep_id"/>
+      <keyMapping columnObjectName="Join_2" columnName="acct_rep_id"/>
+    </attribute>
+    <attribute id="add_datetime" order="96" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="add_datetime"/>
+      <keyMapping columnObjectName="Join_2" columnName="add_datetime"/>
+    </attribute>
+    <attribute id="add_user" order="97" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="add_user"/>
+      <keyMapping columnObjectName="Join_2" columnName="add_user"/>
+    </attribute>
+    <attribute id="block_purchase_price" order="98" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="block_purchase_price"/>
+      <keyMapping columnObjectName="Join_2" columnName="block_purchase_price"/>
+    </attribute>
+    <attribute id="class_name" order="99" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="class_name"/>
+      <keyMapping columnObjectName="Join_2" columnName="class_name"/>
+    </attribute>
+    <attribute id="comp_code" order="100" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="comp_code"/>
+      <keyMapping columnObjectName="Join_2" columnName="comp_code"/>
+    </attribute>
+    <attribute id="comp_name" order="101" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="comp_name"/>
+      <keyMapping columnObjectName="Join_2" columnName="comp_name"/>
+    </attribute>
+    <attribute id="contract_id" order="102" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="contract_id"/>
+      <keyMapping columnObjectName="Join_2" columnName="contract_id"/>
+    </attribute>
+    <attribute id="delivered_date" order="103" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="delivered_date"/>
+      <keyMapping columnObjectName="Join_2" columnName="delivered_date"/>
+    </attribute>
+    <attribute id="delivery_addr1" order="104" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="delivery_addr1"/>
+      <keyMapping columnObjectName="Join_2" columnName="delivery_addr1"/>
+    </attribute>
+    <attribute id="delivery_addr2" order="105" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="delivery_addr2"/>
+      <keyMapping columnObjectName="Join_2" columnName="delivery_addr2"/>
+    </attribute>
+    <attribute id="delivery_addr3" order="106" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="delivery_addr3"/>
+      <keyMapping columnObjectName="Join_2" columnName="delivery_addr3"/>
+    </attribute>
+    <attribute id="delivery_city" order="107" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="delivery_city"/>
+      <keyMapping columnObjectName="Join_2" columnName="delivery_city"/>
+    </attribute>
+    <attribute id="delivery_country" order="108" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="delivery_country"/>
+      <keyMapping columnObjectName="Join_2" columnName="delivery_country"/>
+    </attribute>
+    <attribute id="delivery_instructions" order="109" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="delivery_instructions"/>
+      <keyMapping columnObjectName="Join_2" columnName="delivery_instructions"/>
+    </attribute>
+    <attribute id="delivery_method" order="110" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="delivery_method"/>
+      <keyMapping columnObjectName="Join_2" columnName="delivery_method"/>
+    </attribute>
+    <attribute id="delivery_method_name" order="111" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="delivery_method_name"/>
+      <keyMapping columnObjectName="Join_2" columnName="delivery_method_name"/>
+    </attribute>
+    <attribute id="delivery_name_first" order="112" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="delivery_name_first"/>
+      <keyMapping columnObjectName="Join_2" columnName="delivery_name_first"/>
+    </attribute>
+    <attribute id="delivery_name_last" order="113" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="delivery_name_last"/>
+      <keyMapping columnObjectName="Join_2" columnName="delivery_name_last"/>
+    </attribute>
+    <attribute id="delivery_phone" order="114" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="delivery_phone"/>
+      <keyMapping columnObjectName="Join_2" columnName="delivery_phone"/>
+    </attribute>
+    <attribute id="delivery_phone_formatted" order="115" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="delivery_phone_formatted"/>
+      <keyMapping columnObjectName="Join_2" columnName="delivery_phone_formatted"/>
+    </attribute>
+    <attribute id="delivery_state" order="116" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="delivery_state"/>
+      <keyMapping columnObjectName="Join_2" columnName="delivery_state"/>
+    </attribute>
+    <attribute id="delivery_zip" order="117" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="delivery_zip"/>
+      <keyMapping columnObjectName="Join_2" columnName="delivery_zip"/>
+    </attribute>
+    <attribute id="delivery_zip_formatted" order="118" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="delivery_zip_formatted"/>
+      <keyMapping columnObjectName="Join_2" columnName="delivery_zip_formatted"/>
+    </attribute>
+    <attribute id="disc_code" order="119" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="disc_code"/>
+      <keyMapping columnObjectName="Join_2" columnName="disc_code"/>
+    </attribute>
+    <attribute id="expanded" order="120" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="expanded"/>
+      <keyMapping columnObjectName="Join_2" columnName="expanded"/>
+    </attribute>
+    <attribute id="group_flag" order="121" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="group_flag"/>
+      <keyMapping columnObjectName="Join_2" columnName="group_flag"/>
+    </attribute>
+    <attribute id="group_sales_name" order="122" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="group_sales_name"/>
+      <keyMapping columnObjectName="Join_2" columnName="group_sales_name"/>
+    </attribute>
+    <attribute id="info" order="123" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="info"/>
+      <keyMapping columnObjectName="Join_2" columnName="info"/>
+    </attribute>
+    <attribute id="last_seat" order="124" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="last_seat"/>
+      <keyMapping columnObjectName="Join_2" columnName="last_seat"/>
+    </attribute>
+    <attribute id="ledger_id" order="125" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ledger_id"/>
+      <keyMapping columnObjectName="Join_2" columnName="ledger_id"/>
+    </attribute>
+    <attribute id="order_line_item" order="126" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="order_line_item"/>
+      <keyMapping columnObjectName="Join_2" columnName="order_line_item"/>
+    </attribute>
+    <attribute id="order_line_item_seq" order="127" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="order_line_item_seq"/>
+      <keyMapping columnObjectName="Join_2" columnName="order_line_item_seq"/>
+    </attribute>
+    <attribute id="orig_acct_rep_id" order="128" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="orig_acct_rep_id"/>
+      <keyMapping columnObjectName="Join_2" columnName="orig_acct_rep_id"/>
+    </attribute>
+    <attribute id="orig_datetime" order="129" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="orig_datetime"/>
+      <keyMapping columnObjectName="Join_2" columnName="orig_datetime"/>
+    </attribute>
+    <attribute id="other_info_1" order="130" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="other_info_1"/>
+      <keyMapping columnObjectName="Join_2" columnName="other_info_1"/>
+    </attribute>
+    <attribute id="other_info_10" order="131" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="other_info_10"/>
+      <keyMapping columnObjectName="Join_2" columnName="other_info_10"/>
+    </attribute>
+    <attribute id="other_info_2" order="132" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="other_info_2"/>
+      <keyMapping columnObjectName="Join_2" columnName="other_info_2"/>
+    </attribute>
+    <attribute id="other_info_3" order="133" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="other_info_3"/>
+      <keyMapping columnObjectName="Join_2" columnName="other_info_3"/>
+    </attribute>
+    <attribute id="other_info_4" order="134" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="other_info_4"/>
+      <keyMapping columnObjectName="Join_2" columnName="other_info_4"/>
+    </attribute>
+    <attribute id="other_info_5" order="135" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="other_info_5"/>
+      <keyMapping columnObjectName="Join_2" columnName="other_info_5"/>
+    </attribute>
+    <attribute id="other_info_6" order="136" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="other_info_6"/>
+      <keyMapping columnObjectName="Join_2" columnName="other_info_6"/>
+    </attribute>
+    <attribute id="other_info_7" order="137" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="other_info_7"/>
+      <keyMapping columnObjectName="Join_2" columnName="other_info_7"/>
+    </attribute>
+    <attribute id="other_info_8" order="138" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="other_info_8"/>
+      <keyMapping columnObjectName="Join_2" columnName="other_info_8"/>
+    </attribute>
+    <attribute id="other_info_9" order="139" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="other_info_9"/>
+      <keyMapping columnObjectName="Join_2" columnName="other_info_9"/>
+    </attribute>
+    <attribute id="paid" order="140" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="paid"/>
+      <keyMapping columnObjectName="Join_2" columnName="paid"/>
+    </attribute>
+    <attribute id="plan_datetime" order="141" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="plan_datetime"/>
+      <keyMapping columnObjectName="Join_2" columnName="plan_datetime"/>
+    </attribute>
+    <attribute id="plan_event_id" order="142" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="plan_event_id"/>
+      <keyMapping columnObjectName="Join_2" columnName="plan_event_id"/>
+    </attribute>
+    <attribute id="plan_event_name" order="143" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="plan_event_name"/>
+      <keyMapping columnObjectName="Join_2" columnName="plan_event_name"/>
+    </attribute>
+    <attribute id="price_code" order="144" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="price_code"/>
+      <keyMapping columnObjectName="Join_2" columnName="price_code"/>
+    </attribute>
+    <attribute id="price_code_desc" order="145" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="price_code_desc"/>
+      <keyMapping columnObjectName="Join_2" columnName="price_code_desc"/>
+    </attribute>
+    <attribute id="pricing_method" order="146" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="pricing_method"/>
+      <keyMapping columnObjectName="Join_2" columnName="pricing_method"/>
+    </attribute>
+    <attribute id="promo_code" order="147" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="promo_code"/>
+      <keyMapping columnObjectName="Join_2" columnName="promo_code"/>
+    </attribute>
+    <attribute id="renewal_ind" order="148" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="renewal_ind"/>
+      <keyMapping columnObjectName="Join_2" columnName="renewal_ind"/>
+    </attribute>
+    <attribute id="retail_acct_add_date" order="149" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="retail_acct_add_date"/>
+      <keyMapping columnObjectName="Join_2" columnName="retail_acct_add_date"/>
+    </attribute>
+    <attribute id="retail_acct_num" order="150" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="retail_acct_num"/>
+      <keyMapping columnObjectName="Join_2" columnName="retail_acct_num"/>
+    </attribute>
+    <attribute id="retail_face_value" order="151" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="retail_face_value"/>
+      <keyMapping columnObjectName="Join_2" columnName="retail_face_value"/>
+    </attribute>
+    <attribute id="retail_face_value_tax" order="152" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="retail_face_value_tax"/>
+      <keyMapping columnObjectName="Join_2" columnName="retail_face_value_tax"/>
+    </attribute>
+    <attribute id="retail_facility_fee" order="153" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="retail_facility_fee"/>
+      <keyMapping columnObjectName="Join_2" columnName="retail_facility_fee"/>
+    </attribute>
+    <attribute id="retail_mask" order="154" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="retail_mask"/>
+      <keyMapping columnObjectName="Join_2" columnName="retail_mask"/>
+    </attribute>
+    <attribute id="retail_mop" order="155" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="retail_mop"/>
+      <keyMapping columnObjectName="Join_2" columnName="retail_mop"/>
+    </attribute>
+    <attribute id="retail_price_level" order="156" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="retail_price_level"/>
+      <keyMapping columnObjectName="Join_2" columnName="retail_price_level"/>
+    </attribute>
+    <attribute id="retail_qualifiers" order="157" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="retail_qualifiers"/>
+      <keyMapping columnObjectName="Join_2" columnName="retail_qualifiers"/>
+    </attribute>
+    <attribute id="retail_service_charge" order="158" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="retail_service_charge"/>
+      <keyMapping columnObjectName="Join_2" columnName="retail_service_charge"/>
+    </attribute>
+    <attribute id="retail_service_charge_tax" order="159" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="retail_service_charge_tax"/>
+      <keyMapping columnObjectName="Join_2" columnName="retail_service_charge_tax"/>
+    </attribute>
+    <attribute id="retail_distance_charge" order="160" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="retail_distance_charge"/>
+      <keyMapping columnObjectName="Join_2" columnName="retail_distance_charge"/>
+    </attribute>
+    <attribute id="retail_system_name" order="161" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="retail_system_name"/>
+      <keyMapping columnObjectName="Join_2" columnName="retail_system_name"/>
+    </attribute>
+    <attribute id="retail_ticket_type" order="162" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="retail_ticket_type"/>
+      <keyMapping columnObjectName="Join_2" columnName="retail_ticket_type"/>
+    </attribute>
+    <attribute id="return_datetime" order="163" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="return_datetime"/>
+      <keyMapping columnObjectName="Join_2" columnName="return_datetime"/>
+    </attribute>
+    <attribute id="return_reason" order="164" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="return_reason"/>
+      <keyMapping columnObjectName="Join_2" columnName="return_reason"/>
+    </attribute>
+    <attribute id="return_reason_desc" order="165" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="return_reason_desc"/>
+      <keyMapping columnObjectName="Join_2" columnName="return_reason_desc"/>
+    </attribute>
+    <attribute id="row_id" order="166" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="row_id"/>
+      <keyMapping columnObjectName="Join_2" columnName="row_id"/>
+    </attribute>
+    <attribute id="row_name" order="167" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="row_name"/>
+      <keyMapping columnObjectName="Join_2" columnName="row_name"/>
+    </attribute>
+    <attribute id="sales_source_date" order="168" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="sales_source_date"/>
+      <keyMapping columnObjectName="Join_2" columnName="sales_source_date"/>
+    </attribute>
+    <attribute id="sales_source_name" order="169" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="sales_source_name"/>
+      <keyMapping columnObjectName="Join_2" columnName="sales_source_name"/>
+    </attribute>
+    <attribute id="seat_num" order="170" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="seat_num"/>
+      <keyMapping columnObjectName="Join_2" columnName="seat_num"/>
+    </attribute>
+    <attribute id="section_id" order="171" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="section_id"/>
+      <keyMapping columnObjectName="Join_2" columnName="section_id"/>
+    </attribute>
+    <attribute id="section_name" order="172" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="section_name"/>
+      <keyMapping columnObjectName="Join_2" columnName="section_name"/>
+    </attribute>
+    <attribute id="seq_id" order="173" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="seq_id"/>
+      <keyMapping columnObjectName="Join_2" columnName="seq_id"/>
+    </attribute>
+    <attribute id="seq_num" order="174" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="seq_num"/>
+      <keyMapping columnObjectName="Join_2" columnName="seq_num"/>
+    </attribute>
+    <attribute id="surchg_amount" order="175" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="surchg_amount"/>
+      <keyMapping columnObjectName="Join_2" columnName="surchg_amount"/>
+    </attribute>
+    <attribute id="surchg_code_desc" order="176" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="surchg_code_desc"/>
+      <keyMapping columnObjectName="Join_2" columnName="surchg_code_desc"/>
+    </attribute>
+    <attribute id="tax_rate_a" order="177" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="tax_rate_a"/>
+      <keyMapping columnObjectName="Join_2" columnName="tax_rate_a"/>
+    </attribute>
+    <attribute id="tax_rate_b" order="178" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="tax_rate_b"/>
+      <keyMapping columnObjectName="Join_2" columnName="tax_rate_b"/>
+    </attribute>
+    <attribute id="tax_rate_c" order="179" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="tax_rate_c"/>
+      <keyMapping columnObjectName="Join_2" columnName="tax_rate_c"/>
+    </attribute>
+    <attribute id="ticket_seq_id" order="180" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ticket_seq_id"/>
+      <keyMapping columnObjectName="Join_2" columnName="ticket_seq_id"/>
+    </attribute>
+    <attribute id="ticket_type" order="181" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ticket_type"/>
+      <keyMapping columnObjectName="Join_2" columnName="ticket_type"/>
+    </attribute>
+    <attribute id="ticket_type_category" order="182" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ticket_type_category"/>
+      <keyMapping columnObjectName="Join_2" columnName="ticket_type_category"/>
+    </attribute>
+    <attribute id="total_events" order="183" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="total_events"/>
+      <keyMapping columnObjectName="Join_2" columnName="total_events"/>
+    </attribute>
+    <attribute id="tran_type" order="184" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="tran_type"/>
+      <keyMapping columnObjectName="Join_2" columnName="tran_type"/>
+    </attribute>
+    <attribute id="upd_datetime" order="185" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="upd_datetime"/>
+      <keyMapping columnObjectName="Join_2" columnName="upd_datetime"/>
+    </attribute>
+    <attribute id="upd_user" order="186" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="upd_user"/>
+      <keyMapping columnObjectName="Join_2" columnName="upd_user"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="TicketsSold" order="57" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="TicketsSold"/>
+      <measureMapping columnObjectName="Join_2" columnName="num_seats"/>
+    </measure>
+    <measure id="AmountPaid" order="64" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="AmountPaid"/>
+      <measureMapping columnObjectName="Join_2" columnName="paid_amount"/>
+    </measure>
+    <measure id="AmountOwed" order="65" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="AmountOwed"/>
+      <measureMapping columnObjectName="Join_2" columnName="owed_amount"/>
+    </measure>
+    <measure id="Purchase_Price" order="70" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Purchase_Price"/>
+      <measureMapping columnObjectName="Join_2" columnName="purchase_price"/>
+    </measure>
+  
+    <measure id="pc_ticket" order="79" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_ticket"/>
+      <measureMapping columnObjectName="Join_2" columnName="pc_ticket"/>
+    </measure>
+    <measure id="pc_licfee" order="80" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_licfee"/>
+      <measureMapping columnObjectName="Join_2" columnName="pc_licfee"/>
+    </measure>
+    <measure id="pc_other1" order="81" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other1"/>
+      <measureMapping columnObjectName="Join_2" columnName="pc_other1"/>
+    </measure>
+    <measure id="pc_other2" order="82" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other2"/>
+      <measureMapping columnObjectName="Join_2" columnName="pc_other2"/>
+    </measure>
+    <measure id="pc_other3" order="83" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other3"/>
+      <measureMapping columnObjectName="Join_2" columnName="pc_other3"/>
+    </measure>
+    <measure id="pc_other4" order="84" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other4"/>
+      <measureMapping columnObjectName="Join_2" columnName="pc_other4"/>
+    </measure>
+    <measure id="pc_other5" order="85" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other5"/>
+      <measureMapping columnObjectName="Join_2" columnName="pc_other5"/>
+    </measure>
+    <measure id="pc_other6" order="86" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other6"/>
+      <measureMapping columnObjectName="Join_2" columnName="pc_other6"/>
+    </measure>
+    <measure id="pc_other7" order="87" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other7"/>
+      <measureMapping columnObjectName="Join_2" columnName="pc_other7"/>
+    </measure>
+    <measure id="pc_other8" order="88" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other8"/>
+      <measureMapping columnObjectName="Join_2" columnName="pc_other8"/>
+    </measure>
+    <measure id="pc_tax" order="89" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_tax"/>
+      <measureMapping columnObjectName="Join_2" columnName="pc_tax"/>
+    </measure>
+    <measure id="disc_amount" order="90" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="disc_amount"/>
+      <measureMapping columnObjectName="Join_2" columnName="disc_amount"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures>
+    <measure id="TicketsSoldComp" order="58" aggregationType="sum" datatype="INTEGER" length="10" scale="0" baseMeasure="TicketsSold">
+      <descriptions defaultDescription="TicketsSoldComp">
+        <comment text="num_seats that were complimentary based on paid=owed=0"/>
+      </descriptions>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="CompFlag">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="Y"/>
+        </filter>
+        <attributeName>CompFlag</attributeName>
+      </restriction>
+    </measure>
+    <measure id="TicketsSoldPaid" order="59" aggregationType="sum" datatype="INTEGER" length="10" scale="0" baseMeasure="TicketsSold">
+      <descriptions defaultDescription="TicketsSoldPaid">
+        <comment text="num_seats that were NOT complimentary based on paid=owed=0"/>
+      </descriptions>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="CompFlag">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="N"/>
+        </filter>
+        <attributeName>CompFlag</attributeName>
+      </restriction>
+    </measure>
+    <measure id="PaidTicketsSuites" order="60" aggregationType="sum" datatype="INTEGER" length="10" scale="0" baseMeasure="TicketsSold">
+      <descriptions defaultDescription="PaidTicketsSuites"/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="CompFlag">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="N"/>
+        </filter>
+        <attributeName>CompFlag</attributeName>
+      </restriction>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="SuitesFlag">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="true"/>
+        </filter>
+        <attributeName>SuitesFlag</attributeName>
+      </restriction>
+    </measure>
+  
+    <measure id="PaidTicketsArena" order="61" aggregationType="sum" datatype="INTEGER" length="10" scale="0" baseMeasure="TicketsSold">
+      <descriptions defaultDescription="PaidTicketsArena"/>
+  
+      <restriction logicalOperator="AND">
+  
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="CompFlag">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="N"/>
+        </filter>
+  
+        <attributeName>CompFlag</attributeName>
+  
+      </restriction>
+  
+      <restriction logicalOperator="AND">
+  
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="ArenaFlag">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="true"/>
+        </filter>
+  
+        <attributeName>ArenaFlag</attributeName>
+  
+      </restriction>
+  
+    </measure>
+    <measure id="CompTicketsSuites" order="62" aggregationType="sum" datatype="INTEGER" length="10" scale="0" baseMeasure="TicketsSold">
+      <descriptions defaultDescription="CompTicketsSuites"/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="CompFlag">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="Y"/>
+        </filter>
+        <attributeName>CompFlag</attributeName>
+      </restriction>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="SuitesFlag">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="true"/>
+        </filter>
+        <attributeName>SuitesFlag</attributeName>
+      </restriction>
+    </measure>
+  
+    <measure id="CompTicketsArena" order="63" aggregationType="sum" datatype="INTEGER" length="10" scale="0" baseMeasure="TicketsSold">
+      <descriptions defaultDescription="CompTicketsArena"/>
+  
+      <restriction logicalOperator="AND">
+  
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="CompFlag">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="Y"/>
+        </filter>
+  
+        <attributeName>CompFlag</attributeName>
+  
+      </restriction>
+  
+      <restriction logicalOperator="AND">
+  
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="ArenaFlag">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="true"/>
+        </filter>
+  
+        <attributeName>ArenaFlag</attributeName>
+  
+      </restriction>
+  
+    </measure>
+  
+    <measure id="PaidTicketsParking" order="66" aggregationType="sum" datatype="INTEGER" length="10" scale="0" baseMeasure="TicketsSold">
+      <descriptions defaultDescription="PaidTicketsParking"/>
+  
+      <restriction logicalOperator="AND">
+  
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="ParkingFlag">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="true"/>
+        </filter>
+  
+        <attributeName>ParkingFlag</attributeName>
+  
+      </restriction>
+  
+      <restriction logicalOperator="AND">
+  
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="CompFlag">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="N"/>
+        </filter>
+  
+        <attributeName>CompFlag</attributeName>
+  
+      </restriction>
+  
+    </measure>
+    <measure id="CompTicketsParking" order="67" aggregationType="sum" datatype="INTEGER" length="10" scale="0" baseMeasure="TicketsSold">
+      <descriptions defaultDescription="CompTicketsParking"/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="ParkingFlag">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="true"/>
+        </filter>
+        <attributeName>ParkingFlag</attributeName>
+      </restriction>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="CompFlag">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="Y"/>
+        </filter>
+        <attributeName>CompFlag</attributeName>
+      </restriction>
+    </measure>
+    <measure id="PaidTicketsLounge" order="68" aggregationType="sum" datatype="INTEGER" length="10" scale="0" baseMeasure="TicketsSold">
+      <descriptions defaultDescription="PaidTicketsLounge"/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="LoungeFlag">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="true"/>
+        </filter>
+        <attributeName>LoungeFlag</attributeName>
+      </restriction>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="CompFlag">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="N"/>
+        </filter>
+        <attributeName>CompFlag</attributeName>
+      </restriction>
+    </measure>
+    <measure id="CompTicketsLounge" order="69" aggregationType="sum" datatype="INTEGER" length="10" scale="0" baseMeasure="TicketsSold">
+      <descriptions defaultDescription="CompTicketsLounge"/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="LoungeFlag">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="true"/>
+        </filter>
+        <attributeName>LoungeFlag</attributeName>
+      </restriction>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="CompFlag">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="Y"/>
+        </filter>
+        <attributeName>CompFlag</attributeName>
+      </restriction>
+    </measure>
+  
+    <measure id="PurchasePriceArena" order="71" aggregationType="sum" datatype="DECIMAL" length="12" scale="2" baseMeasure="Purchase_Price">
+      <descriptions defaultDescription="PurchasePriceArena"/>
+  
+      <restriction logicalOperator="AND">
+  
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="ArenaFlag">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="true"/>
+        </filter>
+  
+        <attributeName>ArenaFlag</attributeName>
+  
+      </restriction>
+  
+    </measure>
+    <measure id="PurchasePriceSuites" order="72" aggregationType="sum" datatype="DECIMAL" length="12" scale="2" baseMeasure="Purchase_Price">
+      <descriptions defaultDescription="PurchasePriceSuites"/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="SuitesFlag">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="true"/>
+        </filter>
+        <attributeName>SuitesFlag</attributeName>
+      </restriction>
+    </measure>
+    <measure id="PurchasePriceLounge" order="73" aggregationType="sum" datatype="DECIMAL" length="12" scale="2" baseMeasure="Purchase_Price">
+      <descriptions defaultDescription="PurchasePriceLounge"/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="LoungeFlag">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="true"/>
+        </filter>
+        <attributeName>LoungeFlag</attributeName>
+      </restriction>
+    </measure>
+    <measure id="PurchasePriceParking" order="74" aggregationType="sum" datatype="DECIMAL" length="12" scale="2" baseMeasure="Purchase_Price">
+      <descriptions defaultDescription="PurchasePriceParking"/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="ParkingFlag">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="true"/>
+        </filter>
+        <attributeName>ParkingFlag</attributeName>
+      </restriction>
+    </measure>
+  </restrictedMeasures>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="358" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="P_TICKET_FACTS" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="361" y="622"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="P_EVENT_ATTR" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="613" y="567"/>
+      <rectangleSize height="30" width="148"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="361" y="427"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="P_TICKET_FACTS" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="P_EVENT_ATTR" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="136"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="358" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_1" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="P_PROJ_ATTR" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="136"/>
+    </shape>
+    <shape expanded="true" modelObjectName="P_PROJ_ATTR" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="601" y="362"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

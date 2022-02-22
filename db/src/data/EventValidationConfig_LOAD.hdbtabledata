@@ -1,0 +1,26 @@
+{
+	"format_version": 1,
+	"imports": [{
+		"target_table": "EventValidationConfig",
+		"source_data": {
+			"data_type": "CSV",
+			"file_name": "EventValidationConfig_DATA.csv",
+			"has_header": false,
+			"dialect": "HANA",
+			"type_config": {
+				"delimiter": ";"
+			}
+		},
+		"import_settings": {
+         	"include_filter" : [ ],		
+			"import_columns": ["ErrorCode",
+			"ErrorDesc",
+			"SuggestedAction"]
+		},
+		"column_mappings": {
+			"ErrorCode": 1,
+			"ErrorDesc": 2,
+			"SuggestedAction": 3
+		}
+	}]
+}

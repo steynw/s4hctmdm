@@ -2,15 +2,7 @@ _schema-version: '3.1'
 ID: s4hctmdm
 version: 1.0.0
 
-parameters:
-  enable-parallel-deployments: true
     
-build-parameters:
-  before-all:
-   - builder: custom
-     commands:
-      - npm install --production
-      - npx -p @sap/cds-dk cds build --production
 modules:
  - name: s4hctmdm-db
    type: hdb
@@ -30,21 +22,6 @@ modules:
       properties:
         key: UPS_CC-grantor
         service: ~{UPS_SCHEMA-service-name} 
-
- - name: s4hctmdm-srv
-   type: nodejs
-   path: srv
-   parameters:
-      memory: 512M
-      disk-quota: 856M
-   provides:
-      - name: srv_api
-        properties:
-          url: ${default-url}
-   requires:
-      - name: s4hctmdm-hdi
-      - name: s4hctmdb-uaa
-
 
 resources:
  - name: s4hctmdm-hdi

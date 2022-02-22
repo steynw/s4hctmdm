@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CvEventCategory" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="CvEventCategory"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="YY1_EventCategory">
+    <resourceUri>YY1_EventCategory</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="EventStart"/>
+      <viewAttribute id="EventEnd"/>
+      <viewAttribute id="Arena"/>
+      <viewAttribute id="Suites"/>
+      <viewAttribute id="Parking"/>
+      <viewAttribute id="Lounge"/>
+      <viewAttribute id="Upsell"/>
+      <viewAttribute id="SAP_UUID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="YY1_EventCategory"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Projection_1">
+  <attributes>
+    <attribute id="EventStart" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventStart"/>
+      <keyMapping columnObjectName="Projection_1" columnName="EventStart"/>
+    </attribute>
+    <attribute id="EventEnd" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventEnd"/>
+      <keyMapping columnObjectName="Projection_1" columnName="EventEnd"/>
+    </attribute>
+    <attribute id="Arena" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Arena"/>
+      <keyMapping columnObjectName="Projection_1" columnName="Arena"/>
+    </attribute>
+    <attribute id="Suites" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Suites"/>
+      <keyMapping columnObjectName="Projection_1" columnName="Suites"/>
+    </attribute>
+    <attribute id="Parking" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Parking"/>
+      <keyMapping columnObjectName="Projection_1" columnName="Parking"/>
+    </attribute>
+    <attribute id="Lounge" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Lounge"/>
+      <keyMapping columnObjectName="Projection_1" columnName="Lounge"/>
+    </attribute>
+    <attribute id="Upsell" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Upsell"/>
+      <keyMapping columnObjectName="Projection_1" columnName="Upsell"/>
+    </attribute>
+    <attribute id="SAP_UUID" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SAP_UUID"/>
+      <keyMapping columnObjectName="Projection_1" columnName="SAP_UUID"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="264"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

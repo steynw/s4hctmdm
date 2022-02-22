@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CvJeheaderlog" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="CvJeheaderlog"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="tm.jeheaderlog">
+    <resourceUri>tm.jeheaderlog</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="PostingDate"/>
+      <viewAttribute id="WBSElement"/>
+      <viewAttribute id="System"/>
+      <viewAttribute id="JeCreateLogSeverityCode"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="tm.jeheaderlog"/>
+    <filter>(not &quot;System&quot; is null) AND (&quot;JeCreateLogSeverityCode&quot; = 1)</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:AggregationView" id="DeDupe">
+    <viewAttributes>
+      <viewAttribute keepFlag="true" id="PostingDate"/>
+      <viewAttribute keepFlag="true" id="WBSElement"/>
+      <viewAttribute keepFlag="true" id="System"/>
+      <viewAttribute id="JeCreateLogSeverityCode" aggregationType="max"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="Projection_1"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="DeDupe">
+  <attributes>
+    <attribute id="PostingDate" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PostingDate"/>
+      <keyMapping columnObjectName="DeDupe" columnName="PostingDate"/>
+    </attribute>
+    <attribute id="WBSElement" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="WBSElement"/>
+      <keyMapping columnObjectName="DeDupe" columnName="WBSElement"/>
+    </attribute>
+    <attribute id="System" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="System"/>
+      <keyMapping columnObjectName="DeDupe" columnName="System"/>
+    </attribute>
+    <attribute id="JeCreateLogSeverityCode" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="JeCreateLogSeverityCode"/>
+      <keyMapping columnObjectName="DeDupe" columnName="JeCreateLogSeverityCode"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="299"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="DeDupe" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="103" y="206"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

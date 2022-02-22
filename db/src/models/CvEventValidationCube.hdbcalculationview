@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CvEventValidationCube" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="CvEventValidationCube"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="CvEventAttributes">
+    <resourceUri>CvEventAttributes</resourceUri>
+  </DataSource>
+  <DataSource id="CvEnterpriseProject">
+    <resourceUri>CvEnterpriseProject</resourceUri>
+  </DataSource>
+  <DataSource id="YY1_GLAccountCredit">
+    <resourceUri>YY1_GLAccountCredit</resourceUri>
+  </DataSource>
+  <DataSource id="EventValidationConfig">
+    <resourceUri>EventValidationConfig</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="EVENTS" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="EventID"/>
+      <viewAttribute id="EventName"/>
+      <viewAttribute id="Project"/>
+    
+      <viewAttribute id="EventDate"/>
+    
+      <viewAttribute id="GLEventCode"/>
+      <viewAttribute id="EventCategory"/>
+    
+      <viewAttribute id="EventPlanType"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="CvEventAttributes"/>
+  
+    <filter>&quot;EventPlanType&quot; = 'N' AND &quot;EventDate&quot; &gt; '20200630'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Line10_empty" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="EventID"/>
+      <viewAttribute id="EventName"/>
+      <viewAttribute id="Project"/>
+    
+      <viewAttribute id="EventDate"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="ErrorCount" datatype="INTEGER" expressionLanguage="SQL">
+        <formula>1</formula>
+      </calculatedViewAttribute></calculatedViewAttributes>
+    <input node="EVENTS"/>
+    <filter>&quot;Project&quot; is null</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:UnionView" id="Union_1">
+    <viewAttributes>
+      <viewAttribute id="EventID" aggregationType="sum"/>
+      <viewAttribute id="EventName"/>
+      <viewAttribute id="EventDate"/>
+    
+      <viewAttribute id="Project"/>
+    
+      <viewAttribute id="ErrorCount" aggregationType="sum"/>
+      <viewAttribute datatype="NVARCHAR" length="1" id="ErrorCode"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Line10_empty" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventID" source="EventID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventName" source="EventName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventDate" source="EventDate"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="Project" source="Project"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="ErrorCount" source="ErrorCount"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="ErrorCode" null="false" value="1"/>
+    </input>
+    <input node="Project_Not_found" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventID" source="EventID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventName" source="EventName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventDate" source="EventDate"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="Project" source="Project"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="ErrorCount" source="ErrorCount"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="ErrorCode" null="false" value="2"/>
+    </input>
+  
+    <input node="Line9_empty" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventID" source="EventID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventName" source="EventName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventDate" source="EventDate"/>
+  
+    
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="Project" source="Project"/>
+  
+    
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="ErrorCount" source="ErrorCount"/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="ErrorCode" null="false" value="4"/>
+  
+    </input>
+    <input node="No_GL_found" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventID" source="EventID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventName" source="EventName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventDate" source="EventDate"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="Project" source="Project"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="ErrorCount" source="ErrorCount"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="ErrorCode" null="false" value="5"/>
+    </input>
+  
+    <input node="Category_error" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventID" source="EventID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventName" source="EventName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventDate" source="EventDate"/>
+  
+    
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="Project" source="Project"/>
+  
+    
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="ErrorCount" source="ErrorCount"/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="ErrorCode" null="false" value="6"/>
+  
+    </input>
+  
+    <input node="Project_Unreleased" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventID" source="EventID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventName" source="EventName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventDate" source="EventDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Project" source="Project"/>
+    
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="ErrorCount" source="ErrorCount"/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="ErrorCode" null="false" value="3"/>
+  
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Project_Not_found" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="EventID"/>
+      <viewAttribute id="EventName"/>
+      <viewAttribute id="EventDate"/>
+      <viewAttribute id="Project"/>
+      <viewAttribute id="ProjectDescription"/>
+      <viewAttribute id="CompanyCode"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="ErrorCount" datatype="INTEGER" expressionLanguage="SQL">
+        <formula>1</formula>
+      </calculatedViewAttribute></calculatedViewAttributes>
+    <input node="GET_PROJECT"/>
+    <filter>&quot;CompanyCode&quot; is null</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Line9_empty" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="EventID"/>
+      <viewAttribute id="EventName"/>
+      <viewAttribute id="EventDate"/>
+    
+      <viewAttribute id="Project"/>
+    
+    
+      <viewAttribute id="GLEventCode"/></viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="ErrorCount" datatype="INTEGER" expressionLanguage="SQL">
+        <formula>1</formula>
+      </calculatedViewAttribute></calculatedViewAttributes>
+    <input emptyUnionBehavior="undefined" node="EVENTS"/>
+    <filter>&quot;GLEventCode&quot; is null</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="No_GL_found" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="EventID"/>
+      <viewAttribute id="EventName"/>
+      <viewAttribute id="EventDate"/>
+    
+      <viewAttribute id="Project"/>
+    
+      <viewAttribute id="Ticket"/></viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="ErrorCount" datatype="INTEGER" expressionLanguage="SQL">
+        <formula>1</formula>
+      </calculatedViewAttribute></calculatedViewAttributes>
+    <input node="GET_GL"/>
+    <filter>&quot;Ticket&quot; is null</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Category_error" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="EventID"/>
+      <viewAttribute id="EventName"/>
+      <viewAttribute id="EventDate"/>
+    
+      <viewAttribute id="Project"/>
+    
+      <viewAttribute id="EventCategory"/></viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="ErrorCount" datatype="INTEGER" expressionLanguage="SQL">
+        <formula>1</formula>
+      </calculatedViewAttribute></calculatedViewAttributes>
+    <input emptyUnionBehavior="undefined" node="EVENTS"/>
+    <filter>&quot;EventCategory&quot; is null</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Project_Unreleased" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="EventID"/>
+      <viewAttribute id="EventName"/>
+      <viewAttribute id="EventDate"/>
+      <viewAttribute id="Project"/>
+      <viewAttribute id="Error_Count"/>
+      <viewAttribute id="Error_Type"/>
+      <viewAttribute id="ProjectDescription"/>
+      <viewAttribute id="CompanyCode"/>
+      <viewAttribute id="ProcessingStatus"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="ErrorCount" datatype="INTEGER" expressionLanguage="SQL">
+        <formula>1</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="Project_Found"/>
+    <filter>&quot;ProcessingStatus&quot; = '00'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="GET_PROJECT" cardinality="CN_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="EventID" aggregationType="sum"/>
+      <viewAttribute id="EventName"/>
+      <viewAttribute id="EventDate"/>
+      <viewAttribute id="Project"/>
+      <viewAttribute id="ProjectDescription"/>
+      <viewAttribute id="CompanyCode"/>
+    
+      <viewAttribute id="ProcessingStatus"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Line10_NOT_empty">
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventID" source="EventID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventName" source="EventName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Project" source="Project"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventDate" source="EventDate"/></input>
+  
+    <input node="CvEnterpriseProject">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectDescription" source="ProjectDescription"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProcessingStatus" source="ProcessingStatus"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="Project" source="Project"/>
+  
+    </input>
+    <joinAttribute name="Project"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="GET_GL" cardinality="CN_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="EventID" aggregationType="sum"/>
+      <viewAttribute id="EventName"/>
+      <viewAttribute id="EventDate"/>
+      <viewAttribute id="Project"/>
+    
+      <viewAttribute id="Ticket"/>
+    
+      <viewAttribute id="GLEventCode"/></viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Line9_NOT_empty">
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventID" source="EventID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventName" source="EventName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventDate" source="EventDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GLEventCode" source="GLEventCode"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="Project" source="Project"/>
+    </input>
+    <input node="YY1_GLAccountCredit">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Ticket" source="Ticket"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GLEventCode" source="EventCode"/>
+    </input>
+    <joinAttribute name="GLEventCode"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Project_Found" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="EventID"/>
+      <viewAttribute id="EventName"/>
+      <viewAttribute id="EventDate"/>
+      <viewAttribute id="Project"/>
+      <viewAttribute id="ProjectDescription"/>
+      <viewAttribute id="CompanyCode"/>
+    
+      <viewAttribute id="ProcessingStatus"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="Error_Count" datatype="INTEGER" expressionLanguage="SQL">
+        <formula>1</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="Error_Type" datatype="NVARCHAR" length="50" expressionLanguage="SQL">
+        <formula>'S4 Project = Line10 was found, but Project is status Created(unreleased)'</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input emptyUnionBehavior="undefined" node="GET_PROJECT"/>
+    <filter>not (&quot;CompanyCode&quot; is null)</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Line10_NOT_empty" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="EventID"/>
+      <viewAttribute id="EventName"/>
+      <viewAttribute id="Project"/>
+      <viewAttribute id="EventDate"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input emptyUnionBehavior="undefined" node="EVENTS"/>
+    <filter>NOT &quot;Project&quot; is null</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Line9_NOT_empty" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="EventID"/>
+      <viewAttribute id="EventName"/>
+      <viewAttribute id="EventDate"/>
+    
+      <viewAttribute id="GLEventCode"/>
+    
+      <viewAttribute id="Project"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input emptyUnionBehavior="undefined" node="EVENTS"/>
+    <filter>NOT &quot;GLEventCode&quot; is null</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Fixed_List_of_Errors">
+    <viewAttributes>
+      <viewAttribute id="ErrorCode"/>
+      <viewAttribute id="ErrorDesc"/>
+      <viewAttribute id="SuggestedAction"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="EventValidationConfig"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="C1_N" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="ErrorCode"/>
+      <viewAttribute id="ErrorDesc"/>
+      <viewAttribute id="SuggestedAction"/>
+      <viewAttribute id="EventID" aggregationType="sum"/>
+      <viewAttribute id="EventName"/>
+      <viewAttribute id="EventDate"/>
+      <viewAttribute id="Project"/>
+      <viewAttribute id="ErrorCount" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Fixed_List_of_Errors">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ErrorCode" source="ErrorCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ErrorDesc" source="ErrorDesc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SuggestedAction" source="SuggestedAction"/>
+    </input>
+    <input node="Union_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventID" source="EventID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventName" source="EventName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventDate" source="EventDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Project" source="Project"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ErrorCount" source="ErrorCount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ErrorCode" source="ErrorCode"/>
+    </input>
+    <joinAttribute name="ErrorCode"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="ErrorCode" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Error Code"/>
+      <keyMapping columnObjectName="Join_1" columnName="ErrorCode"/>
+    </attribute>
+    <attribute id="ErrorDesc" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Error Desc"/>
+      <keyMapping columnObjectName="Join_1" columnName="ErrorDesc"/>
+    </attribute>
+    <attribute id="EventID" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventID"/>
+      <keyMapping columnObjectName="Join_1" columnName="EventID"/>
+    </attribute>
+    <attribute id="EventName" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventName"/>
+      <keyMapping columnObjectName="Join_1" columnName="EventName"/>
+    </attribute>
+    <attribute id="EventDate" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventDate"/>
+      <keyMapping columnObjectName="Join_1" columnName="EventDate"/>
+    </attribute>
+    <attribute id="Project" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Project"/>
+      <keyMapping columnObjectName="Join_1" columnName="Project"/>
+    </attribute>
+    <attribute id="SuggestedAction" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Suggested Action"/>
+      <keyMapping columnObjectName="Join_1" columnName="SuggestedAction"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="ErrorCount" order="2" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="ErrorCount"/>
+      <measureMapping columnObjectName="Join_1" columnName="ErrorCount"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="336" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="EVENTS" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="269" y="1471"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Line10_empty" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="279" y="1096"/>
+      <rectangleSize height="30" width="143"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="288" y="369"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Project_Not_found" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="931" y="434"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Line9_empty" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="37" y="1093"/>
+      <rectangleSize width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="No_GL_found" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="528" y="778"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Category_error" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-160" y="1093"/>
+      <rectangleSize width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Project_Unreleased" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="1190" y="434"/>
+      <rectangleSize height="30" width="210"/>
+    </shape>
+  
+  
+  
+  
+    <shape expanded="true" modelObjectName="GET_PROJECT" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="928" y="807"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Line10_NOT_empty" modelObjectNameSpace="GET_PROJECT" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  
+    <shape modelObjectName="CvEnterpriseProject" modelObjectNameSpace="GET_PROJECT" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="179"/>
+    </shape>
+    <shape expanded="true" modelObjectName="GET_GL" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="507" y="628"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Line9_NOT_empty" modelObjectNameSpace="GET_GL" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="YY1_GLAccountCredit" modelObjectNameSpace="GET_GL" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Project_Found" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="1215" y="556"/>
+      <rectangleSize width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Line10_NOT_empty" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="928" y="1093"/>
+      <rectangleSize width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Line9_NOT_empty" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="516" y="1096"/>
+      <rectangleSize width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Fixed_List_of_Errors" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="11" y="379"/>
+      <rectangleSize height="30" width="179"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="288" y="244"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Fixed_List_of_Errors" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Union_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="341" y="32"/>
+      <rectangleSize width="143"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

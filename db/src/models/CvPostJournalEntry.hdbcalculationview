@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CvPostJournalEntry" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="CvPostJournalEntry"/>
+<localVariables>
+  <variable id="IP_DocType" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties datatype="NVARCHAR" length="3000" scale="NaN" mandatory="false" defaultValue="">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+      <derivationRule>
+        <resourceUri>tm.control_params</resourceUri>
+        <resultElementName>val</resultElementName>
+        <columnFilter columnName="name">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" value="s4_doc_type"/>
+        </columnFilter>
+      </derivationRule>
+    </variableProperties>
+  </variable>
+  <variable id="IP_ToPostingDate" parameter="true">
+    <descriptions defaultDescription="ToPostingDate"/>
+    <variableProperties datatype="NVARCHAR" length="8" mandatory="true">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+  <variable id="IP_FromPostingDate" parameter="true">
+    <descriptions defaultDescription="FromPostingDate"/>
+    <variableProperties datatype="NVARCHAR" length="8" mandatory="true">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+</localVariables>
+<variableMappings/>
+<dataSources>
+  <DataSource id="CvTMJournalEntry">
+    <resourceUri>CvTMJournalEntry</resourceUri>
+  </DataSource>
+  <DataSource id="YY1_JournalEntryItem">
+    <resourceUri>YY1_JournalEntryItem</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_TM" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="Assignment"/>
+      <viewAttribute id="ItemText"/>
+      <viewAttribute id="CompanyCode"/>
+      <viewAttribute id="WBSElement"/>
+      <viewAttribute id="PostingDate"/>
+      <viewAttribute id="GLAccount"/>
+    
+      <viewAttribute id="Amount"/>
+      <viewAttribute id="RetailMop"/>
+      <viewAttribute id="EventName"/>
+      <viewAttribute id="SellLocation"/>
+    
+      <viewAttribute id="DebitCreditCode"/>
+    
+      <viewAttribute id="System"/>
+    
+      <viewAttribute id="CompanyCodeOnLineItem"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="BalanceGroup" datatype="NVARCHAR" length="50" expressionLanguage="SQL">
+        <formula>IFNULL(&quot;EventName&quot;,'') || '/' || IFNULL(&quot;SellLocation&quot;, '') || '/' || IFNULL(&quot;RetailMop&quot;,'') </formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="CvTMJournalEntry"/>
+    <filter>&quot;PostingDate&quot; &lt;= TO_DATE('$$IP_ToPostingDate$$')
+and &quot;PostingDate&quot; &gt;= TO_DATE('$$IP_FromPostingDate$$')
+and &quot;Amount&quot; != 0</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_S4" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="AssignmentReference"/>
+      <viewAttribute id="DocumentItemText"/>
+      <viewAttribute id="CompanyCode"/>
+      <viewAttribute id="WBSElement"/>
+      <viewAttribute id="AccountingDocumentType"/>
+      <viewAttribute id="GLAccount"/>
+      <viewAttribute id="AmountInTransactionCurrency"/>
+      <viewAttribute id="PostingDate"/>
+      <viewAttribute id="Ledger"/>
+      <viewAttribute id="AccountingDocumentItem"/>
+      <viewAttribute id="AccountingDocument"/>
+    
+      <viewAttribute id="AccountingDocCreatedByUser"/>
+    
+      <viewAttribute id="AccountingDocumentHeaderText"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_PostingDate" datatype="DATE" expressionLanguage="SQL">
+        <formula>TO_DATE(&quot;PostingDate&quot;)</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input emptyUnionBehavior="undefined" node="YY1_JournalEntryItem"/>
+    <filter>&quot;Ledger&quot; = '0L' 
+and &quot;AccountingDocumentType&quot; = '$$IP_DocType$$' 
+and &quot;PostingDate&quot; &lt;= TO_DATE('$$IP_ToPostingDate$$')
+and &quot;PostingDate&quot; &gt;= TO_DATE('$$IP_FromPostingDate$$')
+and &quot;AccountingDocumentHeaderText&quot; in ('S4T1M2 Archtics','S4T1M2 Host','S4T1M2 TMWire')</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_S4">
+    <viewAttributes>
+      <viewAttribute id="AssignmentReference"/>
+      <viewAttribute id="DocumentItemText"/>
+      <viewAttribute id="CompanyCode"/>
+      <viewAttribute id="WBSElement"/>
+      <viewAttribute id="PostingDate"/>
+    
+      <viewAttribute id="GLAccount"/>
+      <viewAttribute id="AmountInTransactionCurrency" aggregationType="sum"/></viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="Projection_S4">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PostingDate" source="CC_PostingDate"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="AssignmentReference"/>
+      <viewAttribute id="DocumentItemText"/>
+      <viewAttribute id="CompanyCode"/>
+      <viewAttribute id="WBSElement"/>
+      <viewAttribute id="PostingDate" aggregationType="min"/>
+      <viewAttribute id="GLAccount"/>
+      <viewAttribute id="BalanceGroup"/>
+      <viewAttribute id="TMAmount" aggregationType="sum"/>
+      <viewAttribute id="S4Amount" aggregationType="sum"/>
+    
+      <viewAttribute id="RetailMop"/>
+      <viewAttribute id="EventName"/>
+      <viewAttribute id="SellLocation"/>
+      <viewAttribute id="DebitCreditCode"/>
+    
+      <viewAttribute id="System"/>
+      <viewAttribute id="CompanyCodeOnLineItem"/>
+      <viewAttribute id="GLAccountS4"/>
+      <viewAttribute hidden="true" id="JOIN$CC_WBSElement$WBSElement"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Aggregation_TM">
+      <mapping xsi:type="Calculation:AttributeMapping" target="AssignmentReference" source="Assignment"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DocumentItemText" source="ItemText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WBSElement" source="WBSElement"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PostingDate" source="PostingDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GLAccount" source="GLAccount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BalanceGroup" source="BalanceGroup"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TMAmount" source="Amount"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="RetailMop" source="RetailMop"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventName" source="EventName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SellLocation" source="SellLocation"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DebitCreditCode" source="DebitCreditCode"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="System" source="System"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCodeOnLineItem" source="CompanyCodeOnLineItem"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CC_WBSElement$WBSElement" source="CC_WBSElement"/>
+    </input>
+    <input node="Aggregation_S4">
+      <mapping xsi:type="Calculation:AttributeMapping" target="S4Amount" source="AmountInTransactionCurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GLAccountS4" source="GLAccount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AssignmentReference" source="AssignmentReference"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DocumentItemText" source="DocumentItemText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PostingDate" source="PostingDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CC_WBSElement$WBSElement" source="WBSElement"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCodeOnLineItem" source="CompanyCode"/>
+    </input>
+    <joinAttribute name="AssignmentReference"/>
+    <joinAttribute name="DocumentItemText"/>
+    <joinAttribute name="PostingDate"/>
+    <joinAttribute name="JOIN$CC_WBSElement$WBSElement"/>
+    <joinAttribute name="CompanyCodeOnLineItem"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_TM">
+    <viewAttributes>
+      <viewAttribute id="Assignment"/>
+      <viewAttribute id="ItemText"/>
+      <viewAttribute id="CompanyCode"/>
+      <viewAttribute id="WBSElement"/>
+      <viewAttribute id="PostingDate"/>
+      <viewAttribute id="GLAccount"/>
+      <viewAttribute id="BalanceGroup"/>
+    
+      <viewAttribute id="Amount" aggregationType="sum"/>
+      <viewAttribute id="RetailMop"/>
+      <viewAttribute id="EventName"/>
+      <viewAttribute id="SellLocation"/>
+      <viewAttribute id="DebitCreditCode"/>
+    
+      <viewAttribute id="System"/>
+    
+      <viewAttribute id="CompanyCodeOnLineItem"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_WBSElement" datatype="NVARCHAR" length="15" expressionLanguage="SQL">
+        <formula>CASE &quot;DebitCreditCode&quot; 
+	 WHEN 'S' then '' 
+	 ELSE &quot;WBSElement&quot; 
+ END</formula>
+      </calculatedViewAttribute>
+    
+      <calculatedViewAttribute id="CC_CompCode" datatype="NVARCHAR" length="4" expressionLanguage="SQL">
+    
+        <formula>CASE &quot;DebitCreditCode&quot; 
+	 WHEN 'S' then 'SJ10' 
+	 ELSE &quot;CompanyCode&quot; 
+ END</formula>
+    
+      </calculatedViewAttribute></calculatedViewAttributes>
+    <restrictedViewAttributes/>
+    <input node="Projection_TM"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="AssignmentReference" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="AssignmentReference"/>
+      <keyMapping columnObjectName="Join_1" columnName="AssignmentReference"/>
+    </attribute>
+    <attribute id="DocumentItemText" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DocumentItemText"/>
+      <keyMapping columnObjectName="Join_1" columnName="DocumentItemText"/>
+    </attribute>
+    <attribute id="CompanyCode" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CompanyCode"/>
+      <keyMapping columnObjectName="Join_1" columnName="CompanyCode"/>
+    </attribute>
+    <attribute id="WBSElement" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="WBSElement"/>
+      <keyMapping columnObjectName="Join_1" columnName="WBSElement"/>
+    </attribute>
+    <attribute id="PostingDate" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PostingDate"/>
+      <keyMapping columnObjectName="Join_1" columnName="PostingDate"/>
+    </attribute>
+    <attribute id="GLAccount" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="GLAccount"/>
+      <keyMapping columnObjectName="Join_1" columnName="GLAccount"/>
+    </attribute>
+    <attribute id="BalanceGroup" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BalanceGroup"/>
+      <keyMapping columnObjectName="Join_1" columnName="BalanceGroup"/>
+    </attribute>
+  
+    <attribute id="RetailMop" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="RetailMop"/>
+  
+      <keyMapping columnObjectName="Join_1" columnName="RetailMop"/>
+  
+    </attribute>
+    <attribute id="EventName" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventName"/>
+      <keyMapping columnObjectName="Join_1" columnName="EventName"/>
+    </attribute>
+    <attribute id="SellLocation" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SellLocation"/>
+      <keyMapping columnObjectName="Join_1" columnName="SellLocation"/>
+    </attribute>
+    <attribute id="DebitCreditCode" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DebitCreditCode"/>
+      <keyMapping columnObjectName="Join_1" columnName="DebitCreditCode"/>
+    </attribute>
+  
+    <attribute id="System" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="System"/>
+  
+      <keyMapping columnObjectName="Join_1" columnName="System"/>
+  
+    </attribute>
+  
+    <attribute id="CompanyCodeOnLineItem" order="17" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CompanyCodeOnLineItem"/>
+  
+      <keyMapping columnObjectName="Join_1" columnName="CompanyCodeOnLineItem"/>
+  
+    </attribute>
+  
+    <attribute id="GLAccountS4" order="18" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="GLAccountS4"/>
+  
+      <keyMapping columnObjectName="Join_1" columnName="GLAccountS4"/>
+  
+    </attribute>
+  </attributes>
+  <calculatedAttributes>
+    <calculatedAttribute id="AccountingDocumentType" order="10" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="AccountingDocumentType"/>
+      <keyCalculation datatype="NVARCHAR" expressionLanguage="SQL" length="2">
+        <formula>'$$IP_DocType$$'</formula>
+      </keyCalculation>
+    </calculatedAttribute>
+    <calculatedAttribute id="AmountInTransactionCurrency" order="11" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="AmountInTransactionCurrency"/>
+      <keyCalculation datatype="DECIMAL" expressionLanguage="SQL" length="13" scale="2">
+        <formula>IFNULL(&quot;TMAmount&quot;, 0)- IFNULL(&quot;S4Amount&quot;, 0)</formula>
+      </keyCalculation>
+    </calculatedAttribute>
+  </calculatedAttributes>
+  <baseMeasures>
+    <measure id="TMAmount" order="8" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="AmountInTransactionCurrency"/>
+      <measureMapping columnObjectName="Join_1" columnName="TMAmount"/>
+    </measure>
+    <measure id="S4Amount" order="9" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="AmountInTransactionCurrency"/>
+      <measureMapping columnObjectName="Join_1" columnName="S4Amount"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="239" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_TM" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="108" y="477"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_S4" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="367" y="477"/>
+      <rectangleSize width="186"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Aggregation_S4" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="367" y="356"/>
+      <rectangleSize height="30" width="186"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="239" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Aggregation_TM" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="214"/>
+    </shape>
+    <shape modelObjectName="Aggregation_S4" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Aggregation_TM" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="109" y="356"/>
+      <rectangleSize height="30" width="159"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

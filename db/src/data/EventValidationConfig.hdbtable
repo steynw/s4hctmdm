@@ -1,0 +1,7 @@
+COLUMN TABLE "EventValidationConfig" (
+     "ErrorCode" NVARCHAR(1) NOT NULL COMMENT 'Error Code',
+	 "ErrorDesc" NVARCHAR(60) COMMENT 'Error Desc',
+	 "SuggestedAction" NVARCHAR(50) COMMENT 'Suggested Action',
+	 PRIMARY KEY ("ErrorCode"))
+	 COMMENT 'Event Validation Config'
+	 UNLOAD PRIORITY 5 AUTO MERGE

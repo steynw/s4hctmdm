@@ -1,0 +1,13 @@
+COLUMN TABLE "FunctionalAreaHierNode" (
+	"FunctionalAreaHierarchy" NVARCHAR(42) NOT NULL ,
+	"HierarchyNode" NVARCHAR(50) NOT NULL ,
+	"ValidityEndDate" DATE NOT NULL ,
+	"ValidityStartDate" DATE,
+	"ParentNode" NVARCHAR(50),
+	"HierarchyVersion" NVARCHAR(15),
+	"FunctionalArea" NVARCHAR(16),
+	"SequenceNumber" NVARCHAR(56),
+	"HierarchyNodeLevel" NVARCHAR(6),
+	"NodeType" NVARCHAR(1),
+	PRIMARY KEY ("FunctionalAreaHierarchy", "HierarchyNode", "ValidityEndDate")
+) UNLOAD PRIORITY 5 AUTO MERGE 

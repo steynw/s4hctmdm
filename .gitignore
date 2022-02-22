@@ -36,3 +36,7 @@ s4hctmdm/db/.env
 s4hctmdb/db/.env
 # auto generated wildcard
 dummy/db/.env
+# auto generated wildcard
+db/.env
+# auto generated wildcard
+s4hctmdm/.env

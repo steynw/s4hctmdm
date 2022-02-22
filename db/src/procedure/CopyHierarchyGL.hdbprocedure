@@ -1,0 +1,67 @@
+PROCEDURE "CopyHierarchyGL"
+( 
+    out O_RESULT nvarchar(50)    
+) 
+    LANGUAGE SQLSCRIPT
+    SQL SECURITY DEFINER 
+    AS
+BEGIN
+
+	-- Initialize Variables   
+	declare S_QUERY string;
+	
+	-- Reset Flag
+	O_RESULT := 'Error !!!. Something went wrong';
+
+	-- Delete data for the Year range
+	truncate table "GLAccountHierarchyNode";
+	truncate table "GLAccountHierarchyNodeT";
+	truncate table "GLAccountText";
+
+	-- Copy the Data
+	insert into "GLAccountHierarchyNode" 
+	select 
+		"GLAccountHierarchy",
+		"HierarchyNode",
+		"ValidityEndDate",
+		"ParentNode",
+		"HierarchyVersion",
+		"ValidityStartDate",
+		"ChartOfAccounts",
+		"GLAccount",
+		"SequenceNumber",
+		"HierarchyNodeLevel",
+		"NodeType",
+		"SemanticTag",
+		"SACAccountType"
+	from "C_GLAccountHierarchyNode";
+	
+	insert into "GLAccountHierarchyNodeT" 
+	select 
+		"GLAccountHierarchy",
+		"HierarchyNode",
+		"ValidityEndDate",
+		'E' as "Language",
+		"HierarchyNodeText",
+		"HierarchyNodeShortText",
+		"ValidityStartDate",
+		"NodeType"
+	from "C_GLAccountHierarchyNodeT"
+	where "Language" = 'EN';
+	
+	insert into "GLAccountText" 
+	select 
+		"ChartOfAccounts",
+		"ChartOfAccounts_Text",
+		"GLAccount",
+		'E' as "Language",
+		"GLAccountName",
+		"GLAccountLongName",
+		"LastChangeDateTime"
+	 from "I_GLAccountText"
+	 where "Language" = 'EN';
+	
+	-- Success
+	O_RESULT := 'Success. GL Hierarchy copied.';
+	
+ END;

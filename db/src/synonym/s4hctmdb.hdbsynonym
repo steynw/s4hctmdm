@@ -1,14 +1,77 @@
 {
   "tm.control_params": {
     "target": {
-      "object": "TM_CONTROL_PARAMS",
-      "schema": "S4HCTM"
+      "object": "tm.control_params"
     }
   },
-  "tm.postings": {
+  "tm.events_prd": {
     "target": {
-      "object": "TM_POSTINGS",
-      "schema": "S4HCTM"
+      "object": "tm.events_prd"
+    }
+  },
+  "tm.retailevent_prd": {
+    "target": {
+      "object": "tm.retailevent_prd"
+    }
+  },
+  "tm.retailnonticket_prd": {
+    "target": {
+      "object": "tm.retailnonticket_prd"
+    }
+  },
+  "tm.ticket_prd": {
+    "target": {
+      "object": "tm.ticket_prd"
+    }
+  },
+  "tm.ticketactivity_prd": {
+    "target": {
+      "object": "tm.ticketactivity_prd"
+    }
+  },
+  "tm.journal_prd": {
+    "target": {
+      "object": "tm.journal_prd"
+    }
+  },
+  "tm.attend_prd": {
+    "target": {
+      "object": "tm.attend_prd"
+    }
+  },
+  "tm.eip_prd": {
+    "target": {
+      "object": "tm.eip_prd"
+    }
+  },
+  "tm.avail_seats_prd": {
+    "target": {
+      "object": "tm.avail_seats_prd"
+    }
+  },
+  "tm.held_seats_prd": {
+    "target": {
+      "object": "tm.held_seats_prd"
+    }
+  },
+  "tm.face_value_prd": {
+    "target": {
+      "object": "tm.face_value_prd"
+    }
+  },
+  "tm.revenue_share_prd": {
+    "target": {
+      "object": "tm.revenue_share_prd"
+    }
+  },
+  "tm.historical_prd": {
+    "target": {
+      "object": "tm.historical_prd"
+    }
+  },
+  "tm.jeheaderlog": {
+    "target": {
+      "object": "tm.jeheaderlog"
     }
   }
 }

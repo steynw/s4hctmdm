@@ -1,0 +1,59 @@
+PROCEDURE "CopyFunctionalAreaHierarchy"
+( 
+    out O_RESULT nvarchar(50)    
+) 
+    LANGUAGE SQLSCRIPT
+    SQL SECURITY DEFINER 
+    AS
+BEGIN
+
+	-- Initialize Variables   
+	declare S_QUERY string;
+	
+	-- Reset Flag
+	O_RESULT := 'Error !!!. Something went wrong';
+
+	-- Delete data for the Year range
+	truncate table "FunctionalAreaHierNode";
+	truncate table "FunctionalAreaHierNodeT";
+	truncate table "FunctionalAreaText";
+
+	-- Copy the Data
+	insert into "FunctionalAreaHierNode" 
+	select 
+		"FunctionalAreaHierarchy",
+		"HierarchyNode",
+		"ValidityEndDate",
+		"ValidityStartDate",
+		"ParentNode",
+		"HierarchyVersion",
+		"FunctionalArea",
+		"SequenceNumber",
+		"HierarchyNodeLevel",
+		"NodeType"
+	from "C_FunctionalAreaHierNode";
+	
+	insert into "FunctionalAreaHierNodeT" 
+	select 
+		"FunctionalAreaHierarchy",
+		"HierarchyNode",
+		"ValidityEndDate",
+		'E' as "Language",
+		"NodeType",
+		"HierarchyNodeText",
+		"ValidityStartDate"
+	 from "C_FunctionalAreaHierNodeT"
+	where "Language" = 'EN';
+
+	insert into "FunctionalAreaText" 
+	select 
+		"FunctionalArea",
+		'E' as "Language",
+		"FunctionalAreaName"
+	from "A_FunctionalAreaText"
+	where "Language" = 'EN';
+
+	-- Success
+	O_RESULT := 'Success. FunctionalArea Hierarchy copied.';
+	
+ END;

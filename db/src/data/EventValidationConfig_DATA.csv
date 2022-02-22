@@ -1,0 +1,6 @@
+1;Line10 (SAP Project) is not maintained in TM Event;Populate Line10 field in Ticketmaster
+2;SAP Project = Line10 could not be found;Check spelling of Line10 in Ticketmaster
+3;SAP Project = Line10 found but status is Created(unreleased);Check Project status in SAP
+4;Line9 (GL Account) is not maintained in TM Event;Populate Line9 field in Ticketmaster
+5;SAP GL Account Configuration = Line9 could not be found;Use "Maintain Credit GL Accounts" app in SAP
+6;Event Category (Arena/Suite etc.) could not be determined;Use "Maintain Event Category" app in SAP

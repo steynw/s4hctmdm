@@ -1,0 +1,6 @@
+COLUMN TABLE "FunctionalAreaText" (
+	"FunctionalArea" NVARCHAR(16) NOT NULL ,
+	"Language" NVARCHAR(2) NOT NULL ,	
+	"FunctionalAreaName" NVARCHAR(25),
+	PRIMARY KEY ("FunctionalArea", "Language")
+) UNLOAD PRIORITY 5 AUTO MERGE 

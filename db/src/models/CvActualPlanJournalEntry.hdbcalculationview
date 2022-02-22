@@ -1,0 +1,622 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:DataFoundation="http://www.sap.com/ndb/BiModelDataFoundation.ecore" xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" xmlns:Variable="http://www.sap.com/ndb/BiModelVariable.ecore" id="CvActualPlanJournalEntry" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="CvActualPlanJournalEntry"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="CvActualPlanJournalBase">
+    <resourceUri>CvActualPlanJournalBase</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:UnionView" id="Union_1">
+    <viewAttributes>
+      <viewAttribute id="Ledger"/>
+      <viewAttribute id="CompanyCode"/>
+      <viewAttribute id="FiscalYear"/>
+      <viewAttribute id="FiscalPeriod"/>
+      <viewAttribute id="FiscalYearPeriod"/>
+      <viewAttribute id="Project"/>
+      <viewAttribute id="CostCenter"/>
+      <viewAttribute id="ProfitCenter"/>
+      <viewAttribute id="BusinessArea"/>
+      <viewAttribute id="ActualPlanCode"/>
+      <viewAttribute id="ChartOfAccounts"/>
+      <viewAttribute id="GLAccount"/>
+      <viewAttribute id="ControllingArea"/>
+      <viewAttribute id="TransactionCurrency"/>
+      <viewAttribute id="PlanningCategory"/>
+      <viewAttribute id="ProjectDescription"/>
+      <viewAttribute id="YY1_Info_1_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_2_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_3_PPH" aggregationType="sum"/>
+      <viewAttribute id="YY1_Info_4_PPH" aggregationType="min"/>
+      <viewAttribute id="YY1_Info_5_PPH" aggregationType="min"/>
+      <viewAttribute id="YY1_Info_6_PPH"/>
+      <viewAttribute id="YY1_Info_7_PPH"/>
+      <viewAttribute id="YY1_Info_8_PPH"/>
+      <viewAttribute id="YY1_Info_9_PPH"/>
+      <viewAttribute id="YY1_Info_10_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_11_PPH"/>
+      <viewAttribute id="YY1_Info_12_PPH"/>
+      <viewAttribute id="YY1_Info_13_PPH"/>
+      <viewAttribute id="YY1_Info_14_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_15_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_16_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_17_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_18_PPH_Desc"/>
+      <viewAttribute id="ActualAmountInTransactionCrcy" aggregationType="sum"/>
+      <viewAttribute id="AmountInTransactionCurrency" aggregationType="sum"/>
+      <viewAttribute id="PlanAmountInTransactionCrcy" aggregationType="sum"/>
+      <viewAttribute id="DebitCreditCode"/>
+      <viewAttribute id="PlannedStartDate" aggregationType="min"/>
+      <viewAttribute id="PlannedEndDate" aggregationType="min"/>
+      <viewAttribute id="CostCenterName"/>
+      <viewAttribute id="GLAccountName"/>
+      <viewAttribute id="ProfitCenterName"/>
+      <viewAttribute id="AccountingDocumentType"/>
+      <viewAttribute id="AssignmentReference"/>
+      <viewAttribute id="AccountingDocument"/>
+      <viewAttribute id="ActualPlanJournalEntryItem"/>
+      <viewAttribute id="LedgerGLLineItem"/>
+      <viewAttribute id="FinancialPlanningEntryItem" aggregationType="sum"/>
+      <viewAttribute id="PostingDate" aggregationType="min"/>
+      <viewAttribute id="DocumentDate" aggregationType="min"/>
+      <viewAttribute id="WBSElement"/>
+      <viewAttribute id="WBSDescription"/>
+      <viewAttribute id="CC_ActualAmount" aggregationType="sum"/>
+      <viewAttribute id="CC_PlanAmount" aggregationType="sum"/>
+      <viewAttribute id="EventMonth"/>
+      <viewAttribute id="EventDay"/>
+      <viewAttribute id="EventYear"/>
+      <viewAttribute id="YY1_Info_30_PPH"/>
+      <viewAttribute id="YY1_Info_30_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_1_PPH"/>
+      <viewAttribute id="YY1_Info_2_PPH"/>
+      <viewAttribute id="YY1_Info_10_PPH"/>
+      <viewAttribute id="YY1_Info_14_PPH"/>
+      <viewAttribute id="YY1_Info_15_PPH"/>
+      <viewAttribute id="YY1_Info_16_PPH"/>
+      <viewAttribute id="YY1_Info_17_PPH"/>
+      <viewAttribute id="YY1_Info_18_PPH"/>
+      <viewAttribute id="YY1_Info_31_PPH"/>
+      <viewAttribute id="YY1_Info_32_PPH"/>
+      <viewAttribute id="YY1_Info_31_PPH_Desc"/>
+      <viewAttribute id="ProjectDate"/>
+    
+      <viewAttribute id="DATASOURCE"/>
+    
+      <viewAttribute id="FunctionalArea"/>
+    
+      <viewAttribute id="FunctionalAreaName"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Aggregation_1" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Ledger" source="Ledger"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FiscalYear" source="FiscalYear"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FiscalPeriod" source="FiscalPeriod"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FiscalYearPeriod" source="FiscalYearPeriod"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Project" source="Project"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CostCenter" source="CostCenter"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProfitCenter" source="ProfitCenter"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BusinessArea" source="BusinessArea"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ActualPlanCode" source="ActualPlanCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ChartOfAccounts" source="ChartOfAccounts"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GLAccount" source="GLAccount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ControllingArea" source="ControllingArea"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TransactionCurrency" source="TransactionCurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlanningCategory" source="PlanningCategory"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectDescription" source="ProjectDescription"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_1_PPH_Desc" source="ProjectType_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_2_PPH_Desc" source="ProjectSubType_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_3_PPH" source="Rank"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_4_PPH" source="EventStartTime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_5_PPH" source="DoorsOpen"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_6_PPH" source="ClubOpens"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_7_PPH" source="LoungeOpen"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_8_PPH" source="SuitesOpen"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_9_PPH" source="CompCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_10_PPH_Desc" source="PromotionalItem_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_11_PPH" source="EventInTicketMaster"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_12_PPH" source="MerchDeal"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_13_PPH" source="EventMoved"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_14_PPH_Desc" source="EventBudgeted_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_15_PPH_Desc" source="EventActual_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_16_PPH_Desc" source="EventManager_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_17_PPH_Desc" source="EventPromoter_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_18_PPH_Desc" source="Agency_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ActualAmountInTransactionCrcy" source="ActualAmountInTransactionCrcy"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AmountInTransactionCurrency" source="AmountInTransactionCurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlanAmountInTransactionCrcy" source="PlanAmountInTransactionCrcy"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DebitCreditCode" source="DebitCreditCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedStartDate" source="PlannedStartDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedEndDate" source="PlannedEndDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CostCenterName" source="CostCenterName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GLAccountName" source="GLAccountName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProfitCenterName" source="ProfitCenterName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AccountingDocumentType" source="AccountingDocumentType"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AssignmentReference" source="AssignmentReference"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AccountingDocument" source="AccountingDocument"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ActualPlanJournalEntryItem" source="ActualPlanJournalEntryItem"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LedgerGLLineItem" source="LedgerGLLineItem"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FinancialPlanningEntryItem" source="FinancialPlanningEntryItem"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PostingDate" source="PostingDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DocumentDate" source="DocumentDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WBSElement" source="WBSElement"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WBSDescription" source="WBSDescription"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_ActualAmount" source="CC_ActualAmount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_PlanAmount" source="CC_PlanAmount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventMonth" source="EventMonth"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventDay" source="EventDay"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventYear" source="EventYear"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_30_PPH" source="Genre"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_30_PPH_Desc" source="Genre_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_1_PPH" source="ProjectType"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_2_PPH" source="ProjectSubType"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_10_PPH" source="PromotionalItem"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_14_PPH" source="EventBudgeted"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_15_PPH" source="EventActual"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_16_PPH" source="EventManager"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_17_PPH" source="EventPromoter"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_18_PPH" source="Agency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_31_PPH" source="EventDirector"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_32_PPH" source="EventCancelled"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_31_PPH_Desc" source="EventDirector_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectDate" source="ProjectDate"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="DATASOURCE" source="DATASOURCE"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="FunctionalArea" source="FunctionalArea"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="FunctionalAreaName" source="FunctionalAreaName"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_1">
+    <viewAttributes>
+      <viewAttribute id="Ledger"/>
+      <viewAttribute id="CompanyCode"/>
+      <viewAttribute id="FiscalYear"/>
+      <viewAttribute id="FiscalPeriod"/>
+      <viewAttribute id="FiscalYearPeriod"/>
+      <viewAttribute id="Project"/>
+      <viewAttribute id="CostCenter"/>
+      <viewAttribute id="ProfitCenter"/>
+      <viewAttribute id="BusinessArea"/>
+      <viewAttribute id="ActualPlanCode"/>
+      <viewAttribute id="ChartOfAccounts"/>
+      <viewAttribute id="GLAccount"/>
+      <viewAttribute id="ControllingArea"/>
+      <viewAttribute id="TransactionCurrency"/>
+      <viewAttribute id="PlanningCategory"/>
+      <viewAttribute id="ProjectDescription"/>
+      <viewAttribute id="ProjectType_Desc"/>
+      <viewAttribute id="ProjectSubType_Desc"/>
+      <viewAttribute id="Rank"/>
+      <viewAttribute id="EventStartTime"/>
+      <viewAttribute id="DoorsOpen"/>
+      <viewAttribute id="ClubOpens"/>
+      <viewAttribute id="LoungeOpen"/>
+      <viewAttribute id="SuitesOpen"/>
+      <viewAttribute id="CompCode"/>
+      <viewAttribute id="PromotionalItem_Desc"/>
+      <viewAttribute id="EventInTicketMaster"/>
+      <viewAttribute id="MerchDeal"/>
+      <viewAttribute id="EventMoved"/>
+      <viewAttribute id="EventBudgeted_Desc"/>
+      <viewAttribute id="EventActual_Desc"/>
+      <viewAttribute id="EventManager_Desc"/>
+      <viewAttribute id="EventPromoter_Desc"/>
+      <viewAttribute id="Agency_Desc"/>
+      <viewAttribute id="ActualAmountInTransactionCrcy" aggregationType="sum"/>
+      <viewAttribute id="AmountInTransactionCurrency" aggregationType="sum"/>
+      <viewAttribute id="PlanAmountInTransactionCrcy" aggregationType="sum"/>
+      <viewAttribute id="DebitCreditCode"/>
+      <viewAttribute id="PlannedStartDate"/>
+      <viewAttribute id="PlannedEndDate"/>
+      <viewAttribute id="CostCenterName"/>
+      <viewAttribute id="GLAccountName"/>
+      <viewAttribute id="ProfitCenterName"/>
+      <viewAttribute id="AccountingDocumentType"/>
+      <viewAttribute id="AssignmentReference"/>
+      <viewAttribute id="AccountingDocument"/>
+      <viewAttribute id="ActualPlanJournalEntryItem"/>
+      <viewAttribute id="LedgerGLLineItem"/>
+      <viewAttribute id="FinancialPlanningEntryItem"/>
+      <viewAttribute id="PostingDate"/>
+      <viewAttribute id="DocumentDate"/>
+      <viewAttribute id="WBSElement"/>
+      <viewAttribute id="WBSDescription"/>
+      <viewAttribute id="CC_ActualAmount" aggregationType="sum"/>
+      <viewAttribute id="CC_PlanAmount" aggregationType="sum"/>
+      <viewAttribute id="EventMonth"/>
+      <viewAttribute id="EventDay"/>
+      <viewAttribute id="EventYear"/>
+      <viewAttribute id="Genre"/>
+      <viewAttribute id="Genre_Desc"/>
+      <viewAttribute id="ProjectType"/>
+      <viewAttribute id="ProjectSubType"/>
+      <viewAttribute id="PromotionalItem"/>
+      <viewAttribute id="EventBudgeted"/>
+      <viewAttribute id="EventActual"/>
+      <viewAttribute id="EventManager"/>
+      <viewAttribute id="EventPromoter"/>
+      <viewAttribute id="Agency"/>
+      <viewAttribute id="EventDirector"/>
+      <viewAttribute id="EventCancelled"/>
+      <viewAttribute id="EventDirector_Desc"/>
+      <viewAttribute id="ProjectDate"/>
+      <viewAttribute id="DATASOURCE"/>
+    
+      <viewAttribute id="FunctionalArea"/>
+      <viewAttribute id="FunctionalAreaName"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="CvActualPlanJournalBase"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Union_1">
+  <attributes>
+    <attribute id="Ledger" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Ledger"/>
+      <keyMapping columnObjectName="Union_1" columnName="Ledger"/>
+    </attribute>
+    <attribute id="AccountingDocumentType" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="AccountingDocumentType"/>
+      <keyMapping columnObjectName="Union_1" columnName="AccountingDocumentType"/>
+    </attribute>
+    <attribute id="CompanyCode" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CompanyCode"/>
+      <keyMapping columnObjectName="Union_1" columnName="CompanyCode"/>
+    </attribute>
+    <attribute id="FiscalYear" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FiscalYear"/>
+      <keyMapping columnObjectName="Union_1" columnName="FiscalYear"/>
+    </attribute>
+    <attribute id="FiscalPeriod" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FiscalPeriod"/>
+      <keyMapping columnObjectName="Union_1" columnName="FiscalPeriod"/>
+    </attribute>
+    <attribute id="FiscalYearPeriod" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FiscalYearPeriod"/>
+      <keyMapping columnObjectName="Union_1" columnName="FiscalYearPeriod"/>
+    </attribute>
+    <attribute id="CostCenter" order="7" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="CostCenterName">
+      <descriptions defaultDescription="CostCenter"/>
+      <keyMapping columnObjectName="Union_1" columnName="CostCenter"/>
+    </attribute>
+  
+    <attribute id="CostCenterName" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CostCenterName"/>
+  
+      <keyMapping columnObjectName="Union_1" columnName="CostCenterName"/>
+  
+    </attribute>
+    <attribute id="ProfitCenter" order="9" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="ProfitCenterName">
+      <descriptions defaultDescription="ProfitCenter"/>
+      <keyMapping columnObjectName="Union_1" columnName="ProfitCenter"/>
+    </attribute>
+    <attribute id="ProfitCenterName" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProfitCenterName"/>
+      <keyMapping columnObjectName="Union_1" columnName="ProfitCenterName"/>
+    </attribute>
+    <attribute id="ControllingArea" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ControllingArea"/>
+      <keyMapping columnObjectName="Union_1" columnName="ControllingArea"/>
+    </attribute>
+    <attribute id="BusinessArea" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BusinessArea"/>
+      <keyMapping columnObjectName="Union_1" columnName="BusinessArea"/>
+    </attribute>
+    <attribute id="ActualPlanCode" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ActualPlanCode"/>
+      <keyMapping columnObjectName="Union_1" columnName="ActualPlanCode"/>
+    </attribute>
+    <attribute id="PlanningCategory" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PlanningCategory"/>
+      <keyMapping columnObjectName="Union_1" columnName="PlanningCategory"/>
+    </attribute>
+    <attribute id="AssignmentReference" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="AssignmentReference"/>
+      <keyMapping columnObjectName="Union_1" columnName="AssignmentReference"/>
+    </attribute>
+    <attribute id="AccountingDocument" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="AccountingDocument"/>
+      <keyMapping columnObjectName="Union_1" columnName="AccountingDocument"/>
+    </attribute>
+    <attribute id="ActualPlanJournalEntryItem" order="17" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ActualPlanJournalEntryItem"/>
+      <keyMapping columnObjectName="Union_1" columnName="ActualPlanJournalEntryItem"/>
+    </attribute>
+    <attribute id="LedgerGLLineItem" order="18" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LedgerGLLineItem"/>
+      <keyMapping columnObjectName="Union_1" columnName="LedgerGLLineItem"/>
+    </attribute>
+    <attribute id="FinancialPlanningEntryItem" order="19" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FinancialPlanningEntryItem"/>
+      <keyMapping columnObjectName="Union_1" columnName="FinancialPlanningEntryItem"/>
+    </attribute>
+    <attribute id="PostingDate" order="20" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PostingDate"/>
+      <keyMapping columnObjectName="Union_1" columnName="PostingDate"/>
+    </attribute>
+    <attribute id="DocumentDate" order="21" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DocumentDate"/>
+      <keyMapping columnObjectName="Union_1" columnName="DocumentDate"/>
+    </attribute>
+  
+    <attribute id="WBSElement" order="22" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="WBSDescription">
+      <descriptions defaultDescription="WBSElement"/>
+  
+      <keyMapping columnObjectName="Union_1" columnName="WBSElement"/>
+  
+    </attribute>
+    <attribute id="WBSDescription" order="23" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="WBSDescription"/>
+      <keyMapping columnObjectName="Union_1" columnName="WBSDescription"/>
+    </attribute>
+    <attribute id="ChartOfAccounts" order="24" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ChartOfAccounts"/>
+      <keyMapping columnObjectName="Union_1" columnName="ChartOfAccounts"/>
+    </attribute>
+    <attribute id="GLAccount" order="25" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="GLAccountName">
+      <descriptions defaultDescription="GLAccount"/>
+      <keyMapping columnObjectName="Union_1" columnName="GLAccount"/>
+    </attribute>
+    <attribute id="GLAccountName" order="26" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="GLAccountName"/>
+      <keyMapping columnObjectName="Union_1" columnName="GLAccountName"/>
+    </attribute>
+    <attribute id="TransactionCurrency" order="27" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TransactionCurrency"/>
+      <keyMapping columnObjectName="Union_1" columnName="TransactionCurrency"/>
+    </attribute>
+    <attribute id="DebitCreditCode" order="28" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DebitCreditCode"/>
+      <keyMapping columnObjectName="Union_1" columnName="DebitCreditCode"/>
+    </attribute>
+    <attribute id="Project" order="34" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="ProjectDescription">
+      <descriptions defaultDescription="Project"/>
+      <keyMapping columnObjectName="Union_1" columnName="Project"/>
+    </attribute>
+    <attribute id="ProjectDescription" order="35" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProjectDescription"/>
+      <keyMapping columnObjectName="Union_1" columnName="ProjectDescription"/>
+    </attribute>
+    <attribute id="ProjectType" order="36" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="ProjectType_Desc">
+      <descriptions defaultDescription="ProjectType"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_1_PPH"/>
+    </attribute>
+    <attribute id="ProjectType_Desc" order="37" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProjectType_Desc"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_1_PPH_Desc"/>
+    </attribute>
+    <attribute id="ProjectSubType" order="38" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="ProjectSubType_Desc">
+      <descriptions defaultDescription="ProjectSubType"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_2_PPH"/>
+    </attribute>
+    <attribute id="ProjectSubType_Desc" order="39" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProjectSubType_Desc"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_2_PPH_Desc"/>
+    </attribute>
+    <attribute id="EventCancelled" order="40" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventCancelled"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_32_PPH"/>
+    </attribute>
+  
+    <attribute id="Rank" order="41" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Rank"/>
+  
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_3_PPH"/>
+  
+    </attribute>
+    <attribute id="EventStartTime" order="42" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventStartTime"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_4_PPH"/>
+    </attribute>
+    <attribute id="DoorsOpen" order="43" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DoorsOpen"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_5_PPH"/>
+    </attribute>
+    <attribute id="ClubOpens" order="44" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ClubOpens"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_6_PPH"/>
+    </attribute>
+    <attribute id="LoungeOpen" order="45" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LoungeOpen"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_7_PPH"/>
+    </attribute>
+    <attribute id="SuitesOpen" order="46" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SuitesOpen"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_8_PPH"/>
+    </attribute>
+    <attribute id="CompCode" order="47" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CompCode"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_9_PPH"/>
+    </attribute>
+    <attribute id="PromotionalItem" order="48" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="PromotionalItem_Desc">
+      <descriptions defaultDescription="PromotionalItem"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_10_PPH"/>
+    </attribute>
+    <attribute id="PromotionalItem_Desc" order="49" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PromotionalItem_Desc"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_10_PPH_Desc"/>
+    </attribute>
+    <attribute id="EventInTicketMaster" order="50" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventInTicketMaster"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_11_PPH"/>
+    </attribute>
+    <attribute id="MerchDeal" order="51" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MerchDeal"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_12_PPH"/>
+    </attribute>
+    <attribute id="EventMoved" order="52" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventMoved"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_13_PPH"/>
+    </attribute>
+    <attribute id="EventBudgeted" order="53" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="EventBudgeted_Desc">
+      <descriptions defaultDescription="EventBudgeted"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_14_PPH"/>
+    </attribute>
+    <attribute id="EventBudgeted_Desc" order="54" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventBudgeted_Desc"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_14_PPH_Desc"/>
+    </attribute>
+    <attribute id="EventActual" order="55" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="EventActual_Desc">
+      <descriptions defaultDescription="EventActual"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_15_PPH"/>
+    </attribute>
+    <attribute id="EventActual_Desc" order="56" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventActual_Desc"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_15_PPH_Desc"/>
+    </attribute>
+    <attribute id="EventManager" order="57" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="EventManager_Desc">
+      <descriptions defaultDescription="EventManager"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_16_PPH"/>
+    </attribute>
+    <attribute id="EventManager_Desc" order="58" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventManager_Desc"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_16_PPH_Desc"/>
+    </attribute>
+    <attribute id="EventDirector" order="59" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="EventDirector_Desc">
+      <descriptions defaultDescription="EventDirector"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_31_PPH"/>
+    </attribute>
+    <attribute id="EventDirector_Desc" order="60" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventDirector_Desc"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_31_PPH_Desc"/>
+    </attribute>
+    <attribute id="EventPromoter" order="61" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="EventPromoter_Desc">
+      <descriptions defaultDescription="EventPromoter"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_17_PPH"/>
+    </attribute>
+    <attribute id="EventPromoter_Desc" order="62" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventPromoter_Desc"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_17_PPH_Desc"/>
+    </attribute>
+    <attribute id="Agency" order="63" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="Agency_Desc">
+      <descriptions defaultDescription="Agency"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_18_PPH"/>
+    </attribute>
+    <attribute id="Agency_Desc" order="64" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Agency_Desc"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_18_PPH_Desc"/>
+    </attribute>
+  
+    <attribute id="PlannedStartDate" order="65" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PlannedStartDate"/>
+  
+      <keyMapping columnObjectName="Union_1" columnName="PlannedStartDate"/>
+  
+    </attribute>
+    <attribute id="PlannedEndDate" order="66" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PlannedEndDate"/>
+      <keyMapping columnObjectName="Union_1" columnName="PlannedEndDate"/>
+    </attribute>
+    <attribute id="ProjectDate" order="67" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProjectDate"/>
+      <keyMapping columnObjectName="Union_1" columnName="ProjectDate"/>
+    </attribute>
+    <attribute id="EventYear" order="68" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FYMONTH"/>
+      <keyMapping columnObjectName="Union_1" columnName="EventYear"/>
+    </attribute>
+    <attribute id="EventMonth" order="69" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventMonth"/>
+      <keyMapping columnObjectName="Union_1" columnName="EventMonth"/>
+    </attribute>
+    <attribute id="EventDay" order="70" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventDay"/>
+      <keyMapping columnObjectName="Union_1" columnName="EventDay"/>
+    </attribute>
+    <attribute id="Genre" order="71" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="Genre_Desc">
+      <descriptions defaultDescription="Genre"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_30_PPH"/>
+    </attribute>
+    <attribute id="Genre_Desc" order="72" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Genre_Desc"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_30_PPH_Desc"/>
+    </attribute>
+    <attribute id="DATASOURCE" order="73" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DATASOURCE"/>
+      <keyMapping columnObjectName="Union_1" columnName="DATASOURCE"/>
+    </attribute>
+    <attribute id="FunctionalArea" order="74" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="FunctionalAreaName">
+      <descriptions defaultDescription="FunctionalArea"/>
+      <keyMapping columnObjectName="Union_1" columnName="FunctionalArea"/>
+    </attribute>
+    <attribute id="FunctionalAreaName" order="75" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FunctionalAreaName"/>
+      <keyMapping columnObjectName="Union_1" columnName="FunctionalAreaName"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="AmountInTransactionCurrency" order="29" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="AmountInTransactionCurrency"/>
+      <measureMapping columnObjectName="Union_1" columnName="AmountInTransactionCurrency"/>
+    </measure>
+  
+    <measure id="ActualAmountInTransactionCrcy" order="30" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="ActualAmountInTransactionCrcy"/>
+      <measureMapping columnObjectName="Union_1" columnName="ActualAmountInTransactionCrcy"/>
+    </measure>
+    <measure id="PlanAmountInTransactionCrcy" order="31" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="PlanAmountInTransactionCrcy"/>
+      <measureMapping columnObjectName="Union_1" columnName="PlanAmountInTransactionCrcy"/>
+    </measure>
+    <measure id="CC_ActualAmount" order="32" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="CC_ActualAmount"/>
+      <measureMapping columnObjectName="Union_1" columnName="CC_ActualAmount"/>
+    </measure>
+    <measure id="CC_PlanAmount" order="33" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="CC_PlanAmount"/>
+      <measureMapping columnObjectName="Union_1" columnName="CC_PlanAmount"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions>
+    <localDimension id="EventHierarchy">
+      <attributeRef xsi:type="DataFoundation:Attribute">ProjectType</attributeRef>
+      <attributeRef xsi:type="DataFoundation:Attribute">ProjectSubType</attributeRef>
+      <attributeRef xsi:type="DataFoundation:Attribute">Project</attributeRef>
+      <hierarchies>
+        <hierarchy xsi:type="Dimension:LeveledHierarchy" id="EventHierarchy" aggregateAllNodes="true" orphanedNodesHandling="ROOT_NODES" rootNodeVisibility="ADD_ROOT_NODE" withRootNode="true" nodeStyle="NAME_PATH_ENFORCED" cacheEnabled="true" cycleHandling="BREAKUP" emptyValueIsNull="true">
+          <descriptions defaultDescription="EventHierarchy"/>
+          <unassignedMemberProperties mode="FALSE"/>
+          <levels>
+            <level levelAttribute="ProjectType" levelType="MDLEVEL_TYPE_REGULAR" order="1" orderAttribute="ProjectType" sortDirection="ASC"/>
+            <level levelAttribute="ProjectSubType" levelType="MDLEVEL_TYPE_REGULAR" order="2" orderAttribute="ProjectSubType" sortDirection="ASC"/>
+            <level levelAttribute="Project" levelType="MDLEVEL_TYPE_REGULAR" order="3" orderAttribute="Project" sortDirection="ASC"/>
+          </levels>
+        </hierarchy>
+      </hierarchies>
+    </localDimension>
+  </localDimensions>
+
+  <sharedDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="92" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="229"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Aggregation_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="77" y="361"/>
+      <rectangleSize height="30" width="190"/>
+    </shape>
+  
+    <shape modelObjectName="Union_1" modelObjectNameSpace="StarJoinViewNodeInput" modelObjectType="repository">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape></shapes>
+</layout>
+</Calculation:scenario>

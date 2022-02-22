@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" id="CvTimeDim" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="TIME" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="CvTimeDim time dimension"/>
+<localVariables>
+  <variable id="IP_FYEAR" parameter="true">
+    <descriptions defaultDescription="FiscalYear"/>
+    <variableProperties datatype="NVARCHAR" length="4" scale="NaN" mandatory="false" defaultValue="2020">
+      <valueDomain type="AttributeValue">
+        <externalLikeStructureName>M_TIME_DIMENSION</externalLikeStructureName>
+        <externalLikeElementName>YEAR</externalLikeElementName>
+      </valueDomain>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+  <variable id="IP_FPERIOD" parameter="true">
+    <descriptions defaultDescription="FiscalPeriod(nnn)"/>
+    <variableProperties datatype="NVARCHAR" length="3" mandatory="false" defaultValue="002">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+</localVariables>
+<variableMappings/>
+<dataSources>
+  <DataSource id="M_TIME_DIMENSION">
+    <resourceUri>M_TIME_DIMENSION</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="DATETIMESTAMP"/>
+      <viewAttribute id="DATE_SQL"/>
+      <viewAttribute id="DATETIME_SAP"/>
+      <viewAttribute id="DATE_SAP"/>
+      <viewAttribute id="YEAR"/>
+      <viewAttribute id="QUARTER"/>
+      <viewAttribute id="MONTH"/>
+      <viewAttribute id="WEEK"/>
+      <viewAttribute id="WEEK_YEAR"/>
+      <viewAttribute id="DAY_OF_WEEK"/>
+      <viewAttribute id="DAY"/>
+      <viewAttribute id="HOUR"/>
+      <viewAttribute id="MINUTE"/>
+      <viewAttribute id="SECOND"/>
+      <viewAttribute id="CALQUARTER"/>
+      <viewAttribute id="CALMONTH"/>
+      <viewAttribute id="CALWEEK"/>
+      <viewAttribute id="YEAR_INT"/>
+      <viewAttribute id="QUARTER_INT"/>
+      <viewAttribute id="MONTH_INT"/>
+      <viewAttribute id="WEEK_INT"/>
+      <viewAttribute id="WEEK_YEAR_INT"/>
+      <viewAttribute id="DAY_OF_WEEK_INT"/>
+      <viewAttribute id="DAY_INT"/>
+      <viewAttribute id="TZNTSTMPS"/>
+      <viewAttribute id="TZNTSTMPL"/>
+    
+      <viewAttribute id="MONTH_CHAR"/>
+      <viewAttribute id="DAY_OF_WEEK_CHAR"/>
+      <viewAttribute id="FYEAR"/>
+      <viewAttribute id="FYMONTH"/>
+    
+      <viewAttribute id="FYEAR4"/>
+      <viewAttribute id="FISCPER3"/>
+      <viewAttribute id="FISCPER7"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="FYEAR_INT" datatype="INTEGER" expressionLanguage="SQL">
+        <formula>CASE WHEN &quot;MONTH_INT&quot; &gt;= 7 THEN &quot;YEAR_INT&quot; +1
+	ELSE  &quot;YEAR_INT&quot;
+END</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="FiscalYearDiff" datatype="INTEGER" expressionLanguage="SQL">
+        <formula>&quot;FYEAR4&quot; - '$$IP_FYEAR$$'</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="FYIndicator" datatype="NVARCHAR" length="10" expressionLanguage="SQL">
+        <formula>CASE 
+    WHEN &quot;FiscalYearDiff&quot; = 0   THEN 'CY'
+    WHEN &quot;FiscalYearDiff&quot; &gt; 0   THEN 'CY' || ABS(&quot;FiscalYearDiff&quot;)  || '+'
+    WHEN &quot;FiscalYearDiff&quot; &lt; -99 THEN 'CY' || '9999'                 || '-'
+    ELSE                             'CY' || ABS(&quot;FiscalYearDiff&quot;)  || '-'
+END</formula>
+      </calculatedViewAttribute>
+    
+      <calculatedViewAttribute id="FYTDIndicator" datatype="NVARCHAR" length="10" expressionLanguage="SQL">
+    
+        <formula>CASE 
+	 WHEN &quot;FISCPER3&quot; &lt;= '$$IP_FPERIOD$$' THEN 'YTD'
+	 ELSE ''
+ END</formula>
+    
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="M_TIME_DIMENSION"/>
+    <filter>(&quot;HOUR&quot;='00') AND (&quot;SECOND&quot;='00') AND (&quot;MINUTE&quot;='00')</filter>
+  </calculationView>
+</calculationViews>
+<inlineHierarchy xsi:type="Dimension:LeveledHierarchy" id="Gregorian_Hierarchy" aggregateAllNodes="false" orphanedNodesHandling="ROOT_NODES" nodeStyle="NAME_PATH" cacheEnabled="true" cycleHandling="BREAKUP" emptyValueIsNull="true">
+  <descriptions defaultDescription="Gregorian_Hierarchy"/>
+  <levels>
+    <level levelAttribute="YEAR" levelType="MDLEVEL_TYPE_TIME_YEARS" order="1" orderAttribute="YEAR" sortDirection="ASC"/>
+    <level levelAttribute="QUARTER" levelType="MDLEVEL_TYPE_TIME_QUARTERS" order="2" orderAttribute="QUARTER" sortDirection="ASC"/>
+    <level levelAttribute="MONTH" levelType="MDLEVEL_TYPE_TIME_MONTHS" order="3" orderAttribute="MONTH" sortDirection="ASC"/>
+    <level levelAttribute="WEEK" levelType="MDLEVEL_TYPE_TIME_WEEKS" order="4" orderAttribute="WEEK" sortDirection="ASC"/>
+    <level levelAttribute="DAY" levelType="MDLEVEL_TYPE_TIME_DAYS" order="5" orderAttribute="DAY" sortDirection="ASC"/>
+  </levels>
+</inlineHierarchy>
+<inlineHierarchy xsi:type="Dimension:LeveledHierarchy" id="SharksFiscalYear" aggregateAllNodes="false" orphanedNodesHandling="ROOT_NODES" rootNodeVisibility="ADD_ROOT_NODE" withRootNode="true" nodeStyle="NAME_PATH_ENFORCED" cacheEnabled="true" cycleHandling="BREAKUP" emptyValueIsNull="true">
+  <descriptions defaultDescription="SharksFiscalYear"/>
+  <unassignedMemberProperties mode="FALSE"/>
+  <levels>
+    <level levelAttribute="FYEAR" levelType="MDLEVEL_TYPE_TIME_YEARS" order="1" orderAttribute="FYEAR" sortDirection="ASC"/>
+    <level levelAttribute="FYMONTH" levelType="MDLEVEL_TYPE_TIME_MONTHS" order="2" orderAttribute="FYMONTH" sortDirection="ASC"/>
+    <level levelAttribute="DAY" levelType="MDLEVEL_TYPE_TIME_DAYS" order="3" orderAttribute="DATE_SQL" sortDirection="ASC"/>
+  </levels>
+</inlineHierarchy>
+<logicalModel id="Projection_1">
+  <attributes>
+    <attribute id="DATETIMESTAMP" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DATETIMESTAMP"/>
+      <keyMapping columnObjectName="Projection_1" columnName="DATETIMESTAMP"/>
+    </attribute>
+    <attribute id="DATE_SQL" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DATE_SQL"/>
+      <keyMapping columnObjectName="Projection_1" columnName="DATE_SQL"/>
+    </attribute>
+    <attribute id="DATE_SAP" key="true" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DATE_SAP"/>
+      <keyMapping columnObjectName="Projection_1" columnName="DATE_SAP"/>
+    </attribute>
+    <attribute id="YEAR" key="true" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="YEAR"/>
+      <keyMapping columnObjectName="Projection_1" columnName="YEAR"/>
+    </attribute>
+    <attribute id="QUARTER" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="QUARTER"/>
+      <keyMapping columnObjectName="Projection_1" columnName="QUARTER"/>
+    </attribute>
+    <attribute id="MONTH" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MONTH"/>
+      <keyMapping columnObjectName="Projection_1" columnName="MONTH"/>
+    </attribute>
+    <attribute id="WEEK" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="WEEK"/>
+      <keyMapping columnObjectName="Projection_1" columnName="WEEK"/>
+    </attribute>
+    <attribute id="WEEK_YEAR" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="WEEK_YEAR"/>
+      <keyMapping columnObjectName="Projection_1" columnName="WEEK_YEAR"/>
+    </attribute>
+    <attribute id="DAY_OF_WEEK" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DAY_OF_WEEK"/>
+      <keyMapping columnObjectName="Projection_1" columnName="DAY_OF_WEEK"/>
+    </attribute>
+    <attribute id="DAY" key="true" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DAY"/>
+      <keyMapping columnObjectName="Projection_1" columnName="DAY"/>
+    </attribute>
+    <attribute id="CALQUARTER" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CALQUARTER"/>
+      <keyMapping columnObjectName="Projection_1" columnName="CALQUARTER"/>
+    </attribute>
+    <attribute id="CALMONTH" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CALMONTH"/>
+      <keyMapping columnObjectName="Projection_1" columnName="CALMONTH"/>
+    </attribute>
+    <attribute id="CALWEEK" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CALWEEK"/>
+      <keyMapping columnObjectName="Projection_1" columnName="CALWEEK"/>
+    </attribute>
+    <attribute id="YEAR_INT" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="YEAR_INT"/>
+      <keyMapping columnObjectName="Projection_1" columnName="YEAR_INT"/>
+    </attribute>
+    <attribute id="QUARTER_INT" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="QUARTER_INT"/>
+      <keyMapping columnObjectName="Projection_1" columnName="QUARTER_INT"/>
+    </attribute>
+    <attribute id="MONTH_INT" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MONTH_INT"/>
+      <keyMapping columnObjectName="Projection_1" columnName="MONTH_INT"/>
+    </attribute>
+    <attribute id="WEEK_INT" order="17" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="WEEK_INT"/>
+      <keyMapping columnObjectName="Projection_1" columnName="WEEK_INT"/>
+    </attribute>
+    <attribute id="WEEK_YEAR_INT" order="18" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="WEEK_YEAR_INT"/>
+      <keyMapping columnObjectName="Projection_1" columnName="WEEK_YEAR_INT"/>
+    </attribute>
+    <attribute id="DAY_OF_WEEK_INT" order="19" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DAY_OF_WEEK_INT"/>
+      <keyMapping columnObjectName="Projection_1" columnName="DAY_OF_WEEK_INT"/>
+    </attribute>
+    <attribute id="DAY_INT" order="20" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DAY_INT"/>
+      <keyMapping columnObjectName="Projection_1" columnName="DAY_INT"/>
+    </attribute>
+  
+    <attribute id="MONTH_CHAR" order="21" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MonthName"/>
+  
+      <keyMapping columnObjectName="Projection_1" columnName="MONTH_CHAR"/>
+  
+    </attribute>
+    <attribute id="DAY_OF_WEEK_CHAR" order="22" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DayName"/>
+      <keyMapping columnObjectName="Projection_1" columnName="DAY_OF_WEEK_CHAR"/>
+    </attribute>
+    <attribute id="FYEAR" order="23" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FiscalYearName"/>
+      <keyMapping columnObjectName="Projection_1" columnName="FYEAR"/>
+    </attribute>
+    <attribute id="FYMONTH" order="24" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FiscalYearMonthName"/>
+      <keyMapping columnObjectName="Projection_1" columnName="FYMONTH"/>
+    </attribute>
+  
+    <attribute id="FYEAR4" order="25" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FYEAR4"/>
+  
+      <keyMapping columnObjectName="Projection_1" columnName="FYEAR4"/>
+  
+    </attribute>
+    <attribute id="FISCPER7" order="26" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FISCPER7"/>
+      <keyMapping columnObjectName="Projection_1" columnName="FISCPER7"/>
+    </attribute>
+  
+    <attribute id="FISCPER3" order="27" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FISCPER3"/>
+  
+      <keyMapping columnObjectName="Projection_1" columnName="FISCPER3"/>
+  
+    </attribute>
+    <attribute id="FYIndicator" order="30" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FYIndicator"/>
+      <keyMapping columnObjectName="Projection_1" columnName="FYIndicator"/>
+    </attribute>
+    <attribute id="FYTDIndicator" order="31" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FYTDIndicator"/>
+      <keyMapping columnObjectName="Projection_1" columnName="FYTDIndicator"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes>
+    <calculatedAttribute id="FYIndic_ChosenFYear" order="28" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FYIndic_ChosenFYear"/>
+      <keyCalculation datatype="NVARCHAR" expressionLanguage="SQL" length="4">
+        <formula>'$$IP_FYEAR$$'</formula>
+      </keyCalculation>
+    </calculatedAttribute>
+    <calculatedAttribute id="FYTDIndic_ChosenFPeriod" order="29" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FYTDIndic_ChosenFPeriod"/>
+      <keyCalculation datatype="NVARCHAR" expressionLanguage="SQL" length="3">
+        <formula>'$$IP_FPERIOD$$'</formula>
+      </keyCalculation>
+    </calculatedAttribute>
+  </calculatedAttributes>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="114" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="46" y="230"/>
+    
+      <rectangleSize width="205"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

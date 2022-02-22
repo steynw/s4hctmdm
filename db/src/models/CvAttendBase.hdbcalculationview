@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CvAttendBase" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="CvAttendBase, remove duplicate and invalid scans"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="tm.attend_prd">
+    <resourceUri>tm.attend_prd</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="PROJ_only_valid_scans" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="event_id"/>
+      <viewAttribute id="event_name"/>
+      <viewAttribute id="result_type"/>
+      <viewAttribute id="scan_type"/>
+      <viewAttribute id="section_id"/>
+      <viewAttribute id="section_name"/>
+      <viewAttribute id="row_id"/>
+      <viewAttribute id="row_name"/>
+      <viewAttribute id="seat_num"/>
+      <viewAttribute id="upd_datetime"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="tm.attend_prd"/>
+    <filter>&quot;scan_type&quot; = 'S' and (&quot;result_type&quot; IN('A','X'))</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:AggregationView" id="AGG_Last_Scans">
+    <viewAttributes>
+      <viewAttribute id="event_id" keepFlag="true"/>
+      <viewAttribute id="event_name"/>
+      <viewAttribute keepFlag="true" id="section_id"/>
+      <viewAttribute id="section_name"/>
+      <viewAttribute keepFlag="true" id="row_id"/>
+      <viewAttribute id="row_name"/>
+      <viewAttribute keepFlag="true" id="seat_num"/>
+      <viewAttribute id="upd_datetime" aggregationType="max"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="PROJ_only_valid_scans"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="PROJ_calc_Counts">
+    <viewAttributes>
+      <viewAttribute id="event_id"/>
+      <viewAttribute id="event_name"/>
+      <viewAttribute id="section_id"/>
+      <viewAttribute id="section_name"/>
+      <viewAttribute id="row_id"/>
+      <viewAttribute id="row_name"/>
+      <viewAttribute id="seat_num"/>
+      <viewAttribute id="upd_datetime"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_Attendance_Count" datatype="INTEGER" expressionLanguage="SQL">
+        <formula>1</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="AGG_Last_Scans"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="PROJ_calc_Counts">
+  <attributes>
+    <attribute id="event_id" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="event_id"/>
+      <keyMapping columnObjectName="PROJ_calc_Counts" columnName="event_id"/>
+    </attribute>
+    <attribute id="event_name" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="event_name"/>
+      <keyMapping columnObjectName="PROJ_calc_Counts" columnName="event_name"/>
+    </attribute>
+    <attribute id="section_id" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="section_id"/>
+      <keyMapping columnObjectName="PROJ_calc_Counts" columnName="section_id"/>
+    </attribute>
+    <attribute id="section_name" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="section_name"/>
+      <keyMapping columnObjectName="PROJ_calc_Counts" columnName="section_name"/>
+    </attribute>
+    <attribute id="row_id" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="row_id"/>
+      <keyMapping columnObjectName="PROJ_calc_Counts" columnName="row_id"/>
+    </attribute>
+    <attribute id="row_name" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="row_name"/>
+      <keyMapping columnObjectName="PROJ_calc_Counts" columnName="row_name"/>
+    </attribute>
+    <attribute id="seat_num" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="seat_num"/>
+      <keyMapping columnObjectName="PROJ_calc_Counts" columnName="seat_num"/>
+    </attribute>
+    <attribute id="upd_datetime" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="upd_datetime"/>
+      <keyMapping columnObjectName="PROJ_calc_Counts" columnName="upd_datetime"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="CC_Attendance_Count" order="9" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="CC_Attendance_Count"/>
+      <measureMapping columnObjectName="PROJ_calc_Counts" columnName="CC_Attendance_Count"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="PROJ_only_valid_scans" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="77" y="365"/>
+      <rectangleSize height="30" width="195"/>
+    </shape>
+    <shape expanded="true" modelObjectName="AGG_Last_Scans" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="264"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="PROJ_calc_Counts" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="87" y="185"/>
+      <rectangleSize height="30" width="185"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

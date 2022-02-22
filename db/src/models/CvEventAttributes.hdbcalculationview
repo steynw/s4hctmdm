@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CvEventAttributes" applyPrivilegeType="NONE" dataCategory="DIMENSION" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="CvEventAttributes"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="tm.events_prd">
+    <resourceUri>tm.events_prd</resourceUri>
+  </DataSource>
+  <DataSource id="CvEventCategory">
+    <resourceUri>CvEventCategory</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_TM_Events">
+    <viewAttributes>
+      <viewAttribute id="event_name"/>
+      <viewAttribute id="event_date"/>
+      <viewAttribute id="line10"/>
+    
+      <viewAttribute id="event_id"/>
+    
+      <viewAttribute id="team"/>
+    
+      <viewAttribute id="line9"/>
+    
+      <viewAttribute id="plan_type"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="tm.events_prd"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_Calc_EventCat_keys">
+    <viewAttributes>
+      <viewAttribute id="event_name"/>
+      <viewAttribute id="event_date"/>
+      <viewAttribute id="event_id"/>
+    
+      <viewAttribute id="team"/>
+      <viewAttribute id="line10"/>
+    
+      <viewAttribute id="line9"/>
+    
+      <viewAttribute id="plan_type"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_EVENT_PREFIX" datatype="NVARCHAR" length="4" expressionLanguage="SQL">
+        <formula>LEFT(&quot;event_name&quot;, (locate_regexpr(START '[\p{N}]' IN &quot;event_name&quot;) -1) 	)</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_EVENT_SUFFIX" datatype="NVARCHAR" length="1" expressionLanguage="SQL">
+        <formula>CASE RIGHT(&quot;event_name&quot;, 1)
+	 WHEN '0' then ''
+	 WHEN '1' then ''
+	 WHEN '2' then ''
+	 WHEN '3' then ''
+ 	 WHEN '4' then ''
+ 	 WHEN '5' then ''
+  	 WHEN '6' then ''
+  	 WHEN '7' then ''
+  	 WHEN '8' then ''
+  	 WHEN '9' then ''
+ 	 ELSE RIGHT(&quot;event_name&quot;, 1) 
+ END</formula>
+      </calculatedViewAttribute></calculatedViewAttributes>
+    <input node="P_TM_Events"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_EventCat">
+    <viewAttributes>
+      <viewAttribute id="EventStart"/>
+      <viewAttribute id="EventEnd"/>
+      <viewAttribute id="Arena"/>
+      <viewAttribute id="Suites"/>
+      <viewAttribute id="Parking"/>
+      <viewAttribute id="Lounge"/>
+      <viewAttribute id="Upsell"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_EVENT_CATEGORY" datatype="NVARCHAR" length="10" expressionLanguage="SQL">
+        <formula>CASE 
+	 WHEN &quot;Arena&quot; = 'true' then 'Arena'
+	 WHEN &quot;Suites&quot; = 'true' then 'Suites'
+	 WHEN &quot;Parking&quot; = 'true' then 'Parking'
+	 WHEN &quot;Lounge&quot; = 'true' then 'Lounge'
+	 WHEN &quot;Upsell&quot; = 'true' then 'Upsell'
+	 ELSE ''
+ END
+ 
+</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="CvEventCategory"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="J_get_EventCat" cardinality="CN_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="event_name"/>
+      <viewAttribute id="event_date"/>
+      <viewAttribute id="CC_EVENT_PREFIX"/>
+      <viewAttribute id="CC_EVENT_SUFFIX"/>
+      <viewAttribute id="Arena"/>
+      <viewAttribute id="Suites"/>
+      <viewAttribute id="Parking"/>
+      <viewAttribute id="Lounge"/>
+      <viewAttribute id="Upsell"/>
+    
+      <viewAttribute id="event_id"/>
+    
+      <viewAttribute id="team"/>
+      <viewAttribute id="line10"/>
+    
+      <viewAttribute id="CC_EVENT_CATEGORY"/>
+    
+      <viewAttribute id="line9"/>
+    
+      <viewAttribute id="plan_type"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="P_Calc_EventCat_keys">
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_name" source="event_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_date" source="event_date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_EVENT_PREFIX" source="CC_EVENT_PREFIX"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_EVENT_SUFFIX" source="CC_EVENT_SUFFIX"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_id" source="event_id"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="team" source="team"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="line10" source="line10"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="line9" source="line9"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="plan_type" source="plan_type"/>
+    </input>
+    <input node="P_EventCat">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Arena" source="Arena"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Suites" source="Suites"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Parking" source="Parking"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Lounge" source="Lounge"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Upsell" source="Upsell"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_EVENT_CATEGORY" source="CC_EVENT_CATEGORY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_EVENT_PREFIX" source="EventStart"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_EVENT_SUFFIX" source="EventEnd"/>
+    </input>
+    <joinAttribute name="CC_EVENT_PREFIX"/>
+    <joinAttribute name="CC_EVENT_SUFFIX"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="J_get_EventCat">
+  <attributes>
+    <attribute id="EventID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventID"/>
+      <keyMapping columnObjectName="J_get_EventCat" columnName="event_id"/>
+    </attribute>
+    <attribute id="EventName" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventName"/>
+      <keyMapping columnObjectName="J_get_EventCat" columnName="event_name"/>
+    </attribute>
+    <attribute id="EventDate" order="3" semanticType="date" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventDate"/>
+      <keyMapping columnObjectName="J_get_EventCat" columnName="event_date"/>
+    </attribute>
+    <attribute id="EventPrefix" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventPrefix"/>
+      <keyMapping columnObjectName="J_get_EventCat" columnName="CC_EVENT_PREFIX"/>
+    </attribute>
+    <attribute id="EventSuffix" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventSuffix"/>
+      <keyMapping columnObjectName="J_get_EventCat" columnName="CC_EVENT_SUFFIX"/>
+    </attribute>
+    <attribute id="Arena" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Arena"/>
+      <keyMapping columnObjectName="J_get_EventCat" columnName="Arena"/>
+    </attribute>
+    <attribute id="Suites" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Suites"/>
+      <keyMapping columnObjectName="J_get_EventCat" columnName="Suites"/>
+    </attribute>
+    <attribute id="Parking" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Parking"/>
+      <keyMapping columnObjectName="J_get_EventCat" columnName="Parking"/>
+    </attribute>
+    <attribute id="Lounge" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Lounge"/>
+      <keyMapping columnObjectName="J_get_EventCat" columnName="Lounge"/>
+    </attribute>
+    <attribute id="Upsell" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Upsell"/>
+      <keyMapping columnObjectName="J_get_EventCat" columnName="Upsell"/>
+    </attribute>
+  
+    <attribute id="EventCategory" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventCategory"/>
+  
+      <keyMapping columnObjectName="J_get_EventCat" columnName="CC_EVENT_CATEGORY"/>
+  
+    </attribute>
+  
+  
+    <attribute id="Opponent" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Opponent"/>
+  
+  
+      <keyMapping columnObjectName="J_get_EventCat" columnName="team"/>
+  
+  
+    </attribute>
+    <attribute id="Project" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Project"/>
+      <keyMapping columnObjectName="J_get_EventCat" columnName="line10"/>
+    </attribute>
+    <attribute id="GLEventCode" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="GLEventCode"/>
+      <keyMapping columnObjectName="J_get_EventCat" columnName="line9"/>
+    </attribute>
+  
+    <attribute id="EventPlanType" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventPlanType"/>
+      <keyMapping columnObjectName="J_get_EventCat" columnName="plan_type"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/></logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="239" y="105"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="P_TM_Events" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="236" y="555"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="P_Calc_EventCat_keys" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="208" y="457"/>
+      <rectangleSize height="30" width="216"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="P_EventCat" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="433" y="378"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="J_get_EventCat" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="236" y="223"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="P_Calc_EventCat_keys" modelObjectNameSpace="J_get_EventCat" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="P_EventCat" modelObjectNameSpace="J_get_EventCat" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="136"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

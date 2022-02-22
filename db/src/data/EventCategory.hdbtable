@@ -1,0 +1,10 @@
+COLUMN TABLE "EventCategory" (
+	"EventStart" NVARCHAR(4) NOT NULL ,
+	"EventEnd" NVARCHAR(1) NOT NULL ,
+	"Arena" NVARCHAR(5),
+	"Suites" NVARCHAR(5),
+	"Parking" NVARCHAR(5),
+	"Lounge" NVARCHAR(5),	
+	"Upsell" NVARCHAR(5),
+	PRIMARY KEY ("EventStart", "EventEnd")
+) UNLOAD PRIORITY 5 AUTO MERGE 

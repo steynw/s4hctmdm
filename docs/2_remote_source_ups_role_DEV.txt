@@ -1,0 +1,260 @@
+DEV
+
+
+
+--DROP REMOTE SOURCE "RS_ODATA_S4HC_ENTERPRISE_PROJECT";
+
+CREATE REMOTE SOURCE "RS_ODATA_S4HC_YY1_ENTERPRISE_PROJECT" ADAPTER "ODataAdapter" AT LOCATION DPSERVER CONFIGURATION 
+'<?xml version="1.0" encoding="UTF-8"?>
+<ConnectionProperties name="connection_properties">
+<PropertyEntry name="URL">https://my304963-api.s4hana.ondemand.com/sap/opu/odata/sap/YY1_ENTERPRISE_PROJECT_CDS</PropertyEntry>
+<PropertyEntry name="proxyserver"></PropertyEntry>
+<PropertyEntry name="proxyport"></PropertyEntry>
+<PropertyEntry name="supportformatquery"></PropertyEntry>
+</ConnectionProperties>' 
+WITH CREDENTIAL TYPE 'PASSWORD' USING 
+'<CredentialEntry name="password"><user>HANA_DB</user>
+<password>ZjrYmBnaXnLBAqfsHZmkdTthhqTwVwCAK8+amgzd</password>
+</CredentialEntry>'; 
+
+CREATE REMOTE SOURCE "RS_ODATA_S4HC_YY1_JOURNAL_ENTRY_ITEM" ADAPTER "ODataAdapter" 
+AT LOCATION DPSERVER CONFIGURATION 
+'<?xml version="1.0" encoding="UTF-8"?>
+<ConnectionProperties name="connection_properties">
+<PropertyEntry name="URL">https://my304963-api.s4hana.ondemand.com/sap/opu/odata/sap/YY1_JOURNALENTRYITEM_CDS</PropertyEntry>
+<PropertyEntry name="proxyserver"></PropertyEntry>
+<PropertyEntry name="proxyport"></PropertyEntry>
+<PropertyEntry name="supportformatquery"></PropertyEntry>
+</ConnectionProperties>' 
+WITH CREDENTIAL TYPE 'PASSWORD' USING 
+'<CredentialEntry name="password"><user>HANA_DB</user>
+<password>ZjrYmBnaXnLBAqfsHZmkdTthhqTwVwCAK8+amgzd</password>
+</CredentialEntry>'; 
+
+
+CREATE REMOTE SOURCE "RS_ODATA_S4HC_YY1_ACTUALPLAN_JOURNAL_ENTRY" ADAPTER "ODataAdapter" AT LOCATION DPSERVER CONFIGURATION 
+'<?xml version="1.0" encoding="UTF-8"?>
+<ConnectionProperties name="connection_properties">
+<PropertyEntry name="URL">https://my304963-api.s4hana.ondemand.com/sap/opu/odata/sap/YY1_ACTUALPLANJOURNALENTRY_CDS</PropertyEntry>
+<PropertyEntry name="proxyserver"></PropertyEntry>
+<PropertyEntry name="proxyport"></PropertyEntry>
+<PropertyEntry name="supportformatquery"></PropertyEntry>
+</ConnectionProperties>' 
+WITH CREDENTIAL TYPE 'PASSWORD' USING 
+'<CredentialEntry name="password"><user>HANA_DB</user>
+<password>ZjrYmBnaXnLBAqfsHZmkdTthhqTwVwCAK8+amgzd</password>
+</CredentialEntry>'; 
+
+
+CREATE REMOTE SOURCE "RS_ODATA_S4HC_YY1_GLACCOUNT_CREDIT" ADAPTER "ODataAdapter" AT LOCATION DPSERVER CONFIGURATION 
+'<?xml version="1.0" encoding="UTF-8"?>
+<ConnectionProperties name="connection_properties">
+<PropertyEntry name="URL">https://my304963-api.s4hana.ondemand.com/sap/opu/odata/sap/YY1_GLACCOUNT_CREDIT_CDS</PropertyEntry>
+<PropertyEntry name="proxyserver"></PropertyEntry>
+<PropertyEntry name="proxyport"></PropertyEntry>
+<PropertyEntry name="supportformatquery"></PropertyEntry>
+</ConnectionProperties>' 
+WITH CREDENTIAL TYPE 'PASSWORD' USING 
+'<CredentialEntry name="password"><user>HANA_DB</user>
+<password>ZjrYmBnaXnLBAqfsHZmkdTthhqTwVwCAK8+amgzd</password>
+</CredentialEntry>'; 
+
+CREATE REMOTE SOURCE "RS_ODATA_S4HC_YY1_GLACCOUNT_DEBIT" ADAPTER "ODataAdapter" AT LOCATION DPSERVER CONFIGURATION 
+'<?xml version="1.0" encoding="UTF-8"?>
+<ConnectionProperties name="connection_properties">
+<PropertyEntry name="URL">https://my304963-api.s4hana.ondemand.com/sap/opu/odata/sap/YY1_GLACCOUNT_DEBIT_CDS</PropertyEntry>
+<PropertyEntry name="proxyserver"></PropertyEntry>
+<PropertyEntry name="proxyport"></PropertyEntry>
+<PropertyEntry name="supportformatquery"></PropertyEntry>
+</ConnectionProperties>' 
+WITH CREDENTIAL TYPE 'PASSWORD' USING 
+'<CredentialEntry name="password"><user>HANA_DB</user>
+<password>ZjrYmBnaXnLBAqfsHZmkdTthhqTwVwCAK8+amgzd</password>
+</CredentialEntry>'; 
+
+
+CREATE REMOTE SOURCE "RS_ODATA_S4HC_GLACCOUNT_HIERARCHY_NODE" ADAPTER "ODataAdapter" AT LOCATION DPSERVER CONFIGURATION 
+'<?xml version="1.0" encoding="UTF-8"?>
+<ConnectionProperties name="connection_properties">
+<PropertyEntry name="URL">https://my304963-api.s4hana.ondemand.com/sap/opu/odata/sap/C_GLACCOUNTHIERARCHYNODE_SRV</PropertyEntry>
+<PropertyEntry name="proxyserver"></PropertyEntry>
+<PropertyEntry name="proxyport"></PropertyEntry>
+<PropertyEntry name="supportformatquery"></PropertyEntry>
+</ConnectionProperties>' 
+WITH CREDENTIAL TYPE 'PASSWORD' USING 
+'<CredentialEntry name="password"><user>HANA_DB</user>
+<password>ZjrYmBnaXnLBAqfsHZmkdTthhqTwVwCAK8+amgzd</password>
+</CredentialEntry>'; 
+
+CREATE REMOTE SOURCE "RS_ODATA_S4HC_YY1_EVENT_CATEGORY" ADAPTER "ODataAdapter" AT LOCATION DPSERVER CONFIGURATION 
+'<?xml version="1.0" encoding="UTF-8"?>
+<ConnectionProperties name="connection_properties">
+<PropertyEntry name="URL">https://my304963-api.s4hana.ondemand.com/sap/opu/odata/sap/YY1_EVENT_CATEGORY_CDS</PropertyEntry>
+<PropertyEntry name="proxyserver"></PropertyEntry>
+<PropertyEntry name="proxyport"></PropertyEntry>
+<PropertyEntry name="supportformatquery"></PropertyEntry>
+</ConnectionProperties>' 
+WITH CREDENTIAL TYPE 'PASSWORD' USING 
+'<CredentialEntry name="password"><user>HANA_DB</user>
+<password>ZjrYmBnaXnLBAqfsHZmkdTthhqTwVwCAK8+amgzd</password>
+</CredentialEntry>'; 
+
+CREATE REMOTE SOURCE "RS_ODATA_S4HC_YY1_EXCEPTION_EVENTS" ADAPTER "ODataAdapter" AT LOCATION DPSERVER CONFIGURATION 
+'<?xml version="1.0" encoding="UTF-8"?>
+<ConnectionProperties name="connection_properties">
+<PropertyEntry name="URL">https://my304963-api.s4hana.ondemand.com/sap/opu/odata/sap/YY1_EXCEPTION_EVENTS_CDS</PropertyEntry>
+<PropertyEntry name="proxyserver"></PropertyEntry>
+<PropertyEntry name="proxyport"></PropertyEntry>
+<PropertyEntry name="supportformatquery"></PropertyEntry>
+</ConnectionProperties>' 
+WITH CREDENTIAL TYPE 'PASSWORD' USING 
+'<CredentialEntry name="password"><user>HANA_DB</user>
+<password>ZjrYmBnaXnLBAqfsHZmkdTthhqTwVwCAK8+amgzd</password>
+</CredentialEntry>'; 
+
+CREATE REMOTE SOURCE "RS_ODATA_S4HC_FUNCTIONALAREA_HIERARCHY_NODE" ADAPTER "ODataAdapter" AT LOCATION DPSERVER CONFIGURATION 
+'<?xml version="1.0" encoding="UTF-8"?>
+<ConnectionProperties name="connection_properties">
+<PropertyEntry name="URL">https://my304963-api.s4hana.ondemand.com/sap/opu/odata/sap/C_FUNCTIONALAREAHIERNODE_SRV</PropertyEntry>
+<PropertyEntry name="proxyserver"></PropertyEntry>
+<PropertyEntry name="proxyport"></PropertyEntry>
+<PropertyEntry name="supportformatquery"></PropertyEntry>
+</ConnectionProperties>' 
+WITH CREDENTIAL TYPE 'PASSWORD' USING 
+'<CredentialEntry name="password"><user>HANA_DB</user>
+<password>ZjrYmBnaXnLBAqfsHZmkdTthhqTwVwCAK8+amgzd</password>
+</CredentialEntry>'; 
+
+CREATE REMOTE SOURCE "RS_ODATA_S4HC_FUNCTIONALAREA" ADAPTER "ODataAdapter" AT LOCATION DPSERVER CONFIGURATION 
+'<?xml version="1.0" encoding="UTF-8"?>
+<ConnectionProperties name="connection_properties">
+<PropertyEntry name="URL">https://my304963-api.s4hana.ondemand.com/sap/opu/odata/sap/API_FUNCTIONALAREA_SRV</PropertyEntry>
+<PropertyEntry name="proxyserver"></PropertyEntry>
+<PropertyEntry name="proxyport"></PropertyEntry>
+<PropertyEntry name="supportformatquery"></PropertyEntry>
+</ConnectionProperties>' 
+WITH CREDENTIAL TYPE 'PASSWORD' USING 
+'<CredentialEntry name="password"><user>HANA_DB</user>
+<password>ZjrYmBnaXnLBAqfsHZmkdTthhqTwVwCAK8+amgzd</password>
+</CredentialEntry>'; 
+
+-- new1 9/25  JB, standard API already in Comm Arrangement in S4 so no new S4 transport necessary
+CREATE REMOTE SOURCE "RS_ODATA_S4HC_GLACCOUNTINCHARTOFACCOUNTS" ADAPTER "ODataAdapter" AT LOCATION DPSERVER CONFIGURATION 
+'<?xml version="1.0" encoding="UTF-8"?>
+<ConnectionProperties name="connection_properties">
+<PropertyEntry name="URL">https://my304963-api.s4hana.ondemand.com/sap/opu/odata/sap/API_GLACCOUNTINCHARTOFACCOUNTS_SRV</PropertyEntry>
+<PropertyEntry name="proxyserver"></PropertyEntry>
+<PropertyEntry name="proxyport"></PropertyEntry>
+<PropertyEntry name="supportformatquery"></PropertyEntry>
+</ConnectionProperties>' 
+WITH CREDENTIAL TYPE 'PASSWORD' USING 
+'<CredentialEntry name="password"><user>HANA_DB</user>
+<password>ZjrYmBnaXnLBAqfsHZmkdTthhqTwVwCAK8+amgzd</password>
+</CredentialEntry>'; 
+
+-- new2 9/25  JB, another standard API already in Comm Arrangement in S4 so no new S4 transport necessary
+CREATE REMOTE SOURCE "RS_ODATA_S4HC_PROFITCENTER" ADAPTER "ODataAdapter" AT LOCATION DPSERVER CONFIGURATION 
+'<?xml version="1.0" encoding="UTF-8"?>
+<ConnectionProperties name="connection_properties">
+<PropertyEntry name="URL">https://my304963-api.s4hana.ondemand.com/sap/opu/odata/sap/API_PROFITCENTER_SRV</PropertyEntry>
+<PropertyEntry name="proxyserver"></PropertyEntry>
+<PropertyEntry name="proxyport"></PropertyEntry>
+<PropertyEntry name="supportformatquery"></PropertyEntry>
+</ConnectionProperties>' 
+WITH CREDENTIAL TYPE 'PASSWORD' USING 
+'<CredentialEntry name="password"><user>HANA_DB</user>
+<password>ZjrYmBnaXnLBAqfsHZmkdTthhqTwVwCAK8+amgzd</password>
+</CredentialEntry>'; 
+
+CREATE REMOTE SOURCE "RS_ODATA_S4HC_COMPANYCODE" ADAPTER "ODataAdapter" AT LOCATION DPSERVER CONFIGURATION 
+'<?xml version="1.0" encoding="UTF-8"?>
+<ConnectionProperties name="connection_properties">
+<PropertyEntry name="URL">https://my304963-api.s4hana.ondemand.com/sap/opu/odata/sap/API_COMPANYCODE_SRV</PropertyEntry>
+<PropertyEntry name="proxyserver"></PropertyEntry>
+<PropertyEntry name="proxyport"></PropertyEntry>
+<PropertyEntry name="supportformatquery"></PropertyEntry>
+</ConnectionProperties>' 
+WITH CREDENTIAL TYPE 'PASSWORD' USING 
+'<CredentialEntry name="password"><user>HANA_DB</user>
+<password>ZjrYmBnaXnLBAqfsHZmkdTthhqTwVwCAK8+amgzd</password>
+</CredentialEntry>'; 
+
+-- new
+/*
+CREATE REMOTE SOURCE "RS_ODATA_S4HC_YY1_JOURNAL_ENTRY_ITEM_CUBE" ADAPTER "ODataAdapter" 
+AT LOCATION DPSERVER CONFIGURATION 
+'<?xml version="1.0" encoding="UTF-8"?>
+<ConnectionProperties name="connection_properties">
+<PropertyEntry name="URL">https://my304963-api.s4hana.ondemand.com/sap/opu/odata/sap/YY1_ACTPLANJRNLENTRYITCUBE_CDS</PropertyEntry>
+<PropertyEntry name="proxyserver"></PropertyEntry>
+<PropertyEntry name="proxyport"></PropertyEntry>
+<PropertyEntry name="supportformatquery"></PropertyEntry>
+</ConnectionProperties>' 
+WITH CREDENTIAL TYPE 'PASSWORD' USING 
+'<CredentialEntry name="password"><user>HANA_DB</user>
+<password>ZjrYmBnaXnLBAqfsHZmkdTthhqTwVwCAK8+amgzd</password>
+</CredentialEntry>'; 
+*/
+
+CREATE REMOTE SOURCE "RS_ODATA_S4HC_YY1_INTERCOMPANYDEBIT" ADAPTER "ODataAdapter" AT LOCATION DPSERVER CONFIGURATION 
+'<?xml version="1.0" encoding="UTF-8"?>
+<ConnectionProperties name="connection_properties">
+<PropertyEntry name="URL">https://my304963-api.s4hana.ondemand.com/sap/opu/odata/sap/YY1_MAINTAININTERCOMPANYDE_CDS</PropertyEntry>
+<PropertyEntry name="proxyserver"></PropertyEntry>
+<PropertyEntry name="proxyport"></PropertyEntry>
+<PropertyEntry name="supportformatquery"></PropertyEntry>
+</ConnectionProperties>' 
+WITH CREDENTIAL TYPE 'PASSWORD' USING 
+'<CredentialEntry name="password"><user>HANA_DB</user>
+<password>ZjrYmBnaXnLBAqfsHZmkdTthhqTwVwCAK8+amgzd</password>
+</CredentialEntry>'; 
+
+
+-- S4_User below not used in models yet (but Jacob using the CDS on his side of things)
+/* 
+CREATE REMOTE SOURCE "RS_ODATA_S4HC_YY1_S4_USER" ADAPTER "ODataAdapter" AT LOCATION DPSERVER CONFIGURATION 
+'<?xml version="1.0" encoding="UTF-8"?>
+<ConnectionProperties name="connection_properties">
+<PropertyEntry name="URL">https://my304963-api.s4hana.ondemand.com/sap/opu/odata/sap/YY1_S4_USER_CDS</PropertyEntry>
+<PropertyEntry name="proxyserver"></PropertyEntry>
+<PropertyEntry name="proxyport"></PropertyEntry>
+<PropertyEntry name="supportformatquery"></PropertyEntry>
+</ConnectionProperties>' 
+WITH CREDENTIAL TYPE 'PASSWORD' USING 
+'<CredentialEntry name="password"><user>HANA_DB</user>
+<password>ZjrYmBnaXnLBAqfsHZmkdTthhqTwVwCAK8+amgzd</password>
+</CredentialEntry>'; 
+*/
+
+>>>>>>> refs/heads/master
+DROP ROLE GRANT_RSS4HC_ODATA_ROLE;
+ 
+CREATE ROLE GRANT_RSS4HC_ODATA_ROLE;
+GRANT CREATE VIRTUAL TABLE ON REMOTE SOURCE RS_ODATA_S4HC_YY1_ENTERPRISE_PROJECT TO GRANT_RSS4HC_ODATA_ROLE WITH GRANT OPTION; 
+GRANT CREATE VIRTUAL TABLE ON REMOTE SOURCE RS_ODATA_S4HC_YY1_JOURNAL_ENTRY_ITEM TO GRANT_RSS4HC_ODATA_ROLE WITH GRANT OPTION; 
+GRANT CREATE VIRTUAL TABLE ON REMOTE SOURCE RS_ODATA_S4HC_YY1_ACTUALPLAN_JOURNAL_ENTRY TO GRANT_RSS4HC_ODATA_ROLE WITH GRANT OPTION; 
+GRANT CREATE VIRTUAL TABLE ON REMOTE SOURCE RS_ODATA_S4HC_YY1_GLACCOUNT_DEBIT TO GRANT_RSS4HC_ODATA_ROLE WITH GRANT OPTION; 
+GRANT CREATE VIRTUAL TABLE ON REMOTE SOURCE RS_ODATA_S4HC_YY1_GLACCOUNT_CREDIT TO GRANT_RSS4HC_ODATA_ROLE WITH GRANT OPTION; 
+GRANT CREATE VIRTUAL TABLE ON REMOTE SOURCE RS_ODATA_S4HC_GLACCOUNT_HIERARCHY_NODE TO GRANT_RSS4HC_ODATA_ROLE WITH GRANT OPTION; 
+GRANT CREATE VIRTUAL TABLE ON REMOTE SOURCE RS_ODATA_S4HC_YY1_EVENT_CATEGORY TO GRANT_RSS4HC_ODATA_ROLE WITH GRANT OPTION; 
+GRANT CREATE VIRTUAL TABLE ON REMOTE SOURCE RS_ODATA_S4HC_YY1_EXCEPTION_EVENTS TO GRANT_RSS4HC_ODATA_ROLE WITH GRANT OPTION; 
+GRANT CREATE VIRTUAL TABLE ON REMOTE SOURCE RS_ODATA_S4HC_FUNCTIONALAREA_HIERARCHY_NODE TO GRANT_RSS4HC_ODATA_ROLE WITH GRANT OPTION; 
+GRANT CREATE VIRTUAL TABLE ON REMOTE SOURCE RS_ODATA_S4HC_FUNCTIONALAREA TO GRANT_RSS4HC_ODATA_ROLE WITH GRANT OPTION; 
+-- below 2 new added 9/25 JB
+GRANT CREATE VIRTUAL TABLE ON REMOTE SOURCE RS_ODATA_S4HC_GLACCOUNTINCHARTOFACCOUNTS TO GRANT_RSS4HC_ODATA_ROLE WITH GRANT OPTION; 
+GRANT CREATE VIRTUAL TABLE ON REMOTE SOURCE RS_ODATA_S4HC_PROFITCENTER TO GRANT_RSS4HC_ODATA_ROLE WITH GRANT OPTION; 
+--
+GRANT CREATE VIRTUAL TABLE ON REMOTE SOURCE RS_ODATA_S4HC_COMPANYCODE TO GRANT_RSS4HC_ODATA_ROLE WITH GRANT OPTION; 
+GRANT CREATE VIRTUAL TABLE ON REMOTE SOURCE RS_ODATA_S4HC_YY1_INTERCOMPANYDEBIT TO GRANT_RSS4HC_ODATA_ROLE WITH GRANT OPTION; 
+
+
+--GRANT CREATE VIRTUAL TABLE ON REMOTE SOURCE RS_ODATA_S4HC_YY1_SAP_USER TO GRANT_RSS4HC_ODATA_ROLE WITH GRANT OPTION; 
+
+
+---- Grant role to the UPS User
+GRANT GRANT_RSS4HC_ODATA_ROLE TO UPS_TMDB_USER WITH ADMIN OPTION;  
+GRANT S4HCTM."s4hctm::access_role_g#" TO UPS_TMDB_USER WITH ADMIN OPTION;  
+GRANT S4HCTM."s4hctm::access_role" TO UPS_TMDB_USER WITH ADMIN OPTION; 
+
+-- Time Dimension Data Load - run in reqular SQL Console NON-Admin
+MDX UPDATE TIME DIMENSION Day 2020 2049 FIRST_DAY_OF_WEEK Sunday TARGET_SCHEMA 'S4HCTMDM' TARGET_TABLE 'M_TIME_DIMENSION';

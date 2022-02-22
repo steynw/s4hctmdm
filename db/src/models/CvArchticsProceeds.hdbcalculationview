@@ -1,0 +1,980 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CvArchticsProceeds" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false" analyticViewCompatibilityMode="false">
+<descriptions defaultDescription="CvArchticsProceeds"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="tm.journal_prd">
+    <resourceUri>tm.journal_prd</resourceUri>
+  </DataSource>
+  <DataSource id="CvArchticsTickets">
+    <resourceUri>CvArchticsTickets</resourceUri>
+  </DataSource>
+  <DataSource id="A_Ticket_E$$$$CvArchticsTickets$$">
+    <resourceUri>CvArchticsTickets</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_Journal">
+    <descriptions>
+      <comment text="sap_add_date is mapped to posted_date"/>
+    </descriptions>
+    <viewAttributes>
+      <viewAttribute id="order_num"/>
+      <viewAttribute id="event_name"/>
+      <viewAttribute id="posted_date"/>
+      <viewAttribute id="cc_type"/>
+      <viewAttribute id="credit_applied"/>
+      <viewAttribute id="acct_id"/>
+    
+      <viewAttribute id="info"/>
+    
+      <viewAttribute id="event_id"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="tm.journal_prd">
+      <mapping xsi:type="Calculation:AttributeMapping" target="posted_date" source="sap_add_date"/>
+    </input>
+    <filter>&quot;credit_applied&quot; != 0</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="J_Journal1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="order_num"/>
+      <viewAttribute id="event_id" aggregationType="sum"/>
+      <viewAttribute id="event_name"/>
+      <viewAttribute id="posted_date"/>
+      <viewAttribute id="cc_type"/>
+      <viewAttribute id="credit_applied"/>
+      <viewAttribute id="sap_add_date"/>
+      <viewAttribute id="acct_id"/>
+      <viewAttribute id="sell_location"/>
+      <viewAttribute id="pc_ticket"/>
+      <viewAttribute id="pc_licfee"/>
+      <viewAttribute id="pc_other1"/>
+      <viewAttribute id="pc_other2"/>
+      <viewAttribute id="pc_other3"/>
+      <viewAttribute id="pc_other4"/>
+      <viewAttribute id="pc_other5"/>
+      <viewAttribute id="pc_other6"/>
+      <viewAttribute id="pc_other7"/>
+      <viewAttribute id="pc_other8"/>
+      <viewAttribute id="pc_tax"/>
+      <viewAttribute id="purchase_price"/></viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="A_Journal1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="order_num" source="order_num"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_name" source="event_name"/>      
+      <mapping xsi:type="Calculation:AttributeMapping" target="posted_date" source="posted_date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="cc_type" source="cc_type"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="credit_applied" source="credit_applied"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="acct_id" source="acct_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_id" source="event_id"/>
+    </input>
+    <input node="A_Ticket_D">
+      <mapping xsi:type="Calculation:AttributeMapping" target="sap_add_date" source="sap_add_date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="sell_location" source="sell_location"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_ticket" source="pc_ticket"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_licfee" source="pc_licfee"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other1" source="pc_other1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other2" source="pc_other2"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other3" source="pc_other3"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other4" source="pc_other4"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other5" source="pc_other5"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other6" source="pc_other6"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other7" source="pc_other7"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other8" source="pc_other8"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_tax" source="pc_tax"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="purchase_price" source="purchase_price"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="order_num" source="order_num"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="posted_date" source="sap_add_date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_id" source="event_id"/>
+    </input>
+    <joinAttribute name="order_num"/>
+    <joinAttribute name="posted_date"/>
+    <joinAttribute name="event_id"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:AggregationView" id="A_Journal1">
+    <viewAttributes>
+      <viewAttribute id="order_num"/>
+      <viewAttribute id="event_name"/>
+      <viewAttribute id="posted_date"/>
+      <viewAttribute id="cc_type"/>
+      <viewAttribute id="credit_applied" aggregationType="sum"/>
+      <viewAttribute id="acct_id"/>
+    
+      <viewAttribute id="event_id"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="P_Journal"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:AggregationView" id="A_Ticket_D" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="sap_add_date"/>
+      <viewAttribute id="sell_location"/>
+      <viewAttribute id="pc_ticket" aggregationType="sum"/>
+      <viewAttribute id="pc_licfee" aggregationType="sum"/>
+      <viewAttribute id="pc_other1" aggregationType="sum"/>
+      <viewAttribute id="pc_other2" aggregationType="sum"/>
+      <viewAttribute id="pc_other3" aggregationType="sum"/>
+      <viewAttribute id="pc_other4" aggregationType="sum"/>
+      <viewAttribute id="pc_other5" aggregationType="sum"/>
+      <viewAttribute id="pc_other6" aggregationType="sum"/>
+      <viewAttribute id="pc_other7" aggregationType="sum"/>
+      <viewAttribute id="pc_other8" aggregationType="sum"/>
+      <viewAttribute id="pc_tax" aggregationType="sum"/>
+      <viewAttribute id="purchase_price" aggregationType="sum"/>
+      <viewAttribute id="order_num"/>
+      <viewAttribute id="event_id"/>
+    
+      <viewAttribute id="event_name"/>
+      <viewAttribute id="acct_id"/></viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="CvArchticsTickets"/>
+    <filter>&quot;purchase_price&quot; != 0
+and &quot;order_num&quot; &gt; 0</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:UnionView" id="U_Final">
+    <viewAttributes>
+      <viewAttribute id="order_num"/>
+      <viewAttribute id="event_name"/>
+      <viewAttribute id="event_id"/>
+      <viewAttribute id="posted_date"/>
+      <viewAttribute id="cc_type"/>
+      <viewAttribute id="credit_applied"/>
+      <viewAttribute id="acct_id"/>
+      <viewAttribute id="sell_location"/>
+      <viewAttribute datatype="VARCHAR" length="10" id="Source"/>
+      <viewAttribute id="CC_pc_ticket" aggregationType="sum"/>
+      <viewAttribute id="CC_pc_licfee" aggregationType="sum"/>
+      <viewAttribute id="CC_pc_other1" aggregationType="sum"/>
+      <viewAttribute id="CC_pc_other2" aggregationType="sum"/>
+      <viewAttribute id="CC_pc_other3" aggregationType="sum"/>
+      <viewAttribute id="CC_pc_other4" aggregationType="sum"/>
+      <viewAttribute id="CC_pc_other5" aggregationType="sum"/>
+      <viewAttribute id="CC_pc_other6" aggregationType="sum"/>
+      <viewAttribute id="CC_pc_other7" aggregationType="sum"/>
+      <viewAttribute id="CC_pc_other8" aggregationType="sum"/>
+      <viewAttribute id="CC_pc_tax" aggregationType="sum"/>
+      <viewAttribute id="retail_service_charge" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="J_Date" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="order_num" source="order_num"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_name" source="event_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="posted_date" source="posted_date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="cc_type" source="cc_type"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="credit_applied" source="credit_applied"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="acct_id" source="acct_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="sell_location" source="sell_location"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="Source" null="false" value="Date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_pc_ticket" source="CC_pc_ticket"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_pc_licfee" source="CC_pc_licfee"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_pc_other1" source="CC_pc_other1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_pc_other2" source="CC_pc_other2"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_pc_other3" source="CC_pc_other3"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_pc_other4" source="CC_pc_other4"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_pc_other5" source="CC_pc_other5"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_pc_other6" source="CC_pc_other6"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_pc_other7" source="CC_pc_other7"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_pc_other8" source="CC_pc_other8"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_pc_tax" source="CC_pc_tax"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="retail_service_charge" null="false" value="0"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_id" source="event_id"/>
+    </input>
+    <input node="J_Event" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="order_num" source="order_num"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_name" source="event_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="posted_date" source="posted_date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="cc_type" source="cc_type"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="credit_applied" source="credit_applied"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="acct_id" source="acct_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="sell_location" source="sell_location"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="Source" null="false" value="Event"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_pc_ticket" source="CC_pc_ticket"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_pc_licfee" source="CC_pc_licfee"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_pc_other1" source="CC_pc_other1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_pc_other2" source="CC_pc_other2"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_pc_other3" source="CC_pc_other3"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_pc_other4" source="CC_pc_other4"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_pc_other5" source="CC_pc_other5"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_pc_other6" source="CC_pc_other6"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_pc_other7" source="CC_pc_other7"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_pc_other8" source="CC_pc_other8"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_pc_tax" source="CC_pc_tax"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="retail_service_charge" null="false" value="0"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_id" source="event_id"/>
+    </input>
+    <input node="P_NoMatch" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="order_num" source="order_num"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_name" source="event_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="posted_date" source="posted_date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="cc_type" source="cc_type"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="credit_applied" source="credit_applied"/>      
+      <mapping xsi:type="Calculation:AttributeMapping" target="acct_id" source="acct_id"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="sell_location" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="Source" null="false" value="NoMatch"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CC_pc_ticket" null="false" value="0"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CC_pc_licfee" null="false" value="0"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CC_pc_other1" null="false" value="0"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CC_pc_other2" null="false" value="0"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CC_pc_other3" null="false" value="0"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CC_pc_other4" null="false" value="0"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CC_pc_other5" null="false" value="0"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CC_pc_other6" null="false" value="0"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CC_pc_other7" null="false" value="0"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CC_pc_other8" null="false" value="0"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CC_pc_tax" null="false" value="0"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_service_charge" source="retail_service_charge"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_id" source="event_id"/>
+    </input>
+    <input node="J_Exception" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="order_num" source="order_num"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_name" source="event_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="posted_date" source="posted_date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="cc_type" source="cc_type"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="credit_applied" source="credit_applied"/>      
+      <mapping xsi:type="Calculation:AttributeMapping" target="acct_id" source="acct_id"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="sell_location" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="Source" null="false" value="Exception"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CC_pc_ticket" null="false" value="0"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CC_pc_licfee" null="false" value="0"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CC_pc_other1" null="false" value="0"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CC_pc_other2" null="false" value="0"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CC_pc_other3" null="false" value="0"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CC_pc_other4" null="false" value="0"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CC_pc_other5" null="false" value="0"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CC_pc_other6" null="false" value="0"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CC_pc_other7" null="false" value="0"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CC_pc_other8" null="false" value="0"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CC_pc_tax" null="false" value="0"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_service_charge" source="retail_service_charge"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_id" source="event_id"/>
+    </input>    
+    </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="J_Date" cardinality="CN_1" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="order_num"/>
+      <viewAttribute id="event_name"/>
+      <viewAttribute id="posted_date"/>
+      <viewAttribute id="cc_type"/>
+      <viewAttribute id="credit_applied"/>
+      <viewAttribute id="acct_id"/>
+      <viewAttribute id="sell_location"/>
+      <viewAttribute id="event_id" aggregationType="sum"/>
+      <viewAttribute id="pc_ticket"/>
+      <viewAttribute id="pc_licfee"/>
+      <viewAttribute id="pc_other1"/>
+      <viewAttribute id="pc_other2"/>
+      <viewAttribute id="pc_other3"/>
+      <viewAttribute id="pc_other4"/>
+      <viewAttribute id="pc_other5"/>
+      <viewAttribute id="pc_other6"/>
+      <viewAttribute id="pc_other7"/>
+      <viewAttribute id="pc_other8"/>
+      <viewAttribute id="pc_tax"/>
+      <viewAttribute id="purchase_price"/>
+      <viewAttribute id="SC_purchase_price"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_pc_ticket" datatype="DECIMAL" length="17" scale="6" expressionLanguage="SQL">
+        <formula>case &quot;SC_purchase_price&quot;
+when 0 then 0
+else &quot;pc_ticket&quot; * &quot;credit_applied&quot; / &quot;SC_purchase_price&quot;
+end</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_pc_licfee" datatype="DECIMAL" length="17" scale="6" expressionLanguage="SQL">
+        <formula>case &quot;SC_purchase_price&quot;
+when 0 then 0
+else &quot;pc_licfee&quot; * &quot;credit_applied&quot; / &quot;SC_purchase_price&quot;
+end</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_pc_other1" datatype="DECIMAL" length="17" scale="6" expressionLanguage="SQL">
+        <formula>case &quot;SC_purchase_price&quot;
+when 0 then 0
+else &quot;pc_other1&quot; * &quot;credit_applied&quot; / &quot;SC_purchase_price&quot;
+end</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_pc_other2" datatype="DECIMAL" length="17" scale="6" expressionLanguage="SQL">
+        <formula>case &quot;SC_purchase_price&quot;
+when 0 then 0
+else &quot;pc_other2&quot; * &quot;credit_applied&quot; / &quot;SC_purchase_price&quot;
+end</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_pc_other3" datatype="DECIMAL" length="17" scale="6" expressionLanguage="SQL">
+        <formula>case &quot;SC_purchase_price&quot;
+when 0 then 0
+else &quot;pc_other3&quot; * &quot;credit_applied&quot; / &quot;SC_purchase_price&quot;
+end</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_pc_other4" datatype="DECIMAL" length="17" scale="6" expressionLanguage="SQL">
+        <formula>case &quot;SC_purchase_price&quot;
+when 0 then 0
+else &quot;pc_other4&quot; * &quot;credit_applied&quot; / &quot;SC_purchase_price&quot;
+end</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_pc_other5" datatype="DECIMAL" length="17" scale="6" expressionLanguage="SQL">
+        <formula>case &quot;SC_purchase_price&quot;
+when 0 then 0
+else &quot;pc_other5&quot; * &quot;credit_applied&quot; / &quot;SC_purchase_price&quot;
+end</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_pc_other6" datatype="DECIMAL" length="17" scale="6" expressionLanguage="SQL">
+        <formula>case &quot;SC_purchase_price&quot;
+when 0 then 0
+else &quot;pc_other6&quot; * &quot;credit_applied&quot; / &quot;SC_purchase_price&quot;
+end</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_pc_other7" datatype="DECIMAL" length="17" scale="6" expressionLanguage="SQL">
+        <formula>case &quot;SC_purchase_price&quot;
+when 0 then 0
+else &quot;pc_other7&quot; * &quot;credit_applied&quot; / &quot;SC_purchase_price&quot;
+end</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_pc_other8" datatype="DECIMAL" length="17" scale="6" expressionLanguage="SQL">
+        <formula>case &quot;SC_purchase_price&quot;
+when 0 then 0
+else &quot;pc_other8&quot; * &quot;credit_applied&quot; / &quot;SC_purchase_price&quot;
+end</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_pc_tax" datatype="DECIMAL" length="17" scale="6" expressionLanguage="SQL">
+        <formula>case &quot;SC_purchase_price&quot;
+when 0 then 0
+else &quot;pc_tax&quot; * &quot;credit_applied&quot; / &quot;SC_purchase_price&quot;
+end</formula>
+      </calculatedViewAttribute></calculatedViewAttributes>
+
+    <input node="P_Date">
+      <mapping xsi:type="Calculation:AttributeMapping" target="order_num" source="order_num"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_name" source="event_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="posted_date" source="posted_date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="cc_type" source="cc_type"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="credit_applied" source="credit_applied"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="acct_id" source="acct_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="sell_location" source="sell_location"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_ticket" source="pc_ticket"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_licfee" source="pc_licfee"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other1" source="pc_other1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other2" source="pc_other2"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other3" source="pc_other3"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other4" source="pc_other4"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other5" source="pc_other5"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other6" source="pc_other6"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other7" source="pc_other7"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other8" source="pc_other8"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_tax" source="pc_tax"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="purchase_price" source="purchase_price"/>
+    
+
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_id" source="event_id"/>
+
+    </input>
+    <input node="A_DateTotal">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SC_purchase_price" source="purchase_price"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="order_num" source="order_num"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="posted_date" source="posted_date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="cc_type" source="cc_type"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_id" source="event_id"/>
+    </input>
+    <joinAttribute name="order_num"/>
+    <joinAttribute name="posted_date"/>
+    <joinAttribute name="cc_type"/>
+    <joinAttribute name="event_id"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="J_Event" cardinality="CN_1" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="order_num"/>
+      <viewAttribute id="event_name"/>
+      <viewAttribute id="posted_date"/>
+      <viewAttribute id="cc_type"/>
+      <viewAttribute id="credit_applied"/>
+      <viewAttribute id="acct_id"/>
+      <viewAttribute id="sell_location"/>
+      <viewAttribute id="event_id" aggregationType="sum"/>
+      <viewAttribute id="pc_ticket"/>
+      <viewAttribute id="pc_licfee"/>
+      <viewAttribute id="pc_other1"/>
+      <viewAttribute id="pc_other2"/>
+      <viewAttribute id="pc_other3"/>
+      <viewAttribute id="pc_other4"/>
+      <viewAttribute id="pc_other5"/>
+      <viewAttribute id="pc_other6"/>
+      <viewAttribute id="pc_other7"/>
+      <viewAttribute id="pc_other8"/>
+      <viewAttribute id="pc_tax"/>
+      <viewAttribute id="purchase_price"/>
+      <viewAttribute id="SC_purchase_price"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_pc_ticket" datatype="DECIMAL" length="17" scale="6" expressionLanguage="SQL">
+        <formula>case &quot;SC_purchase_price&quot;
+when 0 then 0
+else &quot;pc_ticket&quot; * &quot;credit_applied&quot; / &quot;SC_purchase_price&quot;
+end</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_pc_licfee" datatype="DECIMAL" length="17" scale="6" expressionLanguage="SQL">
+        <formula>case &quot;SC_purchase_price&quot;
+when 0 then 0
+else &quot;pc_licfee&quot; * &quot;credit_applied&quot; / &quot;SC_purchase_price&quot;
+end</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_pc_other1" datatype="DECIMAL" length="17" scale="6" expressionLanguage="SQL">
+        <formula>case &quot;SC_purchase_price&quot;
+when 0 then 0
+else &quot;pc_other1&quot; * &quot;credit_applied&quot; / &quot;SC_purchase_price&quot;
+end</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_pc_other2" datatype="DECIMAL" length="17" scale="6" expressionLanguage="SQL">
+        <formula>case &quot;SC_purchase_price&quot;
+when 0 then 0
+else &quot;pc_other2&quot; * &quot;credit_applied&quot; / &quot;SC_purchase_price&quot;
+end</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_pc_other3" datatype="DECIMAL" length="17" scale="6" expressionLanguage="SQL">
+        <formula>case &quot;SC_purchase_price&quot;
+when 0 then 0
+else &quot;pc_other3&quot; * &quot;credit_applied&quot; / &quot;SC_purchase_price&quot;
+end</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_pc_other4" datatype="DECIMAL" length="17" scale="6" expressionLanguage="SQL">
+        <formula>case &quot;SC_purchase_price&quot;
+when 0 then 0
+else &quot;pc_other4&quot; * &quot;credit_applied&quot; / &quot;SC_purchase_price&quot;
+end</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_pc_other5" datatype="DECIMAL" length="17" scale="6" expressionLanguage="SQL">
+        <formula>case &quot;SC_purchase_price&quot;
+when 0 then 0
+else &quot;pc_other5&quot; * &quot;credit_applied&quot; / &quot;SC_purchase_price&quot;
+end</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_pc_other6" datatype="DECIMAL" length="17" scale="6" expressionLanguage="SQL">
+        <formula>case &quot;SC_purchase_price&quot;
+when 0 then 0
+else &quot;pc_other6&quot; * &quot;credit_applied&quot; / &quot;SC_purchase_price&quot;
+end</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_pc_other7" datatype="DECIMAL" length="17" scale="6" expressionLanguage="SQL">
+        <formula>case &quot;SC_purchase_price&quot;
+when 0 then 0
+else &quot;pc_other7&quot; * &quot;credit_applied&quot; / &quot;SC_purchase_price&quot;
+end</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_pc_other8" datatype="DECIMAL" length="17" scale="6" expressionLanguage="SQL">
+        <formula>case &quot;SC_purchase_price&quot;
+when 0 then 0
+else &quot;pc_other8&quot; * &quot;credit_applied&quot; / &quot;SC_purchase_price&quot;
+end</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_pc_tax" datatype="DECIMAL" length="17" scale="6" expressionLanguage="SQL">
+        <formula>case &quot;SC_purchase_price&quot;
+when 0 then 0
+else &quot;pc_tax&quot; * &quot;credit_applied&quot; / &quot;SC_purchase_price&quot;
+end</formula>
+      </calculatedViewAttribute></calculatedViewAttributes>
+    <input node="P_Event">
+      <mapping xsi:type="Calculation:AttributeMapping" target="order_num" source="order_num"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_name" source="event_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="posted_date" source="posted_date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="cc_type" source="cc_type"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="credit_applied" source="credit_applied"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="acct_id" source="acct_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="sell_location" source="sell_location"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_ticket" source="pc_ticket"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_licfee" source="pc_licfee"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other1" source="pc_other1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other2" source="pc_other2"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other3" source="pc_other3"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other4" source="pc_other4"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other5" source="pc_other5"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other6" source="pc_other6"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other7" source="pc_other7"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other8" source="pc_other8"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_tax" source="pc_tax"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="purchase_price" source="purchase_price"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_id" source="event_id"/>
+    </input>
+    <input node="A_EventTotal">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SC_purchase_price" source="purchase_price"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="order_num" source="order_num"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="posted_date" source="posted_date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="cc_type" source="cc_type"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_id" source="event_id"/>
+    </input>
+    <joinAttribute name="order_num"/>
+    <joinAttribute name="posted_date"/>
+    <joinAttribute name="cc_type"/>
+    <joinAttribute name="event_id"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_NoMatch" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="order_num"/>
+      <viewAttribute id="event_name"/>
+      <viewAttribute id="posted_date"/>
+      <viewAttribute id="cc_type"/>
+      <viewAttribute id="credit_applied"/>
+      <viewAttribute id="acct_id"/>
+      <viewAttribute id="event_id"/>
+      <viewAttribute id="sell_location"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="retail_service_charge" datatype="DECIMAL" length="17" scale="6" expressionLanguage="SQL">
+        <formula>&quot;credit_applied&quot;</formula>
+      </calculatedViewAttribute></calculatedViewAttributes>    
+    <input emptyUnionBehavior="undefined" node="J_Journal2"/>
+    <filter>&quot;sell_location&quot; is null and &quot;credit_applied&quot; !=0</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="J_Exception" cardinality="CN_1" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="order_num" aggregationType="sum"/>
+      <viewAttribute id="event_name"/>
+      <viewAttribute id="posted_date"/>
+      <viewAttribute id="cc_type"/>
+      <viewAttribute id="credit_applied" aggregationType="sum"/>
+      <viewAttribute id="acct_id" aggregationType="sum"/>
+      <viewAttribute id="event_id" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="retail_service_charge" datatype="DECIMAL" length="14" scale="2" expressionLanguage="SQL">
+        <formula>&quot;credit_applied&quot;</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="A_Journal1">
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="order_num" source="order_num"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_name" source="event_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="posted_date" source="posted_date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="cc_type" source="cc_type"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="credit_applied" source="credit_applied"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="acct_id" source="acct_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_id" source="event_id"/>
+    </input>
+  
+    <input node="A_Exception">
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="order_num" source="order_num"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="posted_date" source="posted_date"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_id" source="event_id"/>
+  
+    </input>
+    <joinAttribute name="order_num"/>
+    <joinAttribute name="posted_date"/>
+    <joinAttribute name="event_id"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_Date" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="order_num"/>
+      <viewAttribute id="event_name"/>
+      <viewAttribute id="posted_date"/>
+      <viewAttribute id="cc_type"/>
+      <viewAttribute id="credit_applied"/>
+      <viewAttribute id="acct_id"/>
+      <viewAttribute id="sell_location"/>
+      <viewAttribute id="pc_ticket"/>
+      <viewAttribute id="pc_licfee"/>
+      <viewAttribute id="pc_other1"/>
+      <viewAttribute id="pc_other2"/>
+      <viewAttribute id="pc_other3"/>
+      <viewAttribute id="pc_other4"/>
+      <viewAttribute id="pc_other5"/>
+      <viewAttribute id="pc_other6"/>
+      <viewAttribute id="pc_other7"/>
+      <viewAttribute id="pc_other8"/>
+      <viewAttribute id="pc_tax"/>
+      <viewAttribute id="purchase_price"/>
+      <viewAttribute id="event_id"/>
+      <viewAttribute id="sap_add_date"/></viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="J_Journal1"/>
+    <filter>&quot;sell_location&quot; is not null</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:AggregationView" id="A_DateTotal">
+    <viewAttributes>
+      <viewAttribute id="purchase_price" aggregationType="sum"/>
+    
+      <viewAttribute id="order_num"/>
+      <viewAttribute id="posted_date"/>
+      <viewAttribute id="cc_type"/>
+      <viewAttribute id="event_id"/></viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="P_Date"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_Event" filterExpressionLanguage="SQL" ignoreMultipleOutputsForFilter="false">
+    <viewAttributes>
+      <viewAttribute id="order_num"/>
+      <viewAttribute id="event_name"/>
+      <viewAttribute id="posted_date"/>
+      <viewAttribute id="cc_type"/>
+      <viewAttribute id="credit_applied"/>
+      <viewAttribute id="acct_id"/>
+      <viewAttribute id="sell_location"/>
+      <viewAttribute id="pc_ticket"/>
+      <viewAttribute id="pc_licfee"/>
+      <viewAttribute id="pc_other1"/>
+      <viewAttribute id="pc_other2"/>
+      <viewAttribute id="pc_other3"/>
+      <viewAttribute id="pc_other4"/>
+      <viewAttribute id="pc_other5"/>
+      <viewAttribute id="pc_other6"/>
+      <viewAttribute id="pc_other7"/>
+      <viewAttribute id="pc_other8"/>
+      <viewAttribute id="pc_tax"/>
+      <viewAttribute id="purchase_price"/>
+      <viewAttribute id="event_id"/>
+      <viewAttribute id="sap_add_date"/></viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="J_Journal2"/>
+    <filter>&quot;sell_location&quot; is not null and 
+&quot;sap_add_date&quot; &lt; &quot;posted_date&quot;</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:AggregationView" id="A_EventTotal">
+    <viewAttributes>
+      <viewAttribute id="purchase_price" aggregationType="sum"/>
+    
+      <viewAttribute id="order_num"/>
+      <viewAttribute id="posted_date"/>
+    
+      <viewAttribute id="cc_type"/>
+      <viewAttribute id="event_id"/></viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="P_Event"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="J_Journal2" cardinality="CN_N" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="order_num"/>
+      <viewAttribute id="event_name"/>
+      <viewAttribute id="posted_date"/>
+      <viewAttribute id="cc_type"/>
+      <viewAttribute id="credit_applied"/>
+      <viewAttribute id="acct_id"/>
+      <viewAttribute id="event_id" aggregationType="sum"/>
+      <viewAttribute id="sell_location"/>
+      <viewAttribute id="pc_ticket"/>
+      <viewAttribute id="pc_licfee"/>
+      <viewAttribute id="pc_other1"/>
+      <viewAttribute id="pc_other2"/>
+      <viewAttribute id="pc_other3"/>
+      <viewAttribute id="pc_other4"/>
+      <viewAttribute id="pc_other5"/>
+      <viewAttribute id="pc_other6"/>
+      <viewAttribute id="pc_other7"/>
+      <viewAttribute id="pc_other8"/>
+      <viewAttribute id="pc_tax"/>
+      <viewAttribute id="purchase_price"/>
+      <viewAttribute id="sap_add_date"/></viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="A_Journal2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_name" source="event_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="order_num" source="order_num"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="posted_date" source="posted_date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="cc_type" source="cc_type"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="credit_applied" source="credit_applied"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="acct_id" source="acct_id"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_id" source="event_id"/>
+    </input>
+    <input node="A_Ticket_E">
+      <mapping xsi:type="Calculation:AttributeMapping" target="sap_add_date" source="sap_add_date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="sell_location" source="sell_location"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_ticket" source="pc_ticket"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_licfee" source="pc_licfee"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other1" source="pc_other1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other2" source="pc_other2"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other3" source="pc_other3"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other4" source="pc_other4"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other5" source="pc_other5"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other6" source="pc_other6"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other7" source="pc_other7"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other8" source="pc_other8"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_tax" source="pc_tax"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="purchase_price" source="purchase_price"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="order_num" source="order_num"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_id" source="event_id"/>
+    </input>
+    <joinAttribute name="order_num"/>
+    <joinAttribute name="event_id"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:AggregationView" id="A_Journal2" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="event_name" keepFlag="true"/>
+      <viewAttribute id="order_num"/>
+      <viewAttribute id="posted_date"/>
+      <viewAttribute id="cc_type"/>
+      <viewAttribute id="credit_applied" aggregationType="sum"/>
+      <viewAttribute id="acct_id"/>
+      <viewAttribute id="event_id"/>
+      <viewAttribute id="sell_location"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="J_Journal1"/>
+    <filter>&quot;sell_location&quot; is null</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:AggregationView" id="A_Ticket_E" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="sap_add_date"/>
+      <viewAttribute id="sell_location"/>
+      <viewAttribute id="pc_ticket" aggregationType="sum"/>
+      <viewAttribute id="pc_licfee" aggregationType="sum"/>
+      <viewAttribute id="pc_other1" aggregationType="sum"/>
+      <viewAttribute id="pc_other2" aggregationType="sum"/>
+      <viewAttribute id="pc_other3" aggregationType="sum"/>
+      <viewAttribute id="pc_other4" aggregationType="sum"/>
+      <viewAttribute id="pc_other5" aggregationType="sum"/>
+      <viewAttribute id="pc_other6" aggregationType="sum"/>
+      <viewAttribute id="pc_other7" aggregationType="sum"/>
+      <viewAttribute id="pc_other8" aggregationType="sum"/>
+      <viewAttribute id="pc_tax" aggregationType="sum"/>
+      <viewAttribute id="purchase_price" aggregationType="sum"/>
+      <viewAttribute id="order_num"/>
+    
+      <viewAttribute id="event_id"/>
+    
+      <viewAttribute id="event_name"/>
+      <viewAttribute id="acct_id"/></viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input emptyUnionBehavior="undefined" node="A_Ticket_E$$$$CvArchticsTickets$$"/>
+    <filter>&quot;purchase_price&quot; != 0
+and &quot;order_num&quot; &gt; 0</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:AggregationView" id="A_Exception" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="order_num"/>
+      <viewAttribute id="posted_date"/>
+      <viewAttribute id="event_id"/>
+      <viewAttribute id="purchase_price" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="A_EventTotal">
+    </input>
+    <filter>&quot;purchase_price&quot; = 0</filter>
+  </calculationView>
+</calculationViews>
+<logicalModel id="U_Final">
+  <attributes>
+    <attribute id="order_num" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="order_num"/>
+      <keyMapping columnObjectName="U_Final" columnName="order_num"/>
+    </attribute>
+    <attribute id="event_name" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="event_name"/>
+      <keyMapping columnObjectName="U_Final" columnName="event_name"/>
+    </attribute>
+    <attribute id="event_id" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="event_id"/>
+      <keyMapping columnObjectName="U_Final" columnName="event_id"/>
+    </attribute>
+    <attribute id="posted_date" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="posted_date"/>
+      <keyMapping columnObjectName="U_Final" columnName="posted_date"/>
+    </attribute>
+    <attribute id="cc_type" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="cc_type"/>
+      <keyMapping columnObjectName="U_Final" columnName="cc_type"/>
+    </attribute>
+    <attribute id="acct_id" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="acct_id"/>
+      <keyMapping columnObjectName="U_Final" columnName="acct_id"/>
+    </attribute>
+    <attribute id="sell_location" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="sell_location"/>
+      <keyMapping columnObjectName="U_Final" columnName="sell_location"/>
+    </attribute>
+    <attribute id="Source" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Source"/>
+      <keyMapping columnObjectName="U_Final" columnName="Source"/>
+    </attribute></attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="credit_applied" order="6" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="credit_applied"/>
+      <measureMapping columnObjectName="U_Final" columnName="credit_applied"/>
+    </measure>
+    <measure id="pc_ticket" order="10" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_ticket"/>
+      <measureMapping columnObjectName="U_Final" columnName="CC_pc_ticket"/>
+    </measure>
+    <measure id="pc_licfee" order="11" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_licfee"/>
+      <measureMapping columnObjectName="U_Final" columnName="CC_pc_licfee"/>
+    </measure>
+    <measure id="pc_other1" order="12" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other1"/>
+      <measureMapping columnObjectName="U_Final" columnName="CC_pc_other1"/>
+    </measure>
+    <measure id="pc_other2" order="13" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other2"/>
+      <measureMapping columnObjectName="U_Final" columnName="CC_pc_other2"/>
+    </measure>
+    <measure id="pc_other3" order="14" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other3"/>
+      <measureMapping columnObjectName="U_Final" columnName="CC_pc_other3"/>
+    </measure>
+    <measure id="pc_other4" order="15" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other4"/>
+      <measureMapping columnObjectName="U_Final" columnName="CC_pc_other4"/>
+    </measure>
+    <measure id="pc_other5" order="16" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other5"/>
+      <measureMapping columnObjectName="U_Final" columnName="CC_pc_other5"/>
+    </measure>
+    <measure id="pc_other6" order="17" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other6"/>
+      <measureMapping columnObjectName="U_Final" columnName="CC_pc_other6"/>
+    </measure>
+    <measure id="pc_other7" order="18" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other7"/>
+      <measureMapping columnObjectName="U_Final" columnName="CC_pc_other7"/>
+    </measure>
+    <measure id="pc_other8" order="19" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other8"/>
+      <measureMapping columnObjectName="U_Final" columnName="CC_pc_other8"/>
+    </measure>
+    <measure id="pc_tax" order="20" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_tax"/>
+      <measureMapping columnObjectName="U_Final" columnName="CC_pc_tax"/>
+    </measure>
+  
+    <measure id="retail_service_charge" order="21" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="retail_service_charge"/>
+      <measureMapping columnObjectName="U_Final" columnName="retail_service_charge"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="549" y="205"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="P_Journal" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="346" y="1494"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="J_Journal1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="463" y="1215"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="A_Journal1" modelObjectNameSpace="J_Journal1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="184"/>
+    </shape>
+    <shape modelObjectName="A_Ticket_D" modelObjectNameSpace="J_Journal1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape expanded="true" modelObjectName="A_Journal1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="346" y="1382"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="A_Ticket_D" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="637" y="1382"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="U_Final" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="395" y="229"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="J_Date" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="627" y="412"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="P_Date" modelObjectNameSpace="J_Date" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="A_DateTotal" modelObjectNameSpace="J_Date" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="148"/>
+    </shape>
+    <shape expanded="true" modelObjectName="J_Event" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="173" y="412"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="P_Event" modelObjectNameSpace="J_Event" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="A_EventTotal" modelObjectNameSpace="J_Event" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape expanded="true" modelObjectName="P_NoMatch" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="393" y="683"/>
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="J_Exception" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-312" y="388"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  
+    <shape modelObjectName="A_Journal1" modelObjectNameSpace="J_Exception" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="A_Exception" modelObjectNameSpace="J_Exception" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  
+  
+  
+  
+    <shape expanded="true" modelObjectName="P_Date" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="618" y="1043"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="A_DateTotal" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="725" y="701"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="P_Event" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="173" y="748"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="A_EventTotal" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="46" y="635"/>
+      <rectangleSize height="30" width="160"/>
+    </shape><shape><upperLeftCorner/><rectangleSize/></shape>
+  
+    <shape expanded="true" modelObjectName="J_Journal2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="163" y="911"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="A_Journal2" modelObjectNameSpace="J_Journal2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="148"/>
+    </shape>
+    <shape modelObjectName="A_Ticket_E" modelObjectNameSpace="J_Journal2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="A_Journal2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="336" y="1061"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="A_Ticket_E" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="94" y="1060"/>
+      <rectangleSize width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="A_Exception" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-153" y="524"/>
+      <rectangleSize height="30" width="160"/>
+    </shape></shapes>
+</layout>
+</Calculation:scenario>

@@ -1,0 +1,9 @@
+{
+    "UPS_CC-grantor": {
+        "object_owner": {
+            "schema_roles": [
+                { "roles": [ "consumption_g#" ] }
+            ]
+        }
+    }
+}

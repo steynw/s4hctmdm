@@ -1,0 +1,10 @@
+	{
+		"role": {
+			"name": "read_access_g#",
+			"schema_privileges": [ 
+			{
+				"privileges_with_grant_option": ["SELECT", "SELECT METADATA", "SELECT CDS METADATA"]
+			}
+			]
+		}
+	}

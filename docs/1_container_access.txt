@@ -1,0 +1,39 @@
+
+-- HDI container with models and other development artifacts
+select current_schema from dummy;
+
+set schema "S4HCTMDM#DI";
+create local temporary column table "#ROLES" like "_SYS_DI"."TT_SCHEMA_ROLES";
+insert into "#ROLES" ("ROLE_NAME", "PRINCIPAL_SCHEMA_NAME", "PRINCIPAL_NAME") values ('s4hctmdm::read_access', '', 'ABANI');
+insert into "#ROLES" ("ROLE_NAME", "PRINCIPAL_SCHEMA_NAME", "PRINCIPAL_NAME") values ('s4hctmdm::read_access', '', 'WERNER');
+
+call "GRANT_CONTAINER_SCHEMA_ROLES"("#ROLES", "_SYS_DI"."T_NO_PARAMETERS", ?, ?, ?);
+--call "REVOKE_CONTAINER_SCHEMA_ROLES"("#ROLES", "_SYS_DI"."T_NO_PARAMETERS", ?, ?, ?);
+drop table "#ROLES";
+
+
+-- PERSONAL BUILD HDI container with models and other development artifacts
+-- REMEMBER TO CHANGE to _1,2,3 in the set schema below, leave role names alone!
+select current_schema from dummy;
+
+set schema "S4HCTMDM_1#DI";
+create local temporary column table "#ROLES" like "_SYS_DI"."TT_SCHEMA_ROLES";
+insert into "#ROLES" ("ROLE_NAME", "PRINCIPAL_SCHEMA_NAME", "PRINCIPAL_NAME") values ('s4hctmdm::read_access', '', 'ABANI');
+insert into "#ROLES" ("ROLE_NAME", "PRINCIPAL_SCHEMA_NAME", "PRINCIPAL_NAME") values ('s4hctmdm::read_access', '', 'WERNER');
+
+call "GRANT_CONTAINER_SCHEMA_ROLES"("#ROLES", "_SYS_DI"."T_NO_PARAMETERS", ?, ?, ?);
+--call "REVOKE_CONTAINER_SCHEMA_ROLES"("#ROLES", "_SYS_DI"."T_NO_PARAMETERS", ?, ?, ?);
+drop table "#ROLES";
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+-- TM Schema
+set schema "S4HCTM#DI";
+create local temporary column table "#ROLES" like "_SYS_DI"."TT_SCHEMA_ROLES";
+insert into "#ROLES" ("ROLE_NAME", "PRINCIPAL_SCHEMA_NAME", "PRINCIPAL_NAME") values ('s4hctm::access_role', '', 'ABANI');
+insert into "#ROLES" ("ROLE_NAME", "PRINCIPAL_SCHEMA_NAME", "PRINCIPAL_NAME") values ('s4hctm::access_role', '', 'WERNER');
+
+call "GRANT_CONTAINER_SCHEMA_ROLES"("#ROLES", "_SYS_DI"."T_NO_PARAMETERS", ?, ?, ?);
+--call "REVOKE_CONTAINER_SCHEMA_ROLES"("#ROLES", "_SYS_DI"."T_NO_PARAMETERS", ?, ?, ?);
+drop table "#ROLES";

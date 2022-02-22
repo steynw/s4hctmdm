@@ -1,0 +1,20 @@
+[
+    "src/virtualtable/I_JournalEntryItemBasic.hdbvirtualtable",
+    "src/virtualtable/YY1_JOURNAL_ENTRY_ITEM.hdbvirtualtable",
+	"src/virtualtable/YY1_ActualPlanJournalEntryH.hdbvirtualtable",
+	"src/virtualtable/YY1_CompanyCode.hdbvirtualtable",
+    "src/procedure/CopyGLHierarchy.hdbprocedure",
+    "src/models/CvTest.hdbcalculationview",
+    "src/models/CvHTest.hdbcalculationview",
+    "src/models/CvHTest2.hdbcalculationview",
+    "src/models/GLAccountHierarchy2.hdbcalculationview",
+    "src/models/CvMyTest.hdbcalculationview",
+    "src/models/CvPBOProceeds.hdbcalculationview",
+    "src/models/CvEventsCube.hdbcalculationview",
+    "src/models/CvActualPlanJournalEntryNoParam.hdbcalculationview",
+    "src/models/CvActualPlanJournalHistoricalEquivalent.hdbcalculationview",
+    "src/virtualtable/YY1_ActualPlanJournalEntryCube.hdbvirtualtable",
+    "src/models/CvManagementFinancials.hdbcalculationview",
+    "src/role/GRANT_RSS4HC_ODATA_ROLE_G.hdbrole",
+    "src/role/GRANT_RSS4HC_ODATA_ROLE.hdbrole"
+]

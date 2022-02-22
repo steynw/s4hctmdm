@@ -1,0 +1,30 @@
+PROCEDURE "GenerateTimeData" 
+( 
+    in I_FROM_YEAR int,
+    in I_TO_YEAR int,
+    out O_RESULT nvarchar(50)    
+) 
+    LANGUAGE SQLSCRIPT
+    SQL SECURITY DEFINER 
+    AS
+BEGIN
+
+	-- Initialize Variables   
+	declare S_SCHEMA nvarchar(50);
+	declare S_QUERY string;
+	
+	-- Reset Flag
+	O_RESULT := 'Error !!!. Something went wrong';
+
+	-- Delete data for the Year range
+	delete from M_TIME_DIMENSION where YEAR between :I_FROM_YEAR and :I_TO_YEAR;
+
+	-- Execute the SQL
+	select CURRENT_SCHEMA into S_SCHEMA from DUMMY;
+	S_QUERY = 'MDX UPDATE TIME DIMENSION DAY ' || :I_FROM_YEAR || ' ' || :I_TO_YEAR ||  ' SUNDAY TARGET_TABLE "M_TIME_DIMENSION" TARGET_SCHEMA "'||:S_SCHEMA||'"';
+	
+	execute immediate(:S_QUERY);
+	-- Success
+	O_RESULT := 'Success. Data Generated';
+	
+ END;

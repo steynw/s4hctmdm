@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CvCreditGLAccount" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="CvCreditGLAccount"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="tm.events_prd">
+    <resourceUri>tm.events_prd</resourceUri>
+  </DataSource>
+  <DataSource id="CvEnterpriseProject">
+    <resourceUri>CvEnterpriseProject</resourceUri>
+  </DataSource>
+  <DataSource id="YY1_GLAccountCredit">
+    <resourceUri>YY1_GLAccountCredit</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="event_date"/>
+      <viewAttribute id="event_name"/>
+      <viewAttribute id="GLMapCode"/>
+      <viewAttribute id="WBSElement"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="tm.events_prd">
+      <mapping xsi:type="Calculation:AttributeMapping" target="GLMapCode" source="line9"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WBSElement" source="line10"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="event_date"/>
+      <viewAttribute id="event_name"/>
+      <viewAttribute id="GLMapCode"/>
+      <viewAttribute id="WBSElement"/>
+      <viewAttribute id="CompanyCode"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_date" source="event_date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_name" source="event_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GLMapCode" source="GLMapCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WBSElement" source="WBSElement"/>
+    </input>
+    <input node="CvEnterpriseProject">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WBSElement" source="Project"/>
+    </input>
+    <joinAttribute name="WBSElement"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2" cardinality="CN_N" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="event_date"/>
+      <viewAttribute id="event_name"/>
+      <viewAttribute id="GLMapCode"/>
+      <viewAttribute id="WBSElement"/>
+      <viewAttribute id="CompanyCode"/>
+      <viewAttribute id="Ticket"/>
+      <viewAttribute id="ServiceCharge"/>
+      <viewAttribute id="FacilityFee"/>
+      <viewAttribute id="MerchFee"/>
+      <viewAttribute id="OtherFee"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_date" source="event_date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_name" source="event_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GLMapCode" source="GLMapCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WBSElement" source="WBSElement"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+    </input>
+    <input node="P_GL_Credit">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Ticket" source="Ticket"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ServiceCharge" source="ServiceCharge"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FacilityFee" source="FacilityFee"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MerchFee" source="MerchFee"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="OtherFee" source="OtherFee"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GLMapCode" source="EventCode"/>
+    </input>
+    <joinAttribute name="GLMapCode"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_GL_Credit" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="Ticket"/>
+      <viewAttribute id="ServiceCharge"/>
+      <viewAttribute id="FacilityFee"/>
+      <viewAttribute id="MerchFee"/>
+      <viewAttribute id="OtherFee"/>
+    
+      <viewAttribute id="EventCode"/></viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="YY1_GLAccountCredit"/>
+    <filter>&quot;EventCode&quot; != 'EXCEPTION'</filter>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_2">
+  <attributes>
+    <attribute id="event_date" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="event_date"/>
+      <keyMapping columnObjectName="Join_2" columnName="event_date"/>
+    </attribute>
+    <attribute id="event_name" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="event_name"/>
+      <keyMapping columnObjectName="Join_2" columnName="event_name"/>
+    </attribute>
+    <attribute id="GLMapCode" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="line9"/>
+      <keyMapping columnObjectName="Join_2" columnName="GLMapCode"/>
+    </attribute>
+    <attribute id="WBSElement" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="line10"/>
+      <keyMapping columnObjectName="Join_2" columnName="WBSElement"/>
+    </attribute>
+    <attribute id="CompanyCode" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CompanyCode"/>
+      <keyMapping columnObjectName="Join_2" columnName="CompanyCode"/>
+    </attribute>
+    <attribute id="TicketGL" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TicketGL"/>
+      <keyMapping columnObjectName="Join_2" columnName="Ticket"/>
+    </attribute>
+    <attribute id="ServiceChargeGL" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ServiceChargeGL"/>
+      <keyMapping columnObjectName="Join_2" columnName="ServiceCharge"/>
+    </attribute>
+    <attribute id="FacilityFeeGL" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FacilityFeeGL"/>
+      <keyMapping columnObjectName="Join_2" columnName="FacilityFee"/>
+    </attribute>
+    <attribute id="MerchFeeGL" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MerchFeeGL"/>
+      <keyMapping columnObjectName="Join_2" columnName="MerchFee"/>
+    </attribute>
+    <attribute id="OtherFeeGL" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="OtherFeeGL"/>
+      <keyMapping columnObjectName="Join_2" columnName="OtherFee"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="213.23951013324876" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="91.99999999999997" y="516.9999988079071"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="91.99999999999997" y="376.9999988079071"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="146"/>
+    </shape>
+    <shape modelObjectName="CvEnterpriseProject" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="179"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="213.23951013324876" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_1" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="159"/>
+    </shape>
+    <shape modelObjectName="P_GL_Credit" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape expanded="true" modelObjectName="P_GL_Credit" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="301.99999999999994" y="376.9999988079071"/>
+      <rectangleSize height="30" width="160"/>
+    </shape></shapes>
+</layout>
+</Calculation:scenario>

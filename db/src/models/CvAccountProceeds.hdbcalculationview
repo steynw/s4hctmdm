@@ -1,0 +1,660 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CvAccountProceeds" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="CvAccountProceeds"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="CvTMProceeds">
+    <resourceUri>CvTMProceeds</resourceUri>
+  </DataSource>
+  <DataSource id="YY1_GLAccountCredit">
+    <resourceUri>YY1_GLAccountCredit</resourceUri>
+  </DataSource>
+  <DataSource id="YY1_GLAccountDebit">
+    <resourceUri>YY1_GLAccountDebit</resourceUri>
+  </DataSource>
+  <DataSource id="P_DebitGL_E$$$$YY1_GLAccountDebit$$">
+    <resourceUri>YY1_GLAccountDebit</resourceUri>
+  </DataSource>
+  <DataSource id="P_CreditGL_E$$$$YY1_GLAccountCredit$$">
+    <resourceUri>YY1_GLAccountCredit</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_Proceeds">
+    <viewAttributes>
+      <viewAttribute id="retail_mop"/>
+      <viewAttribute id="event_name"/>
+      <viewAttribute id="sell_location"/>
+      <viewAttribute id="acct_id"/>
+    
+      <viewAttribute id="sap_add_date"/>
+      <viewAttribute id="retail_service_charge"/>
+    
+      <viewAttribute id="retail_face_value"/>
+      <viewAttribute id="retail_facility_fee"/>
+      <viewAttribute id="merchandise_fee"/>
+      <viewAttribute id="all_other_fees"/>
+      <viewAttribute id="System"/>
+      <viewAttribute id="GLMapCode"/>
+      <viewAttribute id="WBSElement"/>
+      <viewAttribute id="CompanyCode"/>
+    
+      <viewAttribute id="order_num"/>
+      <viewAttribute id="event_date"/>
+    
+      <viewAttribute id="ChargeType"/>
+      <viewAttribute id="RevenueShare"/>
+      <viewAttribute id="TMCharge"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input emptyUnionBehavior="undefined" node="CvTMProceeds"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_CreditGL" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="Ticket"/>
+      <viewAttribute id="ServiceCharge"/>
+      <viewAttribute id="FacilityFee"/>
+      <viewAttribute id="MerchFee"/>
+      <viewAttribute id="OtherFee"/>
+    
+      <viewAttribute id="EventCode"/>
+      <viewAttribute id="TMCharges"/>
+      <viewAttribute id="Revenue"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="YY1_GLAccountCredit"/>
+    <filter>&quot;EventCode&quot; != 'EXCEPTION'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_DebitGL" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="DebitAccount"/>
+    
+      <viewAttribute id="MOP"/></viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="YY1_GLAccountDebit"/>
+    <filter>&quot;MOP&quot; != 'EXCEPTION'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="J_DebitGL_E">
+    <viewAttributes>
+      <viewAttribute id="retail_mop"/>
+      <viewAttribute id="event_name"/>
+      <viewAttribute id="sell_location"/>
+      <viewAttribute id="retail_service_charge" aggregationType="sum"/>
+      <viewAttribute id="retail_face_value" aggregationType="sum"/>
+      <viewAttribute id="System"/>
+      <viewAttribute id="retail_facility_fee" aggregationType="sum"/>
+      <viewAttribute id="sap_add_date"/>
+      <viewAttribute id="acct_id"/>
+      <viewAttribute id="DebitAccount_E"/>
+      <viewAttribute id="Ticket"/>
+      <viewAttribute id="ServiceCharge"/>
+      <viewAttribute id="FacilityFee"/>
+      <viewAttribute id="MerchFee"/>
+      <viewAttribute id="OtherFee"/>
+      <viewAttribute id="TMCharges"/>
+      <viewAttribute id="Revenue"/>
+      <viewAttribute id="DebitAccount"/>
+      <viewAttribute id="GLMapCode"/>
+      <viewAttribute id="WBSElement"/>
+      <viewAttribute id="CompanyCode"/>
+    
+      <viewAttribute id="all_other_fees" aggregationType="sum"/>
+      <viewAttribute id="merchandise_fee" aggregationType="sum"/>
+    
+      <viewAttribute id="order_num"/>
+      <viewAttribute id="event_date"/>
+    
+      <viewAttribute id="ChargeType"/>
+      <viewAttribute id="RevenueShare" aggregationType="sum"/>
+      <viewAttribute id="TMCharge" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="DebitGL" datatype="NVARCHAR" length="10" expressionLanguage="SQL">
+        <formula>IFNULL(&quot;DebitAccount&quot;, &quot;DebitAccount_E&quot;)</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="J_DebitGL">
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_mop" source="retail_mop"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_name" source="event_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="sell_location" source="sell_location"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_service_charge" source="retail_service_charge"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_face_value" source="retail_face_value"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="System" source="System"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_facility_fee" source="retail_facility_fee"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="sap_add_date" source="sap_add_date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="acct_id" source="acct_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Ticket" source="Ticket"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ServiceCharge" source="ServiceCharge"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FacilityFee" source="FacilityFee"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MerchFee" source="MerchFee"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="OtherFee" source="OtherFee"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DebitAccount" source="DebitAccount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GLMapCode" source="GLMapCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WBSElement" source="WBSElement"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="all_other_fees" source="all_other_fees"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="merchandise_fee" source="merchandise_fee"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="order_num" source="order_num"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_date" source="event_date"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="TMCharges" source="TMCharges"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Revenue" source="Revenue"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="ChargeType" source="ChargeType"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="RevenueShare" source="RevenueShare"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TMCharge" source="TMCharge"/>
+    </input>
+    <input node="P_DebitGL_E">
+      <mapping xsi:type="Calculation:AttributeMapping" target="DebitAccount_E" source="DebitAccount_E"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="J_DebitGL" cardinality="CN_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="retail_mop"/>
+      <viewAttribute id="event_name"/>
+      <viewAttribute id="sell_location"/>
+      <viewAttribute id="retail_service_charge" aggregationType="sum"/>
+      <viewAttribute id="retail_face_value" aggregationType="sum"/>
+      <viewAttribute id="System"/>
+      <viewAttribute id="retail_facility_fee" aggregationType="sum"/>
+      <viewAttribute id="sap_add_date"/>
+      <viewAttribute id="acct_id"/>
+    
+      <viewAttribute id="Ticket"/>
+      <viewAttribute id="ServiceCharge"/>
+      <viewAttribute id="FacilityFee"/>
+      <viewAttribute id="MerchFee"/>
+      <viewAttribute id="OtherFee"/>
+      <viewAttribute id="DebitAccount"/>
+      <viewAttribute id="GLMapCode"/>
+      <viewAttribute id="WBSElement"/>
+      <viewAttribute id="CompanyCode"/>
+    
+      <viewAttribute id="all_other_fees" aggregationType="sum"/>
+      <viewAttribute id="merchandise_fee" aggregationType="sum"/>
+    
+      <viewAttribute id="order_num"/>
+      <viewAttribute id="event_date"/>
+    
+      <viewAttribute id="TMCharges"/>
+      <viewAttribute id="Revenue"/>
+      <viewAttribute id="ChargeType"/>
+      <viewAttribute id="RevenueShare" aggregationType="sum"/>
+      <viewAttribute id="TMCharge" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="J_CreditGL">
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_mop" source="retail_mop"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_name" source="event_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="sell_location" source="sell_location"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_service_charge" source="retail_service_charge"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_face_value" source="retail_face_value"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="System" source="System"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_facility_fee" source="retail_facility_fee"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="sap_add_date" source="sap_add_date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="acct_id" source="acct_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Ticket" source="Ticket"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ServiceCharge" source="ServiceCharge"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FacilityFee" source="FacilityFee"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MerchFee" source="MerchFee"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="OtherFee" source="OtherFee"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GLMapCode" source="GLMapCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WBSElement" source="WBSElement"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="all_other_fees" source="all_other_fees"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="merchandise_fee" source="merchandise_fee"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="order_num" source="order_num"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_date" source="event_date"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="TMCharges" source="TMCharges"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Revenue" source="Revenue"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="ChargeType" source="ChargeType"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="RevenueShare" source="RevenueShare"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TMCharge" source="TMCharge"/>
+    </input>
+    <input node="P_DebitGL">
+      <mapping xsi:type="Calculation:AttributeMapping" target="DebitAccount" source="DebitAccount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_mop" source="MOP"/>
+    </input>
+    <joinAttribute name="retail_mop"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_DebitGL_E" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="DebitAccount_E"/>
+    
+      <viewAttribute id="MOP"/></viewAttributes>
+    <calculatedViewAttributes/>
+    <input emptyUnionBehavior="undefined" node="P_DebitGL_E$$$$YY1_GLAccountDebit$$">
+      <mapping xsi:type="Calculation:AttributeMapping" target="DebitAccount_E" source="DebitAccount"/>
+    </input>
+    <filter>&quot;MOP&quot; = 'EXCEPTION'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="J_CreditGL" cardinality="CN_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="retail_mop"/>
+      <viewAttribute id="event_name"/>
+      <viewAttribute id="sell_location"/>
+      <viewAttribute id="retail_service_charge" aggregationType="sum"/>
+      <viewAttribute id="retail_face_value" aggregationType="sum"/>
+      <viewAttribute id="System"/>
+      <viewAttribute id="retail_facility_fee" aggregationType="sum"/>
+      <viewAttribute id="sap_add_date"/>
+      <viewAttribute id="acct_id"/>
+      <viewAttribute id="Ticket"/>
+      <viewAttribute id="ServiceCharge"/>
+      <viewAttribute id="FacilityFee"/>
+      <viewAttribute id="MerchFee"/>
+      <viewAttribute id="OtherFee"/>
+      <viewAttribute id="GLMapCode"/>
+      <viewAttribute id="WBSElement"/>
+      <viewAttribute id="CompanyCode"/>
+    
+      <viewAttribute id="all_other_fees" aggregationType="sum"/>
+      <viewAttribute id="merchandise_fee" aggregationType="sum"/>
+      <viewAttribute id="order_num"/>
+      <viewAttribute id="event_date"/>
+    
+      <viewAttribute id="TMCharges"/>
+      <viewAttribute id="Revenue"/>
+      <viewAttribute id="ChargeType"/>
+      <viewAttribute id="RevenueShare" aggregationType="sum"/>
+      <viewAttribute id="TMCharge" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="P_Proceeds">
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_mop" source="retail_mop"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_name" source="event_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="sell_location" source="sell_location"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_service_charge" source="retail_service_charge"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_face_value" source="retail_face_value"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="System" source="System"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_facility_fee" source="retail_facility_fee"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="sap_add_date" source="sap_add_date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="acct_id" source="acct_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GLMapCode" source="GLMapCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WBSElement" source="WBSElement"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="all_other_fees" source="all_other_fees"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="merchandise_fee" source="merchandise_fee"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="order_num" source="order_num"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_date" source="event_date"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="ChargeType" source="ChargeType"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="RevenueShare" source="RevenueShare"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TMCharge" source="TMCharge"/>
+    </input>
+    <input node="P_CreditGL">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Ticket" source="Ticket"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ServiceCharge" source="ServiceCharge"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FacilityFee" source="FacilityFee"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MerchFee" source="MerchFee"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="OtherFee" source="OtherFee"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TMCharges" source="TMCharges"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Revenue" source="Revenue"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GLMapCode" source="EventCode"/>
+    </input>
+    <joinAttribute name="GLMapCode"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_CreditGL_E" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="EventCode"/>
+      <viewAttribute id="Ticket_E"/>
+      <viewAttribute id="ServiceCharge_E"/>
+      <viewAttribute id="FacilityFee_E"/>
+      <viewAttribute id="MerchFee_E"/>
+      <viewAttribute id="OtherFee_E"/>
+    
+      <viewAttribute id="TMCharges_E"/>
+      <viewAttribute id="Revenue_E"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="P_CreditGL_E$$$$YY1_GLAccountCredit$$">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Ticket_E" source="Ticket"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ServiceCharge_E" source="ServiceCharge"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FacilityFee_E" source="FacilityFee"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MerchFee_E" source="MerchFee"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="OtherFee_E" source="OtherFee"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="TMCharges_E" source="TMCharges"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Revenue_E" source="Revenue"/>
+    </input>
+    <filter>&quot;EventCode&quot; = 'EXCEPTION'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="J_CreditGL_E">
+    <viewAttributes>
+      <viewAttribute id="retail_mop"/>
+      <viewAttribute id="event_name"/>
+      <viewAttribute id="sell_location"/>
+      <viewAttribute id="retail_service_charge" aggregationType="sum"/>
+      <viewAttribute id="retail_face_value" aggregationType="sum"/>
+      <viewAttribute id="System"/>
+      <viewAttribute id="retail_facility_fee" aggregationType="sum"/>
+      <viewAttribute id="sap_add_date"/>
+      <viewAttribute id="acct_id"/>
+      <viewAttribute id="DebitAccount_E"/>
+      <viewAttribute id="Ticket"/>
+      <viewAttribute id="ServiceCharge"/>
+      <viewAttribute id="FacilityFee"/>
+      <viewAttribute id="MerchFee"/>
+      <viewAttribute id="OtherFee"/>
+      <viewAttribute id="Revenue"/>
+      <viewAttribute id="TMCharges"/>
+      <viewAttribute id="DebitAccount"/>
+      <viewAttribute id="DebitGL"/>
+      <viewAttribute id="Ticket_E"/>
+      <viewAttribute id="ServiceCharge_E"/>
+      <viewAttribute id="FacilityFee_E"/>
+      <viewAttribute id="MerchFee_E"/>
+      <viewAttribute id="OtherFee_E"/>
+      <viewAttribute id="TMCharges_E"/>
+      <viewAttribute id="Revenue_E"/>
+      <viewAttribute id="GLMapCode"/>
+      <viewAttribute id="WBSElement"/>
+      <viewAttribute id="CompanyCode"/>
+    
+      <viewAttribute id="all_other_fees" aggregationType="sum"/>
+      <viewAttribute id="merchandise_fee" aggregationType="sum"/>
+    
+      <viewAttribute id="order_num"/>
+      <viewAttribute id="event_date"/>
+    
+      <viewAttribute id="ChargeType"/>
+      <viewAttribute id="RevenueShare" aggregationType="sum"/>
+      <viewAttribute id="TMCharge" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_TicketGL" datatype="NVARCHAR" length="10" expressionLanguage="SQL">
+        <formula>IFNULL(&quot;Ticket&quot;, &quot;Ticket_E&quot;)</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_ServiceChargeGL" datatype="NVARCHAR" length="10" expressionLanguage="SQL">
+        <formula>ifnull(&quot;ServiceCharge&quot;,&quot;ServiceCharge_E&quot;)</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_FacilityFeeGL" datatype="NVARCHAR" length="10" expressionLanguage="SQL">
+        <formula>ifnull(&quot;FacilityFee&quot;,&quot;FacilityFee_E&quot;)</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_MerchFeeGL" datatype="NVARCHAR" length="10" expressionLanguage="SQL">
+        <formula>ifnull(&quot;MerchFee&quot;,&quot;MerchFee_E&quot;)</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_OtherFeeGL" datatype="NVARCHAR" length="10" expressionLanguage="SQL">
+        <formula>ifnull(&quot;OtherFee&quot;,&quot;OtherFee_E&quot;)</formula>
+      </calculatedViewAttribute>
+    
+      <calculatedViewAttribute id="CC_RevenueGL" datatype="NVARCHAR" length="10" expressionLanguage="SQL">
+    
+        <formula>ifnull(&quot;Revenue&quot;,&quot;Revenue_E&quot;)</formula>
+    
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_TMChargesGL" datatype="NVARCHAR" length="10" expressionLanguage="SQL">
+        <formula>IFNULL(&quot;TMCharges&quot;, &quot;TMCharges_E&quot;)</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="J_DebitGL_E">
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_mop" source="retail_mop"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_name" source="event_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="sell_location" source="sell_location"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_service_charge" source="retail_service_charge"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_face_value" source="retail_face_value"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="System" source="System"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_facility_fee" source="retail_facility_fee"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="sap_add_date" source="sap_add_date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="acct_id" source="acct_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DebitAccount_E" source="DebitAccount_E"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Ticket" source="Ticket"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ServiceCharge" source="ServiceCharge"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FacilityFee" source="FacilityFee"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MerchFee" source="MerchFee"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="OtherFee" source="OtherFee"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DebitAccount" source="DebitAccount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DebitGL" source="DebitGL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GLMapCode" source="GLMapCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WBSElement" source="WBSElement"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="all_other_fees" source="all_other_fees"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="merchandise_fee" source="merchandise_fee"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="order_num" source="order_num"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_date" source="event_date"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="TMCharges" source="TMCharges"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Revenue" source="Revenue"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="ChargeType" source="ChargeType"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="RevenueShare" source="RevenueShare"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TMCharge" source="TMCharge"/>
+    </input>
+    <input node="P_CreditGL_E">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Ticket_E" source="Ticket_E"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ServiceCharge_E" source="ServiceCharge_E"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FacilityFee_E" source="FacilityFee_E"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MerchFee_E" source="MerchFee_E"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="OtherFee_E" source="OtherFee_E"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="TMCharges_E" source="TMCharges_E"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Revenue_E" source="Revenue_E"/>
+    </input>
+  </calculationView>
+</calculationViews>
+<logicalModel id="J_CreditGL_E">
+  <attributes>
+    <attribute id="retail_mop" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="retail_mop"/>
+      <keyMapping columnObjectName="J_CreditGL_E" columnName="retail_mop"/>
+    </attribute>
+    <attribute id="event_name" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="event_name"/>
+      <keyMapping columnObjectName="J_CreditGL_E" columnName="event_name"/>
+    </attribute>
+    <attribute id="System" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="System"/>
+      <keyMapping columnObjectName="J_CreditGL_E" columnName="System"/>
+    </attribute>
+    <attribute id="sell_location" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="sell_location"/>
+      <keyMapping columnObjectName="J_CreditGL_E" columnName="sell_location"/>
+    </attribute>
+  
+    <attribute id="sap_add_date" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="sap_add_date"/>
+  
+      <keyMapping columnObjectName="J_CreditGL_E" columnName="sap_add_date"/>
+  
+    </attribute>
+  
+    <attribute id="acct_id" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="acct_id"/>
+  
+      <keyMapping columnObjectName="J_CreditGL_E" columnName="acct_id"/>
+  
+    </attribute>
+    <attribute id="WBSElement" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="WBSElement"/>
+      <keyMapping columnObjectName="J_CreditGL_E" columnName="WBSElement"/>
+    </attribute>
+    <attribute id="CompanyCode" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CompanyCode"/>
+      <keyMapping columnObjectName="J_CreditGL_E" columnName="CompanyCode"/>
+    </attribute>
+    <attribute id="TicketGL" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TicketGL"/>
+      <keyMapping columnObjectName="J_CreditGL_E" columnName="CC_TicketGL"/>
+    </attribute>
+    <attribute id="ServiceChargeGL" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ServiceChargeGL"/>
+      <keyMapping columnObjectName="J_CreditGL_E" columnName="CC_ServiceChargeGL"/>
+    </attribute>
+    <attribute id="FacilityFeeGL" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FacilityFeeGL"/>
+      <keyMapping columnObjectName="J_CreditGL_E" columnName="CC_FacilityFeeGL"/>
+    </attribute>
+    <attribute id="MerchFeeGL" order="17" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MerchFeeGL"/>
+      <keyMapping columnObjectName="J_CreditGL_E" columnName="CC_MerchFeeGL"/>
+    </attribute>
+    <attribute id="OtherFeeGL" order="18" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="OtherFeeGL"/>
+      <keyMapping columnObjectName="J_CreditGL_E" columnName="CC_OtherFeeGL"/>
+    </attribute>
+    <attribute id="RevenueGL" order="19" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CC_RevenueGL"/>
+      <keyMapping columnObjectName="J_CreditGL_E" columnName="CC_RevenueGL"/>
+    </attribute>
+    <attribute id="TMChargesGL" order="20" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CC_TMChargesGL"/>
+      <keyMapping columnObjectName="J_CreditGL_E" columnName="CC_TMChargesGL"/>
+    </attribute>
+    <attribute id="DebitGL" order="21" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DebitGL"/>
+      <keyMapping columnObjectName="J_CreditGL_E" columnName="DebitGL"/>
+    </attribute>
+  
+    <attribute id="GLMapCode" order="22" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="GLMapCode"/>
+  
+      <keyMapping columnObjectName="J_CreditGL_E" columnName="GLMapCode"/>
+  
+    </attribute>
+  
+    <attribute id="order_num" order="23" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="order_num"/>
+  
+      <keyMapping columnObjectName="J_CreditGL_E" columnName="order_num"/>
+  
+    </attribute>
+    <attribute id="event_date" order="24" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="event_date"/>
+      <keyMapping columnObjectName="J_CreditGL_E" columnName="event_date"/>
+    </attribute>
+  
+    <attribute id="ChargeType" order="25" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ChargeType"/>
+  
+      <keyMapping columnObjectName="J_CreditGL_E" columnName="ChargeType"/>
+  
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="retail_service_charge" order="7" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="retail_service_charge"/>
+      <measureMapping columnObjectName="J_CreditGL_E" columnName="retail_service_charge"/>
+    </measure>
+    <measure id="retail_face_value" order="8" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="retail_face_value"/>
+      <measureMapping columnObjectName="J_CreditGL_E" columnName="retail_face_value"/>
+    </measure>
+    <measure id="retail_facility_fee" order="9" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="retail_facility_fee"/>
+      <measureMapping columnObjectName="J_CreditGL_E" columnName="retail_facility_fee"/>
+    </measure>
+    <measure id="merchandise_fee" order="10" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="merchandise_fee"/>
+      <measureMapping columnObjectName="J_CreditGL_E" columnName="merchandise_fee"/>
+    </measure>
+    <measure id="all_other_fees" order="11" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="all_other_fees"/>
+      <measureMapping columnObjectName="J_CreditGL_E" columnName="all_other_fees"/>
+    </measure>
+  
+    <measure id="RevenueShare" order="26" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="RevenueShare"/>
+      <measureMapping columnObjectName="J_CreditGL_E" columnName="RevenueShare"/>
+    </measure>
+    <measure id="TMCharge" order="27" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="TMCharge"/>
+      <measureMapping columnObjectName="J_CreditGL_E" columnName="TMCharge"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="818" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="P_Proceeds" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="669" y="923"/>
+      <rectangleSize width="160"/>
+    </shape><shape><upperLeftCorner/><rectangleSize/></shape>
+    
+    <shape expanded="true" modelObjectName="P_CreditGL" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="922" y="893"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    
+    <shape expanded="true" modelObjectName="P_DebitGL" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="922" y="731"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="J_DebitGL_E" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="666" y="378"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="J_DebitGL" modelObjectNameSpace="J_DebitGL_E" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="190"/>
+    </shape>
+    <shape modelObjectName="P_DebitGL_E" modelObjectNameSpace="J_DebitGL_E" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="170"/>
+    </shape>
+    <shape expanded="true" modelObjectName="J_DebitGL" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="666" y="561"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="J_CreditGL" modelObjectNameSpace="J_DebitGL" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="P_DebitGL" modelObjectNameSpace="J_DebitGL" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="151"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="P_DebitGL_E" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="922" y="541"/>
+      <rectangleSize width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="J_CreditGL" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="666" y="751"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="P_Proceeds" modelObjectNameSpace="J_CreditGL" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="P_CreditGL" modelObjectNameSpace="J_CreditGL" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="173"/>
+    </shape>
+    <shape expanded="true" modelObjectName="P_CreditGL_E" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="922" y="363"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="J_CreditGL_E" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="666" y="214"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="J_DebitGL_E" modelObjectNameSpace="J_CreditGL_E" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="P_CreditGL_E" modelObjectNameSpace="J_CreditGL_E" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape></shapes>
+</layout>
+</Calculation:scenario>

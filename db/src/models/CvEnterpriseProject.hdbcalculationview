@@ -1,0 +1,779 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CvEnterpriseProject" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false" cacheEnabled="false">
+<descriptions defaultDescription="CvEnterpriseProject"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="YY1_EnterpriseProject">
+    <resourceUri>YY1_EnterpriseProject</resourceUri>
+  </DataSource>
+  <DataSource id="Without_Currency$$$$YY1_EnterpriseProject$$">
+    <resourceUri>YY1_EnterpriseProject</resourceUri>
+  </DataSource>
+  <DataSource id="A_CompanyCode">
+    <resourceUri>A_CompanyCode</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="With_Currency" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="ProjectDescription"/>
+      <viewAttribute id="Project"/>
+      <viewAttribute id="CreationDateTime"/>
+      <viewAttribute id="CreatedByUser"/>
+      <viewAttribute id="Currency"/>
+      <viewAttribute id="FunctionalArea"/>
+      <viewAttribute id="ControllingArea"/>
+      <viewAttribute id="CompanyCode"/>
+      <viewAttribute id="ProfitCenter"/>
+      <viewAttribute id="PlannedEndDateTime"/>
+      <viewAttribute id="PlannedStartDateTime"/>
+      <viewAttribute id="YY1_Info_1_PPH"/>
+      <viewAttribute id="YY1_Info_2_PPH"/>
+      <viewAttribute id="YY1_Info_3_PPH"/>
+      <viewAttribute id="YY1_Info_4_PPH"/>
+      <viewAttribute id="YY1_Info_5_PPH"/>
+      <viewAttribute id="YY1_Info_6_PPH"/>
+      <viewAttribute id="YY1_Info_7_PPH"/>
+      <viewAttribute id="YY1_Info_8_PPH"/>
+      <viewAttribute id="YY1_Info_9_PPH"/>
+      <viewAttribute id="YY1_Info_10_PPH"/>
+      <viewAttribute id="YY1_Info_11_PPH"/>
+      <viewAttribute id="YY1_Info_12_PPH"/>
+      <viewAttribute id="YY1_Info_13_PPH"/>
+      <viewAttribute id="YY1_Info_14_PPH"/>
+      <viewAttribute id="YY1_Info_15_PPH"/>
+      <viewAttribute id="YY1_Info_16_PPH"/>
+      <viewAttribute id="YY1_Info_17_PPH"/>
+      <viewAttribute id="YY1_Info_18_PPH"/>
+      <viewAttribute id="YY1_Info_19_PPH"/>
+      <viewAttribute id="YY1_Info_20_PPH"/>
+      <viewAttribute id="YY1_Info_21_PPH"/>
+      <viewAttribute id="YY1_Info_22_PPH"/>
+      <viewAttribute id="YY1_Info_23_PPH"/>
+      <viewAttribute id="YY1_Info_24_PPH"/>
+      <viewAttribute id="YY1_Info_25_PPH"/>
+      <viewAttribute id="YY1_Info_26_PPH"/>
+      <viewAttribute id="YY1_Info_27_PPH"/>
+      <viewAttribute id="YY1_Info_28_PPH"/>
+      <viewAttribute id="YY1_Info_29_PPH"/>
+      <viewAttribute id="YY1_Info_1_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_2_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_10_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_14_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_15_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_16_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_17_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_18_PPH_Desc"/>
+    
+      <viewAttribute id="YY1_Info_30_PPH"/>
+      <viewAttribute id="YY1_Info_30_PPH_Desc"/>
+    
+      <viewAttribute id="YY1_Info_31_PPH"/>
+      <viewAttribute id="YY1_Info_31_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_32_PPH"/>
+    
+      <viewAttribute id="ProcessingStatus"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="PlannedEndDate" datatype="DATE" expressionLanguage="SQL">
+        <formula>TO_DATE(&quot;PlannedEndDateTime&quot;)</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="PlannedStartDate" datatype="DATE" expressionLanguage="SQL">
+        <formula>TO_DATE(&quot;PlannedStartDateTime&quot;)</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="YY1_EnterpriseProject">
+    
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedEndDateTime" source="PlannedEndDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedStartDateTime" source="PlannedStartDate"/>
+    </input>
+    <filter>&quot;Currency&quot; &gt; ''</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:UnionView" id="Union_1">
+    <viewAttributes>
+      <viewAttribute id="ProjectDescription"/>
+      <viewAttribute id="Project"/>
+      <viewAttribute id="CreationDateTime"/>
+      <viewAttribute id="CreatedByUser"/>
+      <viewAttribute id="Currency"/>
+      <viewAttribute id="FunctionalArea"/>
+      <viewAttribute id="ControllingArea"/>
+      <viewAttribute id="CompanyCode"/>
+      <viewAttribute id="ProfitCenter"/>
+      <viewAttribute id="PlannedEndDateTime"/>
+      <viewAttribute id="PlannedStartDateTime"/>
+      <viewAttribute id="YY1_Info_1_PPH"/>
+      <viewAttribute id="YY1_Info_2_PPH"/>
+      <viewAttribute id="YY1_Info_3_PPH"/>
+      <viewAttribute id="YY1_Info_4_PPH"/>
+      <viewAttribute id="YY1_Info_5_PPH"/>
+      <viewAttribute id="YY1_Info_6_PPH"/>
+      <viewAttribute id="YY1_Info_7_PPH"/>
+      <viewAttribute id="YY1_Info_8_PPH"/>
+      <viewAttribute id="YY1_Info_9_PPH"/>
+      <viewAttribute id="YY1_Info_10_PPH"/>
+      <viewAttribute id="YY1_Info_11_PPH"/>
+      <viewAttribute id="YY1_Info_12_PPH"/>
+      <viewAttribute id="YY1_Info_13_PPH"/>
+      <viewAttribute id="YY1_Info_14_PPH"/>
+      <viewAttribute id="YY1_Info_15_PPH"/>
+      <viewAttribute id="YY1_Info_16_PPH"/>
+      <viewAttribute id="YY1_Info_17_PPH"/>
+      <viewAttribute id="YY1_Info_18_PPH"/>
+      <viewAttribute id="YY1_Info_19_PPH"/>
+      <viewAttribute id="YY1_Info_20_PPH"/>
+      <viewAttribute id="YY1_Info_21_PPH"/>
+      <viewAttribute id="YY1_Info_22_PPH"/>
+      <viewAttribute id="YY1_Info_23_PPH"/>
+      <viewAttribute id="YY1_Info_24_PPH"/>
+      <viewAttribute id="YY1_Info_25_PPH"/>
+      <viewAttribute id="YY1_Info_26_PPH"/>
+      <viewAttribute id="YY1_Info_27_PPH"/>
+      <viewAttribute id="YY1_Info_28_PPH"/>
+      <viewAttribute id="YY1_Info_29_PPH"/>
+      <viewAttribute id="YY1_Info_1_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_2_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_10_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_14_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_15_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_16_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_17_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_18_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_30_PPH"/>
+      <viewAttribute id="YY1_Info_30_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_31_PPH"/>
+      <viewAttribute id="YY1_Info_31_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_32_PPH"/>
+      <viewAttribute id="ProcessingStatus"/>
+      <viewAttribute id="PlannedEndDate"/>
+      <viewAttribute id="PlannedStartDate"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="With_Currency" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectDescription" source="ProjectDescription"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Project" source="Project"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CreationDateTime" source="CreationDateTime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CreatedByUser" source="CreatedByUser"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Currency" source="Currency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FunctionalArea" source="FunctionalArea"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ControllingArea" source="ControllingArea"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProfitCenter" source="ProfitCenter"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedEndDateTime" source="PlannedEndDateTime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedStartDateTime" source="PlannedStartDateTime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_1_PPH" source="YY1_Info_1_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_2_PPH" source="YY1_Info_2_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_3_PPH" source="YY1_Info_3_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_4_PPH" source="YY1_Info_4_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_5_PPH" source="YY1_Info_5_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_6_PPH" source="YY1_Info_6_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_7_PPH" source="YY1_Info_7_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_8_PPH" source="YY1_Info_8_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_9_PPH" source="YY1_Info_9_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_10_PPH" source="YY1_Info_10_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_11_PPH" source="YY1_Info_11_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_12_PPH" source="YY1_Info_12_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_13_PPH" source="YY1_Info_13_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_14_PPH" source="YY1_Info_14_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_15_PPH" source="YY1_Info_15_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_16_PPH" source="YY1_Info_16_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_17_PPH" source="YY1_Info_17_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_18_PPH" source="YY1_Info_18_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_19_PPH" source="YY1_Info_19_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_20_PPH" source="YY1_Info_20_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_21_PPH" source="YY1_Info_21_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_22_PPH" source="YY1_Info_22_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_23_PPH" source="YY1_Info_23_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_24_PPH" source="YY1_Info_24_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_25_PPH" source="YY1_Info_25_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_26_PPH" source="YY1_Info_26_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_27_PPH" source="YY1_Info_27_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_28_PPH" source="YY1_Info_28_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_29_PPH" source="YY1_Info_29_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_1_PPH_Desc" source="YY1_Info_1_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_2_PPH_Desc" source="YY1_Info_2_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_10_PPH_Desc" source="YY1_Info_10_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_14_PPH_Desc" source="YY1_Info_14_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_15_PPH_Desc" source="YY1_Info_15_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_16_PPH_Desc" source="YY1_Info_16_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_17_PPH_Desc" source="YY1_Info_17_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_18_PPH_Desc" source="YY1_Info_18_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_30_PPH" source="YY1_Info_30_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_30_PPH_Desc" source="YY1_Info_30_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_31_PPH" source="YY1_Info_31_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_31_PPH_Desc" source="YY1_Info_31_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_32_PPH" source="YY1_Info_32_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProcessingStatus" source="ProcessingStatus"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedEndDate" source="PlannedEndDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedStartDate" source="PlannedStartDate"/>
+    </input>
+    <input node="Get_CompCodeCurrency" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectDescription" source="ProjectDescription"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Project" source="Project"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CreationDateTime" source="CreationDateTime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CreatedByUser" source="CreatedByUser"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Currency" source="CompanyCodeCurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FunctionalArea" source="FunctionalArea"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ControllingArea" source="ControllingArea"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProfitCenter" source="ProfitCenter"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedEndDateTime" source="PlannedEndDateTime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedStartDateTime" source="PlannedStartDateTime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_1_PPH" source="YY1_Info_1_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_2_PPH" source="YY1_Info_2_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_3_PPH" source="YY1_Info_3_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_4_PPH" source="YY1_Info_4_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_5_PPH" source="YY1_Info_5_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_6_PPH" source="YY1_Info_6_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_7_PPH" source="YY1_Info_7_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_8_PPH" source="YY1_Info_8_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_9_PPH" source="YY1_Info_9_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_10_PPH" source="YY1_Info_10_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_11_PPH" source="YY1_Info_11_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_12_PPH" source="YY1_Info_12_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_13_PPH" source="YY1_Info_13_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_14_PPH" source="YY1_Info_14_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_15_PPH" source="YY1_Info_15_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_16_PPH" source="YY1_Info_16_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_17_PPH" source="YY1_Info_17_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_18_PPH" source="YY1_Info_18_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_19_PPH" source="YY1_Info_19_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_20_PPH" source="YY1_Info_20_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_21_PPH" source="YY1_Info_21_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_22_PPH" source="YY1_Info_22_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_23_PPH" source="YY1_Info_23_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_24_PPH" source="YY1_Info_24_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_25_PPH" source="YY1_Info_25_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_26_PPH" source="YY1_Info_26_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_27_PPH" source="YY1_Info_27_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_28_PPH" source="YY1_Info_28_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_29_PPH" source="YY1_Info_29_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_1_PPH_Desc" source="YY1_Info_1_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_2_PPH_Desc" source="YY1_Info_2_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_10_PPH_Desc" source="YY1_Info_10_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_14_PPH_Desc" source="YY1_Info_14_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_15_PPH_Desc" source="YY1_Info_15_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_16_PPH_Desc" source="YY1_Info_16_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_17_PPH_Desc" source="YY1_Info_17_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_18_PPH_Desc" source="YY1_Info_18_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_30_PPH" source="YY1_Info_30_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_30_PPH_Desc" source="YY1_Info_30_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_31_PPH" source="YY1_Info_31_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_31_PPH_Desc" source="YY1_Info_31_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_32_PPH" source="YY1_Info_32_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProcessingStatus" source="ProcessingStatus"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedEndDate" source="PlannedEndDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedStartDate" source="PlannedStartDate"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Get_CompCodeCurrency" cardinality="CN_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="ProjectDescription"/>
+      <viewAttribute id="Project"/>
+      <viewAttribute id="CreationDateTime"/>
+      <viewAttribute id="CreatedByUser"/>
+      <viewAttribute id="CompanyCodeCurrency"/>
+    
+      <viewAttribute id="FunctionalArea"/>
+      <viewAttribute id="ControllingArea"/>
+      <viewAttribute id="CompanyCode"/>
+      <viewAttribute id="ProfitCenter"/>
+      <viewAttribute id="PlannedEndDateTime"/>
+      <viewAttribute id="PlannedStartDateTime"/>
+      <viewAttribute id="YY1_Info_1_PPH"/>
+      <viewAttribute id="YY1_Info_2_PPH"/>
+      <viewAttribute id="YY1_Info_3_PPH"/>
+      <viewAttribute id="YY1_Info_4_PPH"/>
+      <viewAttribute id="YY1_Info_5_PPH"/>
+      <viewAttribute id="YY1_Info_6_PPH"/>
+      <viewAttribute id="YY1_Info_7_PPH"/>
+      <viewAttribute id="YY1_Info_8_PPH"/>
+      <viewAttribute id="YY1_Info_9_PPH"/>
+      <viewAttribute id="YY1_Info_10_PPH"/>
+      <viewAttribute id="YY1_Info_11_PPH"/>
+      <viewAttribute id="YY1_Info_12_PPH"/>
+      <viewAttribute id="YY1_Info_13_PPH"/>
+      <viewAttribute id="YY1_Info_14_PPH"/>
+      <viewAttribute id="YY1_Info_15_PPH"/>
+      <viewAttribute id="YY1_Info_16_PPH"/>
+      <viewAttribute id="YY1_Info_17_PPH"/>
+      <viewAttribute id="YY1_Info_18_PPH"/>
+      <viewAttribute id="YY1_Info_19_PPH"/>
+      <viewAttribute id="YY1_Info_20_PPH"/>
+      <viewAttribute id="YY1_Info_21_PPH"/>
+      <viewAttribute id="YY1_Info_22_PPH"/>
+      <viewAttribute id="YY1_Info_23_PPH"/>
+      <viewAttribute id="YY1_Info_24_PPH"/>
+      <viewAttribute id="YY1_Info_25_PPH"/>
+      <viewAttribute id="YY1_Info_26_PPH"/>
+      <viewAttribute id="YY1_Info_27_PPH"/>
+      <viewAttribute id="YY1_Info_28_PPH"/>
+      <viewAttribute id="YY1_Info_29_PPH"/>
+      <viewAttribute id="YY1_Info_1_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_2_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_10_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_14_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_15_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_16_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_17_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_18_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_30_PPH"/>
+      <viewAttribute id="YY1_Info_30_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_31_PPH"/>
+      <viewAttribute id="YY1_Info_31_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_32_PPH"/>
+      <viewAttribute id="ProcessingStatus"/>
+      <viewAttribute id="PlannedEndDate"/>
+      <viewAttribute id="PlannedStartDate"/>
+      <viewAttribute id="Currency"/></viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Without_Currency">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectDescription" source="ProjectDescription"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Project" source="Project"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CreationDateTime" source="CreationDateTime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CreatedByUser" source="CreatedByUser"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Currency" source="Currency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FunctionalArea" source="FunctionalArea"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ControllingArea" source="ControllingArea"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProfitCenter" source="ProfitCenter"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedEndDateTime" source="PlannedEndDateTime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedStartDateTime" source="PlannedStartDateTime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_1_PPH" source="YY1_Info_1_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_2_PPH" source="YY1_Info_2_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_3_PPH" source="YY1_Info_3_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_4_PPH" source="YY1_Info_4_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_5_PPH" source="YY1_Info_5_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_6_PPH" source="YY1_Info_6_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_7_PPH" source="YY1_Info_7_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_8_PPH" source="YY1_Info_8_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_9_PPH" source="YY1_Info_9_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_10_PPH" source="YY1_Info_10_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_11_PPH" source="YY1_Info_11_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_12_PPH" source="YY1_Info_12_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_13_PPH" source="YY1_Info_13_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_14_PPH" source="YY1_Info_14_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_15_PPH" source="YY1_Info_15_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_16_PPH" source="YY1_Info_16_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_17_PPH" source="YY1_Info_17_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_18_PPH" source="YY1_Info_18_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_19_PPH" source="YY1_Info_19_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_20_PPH" source="YY1_Info_20_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_21_PPH" source="YY1_Info_21_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_22_PPH" source="YY1_Info_22_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_23_PPH" source="YY1_Info_23_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_24_PPH" source="YY1_Info_24_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_25_PPH" source="YY1_Info_25_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_26_PPH" source="YY1_Info_26_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_27_PPH" source="YY1_Info_27_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_28_PPH" source="YY1_Info_28_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_29_PPH" source="YY1_Info_29_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_1_PPH_Desc" source="YY1_Info_1_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_2_PPH_Desc" source="YY1_Info_2_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_10_PPH_Desc" source="YY1_Info_10_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_14_PPH_Desc" source="YY1_Info_14_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_15_PPH_Desc" source="YY1_Info_15_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_16_PPH_Desc" source="YY1_Info_16_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_17_PPH_Desc" source="YY1_Info_17_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_18_PPH_Desc" source="YY1_Info_18_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_30_PPH" source="YY1_Info_30_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_30_PPH_Desc" source="YY1_Info_30_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_31_PPH" source="YY1_Info_31_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_31_PPH_Desc" source="YY1_Info_31_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_32_PPH" source="YY1_Info_32_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProcessingStatus" source="ProcessingStatus"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedEndDate" source="PlannedEndDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedStartDate" source="PlannedStartDate"/>
+    </input>
+    <input node="Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCodeCurrency" source="CompanyCodeCurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+    </input>
+    <joinAttribute name="CompanyCode"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Without_Currency" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="ProjectDescription"/>
+      <viewAttribute id="Project"/>
+      <viewAttribute id="CreationDateTime"/>
+      <viewAttribute id="CreatedByUser"/>
+      <viewAttribute id="Currency"/>
+      <viewAttribute id="FunctionalArea"/>
+      <viewAttribute id="ControllingArea"/>
+      <viewAttribute id="CompanyCode"/>
+      <viewAttribute id="ProfitCenter"/>
+      <viewAttribute id="PlannedEndDateTime"/>
+      <viewAttribute id="PlannedStartDateTime"/>
+      <viewAttribute id="YY1_Info_1_PPH"/>
+      <viewAttribute id="YY1_Info_2_PPH"/>
+      <viewAttribute id="YY1_Info_3_PPH"/>
+      <viewAttribute id="YY1_Info_4_PPH"/>
+      <viewAttribute id="YY1_Info_5_PPH"/>
+      <viewAttribute id="YY1_Info_6_PPH"/>
+      <viewAttribute id="YY1_Info_7_PPH"/>
+      <viewAttribute id="YY1_Info_8_PPH"/>
+      <viewAttribute id="YY1_Info_9_PPH"/>
+      <viewAttribute id="YY1_Info_10_PPH"/>
+      <viewAttribute id="YY1_Info_11_PPH"/>
+      <viewAttribute id="YY1_Info_12_PPH"/>
+      <viewAttribute id="YY1_Info_13_PPH"/>
+      <viewAttribute id="YY1_Info_14_PPH"/>
+      <viewAttribute id="YY1_Info_15_PPH"/>
+      <viewAttribute id="YY1_Info_16_PPH"/>
+      <viewAttribute id="YY1_Info_17_PPH"/>
+      <viewAttribute id="YY1_Info_18_PPH"/>
+      <viewAttribute id="YY1_Info_19_PPH"/>
+      <viewAttribute id="YY1_Info_20_PPH"/>
+      <viewAttribute id="YY1_Info_21_PPH"/>
+      <viewAttribute id="YY1_Info_22_PPH"/>
+      <viewAttribute id="YY1_Info_23_PPH"/>
+      <viewAttribute id="YY1_Info_24_PPH"/>
+      <viewAttribute id="YY1_Info_25_PPH"/>
+      <viewAttribute id="YY1_Info_26_PPH"/>
+      <viewAttribute id="YY1_Info_27_PPH"/>
+      <viewAttribute id="YY1_Info_28_PPH"/>
+      <viewAttribute id="YY1_Info_29_PPH"/>
+      <viewAttribute id="YY1_Info_1_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_2_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_10_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_14_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_15_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_16_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_17_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_18_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_30_PPH"/>
+      <viewAttribute id="YY1_Info_30_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_31_PPH"/>
+      <viewAttribute id="YY1_Info_31_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_32_PPH"/>
+      <viewAttribute id="ProcessingStatus"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="PlannedEndDate" datatype="DATE" expressionLanguage="SQL">
+        <formula>TO_DATE(&quot;PlannedEndDateTime&quot;)</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="PlannedStartDate" datatype="DATE" expressionLanguage="SQL">
+        <formula>TO_DATE(&quot;PlannedStartDateTime&quot;)</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input emptyUnionBehavior="undefined" node="Without_Currency$$$$YY1_EnterpriseProject$$">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedEndDateTime" source="PlannedEndDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedStartDateTime" source="PlannedStartDate"/>
+    </input>
+    <filter>&quot;Currency&quot; = ''</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="CompanyCodeCurrency"/>
+    
+      <viewAttribute id="CompanyCode"/></viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="A_CompanyCode">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCodeCurrency" source="Currency"/>
+    </input>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Union_1">
+  <attributes>
+    <attribute id="Project" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Project"/>
+      <keyMapping columnObjectName="Union_1" columnName="Project"/>
+    </attribute>
+    <attribute id="ProjectDescription" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProjectDescription"/>
+      <keyMapping columnObjectName="Union_1" columnName="ProjectDescription"/>
+    </attribute>
+    <attribute id="CreationDateTime" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CreationDateTime"/>
+      <keyMapping columnObjectName="Union_1" columnName="CreationDateTime"/>
+    </attribute>
+    <attribute id="CreatedByUser" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CreatedByUser"/>
+      <keyMapping columnObjectName="Union_1" columnName="CreatedByUser"/>
+    </attribute>
+    <attribute id="Currency" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Currency"/>
+      <keyMapping columnObjectName="Union_1" columnName="Currency"/>
+    </attribute>
+    <attribute id="FunctionalArea" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FunctionalArea"/>
+      <keyMapping columnObjectName="Union_1" columnName="FunctionalArea"/>
+    </attribute>
+    <attribute id="ControllingArea" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ControllingArea"/>
+      <keyMapping columnObjectName="Union_1" columnName="ControllingArea"/>
+    </attribute>
+    <attribute id="CompanyCode" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CompanyCode"/>
+      <keyMapping columnObjectName="Union_1" columnName="CompanyCode"/>
+    </attribute>
+    <attribute id="ProfitCenter" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProfitCenter"/>
+      <keyMapping columnObjectName="Union_1" columnName="ProfitCenter"/>
+    </attribute>
+    <attribute id="PlannedEndDateTime" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PlannedEndDateTime"/>
+      <keyMapping columnObjectName="Union_1" columnName="PlannedEndDateTime"/>
+    </attribute>
+    <attribute id="PlannedEndDate" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PlannedEndDate"/>
+      <keyMapping columnObjectName="Union_1" columnName="PlannedEndDate"/>
+    </attribute>
+    <attribute id="PlannedStartDateTime" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PlannedStartDateTime"/>
+      <keyMapping columnObjectName="Union_1" columnName="PlannedStartDateTime"/>
+    </attribute>
+    <attribute id="PlannedStartDate" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PlannedStartDate"/>
+      <keyMapping columnObjectName="Union_1" columnName="PlannedStartDate"/>
+    </attribute>
+    <attribute id="Type" order="14" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="TypeDesc">
+      <descriptions defaultDescription="Type"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_1_PPH"/>
+    </attribute>
+    <attribute id="SubType" order="15" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="SubTypeDesc">
+      <descriptions defaultDescription="SubType"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_2_PPH"/>
+    </attribute>
+    <attribute id="Rank" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Rank"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_3_PPH"/>
+    </attribute>
+    <attribute id="EventStartTime" order="17" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventStartTime"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_4_PPH"/>
+    </attribute>
+    <attribute id="DoorsOpen" order="18" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DoorsOpen"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_5_PPH"/>
+    </attribute>
+    <attribute id="ClubOpen" order="19" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ClubOpen"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_6_PPH"/>
+    </attribute>
+    <attribute id="LoungeOpen" order="20" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LoungeOpen"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_7_PPH"/>
+    </attribute>
+    <attribute id="SuitesOpen" order="21" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SuitesOpen"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_8_PPH"/>
+    </attribute>
+    <attribute id="CompareCode" order="22" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CompareCode"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_9_PPH"/>
+    </attribute>
+    <attribute id="PromotionalItem" order="23" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="PromotionalItemDesc">
+      <descriptions defaultDescription="PromotionalItem"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_10_PPH"/>
+    </attribute>
+    <attribute id="EventInTicketMaster" order="24" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventInTicketMaster"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_11_PPH"/>
+    </attribute>
+    <attribute id="MerchDeal" order="25" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MerchDeal"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_12_PPH"/>
+    </attribute>
+    <attribute id="EventMoved" order="26" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventMoved"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_13_PPH"/>
+    </attribute>
+    <attribute id="Budget" order="27" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="BudgetDesc">
+      <descriptions defaultDescription="Budget"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_14_PPH"/>
+    </attribute>
+    <attribute id="Actual" order="28" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="ActualDesc">
+      <descriptions defaultDescription="Actual"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_15_PPH"/>
+    </attribute>
+    <attribute id="EventManager" order="29" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="EventManagerDesc">
+      <descriptions defaultDescription="EventManager"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_16_PPH"/>
+    </attribute>
+    <attribute id="Promoter" order="30" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="PromoterDesc">
+      <descriptions defaultDescription="Promoter"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_17_PPH"/>
+    </attribute>
+    <attribute id="Agency" order="31" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="AgencyDesc">
+      <descriptions defaultDescription="Agency"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_18_PPH"/>
+    </attribute>
+    <attribute id="GrossTicketReceipts" order="32" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="GrossTicketReceipts"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_19_PPH"/>
+    </attribute>
+    <attribute id="RentDeal" order="33" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="RentDeal"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_20_PPH"/>
+    </attribute>
+    <attribute id="ParkingRate" order="34" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ParkingRate"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_21_PPH"/>
+    </attribute>
+    <attribute id="Capacity" order="35" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Capacity"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_22_PPH"/>
+    </attribute>
+    <attribute id="PaidTicketsSuites" order="36" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PaidTicketsSuites"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_23_PPH"/>
+    </attribute>
+    <attribute id="PaidTicketsArena" order="37" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PaidTicketsArena"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_24_PPH"/>
+    </attribute>
+    <attribute id="CompTicketsArena" order="38" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CompDropsArena"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_25_PPH"/>
+    </attribute>
+    <attribute id="CompTicketsSuite" order="39" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CompTicketsSuite"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_26_PPH"/>
+    </attribute>
+    <attribute id="DropTicketsSuites" order="40" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DropTicketsSuites"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_28_PPH"/>
+    </attribute>
+    <attribute id="DropTicketsArena" order="41" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DropTicketsArena"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_27_PPH"/>
+    </attribute>
+    <attribute id="GrossPotentialTicketSales" order="43" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="GrossPotentialTicketSales"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_29_PPH"/>
+    </attribute>
+  
+    <attribute id="Genre" order="44" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="GenreDesc">
+      <descriptions defaultDescription="Genre"/>
+  
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_30_PPH"/>
+  
+    </attribute>
+  
+    <attribute id="TypeDesc" order="45" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TypeDesc"/>
+  
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_1_PPH_Desc"/>
+  
+    </attribute>
+    <attribute id="SubTypeDesc" order="46" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SubTypeDesc"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_2_PPH_Desc"/>
+    </attribute>
+    <attribute id="PromotionalItemDesc" order="47" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PromotionalItemDesc"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_10_PPH_Desc"/>
+    </attribute>
+    <attribute id="BudgetDesc" order="48" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BudgetDesc"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_14_PPH_Desc"/>
+    </attribute>
+    <attribute id="ActualDesc" order="49" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ActualDesc"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_15_PPH_Desc"/>
+    </attribute>
+    <attribute id="EventManagerDesc" order="50" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventManagerDesc"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_16_PPH_Desc"/>
+    </attribute>
+    <attribute id="PromoterDesc" order="51" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PromoterDesc"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_17_PPH_Desc"/>
+    </attribute>
+    <attribute id="AgencyDesc" order="52" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="AgencyDesc"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_18_PPH_Desc"/>
+    </attribute>
+    <attribute id="GenreDesc" order="53" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="GenreDesc"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_30_PPH_Desc"/>
+    </attribute>
+  
+    <attribute id="EventDirector" order="54" descriptionColumnName="EventDirectorDesc" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventDirector"/>
+  
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_31_PPH"/>
+  
+    </attribute>
+    <attribute id="EventDirectorDesc" order="55" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventDirectorDesc"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_31_PPH_Desc"/>
+    </attribute>
+    <attribute id="EventCancelled" order="56" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventCancelled"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_32_PPH"/>
+    </attribute>
+  
+    <attribute id="ProcessingStatus" order="58" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProcessingStatus"/>
+  
+      <keyMapping columnObjectName="Union_1" columnName="ProcessingStatus"/>
+  
+    </attribute>
+  </attributes>
+  <calculatedAttributes>
+    <calculatedAttribute id="Weather" order="42" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <keyCalculation datatype="NVARCHAR" expressionLanguage="SQL" length="10">
+        <formula>'TBD'</formula>
+      </keyCalculation>
+    </calculatedAttribute>
+  
+    <calculatedAttribute id="MultiType" order="57" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MultiType"/>
+  
+      <keyCalculation datatype="NVARCHAR" expressionLanguage="SQL" length="1">
+  
+        <formula>CASE 
+	 WHEN LENGTH(&quot;Project&quot;) &gt; 11 then RIGHT(&quot;Project&quot;, 1)
+	 ELSE ''
+ END</formula>
+  
+      </keyCalculation>
+  
+    </calculatedAttribute>
+  </calculatedAttributes>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="With_Currency" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-81" y="400"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="209"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Get_CompCodeCurrency" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="231" y="400"/>
+      <rectangleSize height="30" width="211"/>
+    </shape>
+    <shape modelObjectName="Without_Currency" modelObjectNameSpace="Get_CompCodeCurrency" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Get_CompCodeCurrency" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="136"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Without_Currency" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="260" y="639"/>
+      <rectangleSize width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="449" y="549"/>
+      <rectangleSize height="30" width="160"/>
+    </shape></shapes>
+</layout>
+</Calculation:scenario>

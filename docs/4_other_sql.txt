@@ -1,0 +1,9 @@
+-- Update Line9 field
+update "S4HCTM"."tm.events_prd" set "line9" = 'NHL'
+where "event_name" like 'ESHK%';
+
+update "S4HCTM"."tm.events_prd" set "line9" = 'PARK'
+where "event_name" like 'PARK%';
+
+update "S4HCTM"."tm.events_prd" set "line9" = 'AHL'
+where "event_name" like 'SSJ%';

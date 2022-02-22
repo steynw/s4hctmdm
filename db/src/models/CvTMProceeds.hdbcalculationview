@@ -1,0 +1,810 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CvTMProceeds" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="CvTMProceeds"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="CvArchticsProceeds">
+    <resourceUri>CvArchticsProceeds</resourceUri>
+  </DataSource>
+  <DataSource id="CvHostProceeds">
+    <resourceUri>CvHostProceeds</resourceUri>
+  </DataSource>
+  <DataSource id="CvRetailProceeds">
+    <resourceUri>CvRetailProceeds</resourceUri>
+  </DataSource>
+  <DataSource id="CvRevShareProceeds">
+    <resourceUri>CvRevShareProceeds</resourceUri>
+  </DataSource>
+  <DataSource id="tm.events_prd">
+    <resourceUri>tm.events_prd</resourceUri>
+  </DataSource>
+  <DataSource id="YY1_ExceptionEvents">
+    <resourceUri>YY1_ExceptionEvents</resourceUri>
+  </DataSource>
+  <DataSource id="YY1_EnterpriseProject">
+    <resourceUri>YY1_EnterpriseProject</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_Arch">
+    <viewAttributes>
+      <viewAttribute id="order_num"/>
+      <viewAttribute id="posted_date"/>
+      <viewAttribute id="retail_mop"/>
+      <viewAttribute id="event_name"/>
+      <viewAttribute id="sell_location"/>
+      <viewAttribute id="pc_other1"/>
+      <viewAttribute id="pc_ticket"/>
+      <viewAttribute id="pc_licfee"/>
+    
+      <viewAttribute id="acct_id"/>
+    
+      <viewAttribute id="pc_other2"/>
+      <viewAttribute id="pc_other3"/>
+      <viewAttribute id="pc_other4"/>
+      <viewAttribute id="pc_other5"/>
+      <viewAttribute id="pc_other6"/>
+      <viewAttribute id="pc_other7"/>
+      <viewAttribute id="pc_other8"/>
+      <viewAttribute id="pc_tax"/>
+    
+      <viewAttribute id="retail_service_charge"/>
+    
+      <viewAttribute id="event_id"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="CvArchticsProceeds">
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_mop" source="cc_type"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:UnionView" id="U_Tickets">
+    <viewAttributes>
+      <viewAttribute id="order_num"/>
+      <viewAttribute id="retail_mop"/>
+      <viewAttribute id="tran_type"/>
+      <viewAttribute id="event_name"/>
+      <viewAttribute id="sell_location"/>
+      <viewAttribute id="retail_service_charge" aggregationType="sum"/>
+      <viewAttribute id="retail_face_value" aggregationType="sum"/>
+      <viewAttribute id="retail_facility_fee" aggregationType="sum"/>
+      <viewAttribute id="merchandise_fee" aggregationType="sum"/>
+      <viewAttribute datatype="VARCHAR" length="10" id="System"/>
+
+      <viewAttribute id="sap_add_date"/>
+    
+      <viewAttribute id="acct_id"/>
+    
+      <viewAttribute id="pc_other2" aggregationType="sum"/>
+      <viewAttribute id="pc_other3" aggregationType="sum"/>
+      <viewAttribute id="pc_other4" aggregationType="sum"/>
+      <viewAttribute id="pc_other5" aggregationType="sum"/>
+      <viewAttribute id="pc_other6" aggregationType="sum"/>
+      <viewAttribute id="pc_other7" aggregationType="sum"/>
+      <viewAttribute id="pc_other8" aggregationType="sum"/>
+      <viewAttribute id="pc_tax" aggregationType="sum"/>
+    
+      <viewAttribute id="event_id" aggregationType="sum"/>
+      <viewAttribute id="ChargeType"/>
+      <viewAttribute id="RevenueShare" aggregationType="sum"/>
+      <viewAttribute id="TMCharge" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="P_Arch" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="order_num" source="order_num"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_mop" source="retail_mop"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="tran_type" null="true" value=""/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_name" source="event_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="sell_location" source="sell_location"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_service_charge" source="retail_service_charge"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_face_value" source="pc_ticket"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="merchandise_fee" source="pc_other1"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="System" null="false" value="Archtics"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_facility_fee" source="pc_licfee"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="sap_add_date" source="posted_date"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="acct_id" source="acct_id"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other2" source="pc_other2"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other3" source="pc_other3"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other4" source="pc_other4"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other5" source="pc_other5"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other6" source="pc_other6"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other7" source="pc_other7"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other8" source="pc_other8"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_tax" source="pc_tax"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_id" source="event_id"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="ChargeType" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="RevenueShare" null="false" value="0"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="TMCharge" null="false" value="0"/>
+    </input>
+  
+    <input node="P_Host" emptyUnionBehavior="NO_ROW">
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="order_num" source="order_num"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_mop" source="retail_mop"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="tran_type" source="tran_type"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_name" source="event_name"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="sell_location" source="sell_location"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_service_charge" source="retail_service_charge"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_face_value" source="retail_face_value"/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="merchandise_fee" null="false" value="0"/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="System" null="false" value="Host"/>
+  
+    
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_facility_fee" source="retail_facility_fee"/>
+  
+    
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="sap_add_date" source="sap_add_date"/>
+  
+    
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="acct_id" source="acct_id"/>
+  
+    
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="pc_other2" null="false" value="0"/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="pc_other3" null="false" value="0"/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="pc_other4" null="false" value="0"/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="pc_other5" null="false" value="0"/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="pc_other6" null="false" value="0"/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="pc_other7" null="false" value="0"/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="pc_other8" null="false" value="0"/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="pc_tax" null="false" value="0"/>
+  
+    
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_id" source="event_id"/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="ChargeType" null="true" value=""/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="RevenueShare" null="false" value="0"/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="TMCharge" null="false" value="0"/>
+  
+    </input>
+  
+    <input node="P_Retail_DISABLED" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="order_num" null="true" value=""/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_mop" source="retail_mop"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="tran_type" null="true" value=""/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_name" source="event_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="sell_location" source="sell_location"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_service_charge" source="retail_service_charge"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_face_value" source="retail_face_value"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="merchandise_fee" null="false" value="0"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="System" null="false" value="HostRetail"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_facility_fee" source="retail_facility_fee"/>
+  
+    
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="sap_add_date" source="sap_add_date"/>
+  
+    
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="acct_id" source="acct_id"/>
+  
+    
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="pc_other2" null="false" value="0"/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="pc_other3" null="false" value="0"/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="pc_other4" null="false" value="0"/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="pc_other5" null="false" value="0"/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="pc_other6" null="false" value="0"/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="pc_other7" null="false" value="0"/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="pc_other8" null="false" value="0"/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="pc_tax" null="false" value="0"/>
+  
+    
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_id" source="event_id"/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="ChargeType" null="true" value=""/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="RevenueShare" null="false" value="0"/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="TMCharge" null="false" value="0"/>
+  
+    </input>
+  
+    <input node="P_RevShare" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="order_num" null="true" value=""/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_mop" source="retail_mop"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="tran_type" null="true" value=""/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_name" source="event_name"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="sell_location" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="retail_service_charge" null="false" value="0"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="retail_face_value" null="false" value="0"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="retail_facility_fee" null="false" value="0"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="merchandise_fee" null="false" value="0"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="System" null="false" value="TMWire"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="sap_add_date" source="sap_add_date"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="acct_id" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="pc_other2" null="false" value="0"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="pc_other3" null="false" value="0"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="pc_other4" null="false" value="0"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="pc_other5" null="false" value="0"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="pc_other6" null="false" value="0"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="pc_other7" null="false" value="0"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="pc_other8" null="false" value="0"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="pc_tax" null="false" value="0"/>
+    
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_id" source="event_id"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="ChargeType" source="ChargeType"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="RevenueShare" source="RevenueShare"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="TMCharge" source="TMCharge"/>
+  
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_Host" filterExpressionLanguage="SQL">
+    <descriptions>
+      <comment text="PBO transactions only"/>
+    </descriptions>
+    <viewAttributes>
+      <viewAttribute id="order_num"/>
+    
+      <viewAttribute id="retail_mop"/>
+      <viewAttribute id="tran_type"/>
+      <viewAttribute id="event_name"/>
+      <viewAttribute id="sell_location"/>
+      <viewAttribute id="retail_service_charge"/>
+      <viewAttribute id="retail_face_value"/>
+      <viewAttribute id="retail_facility_fee"/>
+    
+      <viewAttribute id="sap_add_date"/>
+      <viewAttribute id="acct_id"/>
+    
+      <viewAttribute id="event_id"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="CvHostProceeds"/>
+    <filter>&quot;sell_location&quot; = 'PBO'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_Retail_DISABLED" filterExpressionLanguage="SQL">
+    <descriptions>
+      <comment text="PBO transactions only,  Additional filters to DISABLE this node, to get zero results, but removable in case scope changes "/>
+    </descriptions>
+    <viewAttributes>
+      <viewAttribute id="retail_mop"/>
+      <viewAttribute id="event_name"/>
+      <viewAttribute id="sell_location"/>
+      <viewAttribute id="retail_service_charge"/>
+    
+      <viewAttribute id="retail_face_value"/>
+      <viewAttribute id="retail_facility_fee"/>
+    
+      <viewAttribute id="sap_add_date"/>
+      <viewAttribute id="acct_id"/>
+      <viewAttribute id="event_id"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input emptyUnionBehavior="undefined" node="CvRetailProceeds"/>
+    <filter>&quot;sell_location&quot; = 'PBO' 
+and
+&quot;sap_add_date&quot; &gt; '9999-12-31' 
+</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_RevShare">
+    <viewAttributes>
+      <viewAttribute id="retail_mop"/>
+    
+      <viewAttribute id="event_name"/>
+      <viewAttribute id="sap_add_date"/>
+      <viewAttribute id="event_id"/>
+      <viewAttribute id="ChargeType"/>
+      <viewAttribute id="RevenueShare"/>
+      <viewAttribute id="TMCharge"/>
+    
+      <viewAttribute id="Source"/></viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="CvRevShareProceeds"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_Events">
+    <viewAttributes>
+      <viewAttribute id="event_id"/>
+      <viewAttribute id="event_name"/>
+      <viewAttribute id="line9"/>
+      <viewAttribute id="line10"/>
+    
+      <viewAttribute id="event_date"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="tm.events_prd"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="J_Events" cardinality="CN_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="order_num"/>
+      <viewAttribute id="retail_mop"/>
+      <viewAttribute id="tran_type"/>
+      <viewAttribute id="event_name"/>
+      <viewAttribute id="sell_location"/>
+      <viewAttribute id="retail_service_charge" aggregationType="sum"/>
+      <viewAttribute id="retail_face_value" aggregationType="sum"/>
+      <viewAttribute id="merchandise_fee" aggregationType="sum"/>
+      <viewAttribute id="System"/>
+      <viewAttribute id="retail_facility_fee" aggregationType="sum"/>
+      <viewAttribute id="sap_add_date"/>
+      <viewAttribute id="acct_id"/>
+      <viewAttribute id="pc_other2" aggregationType="sum"/>
+      <viewAttribute id="pc_other3" aggregationType="sum"/>
+      <viewAttribute id="pc_other4" aggregationType="sum"/>
+      <viewAttribute id="pc_other5" aggregationType="sum"/>
+      <viewAttribute id="pc_other6" aggregationType="sum"/>
+      <viewAttribute id="pc_other7" aggregationType="sum"/>
+      <viewAttribute id="pc_other8" aggregationType="sum"/>
+      <viewAttribute id="pc_tax" aggregationType="sum"/>
+      <viewAttribute id="line9"/>
+      <viewAttribute id="line10"/>
+    
+      <viewAttribute id="event_date"/>
+      <viewAttribute id="ChargeType"/>
+      <viewAttribute id="RevenueShare" aggregationType="sum"/>
+      <viewAttribute id="TMCharge" aggregationType="sum"/>
+      <viewAttribute hidden="true" id="JOIN$event_id$event_id"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="U_Tickets">
+      <mapping xsi:type="Calculation:AttributeMapping" target="order_num" source="order_num"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_mop" source="retail_mop"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tran_type" source="tran_type"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_name" source="event_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="sell_location" source="sell_location"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_service_charge" source="retail_service_charge"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_face_value" source="retail_face_value"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="merchandise_fee" source="merchandise_fee"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="System" source="System"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_facility_fee" source="retail_facility_fee"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="sap_add_date" source="sap_add_date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="acct_id" source="acct_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other2" source="pc_other2"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other3" source="pc_other3"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other4" source="pc_other4"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other5" source="pc_other5"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other6" source="pc_other6"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other7" source="pc_other7"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other8" source="pc_other8"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_tax" source="pc_tax"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ChargeType" source="ChargeType"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="RevenueShare" source="RevenueShare"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TMCharge" source="TMCharge"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$event_id$event_id" source="event_id"/>
+    </input>
+    <input node="P_Events">
+      <mapping xsi:type="Calculation:AttributeMapping" target="line9" source="line9"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="line10" source="line10"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_date" source="event_date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$event_id$event_id" source="event_id"/>
+    </input>
+    <joinAttribute name="JOIN$event_id$event_id"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="J_Events_E" cardinality="CN_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="order_num" aggregationType="sum"/>
+      <viewAttribute id="retail_mop"/>
+      <viewAttribute id="tran_type"/>
+      <viewAttribute id="event_name"/>
+      <viewAttribute id="sell_location"/>
+      <viewAttribute id="retail_service_charge" aggregationType="sum"/>
+      <viewAttribute id="retail_face_value" aggregationType="sum"/>
+      <viewAttribute id="merchandise_fee" aggregationType="sum"/>
+      <viewAttribute id="System"/>
+      <viewAttribute id="retail_facility_fee" aggregationType="sum"/>
+      <viewAttribute id="sap_add_date"/>
+      <viewAttribute id="acct_id" aggregationType="sum"/>
+      <viewAttribute id="pc_other2" aggregationType="sum"/>
+      <viewAttribute id="pc_other3" aggregationType="sum"/>
+      <viewAttribute id="pc_other4" aggregationType="sum"/>
+      <viewAttribute id="pc_other5" aggregationType="sum"/>
+      <viewAttribute id="pc_other6" aggregationType="sum"/>
+      <viewAttribute id="pc_other7" aggregationType="sum"/>
+      <viewAttribute id="pc_other8" aggregationType="sum"/>
+      <viewAttribute id="pc_tax" aggregationType="sum"/>
+      <viewAttribute id="line9"/>
+      <viewAttribute id="line10"/>
+      <viewAttribute id="WBSElement_E"/>
+      <viewAttribute id="GLMapCode_E"/>
+    
+      <viewAttribute id="event_date"/>
+    
+      <viewAttribute id="ChargeType"/>
+      <viewAttribute id="RevenueShare" aggregationType="sum"/>
+      <viewAttribute id="TMCharge" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="GLMapCode" datatype="NVARCHAR" length="10" expressionLanguage="SQL">
+        <formula>IFNULL(&quot;line9&quot;, &quot;GLMapCode_E&quot;)</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="WBSElement" datatype="NVARCHAR" length="15" expressionLanguage="SQL">
+        <formula>IFNULL(&quot;line10&quot;, &quot;WBSElement_E&quot;)</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="J_Events">
+      <mapping xsi:type="Calculation:AttributeMapping" target="order_num" source="order_num"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_mop" source="retail_mop"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tran_type" source="tran_type"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_name" source="event_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="sell_location" source="sell_location"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_service_charge" source="retail_service_charge"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_face_value" source="retail_face_value"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="merchandise_fee" source="merchandise_fee"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="System" source="System"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_facility_fee" source="retail_facility_fee"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="sap_add_date" source="sap_add_date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="acct_id" source="acct_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other2" source="pc_other2"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other3" source="pc_other3"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other4" source="pc_other4"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other5" source="pc_other5"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other6" source="pc_other6"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other7" source="pc_other7"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other8" source="pc_other8"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_tax" source="pc_tax"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="line9" source="line9"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="line10" source="line10"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_date" source="event_date"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="ChargeType" source="ChargeType"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="RevenueShare" source="RevenueShare"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TMCharge" source="TMCharge"/>
+    </input>
+    <input node="P_Events_E">
+      <mapping xsi:type="Calculation:AttributeMapping" target="WBSElement_E" source="WBSElement"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GLMapCode_E" source="GLMapCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_name" source="EventName"/>
+    </input>
+    <joinAttribute name="event_name"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_Events_E">
+    <viewAttributes>
+      <viewAttribute id="WBSElement"/>
+      <viewAttribute id="GLMapCode"/>
+    
+    
+      <viewAttribute id="EventName"/></viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="YY1_ExceptionEvents">
+      <mapping xsi:type="Calculation:AttributeMapping" target="GLMapCode" source="Line9"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="J_Project" cardinality="CN_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="order_num" aggregationType="sum"/>
+      <viewAttribute id="retail_mop"/>
+      <viewAttribute id="tran_type"/>
+      <viewAttribute id="event_name"/>
+      <viewAttribute id="sell_location"/>
+      <viewAttribute id="retail_service_charge" aggregationType="sum"/>
+      <viewAttribute id="retail_face_value" aggregationType="sum"/>
+      <viewAttribute id="merchandise_fee" aggregationType="sum"/>
+      <viewAttribute id="System"/>
+      <viewAttribute id="retail_facility_fee" aggregationType="sum"/>
+      <viewAttribute id="sap_add_date"/>
+      <viewAttribute id="acct_id" aggregationType="sum"/>
+      <viewAttribute id="pc_other2" aggregationType="sum"/>
+      <viewAttribute id="pc_other3" aggregationType="sum"/>
+      <viewAttribute id="pc_other4" aggregationType="sum"/>
+      <viewAttribute id="pc_other5" aggregationType="sum"/>
+      <viewAttribute id="pc_other6" aggregationType="sum"/>
+      <viewAttribute id="pc_other7" aggregationType="sum"/>
+      <viewAttribute id="pc_other8" aggregationType="sum"/>
+      <viewAttribute id="pc_tax" aggregationType="sum"/>
+      <viewAttribute id="GLMapCode"/>
+      <viewAttribute id="WBSElement"/>
+      <viewAttribute id="CompanyCode"/>
+    
+      <viewAttribute id="event_date"/>
+    
+      <viewAttribute id="ChargeType"/>
+      <viewAttribute id="RevenueShare" aggregationType="sum"/>
+      <viewAttribute id="TMCharge" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="J_Events_E">
+      <mapping xsi:type="Calculation:AttributeMapping" target="order_num" source="order_num"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_mop" source="retail_mop"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tran_type" source="tran_type"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_name" source="event_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="sell_location" source="sell_location"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_service_charge" source="retail_service_charge"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_face_value" source="retail_face_value"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="merchandise_fee" source="merchandise_fee"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="System" source="System"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="retail_facility_fee" source="retail_facility_fee"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="sap_add_date" source="sap_add_date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="acct_id" source="acct_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other2" source="pc_other2"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other3" source="pc_other3"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other4" source="pc_other4"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other5" source="pc_other5"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other6" source="pc_other6"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other7" source="pc_other7"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_other8" source="pc_other8"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pc_tax" source="pc_tax"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GLMapCode" source="GLMapCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WBSElement" source="WBSElement"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="event_date" source="event_date"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="ChargeType" source="ChargeType"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="RevenueShare" source="RevenueShare"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TMCharge" source="TMCharge"/>
+    </input>
+  
+    <input node="P_Project">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="WBSElement" source="Project"/>
+  
+    </input>
+    <joinAttribute name="WBSElement"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_Project">
+    <viewAttributes>
+      <viewAttribute id="CompanyCode"/>
+    
+      <viewAttribute id="Project"/></viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="YY1_EnterpriseProject"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="J_Project">
+  <attributes>
+    <attribute id="order_num" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="order_num"/>
+      <keyMapping columnObjectName="J_Project" columnName="order_num"/>
+    </attribute>
+    <attribute id="retail_mop" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="retail_mop"/>
+      <keyMapping columnObjectName="J_Project" columnName="retail_mop"/>
+    </attribute>
+    <attribute id="tran_type" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="tran_type"/>
+      <keyMapping columnObjectName="J_Project" columnName="tran_type"/>
+    </attribute>
+    <attribute id="event_name" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="event_name"/>
+      <keyMapping columnObjectName="J_Project" columnName="event_name"/>
+    </attribute>
+    <attribute id="sell_location" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="sell_location"/>
+      <keyMapping columnObjectName="J_Project" columnName="sell_location"/>
+    </attribute>
+    <attribute id="System" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="System"/>
+      <keyMapping columnObjectName="J_Project" columnName="System"/>
+    </attribute>
+  
+    <attribute id="sap_add_date" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="sap_add_date"/>
+  
+      <keyMapping columnObjectName="J_Project" columnName="sap_add_date"/>
+  
+    </attribute>
+  
+    <attribute id="acct_id" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="acct_id"/>
+  
+      <keyMapping columnObjectName="J_Project" columnName="acct_id"/>
+  
+    </attribute>
+    <attribute id="GLMapCode" order="22" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="GLMapCode"/>
+      <keyMapping columnObjectName="J_Project" columnName="GLMapCode"/>
+    </attribute>
+    <attribute id="WBSElement" order="23" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="WBSElement"/>
+      <keyMapping columnObjectName="J_Project" columnName="WBSElement"/>
+    </attribute>
+    <attribute id="CompanyCode" order="24" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CompanyCode"/>
+      <keyMapping columnObjectName="J_Project" columnName="CompanyCode"/>
+    </attribute>
+  
+    <attribute id="event_date" order="25" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="event_date"/>
+  
+      <keyMapping columnObjectName="J_Project" columnName="event_date"/>
+  
+    </attribute>
+  
+    <attribute id="ChargeType" order="26" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ChargeType"/>
+  
+      <keyMapping columnObjectName="J_Project" columnName="ChargeType"/>
+  
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="retail_service_charge" order="9" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="retail_service_charge"/>
+      <measureMapping columnObjectName="J_Project" columnName="retail_service_charge"/>
+    </measure>
+    <measure id="retail_face_value" order="10" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="retail_face_value"/>
+      <measureMapping columnObjectName="J_Project" columnName="retail_face_value"/>
+    </measure>
+    <measure id="merchandise_fee" order="11" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="merchandise_fee"/>
+      <measureMapping columnObjectName="J_Project" columnName="merchandise_fee"/>
+    </measure>
+    <measure id="retail_facility_fee" order="12" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="retail_facility_fee"/>
+      <measureMapping columnObjectName="J_Project" columnName="retail_facility_fee"/>
+    </measure>
+  
+    <measure id="pc_other2" order="13" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other2"/>
+      <measureMapping columnObjectName="J_Project" columnName="pc_other2"/>
+    </measure>
+    <measure id="pc_other3" order="14" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other3"/>
+      <measureMapping columnObjectName="J_Project" columnName="pc_other3"/>
+    </measure>
+    <measure id="pc_other4" order="15" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other4"/>
+      <measureMapping columnObjectName="J_Project" columnName="pc_other4"/>
+    </measure>
+    <measure id="pc_other5" order="16" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other5"/>
+      <measureMapping columnObjectName="J_Project" columnName="pc_other5"/>
+    </measure>
+    <measure id="pc_other6" order="17" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other6"/>
+      <measureMapping columnObjectName="J_Project" columnName="pc_other6"/>
+    </measure>
+    <measure id="pc_other7" order="18" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other7"/>
+      <measureMapping columnObjectName="J_Project" columnName="pc_other7"/>
+    </measure>
+    <measure id="pc_other8" order="19" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other8"/>
+      <measureMapping columnObjectName="J_Project" columnName="pc_other8"/>
+    </measure>
+    <measure id="pc_tax" order="20" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_tax"/>
+      <measureMapping columnObjectName="J_Project" columnName="pc_tax"/>
+    </measure>
+  
+    <measure id="RevenueShare" order="27" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="RevenueShare"/>
+      <measureMapping columnObjectName="J_Project" columnName="RevenueShare"/>
+    </measure>
+    <measure id="TMCharge" order="28" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="TMCharge"/>
+      <measureMapping columnObjectName="J_Project" columnName="TMCharge"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures>
+    <measure id="all_other_fees" order="21" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="17" scale="6" expressionLanguage="SQL">
+      <formula>&quot;pc_other2&quot; + &quot;pc_other3&quot; + &quot;pc_other4&quot; + &quot;pc_other5&quot; + &quot;pc_other6&quot; + &quot;pc_other7&quot; + &quot;pc_other8&quot; + &quot;pc_tax&quot;</formula>
+      
+      
+      
+      
+      
+      
+      
+      </measure>
+  </calculatedMeasures>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="538" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="P_Arch" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="321" y="826"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="U_Tickets" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="544" y="674"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="P_Host" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="765" y="826"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="P_Retail_DISABLED" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="495" y="826"/>
+      <rectangleSize width="259"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="P_RevShare" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="965" y="826"/>
+      <rectangleSize height="30" width="201"/>
+    </shape>
+  <shape><upperLeftCorner/><rectangleSize/></shape>
+    
+    <shape expanded="true" modelObjectName="P_Events" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="765" y="671"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="J_Events" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="543" y="520"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="U_Tickets" modelObjectNameSpace="J_Events" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="P_Events" modelObjectNameSpace="J_Events" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="173"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="J_Events_E" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="543" y="359"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="J_Events" modelObjectNameSpace="J_Events_E" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="P_Events_E" modelObjectNameSpace="J_Events_E" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="159"/>
+    </shape>
+    <shape expanded="true" modelObjectName="P_Events_E" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="764" y="520"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="J_Project" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="543" y="206"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="J_Events_E" modelObjectNameSpace="J_Project" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="27" y="30"/>
+      <rectangleSize width="190"/>
+    </shape>
+  
+    <shape modelObjectName="P_Project" modelObjectNameSpace="J_Project" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape expanded="true" modelObjectName="P_Project" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="765" y="359"/>
+      <rectangleSize height="30" width="160"/>
+    </shape></shapes>
+</layout>
+</Calculation:scenario>

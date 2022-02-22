@@ -1,0 +1,651 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CvTicketRAW" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Raw table tm.ticket_prd"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="tm.ticket_prd">
+    <resourceUri>tm.ticket_prd</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="order_num"/>
+      <viewAttribute id="event_name"/>
+      <viewAttribute id="sap_add_date"/>
+      <viewAttribute id="acct_id"/>
+      <viewAttribute id="ticket_status"/>
+      <viewAttribute id="sell_location"/>
+      <viewAttribute id="owed_amount"/>
+      <viewAttribute id="paid_amount"/>
+      <viewAttribute id="full_price"/>
+      <viewAttribute id="num_seats"/>
+      <viewAttribute id="purchase_price"/>
+      <viewAttribute id="pc_ticket"/>
+      <viewAttribute id="pc_licfee"/>
+      <viewAttribute id="pc_other1"/>
+      <viewAttribute id="pc_other2"/>
+      <viewAttribute id="pc_other3"/>
+      <viewAttribute id="pc_other4"/>
+      <viewAttribute id="pc_other5"/>
+      <viewAttribute id="pc_other6"/>
+      <viewAttribute id="pc_other7"/>
+      <viewAttribute id="pc_other8"/>
+      <viewAttribute id="pc_tax"/>
+      <viewAttribute id="sap_uid"/>
+      <viewAttribute id="disc_amount"/>
+      <viewAttribute id="event_id"/>
+      <viewAttribute id="sap_container_id"/>
+      <viewAttribute id="sap_return_date"/>
+      <viewAttribute id="acct_rep_full_name"/>
+      <viewAttribute id="acct_rep_id"/>
+      <viewAttribute id="add_datetime"/>
+      <viewAttribute id="add_user"/>
+      <viewAttribute id="block_purchase_price"/>
+      <viewAttribute id="class_name"/>
+      <viewAttribute id="comp_code"/>
+      <viewAttribute id="comp_name"/>
+      <viewAttribute id="contract_id"/>
+      <viewAttribute id="delivered_date"/>
+      <viewAttribute id="delivery_addr1"/>
+      <viewAttribute id="delivery_addr2"/>
+      <viewAttribute id="delivery_addr3"/>
+      <viewAttribute id="delivery_city"/>
+      <viewAttribute id="delivery_country"/>
+      <viewAttribute id="delivery_instructions"/>
+      <viewAttribute id="delivery_method"/>
+      <viewAttribute id="delivery_method_name"/>
+      <viewAttribute id="delivery_name_first"/>
+      <viewAttribute id="delivery_name_last"/>
+      <viewAttribute id="delivery_phone"/>
+      <viewAttribute id="delivery_phone_formatted"/>
+      <viewAttribute id="delivery_state"/>
+      <viewAttribute id="delivery_zip"/>
+      <viewAttribute id="delivery_zip_formatted"/>
+      <viewAttribute id="disc_code"/>
+      <viewAttribute id="expanded"/>
+      <viewAttribute id="group_flag"/>
+      <viewAttribute id="group_sales_name"/>
+      <viewAttribute id="info"/>
+      <viewAttribute id="last_seat"/>
+      <viewAttribute id="ledger_id"/>
+      <viewAttribute id="order_line_item"/>
+      <viewAttribute id="order_line_item_seq"/>
+      <viewAttribute id="orig_acct_rep_id"/>
+      <viewAttribute id="orig_datetime"/>
+      <viewAttribute id="other_info_1"/>
+      <viewAttribute id="other_info_10"/>
+      <viewAttribute id="other_info_2"/>
+      <viewAttribute id="other_info_3"/>
+      <viewAttribute id="other_info_4"/>
+      <viewAttribute id="other_info_5"/>
+      <viewAttribute id="other_info_6"/>
+      <viewAttribute id="other_info_7"/>
+      <viewAttribute id="other_info_8"/>
+      <viewAttribute id="other_info_9"/>
+      <viewAttribute id="paid"/>
+      <viewAttribute id="plan_datetime"/>
+      <viewAttribute id="plan_event_id"/>
+      <viewAttribute id="plan_event_name"/>
+      <viewAttribute id="price_code"/>
+      <viewAttribute id="price_code_desc"/>
+      <viewAttribute id="pricing_method"/>
+      <viewAttribute id="promo_code"/>
+      <viewAttribute id="renewal_ind"/>
+      <viewAttribute id="retail_acct_add_date"/>
+      <viewAttribute id="retail_acct_num"/>
+      <viewAttribute id="retail_face_value"/>
+      <viewAttribute id="retail_face_value_tax"/>
+      <viewAttribute id="retail_facility_fee"/>
+      <viewAttribute id="retail_mask"/>
+      <viewAttribute id="retail_mop"/>
+      <viewAttribute id="retail_price_level"/>
+      <viewAttribute id="retail_qualifiers"/>
+      <viewAttribute id="retail_service_charge"/>
+      <viewAttribute id="retail_service_charge_tax"/>
+      <viewAttribute id="retail_distance_charge"/>
+      <viewAttribute id="retail_system_name"/>
+      <viewAttribute id="retail_ticket_type"/>
+      <viewAttribute id="return_datetime"/>
+      <viewAttribute id="return_reason"/>
+      <viewAttribute id="return_reason_desc"/>
+      <viewAttribute id="row_id"/>
+      <viewAttribute id="row_name"/>
+      <viewAttribute id="sales_source_date"/>
+      <viewAttribute id="sales_source_name"/>
+      <viewAttribute id="seat_num"/>
+      <viewAttribute id="section_id"/>
+      <viewAttribute id="section_name"/>
+      <viewAttribute id="seq_id"/>
+      <viewAttribute id="seq_num"/>
+      <viewAttribute id="surchg_amount"/>
+      <viewAttribute id="surchg_code_desc"/>
+      <viewAttribute id="tax_rate_a"/>
+      <viewAttribute id="tax_rate_b"/>
+      <viewAttribute id="tax_rate_c"/>
+      <viewAttribute id="ticket_seq_id"/>
+      <viewAttribute id="ticket_type"/>
+      <viewAttribute id="ticket_type_category"/>
+      <viewAttribute id="total_events"/>
+      <viewAttribute id="tran_type"/>
+      <viewAttribute id="upd_datetime"/>
+      <viewAttribute id="upd_user"/>
+      <viewAttribute id="sap_sysvalid_from"/>
+      <viewAttribute id="sap_sysvalid_to"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="tm.ticket_prd"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Projection_1">
+  <attributes>
+    <attribute id="order_num" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="order_num"/>
+      <keyMapping columnObjectName="Projection_1" columnName="order_num"/>
+    </attribute>
+    <attribute id="event_name" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="event_name"/>
+      <keyMapping columnObjectName="Projection_1" columnName="event_name"/>
+    </attribute>
+    <attribute id="sap_add_date" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="sap_add_date"/>
+      <keyMapping columnObjectName="Projection_1" columnName="sap_add_date"/>
+    </attribute>
+    <attribute id="acct_id" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="acct_id"/>
+      <keyMapping columnObjectName="Projection_1" columnName="acct_id"/>
+    </attribute>
+    <attribute id="ticket_status" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ticket_status"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ticket_status"/>
+    </attribute>
+    <attribute id="sell_location" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="sell_location"/>
+      <keyMapping columnObjectName="Projection_1" columnName="sell_location"/>
+    </attribute>
+    <attribute id="sap_uid" order="23" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="sap_uid"/>
+      <keyMapping columnObjectName="Projection_1" columnName="sap_uid"/>
+    </attribute>
+    <attribute id="event_id" order="25" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="event_id"/>
+      <keyMapping columnObjectName="Projection_1" columnName="event_id"/>
+    </attribute>
+    <attribute id="sap_container_id" order="26" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="sap_container_id"/>
+      <keyMapping columnObjectName="Projection_1" columnName="sap_container_id"/>
+    </attribute>
+    <attribute id="sap_return_date" order="27" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="sap_return_date"/>
+      <keyMapping columnObjectName="Projection_1" columnName="sap_return_date"/>
+    </attribute>
+    <attribute id="acct_rep_full_name" order="28" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="acct_rep_full_name"/>
+      <keyMapping columnObjectName="Projection_1" columnName="acct_rep_full_name"/>
+    </attribute>
+    <attribute id="acct_rep_id" order="29" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="acct_rep_id"/>
+      <keyMapping columnObjectName="Projection_1" columnName="acct_rep_id"/>
+    </attribute>
+    <attribute id="add_datetime" order="30" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="add_datetime"/>
+      <keyMapping columnObjectName="Projection_1" columnName="add_datetime"/>
+    </attribute>
+    <attribute id="add_user" order="31" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="add_user"/>
+      <keyMapping columnObjectName="Projection_1" columnName="add_user"/>
+    </attribute>
+    <attribute id="class_name" order="33" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="class_name"/>
+      <keyMapping columnObjectName="Projection_1" columnName="class_name"/>
+    </attribute>
+    <attribute id="comp_code" order="34" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="comp_code"/>
+      <keyMapping columnObjectName="Projection_1" columnName="comp_code"/>
+    </attribute>
+    <attribute id="comp_name" order="35" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="comp_name"/>
+      <keyMapping columnObjectName="Projection_1" columnName="comp_name"/>
+    </attribute>
+    <attribute id="contract_id" order="36" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="contract_id"/>
+      <keyMapping columnObjectName="Projection_1" columnName="contract_id"/>
+    </attribute>
+    <attribute id="delivered_date" order="37" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="delivered_date"/>
+      <keyMapping columnObjectName="Projection_1" columnName="delivered_date"/>
+    </attribute>
+    <attribute id="delivery_addr1" order="38" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="delivery_addr1"/>
+      <keyMapping columnObjectName="Projection_1" columnName="delivery_addr1"/>
+    </attribute>
+    <attribute id="delivery_addr2" order="39" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="delivery_addr2"/>
+      <keyMapping columnObjectName="Projection_1" columnName="delivery_addr2"/>
+    </attribute>
+    <attribute id="delivery_addr3" order="40" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="delivery_addr3"/>
+      <keyMapping columnObjectName="Projection_1" columnName="delivery_addr3"/>
+    </attribute>
+    <attribute id="delivery_city" order="41" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="delivery_city"/>
+      <keyMapping columnObjectName="Projection_1" columnName="delivery_city"/>
+    </attribute>
+    <attribute id="delivery_country" order="42" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="delivery_country"/>
+      <keyMapping columnObjectName="Projection_1" columnName="delivery_country"/>
+    </attribute>
+    <attribute id="delivery_instructions" order="43" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="delivery_instructions"/>
+      <keyMapping columnObjectName="Projection_1" columnName="delivery_instructions"/>
+    </attribute>
+    <attribute id="delivery_method" order="44" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="delivery_method"/>
+      <keyMapping columnObjectName="Projection_1" columnName="delivery_method"/>
+    </attribute>
+    <attribute id="delivery_method_name" order="45" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="delivery_method_name"/>
+      <keyMapping columnObjectName="Projection_1" columnName="delivery_method_name"/>
+    </attribute>
+    <attribute id="delivery_name_first" order="46" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="delivery_name_first"/>
+      <keyMapping columnObjectName="Projection_1" columnName="delivery_name_first"/>
+    </attribute>
+    <attribute id="delivery_name_last" order="47" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="delivery_name_last"/>
+      <keyMapping columnObjectName="Projection_1" columnName="delivery_name_last"/>
+    </attribute>
+    <attribute id="delivery_phone" order="48" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="delivery_phone"/>
+      <keyMapping columnObjectName="Projection_1" columnName="delivery_phone"/>
+    </attribute>
+    <attribute id="delivery_phone_formatted" order="49" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="delivery_phone_formatted"/>
+      <keyMapping columnObjectName="Projection_1" columnName="delivery_phone_formatted"/>
+    </attribute>
+    <attribute id="delivery_state" order="50" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="delivery_state"/>
+      <keyMapping columnObjectName="Projection_1" columnName="delivery_state"/>
+    </attribute>
+    <attribute id="delivery_zip" order="51" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="delivery_zip"/>
+      <keyMapping columnObjectName="Projection_1" columnName="delivery_zip"/>
+    </attribute>
+    <attribute id="delivery_zip_formatted" order="52" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="delivery_zip_formatted"/>
+      <keyMapping columnObjectName="Projection_1" columnName="delivery_zip_formatted"/>
+    </attribute>
+    <attribute id="disc_code" order="53" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="disc_code"/>
+      <keyMapping columnObjectName="Projection_1" columnName="disc_code"/>
+    </attribute>
+    <attribute id="expanded" order="54" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="expanded"/>
+      <keyMapping columnObjectName="Projection_1" columnName="expanded"/>
+    </attribute>
+    <attribute id="group_flag" order="55" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="group_flag"/>
+      <keyMapping columnObjectName="Projection_1" columnName="group_flag"/>
+    </attribute>
+    <attribute id="group_sales_name" order="56" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="group_sales_name"/>
+      <keyMapping columnObjectName="Projection_1" columnName="group_sales_name"/>
+    </attribute>
+    <attribute id="info" order="57" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="info"/>
+      <keyMapping columnObjectName="Projection_1" columnName="info"/>
+    </attribute>
+    <attribute id="last_seat" order="58" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="last_seat"/>
+      <keyMapping columnObjectName="Projection_1" columnName="last_seat"/>
+    </attribute>
+    <attribute id="ledger_id" order="59" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ledger_id"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ledger_id"/>
+    </attribute>
+    <attribute id="order_line_item" order="60" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="order_line_item"/>
+      <keyMapping columnObjectName="Projection_1" columnName="order_line_item"/>
+    </attribute>
+    <attribute id="order_line_item_seq" order="61" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="order_line_item_seq"/>
+      <keyMapping columnObjectName="Projection_1" columnName="order_line_item_seq"/>
+    </attribute>
+    <attribute id="orig_acct_rep_id" order="62" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="orig_acct_rep_id"/>
+      <keyMapping columnObjectName="Projection_1" columnName="orig_acct_rep_id"/>
+    </attribute>
+    <attribute id="orig_datetime" order="63" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="orig_datetime"/>
+      <keyMapping columnObjectName="Projection_1" columnName="orig_datetime"/>
+    </attribute>
+    <attribute id="other_info_1" order="64" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="other_info_1"/>
+      <keyMapping columnObjectName="Projection_1" columnName="other_info_1"/>
+    </attribute>
+    <attribute id="other_info_10" order="65" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="other_info_10"/>
+      <keyMapping columnObjectName="Projection_1" columnName="other_info_10"/>
+    </attribute>
+    <attribute id="other_info_2" order="66" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="other_info_2"/>
+      <keyMapping columnObjectName="Projection_1" columnName="other_info_2"/>
+    </attribute>
+    <attribute id="other_info_3" order="67" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="other_info_3"/>
+      <keyMapping columnObjectName="Projection_1" columnName="other_info_3"/>
+    </attribute>
+    <attribute id="other_info_4" order="68" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="other_info_4"/>
+      <keyMapping columnObjectName="Projection_1" columnName="other_info_4"/>
+    </attribute>
+    <attribute id="other_info_5" order="69" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="other_info_5"/>
+      <keyMapping columnObjectName="Projection_1" columnName="other_info_5"/>
+    </attribute>
+    <attribute id="other_info_6" order="70" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="other_info_6"/>
+      <keyMapping columnObjectName="Projection_1" columnName="other_info_6"/>
+    </attribute>
+    <attribute id="other_info_7" order="71" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="other_info_7"/>
+      <keyMapping columnObjectName="Projection_1" columnName="other_info_7"/>
+    </attribute>
+    <attribute id="other_info_8" order="72" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="other_info_8"/>
+      <keyMapping columnObjectName="Projection_1" columnName="other_info_8"/>
+    </attribute>
+    <attribute id="other_info_9" order="73" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="other_info_9"/>
+      <keyMapping columnObjectName="Projection_1" columnName="other_info_9"/>
+    </attribute>
+    <attribute id="paid" order="74" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="paid"/>
+      <keyMapping columnObjectName="Projection_1" columnName="paid"/>
+    </attribute>
+    <attribute id="plan_datetime" order="75" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="plan_datetime"/>
+      <keyMapping columnObjectName="Projection_1" columnName="plan_datetime"/>
+    </attribute>
+    <attribute id="plan_event_id" order="76" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="plan_event_id"/>
+      <keyMapping columnObjectName="Projection_1" columnName="plan_event_id"/>
+    </attribute>
+    <attribute id="plan_event_name" order="77" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="plan_event_name"/>
+      <keyMapping columnObjectName="Projection_1" columnName="plan_event_name"/>
+    </attribute>
+    <attribute id="price_code" order="78" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="price_code"/>
+      <keyMapping columnObjectName="Projection_1" columnName="price_code"/>
+    </attribute>
+    <attribute id="price_code_desc" order="79" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="price_code_desc"/>
+      <keyMapping columnObjectName="Projection_1" columnName="price_code_desc"/>
+    </attribute>
+    <attribute id="pricing_method" order="80" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="pricing_method"/>
+      <keyMapping columnObjectName="Projection_1" columnName="pricing_method"/>
+    </attribute>
+    <attribute id="promo_code" order="81" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="promo_code"/>
+      <keyMapping columnObjectName="Projection_1" columnName="promo_code"/>
+    </attribute>
+    <attribute id="renewal_ind" order="82" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="renewal_ind"/>
+      <keyMapping columnObjectName="Projection_1" columnName="renewal_ind"/>
+    </attribute>
+    <attribute id="retail_acct_add_date" order="83" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="retail_acct_add_date"/>
+      <keyMapping columnObjectName="Projection_1" columnName="retail_acct_add_date"/>
+    </attribute>
+    <attribute id="retail_acct_num" order="84" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="retail_acct_num"/>
+      <keyMapping columnObjectName="Projection_1" columnName="retail_acct_num"/>
+    </attribute>
+    <attribute id="retail_mask" order="88" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="retail_mask"/>
+      <keyMapping columnObjectName="Projection_1" columnName="retail_mask"/>
+    </attribute>
+    <attribute id="retail_mop" order="89" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="retail_mop"/>
+      <keyMapping columnObjectName="Projection_1" columnName="retail_mop"/>
+    </attribute>
+    <attribute id="retail_price_level" order="90" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="retail_price_level"/>
+      <keyMapping columnObjectName="Projection_1" columnName="retail_price_level"/>
+    </attribute>
+    <attribute id="retail_qualifiers" order="91" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="retail_qualifiers"/>
+      <keyMapping columnObjectName="Projection_1" columnName="retail_qualifiers"/>
+    </attribute>
+    <attribute id="retail_system_name" order="95" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="retail_system_name"/>
+      <keyMapping columnObjectName="Projection_1" columnName="retail_system_name"/>
+    </attribute>
+    <attribute id="retail_ticket_type" order="96" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="retail_ticket_type"/>
+      <keyMapping columnObjectName="Projection_1" columnName="retail_ticket_type"/>
+    </attribute>
+    <attribute id="return_datetime" order="97" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="return_datetime"/>
+      <keyMapping columnObjectName="Projection_1" columnName="return_datetime"/>
+    </attribute>
+    <attribute id="return_reason" order="98" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="return_reason"/>
+      <keyMapping columnObjectName="Projection_1" columnName="return_reason"/>
+    </attribute>
+    <attribute id="return_reason_desc" order="99" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="return_reason_desc"/>
+      <keyMapping columnObjectName="Projection_1" columnName="return_reason_desc"/>
+    </attribute>
+    <attribute id="row_id" order="100" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="row_id"/>
+      <keyMapping columnObjectName="Projection_1" columnName="row_id"/>
+    </attribute>
+    <attribute id="row_name" order="101" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="row_name"/>
+      <keyMapping columnObjectName="Projection_1" columnName="row_name"/>
+    </attribute>
+    <attribute id="sales_source_date" order="102" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="sales_source_date"/>
+      <keyMapping columnObjectName="Projection_1" columnName="sales_source_date"/>
+    </attribute>
+    <attribute id="sales_source_name" order="103" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="sales_source_name"/>
+      <keyMapping columnObjectName="Projection_1" columnName="sales_source_name"/>
+    </attribute>
+    <attribute id="seat_num" order="104" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="seat_num"/>
+      <keyMapping columnObjectName="Projection_1" columnName="seat_num"/>
+    </attribute>
+    <attribute id="section_id" order="105" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="section_id"/>
+      <keyMapping columnObjectName="Projection_1" columnName="section_id"/>
+    </attribute>
+    <attribute id="section_name" order="106" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="section_name"/>
+      <keyMapping columnObjectName="Projection_1" columnName="section_name"/>
+    </attribute>
+    <attribute id="seq_id" order="107" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="seq_id"/>
+      <keyMapping columnObjectName="Projection_1" columnName="seq_id"/>
+    </attribute>
+    <attribute id="seq_num" order="108" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="seq_num"/>
+      <keyMapping columnObjectName="Projection_1" columnName="seq_num"/>
+    </attribute>
+    <attribute id="surchg_code_desc" order="110" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="surchg_code_desc"/>
+      <keyMapping columnObjectName="Projection_1" columnName="surchg_code_desc"/>
+    </attribute>
+    <attribute id="ticket_seq_id" order="114" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ticket_seq_id"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ticket_seq_id"/>
+    </attribute>
+    <attribute id="ticket_type" order="115" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ticket_type"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ticket_type"/>
+    </attribute>
+    <attribute id="ticket_type_category" order="116" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ticket_type_category"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ticket_type_category"/>
+    </attribute>
+    <attribute id="total_events" order="117" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="total_events"/>
+      <keyMapping columnObjectName="Projection_1" columnName="total_events"/>
+    </attribute>
+    <attribute id="tran_type" order="118" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="tran_type"/>
+      <keyMapping columnObjectName="Projection_1" columnName="tran_type"/>
+    </attribute>
+    <attribute id="upd_datetime" order="119" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="upd_datetime"/>
+      <keyMapping columnObjectName="Projection_1" columnName="upd_datetime"/>
+    </attribute>
+    <attribute id="upd_user" order="120" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="upd_user"/>
+      <keyMapping columnObjectName="Projection_1" columnName="upd_user"/>
+    </attribute>
+    <attribute id="sap_sysvalid_from" order="121" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="sap_sysvalid_from"/>
+      <keyMapping columnObjectName="Projection_1" columnName="sap_sysvalid_from"/>
+    </attribute>
+    <attribute id="sap_sysvalid_to" order="122" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="sap_sysvalid_to"/>
+      <keyMapping columnObjectName="Projection_1" columnName="sap_sysvalid_to"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="owed_amount" order="7" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="owed_amount"/>
+      <measureMapping columnObjectName="Projection_1" columnName="owed_amount"/>
+    </measure>
+    <measure id="paid_amount" order="8" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="paid_amount"/>
+      <measureMapping columnObjectName="Projection_1" columnName="paid_amount"/>
+    </measure>
+    <measure id="full_price" order="9" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="full_price"/>
+      <measureMapping columnObjectName="Projection_1" columnName="full_price"/>
+    </measure>
+    <measure id="num_seats" order="10" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="num_seats"/>
+      <measureMapping columnObjectName="Projection_1" columnName="num_seats"/>
+    </measure>
+    <measure id="purchase_price" order="11" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="purchase_price"/>
+      <measureMapping columnObjectName="Projection_1" columnName="purchase_price"/>
+    </measure>
+    <measure id="pc_ticket" order="12" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_ticket"/>
+      <measureMapping columnObjectName="Projection_1" columnName="pc_ticket"/>
+    </measure>
+    <measure id="pc_licfee" order="13" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_licfee"/>
+      <measureMapping columnObjectName="Projection_1" columnName="pc_licfee"/>
+    </measure>
+    <measure id="pc_other1" order="14" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other1"/>
+      <measureMapping columnObjectName="Projection_1" columnName="pc_other1"/>
+    </measure>
+    <measure id="pc_other2" order="15" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other2"/>
+      <measureMapping columnObjectName="Projection_1" columnName="pc_other2"/>
+    </measure>
+    <measure id="pc_other3" order="16" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other3"/>
+      <measureMapping columnObjectName="Projection_1" columnName="pc_other3"/>
+    </measure>
+    <measure id="pc_other4" order="17" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other4"/>
+      <measureMapping columnObjectName="Projection_1" columnName="pc_other4"/>
+    </measure>
+    <measure id="pc_other5" order="18" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other5"/>
+      <measureMapping columnObjectName="Projection_1" columnName="pc_other5"/>
+    </measure>
+    <measure id="pc_other6" order="19" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other6"/>
+      <measureMapping columnObjectName="Projection_1" columnName="pc_other6"/>
+    </measure>
+    <measure id="pc_other7" order="20" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other7"/>
+      <measureMapping columnObjectName="Projection_1" columnName="pc_other7"/>
+    </measure>
+    <measure id="pc_other8" order="21" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other8"/>
+      <measureMapping columnObjectName="Projection_1" columnName="pc_other8"/>
+    </measure>
+    <measure id="pc_tax" order="22" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_tax"/>
+      <measureMapping columnObjectName="Projection_1" columnName="pc_tax"/>
+    </measure>
+    <measure id="disc_amount" order="24" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="disc_amount"/>
+      <measureMapping columnObjectName="Projection_1" columnName="disc_amount"/>
+    </measure>
+    <measure id="block_purchase_price" order="32" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="block_purchase_price"/>
+      <measureMapping columnObjectName="Projection_1" columnName="block_purchase_price"/>
+    </measure>
+    <measure id="retail_face_value" order="85" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="retail_face_value"/>
+      <measureMapping columnObjectName="Projection_1" columnName="retail_face_value"/>
+    </measure>
+    <measure id="retail_face_value_tax" order="86" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="retail_face_value_tax"/>
+      <measureMapping columnObjectName="Projection_1" columnName="retail_face_value_tax"/>
+    </measure>
+    <measure id="retail_facility_fee" order="87" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="retail_facility_fee"/>
+      <measureMapping columnObjectName="Projection_1" columnName="retail_facility_fee"/>
+    </measure>
+    <measure id="retail_service_charge" order="92" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="retail_service_charge"/>
+      <measureMapping columnObjectName="Projection_1" columnName="retail_service_charge"/>
+    </measure>
+    <measure id="retail_service_charge_tax" order="93" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="retail_service_charge_tax"/>
+      <measureMapping columnObjectName="Projection_1" columnName="retail_service_charge_tax"/>
+    </measure>
+    <measure id="retail_distance_charge" order="94" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="retail_distance_charge"/>
+      <measureMapping columnObjectName="Projection_1" columnName="retail_distance_charge"/>
+    </measure>
+    <measure id="surchg_amount" order="109" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="surchg_amount"/>
+      <measureMapping columnObjectName="Projection_1" columnName="surchg_amount"/>
+    </measure>
+    <measure id="tax_rate_a" order="111" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="tax_rate_a"/>
+      <measureMapping columnObjectName="Projection_1" columnName="tax_rate_a"/>
+    </measure>
+    <measure id="tax_rate_b" order="112" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="tax_rate_b"/>
+      <measureMapping columnObjectName="Projection_1" columnName="tax_rate_b"/>
+    </measure>
+    <measure id="tax_rate_c" order="113" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="tax_rate_c"/>
+      <measureMapping columnObjectName="Projection_1" columnName="tax_rate_c"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="128" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="58" y="246"/>
+      <rectangleSize height="30" width="160"/>
+    </shape></shapes>
+</layout>
+</Calculation:scenario>
