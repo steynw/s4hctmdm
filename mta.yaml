@@ -2,7 +2,7 @@ _schema-version: '3.1'
 ID: s4hctmdm
 version: 1.0.0
 
-    
+  
 modules:
  - name: s4hctmdm-db
    type: hdb
@@ -39,11 +39,3 @@ resources:
       service-name: sharks.tm.services.cs.s4hc
    properties:
       UPS_SCHEMA-service-name: ${service-name}
-
-
- - name: s4hctmdb-uaa
-   type: org.cloudfoundry.existing-service
-   parameters:
-      service-name: s4hctmdb-uaa
-   properties:
-     uaa-service-name: '${service-name}'

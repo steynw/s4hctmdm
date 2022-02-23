@@ -1,9 +1,10 @@
 {
     "UPS_CC-grantor": {
-        "object_owner": {
-            "schema_roles": [
-                { "roles": [ "consumption_g#" ] }
-            ]
-        }
+      "object_owner" : {
+        "container_roles":[ "s4hctm::read_access", "s4hctm::read_access_g#" ]
+      },
+      "application_user" : {
+        "container_roles":["s4hctm::read_access"]
+      }
     }
 }

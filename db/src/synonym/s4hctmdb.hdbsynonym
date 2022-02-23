@@ -1,77 +1,92 @@
 {
-  "tm.control_params": {
-    "target": {
-      "object": "tm.control_params"
-    }
-  },
-  "tm.events_prd": {
-    "target": {
-      "object": "tm.events_prd"
-    }
-  },
-  "tm.retailevent_prd": {
-    "target": {
-      "object": "tm.retailevent_prd"
-    }
-  },
-  "tm.retailnonticket_prd": {
-    "target": {
-      "object": "tm.retailnonticket_prd"
-    }
-  },
-  "tm.ticket_prd": {
-    "target": {
-      "object": "tm.ticket_prd"
-    }
-  },
-  "tm.ticketactivity_prd": {
-    "target": {
-      "object": "tm.ticketactivity_prd"
-    }
-  },
-  "tm.journal_prd": {
-    "target": {
-      "object": "tm.journal_prd"
-    }
-  },
-  "tm.attend_prd": {
-    "target": {
-      "object": "tm.attend_prd"
-    }
-  },
-  "tm.eip_prd": {
-    "target": {
-      "object": "tm.eip_prd"
-    }
-  },
-  "tm.avail_seats_prd": {
-    "target": {
-      "object": "tm.avail_seats_prd"
-    }
-  },
-  "tm.held_seats_prd": {
-    "target": {
-      "object": "tm.held_seats_prd"
-    }
-  },
-  "tm.face_value_prd": {
-    "target": {
-      "object": "tm.face_value_prd"
-    }
-  },
-  "tm.revenue_share_prd": {
-    "target": {
-      "object": "tm.revenue_share_prd"
-    }
-  },
-  "tm.historical_prd": {
-    "target": {
-      "object": "tm.historical_prd"
-    }
-  },
-  "tm.jeheaderlog": {
-    "target": {
-      "object": "tm.jeheaderlog"
+    "tm.control_params": {
+      "target": {
+        "object": "tm.control_params",
+        "schema": "S4HCTM"
+      }
+    },
+    "tm.events_prd": {
+      "target": {
+        "object": "tm.events_prd",
+        "schema": "S4HCTM"
+      }
+    },
+    "tm.retailevent_prd": {
+      "target": {
+        "object": "tm.retailevent_prd",
+        "schema": "S4HCTM"
+      }
+    },
+    "tm.retailnonticket_prd": {
+      "target": {
+        "object": "tm.retailnonticket_prd",
+        "schema": "S4HCTM"
+      }
+    },
+    "tm.ticket_prd": {
+      "target": {
+        "object": "tm.ticket_prd",
+        "schema": "S4HCTM"
+      }
+    },
+    "tm.ticketactivity_prd": {
+      "target": {
+        "object": "tm.ticketactivity_prd",
+        "schema": "S4HCTM"
+      }
+    },
+    "tm.journal_prd": {
+      "target": {
+        "object": "tm.journal_prd",
+        "schema": "S4HCTM"
+      }
+    },
+    "tm.attend_prd": {
+      "target": {
+        "object": "tm.attend_prd",
+        "schema": "S4HCTM"
+      }
+    },
+    "tm.eip_prd": {
+      "target": {
+        "object": "tm.eip_prd",
+        "schema": "S4HCTM"
+      }
+    },
+    "tm.avail_seats_prd": {
+      "target": {
+        "object": "tm.avail_seats_prd",
+        "schema": "S4HCTM"
+      }
+    },
+    "tm.held_seats_prd": {
+      "target": {
+        "object": "tm.held_seats_prd",
+        "schema": "S4HCTM"
+      }
+    },
+    "tm.face_value_prd": {
+      "target": {
+        "object": "tm.face_value_prd",
+        "schema": "S4HCTM"
+      }
+    },
+    "tm.revenue_share_prd": {
+      "target": {
+        "object": "tm.revenue_share_prd",
+        "schema": "S4HCTM"
+      }
+    },
+    "tm.historical_prd": {
+      "target": {
+        "object": "tm.historical_prd",
+        "schema": "S4HCTM"
+      }
+    },
+    "tm.jeheaderlog": {
+      "target": {
+        "object": "tm.jeheaderlog",
+        "schema": "S4HCTM"
+      }
     }
   }
-}

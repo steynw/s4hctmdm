@@ -1,10 +1,10 @@
-	{
-		"role": {
-			"name": "read_access",
-			"schema_privileges": [
-			{
-				"privileges": ["SELECT", "SELECT METADATA", "SELECT CDS METADATA"]
-			}
-			]
-		}
-	}
+{
+    "role": {
+        "name": "read_access",
+        "schema_privileges": [
+        {
+            "privileges": ["SELECT", "SELECT METADATA", "SELECT CDS METADATA"]
+        }
+        ]
+    }
+}

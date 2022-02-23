@@ -1,0 +1,7 @@
+{
+    "UPS_CC-grantor": {
+      "object_owner" : {
+        "container_roles":[ "s4hctm::s4_odata_helper_role_g#" ]
+      }
+    }
+}
