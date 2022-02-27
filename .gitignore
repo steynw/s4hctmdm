@@ -31,12 +31,7 @@ mta_archives/
 
 # auto generated wildcard
 s4hctmdm/db/.env
-
-# auto generated wildcard
-s4hctmdb/db/.env
-# auto generated wildcard
-dummy/db/.env
-# auto generated wildcard
 db/.env
 # auto generated wildcard
 s4hctmdm/.env
+.env
