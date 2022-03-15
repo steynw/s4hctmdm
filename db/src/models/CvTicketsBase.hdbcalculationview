@@ -138,6 +138,10 @@
     <input node="tm.ticket_prd"/>
   </calculationView>
   <calculationView xsi:type="Calculation:ProjectionView" id="Transform_amounts">
+    <descriptions>
+      <comment text="KEEP flags to ensure no aggregation, so that calcs work (must multiply by num_seats BEFORE aggregation)
+"/>
+    </descriptions>
     <viewAttributes>
       <viewAttribute id="order_num"/>
       <viewAttribute id="event_name"/>
@@ -161,10 +165,10 @@
       <viewAttribute id="pc_other7_raw"/>
       <viewAttribute id="pc_other8_raw"/>
       <viewAttribute id="pc_tax_raw"/>
-      <viewAttribute id="sap_uid"/>
+      <viewAttribute id="sap_uid" keepFlag="true"/>
       <viewAttribute id="disc_amount_raw"/>
       <viewAttribute id="event_id"/>
-      <viewAttribute id="sap_container_id"/>
+      <viewAttribute id="sap_container_id" keepFlag="true"/>
       <viewAttribute id="sap_return_date"/>
       <viewAttribute id="acct_rep_full_name"/>
       <viewAttribute id="acct_rep_id"/>

@@ -1,0 +1,1031 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:DataFoundation="http://www.sap.com/ndb/BiModelDataFoundation.ecore" xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" xmlns:Privilege="http://www.sap.com/ndb/BiModelPrivilege.ecore" xmlns:Variable="http://www.sap.com/ndb/BiModelVariable.ecore" id="DEPRECATED_CvManagementFinancials" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" cacheInvalidationPeriod="NONE" enforceSqlExecution="false" deprecated="true">
+<descriptions defaultDescription="DEPRECATED, DO NOT USE"/>
+<localVariables>
+  <variable id="IP_FYEAR" parameter="true">
+    <descriptions defaultDescription="Fiscal Year">
+      <comment text="defaults to calendar year+1 from August onwards"/>
+    </descriptions>
+    <variableProperties mandatory="true" defaultExpressionLanguage="COLUMN_ENGINE">
+      <valueDomain type="AttributeValue">
+        <externalLikeStructureName>M_TIME_DIMENSION</externalLikeStructureName>
+        <externalLikeElementName>YEAR</externalLikeElementName>
+      </valueDomain>
+      <selection multiLine="false" type="SingleValue"/>
+      <defaultRange lowValue="if( component(now(),2) &gt; 7,  component(now(),1) + 1,  component(now(),1) )   " lowExpression="true" operator="EQ" including="true"/>
+    </variableProperties>
+  </variable>
+  <variable id="IP_FPERIOD" parameter="true">
+    <descriptions defaultDescription="Fiscal Period "/>
+    <variableProperties datatype="NVARCHAR" length="3" mandatory="true" defaultExpressionLanguage="COLUMN_ENGINE">
+      <valueDomain type="StaticList">
+        <listEntry id="001">
+          <descriptions defaultDescription="001"/>
+        </listEntry>
+        <listEntry id="002">
+          <descriptions defaultDescription="002"/>
+        </listEntry>
+        <listEntry id="003">
+          <descriptions defaultDescription="003"/>
+        </listEntry>
+        <listEntry id="004">
+          <descriptions defaultDescription="004"/>
+        </listEntry>
+        <listEntry id="005">
+          <descriptions defaultDescription="005"/>
+        </listEntry>
+        <listEntry id="006">
+          <descriptions defaultDescription="006"/>
+        </listEntry>
+        <listEntry id="007">
+          <descriptions defaultDescription="007"/>
+        </listEntry>
+        <listEntry id="008">
+          <descriptions defaultDescription="008"/>
+        </listEntry>
+        <listEntry id="009">
+          <descriptions defaultDescription="009"/>
+        </listEntry>
+        <listEntry id="010">
+          <descriptions defaultDescription="010"/>
+        </listEntry>
+        <listEntry id="011">
+          <descriptions defaultDescription="011"/>
+        </listEntry>
+        <listEntry id="012">
+          <descriptions defaultDescription="012"/>
+        </listEntry>
+      </valueDomain>
+      <selection multiLine="false" type="SingleValue"/>
+      <defaultRange lowValue="&apos;003&apos;" lowExpression="true" operator="EQ" including="true"/>
+    </variableProperties>
+  </variable>
+
+  <variable id="IP_CYForecastPlanCategory" parameter="true">
+    <descriptions defaultDescription="CY Forecast Planning Category">
+      <comment text="Planning Category used to calculate the CY Forecast measure"/>
+    </descriptions>
+    <variableProperties datatype="NVARCHAR" length="5" mandatory="false" defaultValue="F01">
+      <valueDomain type="StaticList">
+        <listEntry id="F01">
+          <descriptions defaultDescription="F01"/>
+        </listEntry>
+        <listEntry id="F02">
+          <descriptions defaultDescription="F02"/>
+        </listEntry>
+        <listEntry id="F03">
+          <descriptions defaultDescription="F03"/>
+        </listEntry>
+        <listEntry id="F04">
+          <descriptions defaultDescription="F04"/>
+        </listEntry>
+        <listEntry id="PLN">
+          <descriptions defaultDescription="PLN"/>
+        </listEntry>
+      </valueDomain>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+
+  <variable id="IP_FunctionalAreaHierarchy" parameter="true">
+    <descriptions defaultDescription="  FunctionalAreaHierarchy (H112/xxxx)"/>
+    <variableProperties datatype="NVARCHAR" length="13" scale="NaN" mandatory="true" defaultValue="H112/ZFA1">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+</localVariables>
+<variableMappings>
+  <mapping xsi:type="Variable:VariableMapping" dataSource="CvTimeDim">
+    <targetVariable name="IP_FYEAR" resourceUri="CvTimeDim"/>
+    <localVariable>IP_FYEAR</localVariable>
+  </mapping>
+  <mapping xsi:type="Variable:VariableMapping" dataSource="CvTimeDim">
+    <targetVariable name="IP_FPERIOD" resourceUri="CvTimeDim"/>
+    <localVariable>IP_FPERIOD</localVariable>
+  </mapping>
+  <mapping xsi:type="Variable:VariableMapping" forStarJoin="true">
+    <targetVariable name="IP_FunctionalAreaHierarchy" resourceUri="CvFunctionalAreaHierarchyVirtual"/>
+    <localVariable>IP_FunctionalAreaHierarchy</localVariable>
+  </mapping>
+</variableMappings>
+<dataSources>
+  <DataSource id="CvActualPlanJournalBase">
+    <resourceUri>CvActualPlanJournalBase</resourceUri>
+  </DataSource>
+  <DataSource id="CvTimeDim">
+    <resourceUri>CvTimeDim</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Get_PostingYOY_Indicators" cardinality="CN_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="PlanningCategory"/>
+      <viewAttribute id="ActualAmountInTransactionCrcy" aggregationType="sum"/>
+      <viewAttribute id="AmountInTransactionCurrency" aggregationType="sum"/>
+      <viewAttribute id="PlanAmountInTransactionCrcy" aggregationType="sum"/>
+    
+      <viewAttribute id="PostingDate"/>
+      <viewAttribute id="FYIndicator"/>
+      <viewAttribute id="FYTDIndicator"/>
+      <viewAttribute id="FunctionalArea"/>
+      <viewAttribute id="FunctionalAreaName"/>
+      <viewAttribute id="ProjectType"/>
+      <viewAttribute id="ProjectSubType"/>
+      <viewAttribute id="Project"/>
+      <viewAttribute id="ProjectDescription"/>
+      <viewAttribute id="ProjectType_Desc"/>
+      <viewAttribute id="ProjectSubType_Desc"/>
+    
+      <viewAttribute id="Ledger"/>
+      <viewAttribute id="CompanyCode"/>
+      <viewAttribute id="FiscalYear"/>
+      <viewAttribute id="FiscalPeriod"/>
+      <viewAttribute id="FiscalYearPeriod"/>
+      <viewAttribute id="LedgerGLLineItem"/>
+      <viewAttribute id="ProjectDate"/>
+      <viewAttribute id="CostCenter"/>
+      <viewAttribute id="ProfitCenter"/>
+      <viewAttribute id="BusinessArea"/>
+      <viewAttribute id="ActualPlanCode"/>
+      <viewAttribute id="ControllingArea"/>
+      <viewAttribute id="TransactionCurrency"/>
+      <viewAttribute id="Rank" aggregationType="sum"/>
+      <viewAttribute id="EventStartTime" aggregationType="min"/>
+      <viewAttribute id="DoorsOpen" aggregationType="min"/>
+      <viewAttribute id="ClubOpens"/>
+      <viewAttribute id="LoungeOpen"/>
+      <viewAttribute id="SuitesOpen"/>
+      <viewAttribute id="CompCode"/>
+      <viewAttribute id="PromotionalItem"/>
+      <viewAttribute id="EventInTicketMaster"/>
+      <viewAttribute id="MerchDeal"/>
+      <viewAttribute id="EventMoved"/>
+      <viewAttribute id="EventBudgeted"/>
+      <viewAttribute id="EventActual"/>
+      <viewAttribute id="EventManager"/>
+      <viewAttribute id="EventPromoter"/>
+      <viewAttribute id="Agency"/>
+      <viewAttribute id="PlannedStartDate" aggregationType="min"/>
+      <viewAttribute id="PlannedEndDate" aggregationType="min"/>
+      <viewAttribute id="DebitCreditCode"/>
+      <viewAttribute id="CostCenterName"/>
+      <viewAttribute id="GLAccountName"/>
+      <viewAttribute id="ProfitCenterName"/>
+      <viewAttribute id="AccountingDocumentType"/>
+      <viewAttribute id="AssignmentReference"/>
+      <viewAttribute id="AccountingDocument"/>
+      <viewAttribute id="ActualPlanJournalEntryItem"/>
+      <viewAttribute id="FinancialPlanningEntryItem" aggregationType="sum"/>
+      <viewAttribute id="DocumentDate"/>
+      <viewAttribute id="WBSElement"/>
+      <viewAttribute id="WBSDescription"/>
+      <viewAttribute id="EventMonth"/>
+      <viewAttribute id="EventDay"/>
+      <viewAttribute id="EventYear"/>
+      <viewAttribute id="Genre"/>
+      <viewAttribute id="GLAccount"/>
+      <viewAttribute id="ChartOfAccounts"/>
+      <viewAttribute id="PromotionalItem_Desc"/>
+      <viewAttribute id="EventBudgeted_Desc"/>
+      <viewAttribute id="EventActual_Desc"/>
+      <viewAttribute id="EventManager_Desc"/>
+      <viewAttribute id="EventPromoter_Desc"/>
+      <viewAttribute id="Agency_Desc"/>
+      <viewAttribute id="Genre_Desc"/>
+      <viewAttribute id="EventDirector"/>
+      <viewAttribute id="EventCancelled"/>
+      <viewAttribute id="EventDirector_Desc"/>
+      <viewAttribute id="DATASOURCE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_3">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlanningCategory" source="PlanningCategory"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ActualAmountInTransactionCrcy" source="ActualAmountInTransactionCrcy"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AmountInTransactionCurrency" source="AmountInTransactionCurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlanAmountInTransactionCrcy" source="PlanAmountInTransactionCrcy"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FunctionalArea" source="FunctionalArea"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FunctionalAreaName" source="FunctionalAreaName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectType" source="ProjectType"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectSubType" source="ProjectSubType"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Project" source="Project"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectDescription" source="ProjectDescription"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectType_Desc" source="ProjectType_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectSubType_Desc" source="ProjectSubType_Desc"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="PostingDate" source="PostingDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Ledger" source="Ledger"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FiscalYear" source="FiscalYear"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FiscalPeriod" source="FiscalPeriod"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FiscalYearPeriod" source="FiscalYearPeriod"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LedgerGLLineItem" source="LedgerGLLineItem"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectDate" source="ProjectDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CostCenter" source="CostCenter"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProfitCenter" source="ProfitCenter"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BusinessArea" source="BusinessArea"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ActualPlanCode" source="ActualPlanCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ControllingArea" source="ControllingArea"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TransactionCurrency" source="TransactionCurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Rank" source="Rank"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventStartTime" source="EventStartTime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DoorsOpen" source="DoorsOpen"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ClubOpens" source="ClubOpens"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LoungeOpen" source="LoungeOpen"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SuitesOpen" source="SuitesOpen"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompCode" source="CompCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PromotionalItem" source="PromotionalItem"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventInTicketMaster" source="EventInTicketMaster"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MerchDeal" source="MerchDeal"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventMoved" source="EventMoved"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventBudgeted" source="EventBudgeted"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventActual" source="EventActual"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventManager" source="EventManager"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventPromoter" source="EventPromoter"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Agency" source="Agency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedStartDate" source="PlannedStartDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedEndDate" source="PlannedEndDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DebitCreditCode" source="DebitCreditCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CostCenterName" source="CostCenterName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GLAccountName" source="GLAccountName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProfitCenterName" source="ProfitCenterName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AccountingDocumentType" source="AccountingDocumentType"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AssignmentReference" source="AssignmentReference"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AccountingDocument" source="AccountingDocument"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ActualPlanJournalEntryItem" source="ActualPlanJournalEntryItem"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FinancialPlanningEntryItem" source="FinancialPlanningEntryItem"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DocumentDate" source="DocumentDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WBSElement" source="WBSElement"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WBSDescription" source="WBSDescription"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventMonth" source="EventMonth"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventDay" source="EventDay"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventYear" source="EventYear"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Genre" source="Genre"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GLAccount" source="GLAccount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ChartOfAccounts" source="ChartOfAccounts"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PromotionalItem_Desc" source="PromotionalItem_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventBudgeted_Desc" source="EventBudgeted_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventActual_Desc" source="EventActual_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventManager_Desc" source="EventManager_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventPromoter_Desc" source="EventPromoter_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Agency_Desc" source="Agency_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Genre_Desc" source="Genre_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventDirector" source="EventDirector"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventCancelled" source="EventCancelled"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventDirector_Desc" source="EventDirector_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DATASOURCE" source="DATASOURCE"/>
+    </input>
+    <input node="Projection_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="FYIndicator" source="FYIndicator"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FYTDIndicator" source="FYTDIndicator"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PostingDate" source="PostingDate"/>
+    </input>
+    <joinAttribute name="PostingDate"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_3">
+    <viewAttributes>
+      <viewAttribute id="PlanningCategory"/>
+      <viewAttribute id="ActualAmountInTransactionCrcy"/>
+      <viewAttribute id="AmountInTransactionCurrency"/>
+      <viewAttribute id="PlanAmountInTransactionCrcy"/>
+      <viewAttribute id="FunctionalArea"/>
+      <viewAttribute id="FunctionalAreaName"/>
+      <viewAttribute id="ProjectType"/>
+      <viewAttribute id="ProjectSubType"/>
+      <viewAttribute id="Project"/>
+      <viewAttribute id="ProjectDescription"/>
+      <viewAttribute id="ProjectType_Desc"/>
+      <viewAttribute id="ProjectSubType_Desc"/>
+      <viewAttribute id="PostingDate"/>
+      <viewAttribute id="Ledger"/>
+      <viewAttribute id="CompanyCode"/>
+      <viewAttribute id="FiscalYear"/>
+      <viewAttribute id="FiscalPeriod"/>
+      <viewAttribute id="FiscalYearPeriod"/>
+      <viewAttribute id="LedgerGLLineItem"/>
+      <viewAttribute id="ProjectDate"/>
+      <viewAttribute id="CostCenter"/>
+      <viewAttribute id="ProfitCenter"/>
+      <viewAttribute id="BusinessArea"/>
+      <viewAttribute id="ActualPlanCode"/>
+      <viewAttribute id="ControllingArea"/>
+      <viewAttribute id="TransactionCurrency"/>
+      <viewAttribute id="Rank"/>
+      <viewAttribute id="EventStartTime"/>
+      <viewAttribute id="DoorsOpen"/>
+      <viewAttribute id="ClubOpens"/>
+      <viewAttribute id="LoungeOpen"/>
+      <viewAttribute id="SuitesOpen"/>
+      <viewAttribute id="CompCode"/>
+      <viewAttribute id="PromotionalItem"/>
+      <viewAttribute id="EventInTicketMaster"/>
+      <viewAttribute id="MerchDeal"/>
+      <viewAttribute id="EventMoved"/>
+      <viewAttribute id="EventBudgeted"/>
+      <viewAttribute id="EventActual"/>
+      <viewAttribute id="EventManager"/>
+      <viewAttribute id="EventPromoter"/>
+      <viewAttribute id="Agency"/>
+      <viewAttribute id="PlannedStartDate"/>
+      <viewAttribute id="PlannedEndDate"/>
+      <viewAttribute id="DebitCreditCode"/>
+      <viewAttribute id="CostCenterName"/>
+      <viewAttribute id="GLAccountName"/>
+      <viewAttribute id="ProfitCenterName"/>
+      <viewAttribute id="AccountingDocumentType"/>
+      <viewAttribute id="AssignmentReference"/>
+      <viewAttribute id="AccountingDocument"/>
+      <viewAttribute id="ActualPlanJournalEntryItem"/>
+      <viewAttribute id="FinancialPlanningEntryItem"/>
+      <viewAttribute id="DocumentDate"/>
+      <viewAttribute id="WBSElement"/>
+      <viewAttribute id="WBSDescription"/>
+      <viewAttribute id="EventMonth"/>
+      <viewAttribute id="EventDay"/>
+      <viewAttribute id="EventYear"/>
+      <viewAttribute id="Genre"/>
+      <viewAttribute id="GLAccount"/>
+      <viewAttribute id="ChartOfAccounts"/>
+      <viewAttribute id="PromotionalItem_Desc"/>
+      <viewAttribute id="EventBudgeted_Desc"/>
+      <viewAttribute id="EventActual_Desc"/>
+      <viewAttribute id="EventManager_Desc"/>
+      <viewAttribute id="EventPromoter_Desc"/>
+      <viewAttribute id="Agency_Desc"/>
+      <viewAttribute id="Genre_Desc"/>
+      <viewAttribute id="EventDirector"/>
+      <viewAttribute id="EventCancelled"/>
+      <viewAttribute id="EventDirector_Desc"/>
+      <viewAttribute id="DATASOURCE"/></viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="CvActualPlanJournalBase"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <viewAttributes>
+      <viewAttribute id="FYIndicator"/>
+      <viewAttribute id="FYTDIndicator"/>
+    
+      <viewAttribute id="PostingDate"/>
+    
+    
+    
+      <viewAttribute id="DATETIMESTAMP"/></viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="CvTimeDim">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PostingDate" source="DATE_SQL"/>
+    </input>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Get_PostingYOY_Indicators">
+  <attributes>
+    <attribute id="PlanningCategory" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PlanningCategory"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="PlanningCategory"/>
+    </attribute>
+    <attribute id="PostingDate" order="5" displayAttribute="false" attributeHierarchyActive="false" semanticType="date">
+      <descriptions defaultDescription="PostingDate"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="PostingDate"/>
+    </attribute>
+    <attribute id="FYIndicator" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FYIndicator"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="FYIndicator"/>
+    </attribute>
+    <attribute id="FYTDIndicator" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FYTDIndicator"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="FYTDIndicator"/>
+    </attribute>
+    <attribute id="ProjectType" order="24" descriptionColumnName="ProjectType_Desc" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProjectType"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="ProjectType"/>
+    </attribute>
+    <attribute id="ProjectSubType" order="25" descriptionColumnName="ProjectSubType_Desc" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProjectSubType"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="ProjectSubType"/>
+    </attribute>
+    <attribute id="Project" order="26" descriptionColumnName="ProjectDescription" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Project"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="Project"/>
+    </attribute>
+    <attribute id="ProjectDescription" order="27" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProjectDescription"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="ProjectDescription"/>
+    </attribute>
+    <attribute id="ProjectType_Desc" order="28" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProjectType_Desc"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="ProjectType_Desc"/>
+    </attribute>
+    <attribute id="ProjectSubType_Desc" order="29" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProjectSubType_Desc"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="ProjectSubType_Desc"/>
+    </attribute>
+    <attribute id="Ledger" order="30" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Ledger"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="Ledger"/>
+    </attribute>
+    <attribute id="CompanyCode" order="31" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CompanyCode"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="CompanyCode"/>
+    </attribute>
+    <attribute id="FiscalYear" order="32" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FiscalYear"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="FiscalYear"/>
+    </attribute>
+    <attribute id="FiscalPeriod" order="33" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FiscalPeriod"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="FiscalPeriod"/>
+    </attribute>
+    <attribute id="FiscalYearPeriod" order="34" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FiscalYearPeriod"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="FiscalYearPeriod"/>
+    </attribute>
+    <attribute id="LedgerGLLineItem" order="35" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LedgerGLLineItem"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="LedgerGLLineItem"/>
+    </attribute>
+    <attribute id="ProjectDate" order="36" semanticType="date" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProjectDate"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="ProjectDate"/>
+    </attribute>
+    <attribute id="CostCenter" order="37" descriptionColumnName="CostCenterName" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CostCenter"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="CostCenter"/>
+    </attribute>
+    <attribute id="ProfitCenter" order="38" descriptionColumnName="ProfitCenterName" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProfitCenter"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="ProfitCenter"/>
+    </attribute>
+    <attribute id="BusinessArea" order="39" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BusinessArea"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="BusinessArea"/>
+    </attribute>
+    <attribute id="ActualPlanCode" order="40" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ActualPlanCode"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="ActualPlanCode"/>
+    </attribute>
+    <attribute id="ControllingArea" order="41" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ControllingArea"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="ControllingArea"/>
+    </attribute>
+    <attribute id="TransactionCurrency" order="42" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TransactionCurrency"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="TransactionCurrency"/>
+    </attribute>
+    <attribute id="Rank" order="43" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Rank"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="Rank"/>
+    </attribute>
+    <attribute id="EventStartTime" order="44" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventStartTime"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="EventStartTime"/>
+    </attribute>
+    <attribute id="DoorsOpen" order="45" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DoorsOpen"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="DoorsOpen"/>
+    </attribute>
+    <attribute id="ClubOpens" order="46" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ClubOpens"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="ClubOpens"/>
+    </attribute>
+    <attribute id="LoungeOpen" order="47" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LoungeOpen"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="LoungeOpen"/>
+    </attribute>
+    <attribute id="SuitesOpen" order="48" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SuitesOpen"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="SuitesOpen"/>
+    </attribute>
+    <attribute id="CompCode" order="49" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CompCode"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="CompCode"/>
+    </attribute>
+    <attribute id="PromotionalItem" order="50" descriptionColumnName="PromotionalItem_Desc" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PromotionalItem"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="PromotionalItem"/>
+    </attribute>
+    <attribute id="EventInTicketMaster" order="51" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventInTicketMaster"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="EventInTicketMaster"/>
+    </attribute>
+    <attribute id="MerchDeal" order="52" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MerchDeal"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="MerchDeal"/>
+    </attribute>
+    <attribute id="EventMoved" order="53" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventMoved"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="EventMoved"/>
+    </attribute>
+    <attribute id="EventBudgeted" order="54" descriptionColumnName="EventBudgeted_Desc" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventBudgeted"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="EventBudgeted"/>
+    </attribute>
+    <attribute id="EventActual" order="55" descriptionColumnName="EventActual_Desc" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventActual"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="EventActual"/>
+    </attribute>
+    <attribute id="EventManager" order="56" descriptionColumnName="EventManager_Desc" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventManager"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="EventManager"/>
+    </attribute>
+    <attribute id="EventPromoter" order="57" descriptionColumnName="EventPromoter_Desc" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventPromoter"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="EventPromoter"/>
+    </attribute>
+    <attribute id="Agency" order="58" descriptionColumnName="Agency_Desc" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Agency"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="Agency"/>
+    </attribute>
+    <attribute id="PlannedStartDate" order="59" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PlannedStartDate"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="PlannedStartDate"/>
+    </attribute>
+    <attribute id="PlannedEndDate" order="60" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PlannedEndDate"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="PlannedEndDate"/>
+    </attribute>
+    <attribute id="DebitCreditCode" order="61" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DebitCreditCode"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="DebitCreditCode"/>
+    </attribute>
+    <attribute id="CostCenterName" order="62" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CostCenterName"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="CostCenterName"/>
+    </attribute>
+    <attribute id="GLAccountName" order="63" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="GLAccountName"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="GLAccountName"/>
+    </attribute>
+    <attribute id="ProfitCenterName" order="64" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProfitCenterName"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="ProfitCenterName"/>
+    </attribute>
+    <attribute id="AccountingDocumentType" order="65" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="AccountingDocumentType"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="AccountingDocumentType"/>
+    </attribute>
+    <attribute id="AssignmentReference" order="66" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="AssignmentReference"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="AssignmentReference"/>
+    </attribute>
+    <attribute id="AccountingDocument" order="67" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="AccountingDocument"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="AccountingDocument"/>
+    </attribute>
+    <attribute id="ActualPlanJournalEntryItem" order="68" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ActualPlanJournalEntryItem"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="ActualPlanJournalEntryItem"/>
+    </attribute>
+    <attribute id="FinancialPlanningEntryItem" order="69" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FinancialPlanningEntryItem"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="FinancialPlanningEntryItem"/>
+    </attribute>
+    <attribute id="DocumentDate" order="70" semanticType="date" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DocumentDate"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="DocumentDate"/>
+    </attribute>
+    <attribute id="WBSElement" order="71" descriptionColumnName="WBSDescription" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="WBSElement"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="WBSElement"/>
+    </attribute>
+    <attribute id="WBSDescription" order="72" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="WBSDescription"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="WBSDescription"/>
+    </attribute>
+    <attribute id="EventMonth" order="73" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventMonth"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="EventMonth"/>
+    </attribute>
+    <attribute id="EventDay" order="74" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventDay"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="EventDay"/>
+    </attribute>
+    <attribute id="EventYear" order="75" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventYear"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="EventYear"/>
+    </attribute>
+    <attribute id="Genre" order="76" descriptionColumnName="Genre_Desc" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Genre"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="Genre"/>
+    </attribute>
+    <attribute id="GLAccount" order="77" descriptionColumnName="GLAccountName" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="GLAccount"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="GLAccount"/>
+    </attribute>
+    <attribute id="ChartOfAccounts" order="78" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ChartOfAccounts"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="ChartOfAccounts"/>
+    </attribute>
+    <attribute id="PromotionalItem_Desc" order="79" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PromotionalItem_Desc"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="PromotionalItem_Desc"/>
+    </attribute>
+    <attribute id="EventBudgeted_Desc" order="80" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventBudgeted_Desc"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="EventBudgeted_Desc"/>
+    </attribute>
+    <attribute id="EventActual_Desc" order="81" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventActual_Desc"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="EventActual_Desc"/>
+    </attribute>
+    <attribute id="EventManager_Desc" order="82" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventManager_Desc"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="EventManager_Desc"/>
+    </attribute>
+    <attribute id="EventPromoter_Desc" order="83" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventPromoter_Desc"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="EventPromoter_Desc"/>
+    </attribute>
+    <attribute id="Agency_Desc" order="84" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Agency_Desc"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="Agency_Desc"/>
+    </attribute>
+    <attribute id="Genre_Desc" order="85" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Genre_Desc"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="Genre_Desc"/>
+    </attribute>
+    <attribute id="EventDirector" order="86" descriptionColumnName="EventDirector_Desc" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventDirector"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="EventDirector"/>
+    </attribute>
+    <attribute id="EventCancelled" order="87" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventCancelled"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="EventCancelled"/>
+    </attribute>
+    <attribute id="EventDirector_Desc" order="88" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EventDirector_Desc"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="EventDirector_Desc"/>
+    </attribute>
+    <attribute id="DATASOURCE" order="89" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DATASOURCE"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="DATASOURCE"/>
+    </attribute>
+    <attribute id="FunctionalArea$local">
+      <descriptions defaultDescription="FunctionalArea"/>
+      <keyMapping columnObjectName="Get_PostingYOY_Indicators" columnName="FunctionalArea"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes>
+  
+    <calculatedAttribute id="ChosenFiscalYear" order="20" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ChosenFiscalYear"/>
+  
+      <keyCalculation datatype="NVARCHAR" expressionLanguage="SQL" length="4">
+  
+        <formula>'$$IP_FYEAR$$'</formula>
+  
+      </keyCalculation>
+  
+    </calculatedAttribute>
+    <calculatedAttribute id="ChosenFiscalPeriod" order="21" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ChosenFiscalPeriod"/>
+      <keyCalculation datatype="NVARCHAR" expressionLanguage="SQL" length="3">
+        <formula>'$$IP_FPERIOD$$'</formula>
+      </keyCalculation>
+    </calculatedAttribute>
+    <calculatedAttribute id="Chosen_CYForecastPlanCategory" order="22" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Chosen_CYForecastPlanCategory"/>
+      <keyCalculation datatype="NVARCHAR" expressionLanguage="SQL" length="5">
+        <formula>'$$IP_CYForecastPlanCategory$$'</formula>
+      </keyCalculation>
+    </calculatedAttribute>
+  </calculatedAttributes>
+  <baseMeasures>
+    <measure id="AmountInTransactionCurrency" order="2" aggregationType="sum" measureType="simple" unconverted="true">
+      <descriptions defaultDescription="AmountInTransactionCurrency"/>
+      <measureMapping columnObjectName="Get_PostingYOY_Indicators" columnName="AmountInTransactionCurrency"/>
+    </measure>
+  
+    <measure id="ActualAmountInTransactionCrcy" order="3" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="ActualAmountInTransactionCrcy"/>
+      <measureMapping columnObjectName="Get_PostingYOY_Indicators" columnName="ActualAmountInTransactionCrcy"/>
+    </measure>
+    <measure id="PlanAmountInTransactionCrcy" order="4" aggregationType="sum" measureType="simple" hidden="true">
+      <descriptions defaultDescription="PlanAmountInTransactionCrcy"/>
+      <measureMapping columnObjectName="Get_PostingYOY_Indicators" columnName="PlanAmountInTransactionCrcy"/>
+    </measure></baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures>
+    <measure id="CYActual" order="8" aggregationType="sum" datatype="DECIMAL" length="24" scale="3" baseMeasure="ActualAmountInTransactionCrcy">
+      <descriptions defaultDescription="CYActual"/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="PlanningCategory">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="ACT01"/>
+        </filter>
+        <attributeName>PlanningCategory</attributeName>
+      </restriction>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="FYIndicator">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="CY"/>
+        </filter>
+        <attributeName>FYIndicator</attributeName>
+      </restriction>
+    </measure>
+    <measure id="CYActualYTD" order="9" aggregationType="sum" datatype="DECIMAL" length="24" scale="3" baseMeasure="ActualAmountInTransactionCrcy">
+      <descriptions defaultDescription="CYActualYTD"/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="PlanningCategory">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="ACT01"/>
+        </filter>
+        <attributeName>PlanningCategory</attributeName>
+      </restriction>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="FYIndicator">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="CY"/>
+        </filter>
+        <attributeName>FYIndicator</attributeName>
+      </restriction>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="FYTDIndicator">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="YTD"/>
+        </filter>
+        <attributeName>FYTDIndicator</attributeName>
+      </restriction>
+    </measure>
+    <measure id="CYPlan" order="10" aggregationType="sum" datatype="DECIMAL" length="24" scale="3" baseMeasure="AmountInTransactionCurrency">
+      <descriptions defaultDescription="CYPlan"/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="PlanningCategory">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="PLN"/>
+        </filter>
+        <attributeName>PlanningCategory</attributeName>
+      </restriction>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="FYIndicator">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="CY"/>
+        </filter>
+        <attributeName>FYIndicator</attributeName>
+      </restriction>
+    </measure>
+    <measure id="CYPlanYTD" order="11" aggregationType="sum" datatype="DECIMAL" length="24" scale="3" baseMeasure="AmountInTransactionCurrency">
+      <descriptions defaultDescription="CYPlanYTD"/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="PlanningCategory">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="PLN"/>
+        </filter>
+        <attributeName>PlanningCategory</attributeName>
+      </restriction>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="FYIndicator">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="CY"/>
+        </filter>
+        <attributeName>FYIndicator</attributeName>
+      </restriction>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="FYTDIndicator">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="YTD"/>
+        </filter>
+        <attributeName>FYTDIndicator</attributeName>
+      </restriction>
+    </measure>
+    <measure id="CYForecast" order="12" aggregationType="sum" datatype="DECIMAL" length="24" scale="3" baseMeasure="AmountInTransactionCurrency">
+      <descriptions defaultDescription="CYForecast">
+        <comment text="restricted by Input Parameter IP_CYForecastPlanCategory"/>
+      </descriptions>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="PlanningCategory">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="$$IP_CYForecastPlanCategory$$"/>
+        </filter>
+        <attributeName>PlanningCategory</attributeName>
+      </restriction>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="FYIndicator">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="CY"/>
+        </filter>
+        <attributeName>FYIndicator</attributeName>
+      </restriction>
+    </measure>
+    <measure id="CYForecastYTD" order="13" aggregationType="sum" datatype="DECIMAL" length="24" scale="3" baseMeasure="AmountInTransactionCurrency">
+      <descriptions defaultDescription="CYForecastYTD"/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="PlanningCategory">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="$$IP_CYForecastPlanCategory$$"/>
+        </filter>
+        <attributeName>PlanningCategory</attributeName>
+      </restriction>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="FYIndicator">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="CY"/>
+        </filter>
+        <attributeName>FYIndicator</attributeName>
+      </restriction>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="FYTDIndicator">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="YTD"/>
+        </filter>
+        <attributeName>FYTDIndicator</attributeName>
+      </restriction>
+    </measure>
+    <measure id="P1Actual" order="14" aggregationType="sum" datatype="DECIMAL" length="24" scale="3" baseMeasure="ActualAmountInTransactionCrcy">
+      <descriptions defaultDescription="P1Actual"/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="PlanningCategory">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="ACT01"/>
+        </filter>
+        <attributeName>PlanningCategory</attributeName>
+      </restriction>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="FYIndicator">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="CY1-"/>
+        </filter>
+        <attributeName>FYIndicator</attributeName>
+      </restriction>
+    </measure>
+    <measure id="P1ActualYTD" order="15" aggregationType="sum" datatype="DECIMAL" length="24" scale="3" baseMeasure="ActualAmountInTransactionCrcy">
+      <descriptions defaultDescription="P1ActualYTD"/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="PlanningCategory">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="ACT01"/>
+        </filter>
+        <attributeName>PlanningCategory</attributeName>
+      </restriction>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="FYIndicator">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="CY1-"/>
+        </filter>
+        <attributeName>FYIndicator</attributeName>
+      </restriction>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="FYTDIndicator">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="YTD"/>
+        </filter>
+        <attributeName>FYTDIndicator</attributeName>
+      </restriction>
+    </measure>
+    <measure id="P1Plan" order="16" aggregationType="sum" datatype="DECIMAL" length="24" scale="3" baseMeasure="AmountInTransactionCurrency">
+      <descriptions defaultDescription="P1Plan"/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="PlanningCategory">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="PLN"/>
+        </filter>
+        <attributeName>PlanningCategory</attributeName>
+      </restriction>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="FYIndicator">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="CY1-"/>
+        </filter>
+        <attributeName>FYIndicator</attributeName>
+      </restriction>
+    </measure>
+    <measure id="P1PlanYTD" order="17" aggregationType="sum" datatype="DECIMAL" length="24" scale="3" baseMeasure="AmountInTransactionCurrency">
+      <descriptions defaultDescription="P1PlanYTD"/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="PlanningCategory">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="PLN"/>
+        </filter>
+        <attributeName>PlanningCategory</attributeName>
+      </restriction>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="FYIndicator">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="CY1-"/>
+        </filter>
+        <attributeName>FYIndicator</attributeName>
+      </restriction>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="FYTDIndicator">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="YTD"/>
+        </filter>
+        <attributeName>FYTDIndicator</attributeName>
+      </restriction>
+    </measure>
+  
+    <measure id="P2Actual" order="18" aggregationType="sum" datatype="DECIMAL" length="24" scale="3" baseMeasure="ActualAmountInTransactionCrcy">
+      <descriptions defaultDescription="P2Actual"/>
+  
+      <restriction logicalOperator="AND">
+  
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="PlanningCategory">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="ACT01"/>
+        </filter>
+  
+        <attributeName>PlanningCategory</attributeName>
+  
+      </restriction>
+  
+      <restriction logicalOperator="AND">
+  
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="FYIndicator">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="CY2-"/>
+        </filter>
+  
+        <attributeName>FYIndicator</attributeName>
+  
+      </restriction>
+  
+    </measure>
+    <measure id="P2ActualYTD" order="19" aggregationType="sum" datatype="DECIMAL" length="24" scale="3" baseMeasure="ActualAmountInTransactionCrcy">
+      <descriptions defaultDescription="P2ActualYTD"/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="PlanningCategory">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="ACT01"/>
+        </filter>
+        <attributeName>PlanningCategory</attributeName>
+      </restriction>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="FYIndicator">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="CY2-"/>
+        </filter>
+        <attributeName>FYIndicator</attributeName>
+      </restriction>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="FYTDIndicator">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="YTD"/>
+        </filter>
+        <attributeName>FYTDIndicator</attributeName>
+      </restriction>
+    </measure>
+    <measure id="P1ForecastF04" order="23" aggregationType="sum" datatype="DECIMAL" length="24" scale="3" baseMeasure="AmountInTransactionCurrency">
+      <descriptions defaultDescription="P1ForecastF04"/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="PlanningCategory">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="F04"/>
+        </filter>
+        <attributeName>PlanningCategory</attributeName>
+      </restriction>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="FYIndicator">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="CY1-"/>
+        </filter>
+        <attributeName>FYIndicator</attributeName>
+      </restriction>
+    </measure>
+  </restrictedMeasures>
+  <localDimensions>
+    <localDimension id="EventHierarchy">
+      <attributeRef xsi:type="DataFoundation:Attribute">ProjectType</attributeRef>
+      <attributeRef xsi:type="DataFoundation:Attribute">ProjectSubType</attributeRef>
+      <attributeRef xsi:type="DataFoundation:Attribute">Project</attributeRef>
+      <hierarchies>
+        <hierarchy xsi:type="Dimension:LeveledHierarchy" id="EventHierarchy" aggregateAllNodes="true" orphanedNodesHandling="ROOT_NODES" rootNodeVisibility="ADD_ROOT_NODE" withRootNode="true" nodeStyle="NAME_PATH_ENFORCED" cacheEnabled="true" cycleHandling="BREAKUP" emptyValueIsNull="true">
+          <descriptions defaultDescription="EventHierarchy"/>
+          <unassignedMemberProperties mode="FALSE"/>
+          <levels>
+            <level levelAttribute="ProjectType" levelType="MDLEVEL_TYPE_REGULAR" order="1" orderAttribute="ProjectType" sortDirection="ASC"/>
+            <level levelAttribute="ProjectSubType" levelType="MDLEVEL_TYPE_REGULAR" order="2" orderAttribute="ProjectSubType" sortDirection="ASC"/>
+            <level levelAttribute="Project" levelType="MDLEVEL_TYPE_REGULAR" order="3" orderAttribute="Project" sortDirection="ASC"/>
+          </levels>
+        </hierarchy>
+      </hierarchies>
+    </localDimension>
+  </localDimensions>
+
+  <sharedDimensions>
+
+    <logicalJoin associatedObjectUri="CvFunctionalAreaHierarchyVirtual">
+
+      <attributes>
+
+        <attributeRef>FunctionalArea$local</attributeRef>
+
+      </attributes>
+
+      <associatedAttributeNames>
+
+        <attributeName>FunctionalArea</attributeName>
+
+      </associatedAttributeNames>
+
+      <properties cardinality="CN_N" joinType="rightOuter" joinOperator="Equal"/>
+
+      <associatedAttributeFeatures/>
+
+    </logicalJoin>
+
+  </sharedDimensions>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="92" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Get_PostingYOY_Indicators" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-144" y="293"/>
+      <rectangleSize height="30" width="245"/>
+    </shape>
+    <shape modelObjectName="Projection_3" modelObjectNameSpace="Get_PostingYOY_Indicators" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="243"/>
+    </shape>
+    <shape modelObjectName="Projection_2" modelObjectNameSpace="Get_PostingYOY_Indicators" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_3" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-134" y="512"/>
+      <rectangleSize height="30" width="208"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="156" y="443"/>
+      <rectangleSize height="30" width="174"/>
+    </shape>
+  
+    <shape modelObjectName="Get_PostingYOY_Indicators" modelObjectNameSpace="StarJoinViewNodeInput" modelObjectType="repository">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="CvFunctionalAreaHierarchyVirtual" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+      <upperLeftCorner x="369" y="31"/>
+      <rectangleSize width="222"/>
+    </shape></shapes>
+</layout>
+</Calculation:scenario>

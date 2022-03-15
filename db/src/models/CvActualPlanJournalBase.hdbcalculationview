@@ -219,8 +219,6 @@ and &quot;ValidityEndDate&quot; = '9999-12-31' and &quot;ValidityEndDate_01&quot
       <viewAttribute id="FinancialPlanningEntryItem" aggregationType="sum"/>
       <viewAttribute id="WBSElement"/>
       <viewAttribute id="WBSDescription"/>
-      <viewAttribute id="CC_ActualAmount" aggregationType="sum"/>
-      <viewAttribute id="CC_PlanAmount" aggregationType="sum"/>
       <viewAttribute id="EventMonth"/>
       <viewAttribute id="EventDay"/>
       <viewAttribute id="EventYear"/>
@@ -300,8 +298,6 @@ and &quot;ValidityEndDate&quot; = '9999-12-31' and &quot;ValidityEndDate_01&quot
       <mapping xsi:type="Calculation:AttributeMapping" target="FinancialPlanningEntryItem" source="FinancialPlanningEntryItem"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="WBSElement" source="WBSElement"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="WBSDescription" source="WBSDescription"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="CC_ActualAmount" source="CC_ActualAmount"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="CC_PlanAmount" source="CC_PlanAmount"/>
     
       <mapping xsi:type="Calculation:AttributeMapping" target="Genre_Desc" source="Genre_Desc"/>
     
@@ -386,8 +382,6 @@ and &quot;ValidityEndDate&quot; = '9999-12-31' and &quot;ValidityEndDate_01&quot
       <viewAttribute id="FinancialPlanningEntryItem" aggregationType="sum"/>
       <viewAttribute id="WBSElement"/>
       <viewAttribute id="WBSDescription"/>
-      <viewAttribute id="CC_ActualAmount" aggregationType="sum"/>
-      <viewAttribute id="CC_PlanAmount" aggregationType="sum"/>
     
       <viewAttribute id="Genre_Desc"/>
       <viewAttribute id="Genre"/>
@@ -475,8 +469,6 @@ and &quot;ValidityEndDate&quot; = '9999-12-31' and &quot;ValidityEndDate_01&quot
       <mapping xsi:type="Calculation:AttributeMapping" target="EventDirector" source="EventDirector"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="EventCancelled" source="EventCancelled"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="EventDirector_Desc" source="EventDirector_Desc"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="CC_ActualAmount" source="CC_ActualAmount"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="CC_PlanAmount" source="CC_PlanAmount"/>
     
       <mapping xsi:type="Calculation:ConstantAttributeMapping" target="DATASOURCE" null="false" value="S4JOURNAL"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="DocumentDate" source="DocumentDate"/>
@@ -550,8 +542,6 @@ and &quot;ValidityEndDate&quot; = '9999-12-31' and &quot;ValidityEndDate_01&quot
       <mapping xsi:type="Calculation:AttributeMapping" target="EventDirector" source="EventDirector"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="EventCancelled" source="EventCancelled"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="EventDirector_Desc" source="EventDirectorDesc"/>
-      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CC_ActualAmount" null="true" value=""/>
-      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CC_PlanAmount" null="true" value=""/>
     
       <mapping xsi:type="Calculation:ConstantAttributeMapping" target="DATASOURCE" null="false" value="HISTORY"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="DocumentDate" source="DocumentDate"/>
@@ -627,8 +617,6 @@ and &quot;ValidityEndDate&quot; = '9999-12-31' and &quot;ValidityEndDate_01&quot
       <viewAttribute id="EventDirector"/>
       <viewAttribute id="EventCancelled"/>
       <viewAttribute id="EventDirector_Desc"/>
-      <viewAttribute id="CC_ActualAmount" aggregationType="sum"/>
-      <viewAttribute id="CC_PlanAmount" aggregationType="sum"/>
     
       <viewAttribute id="DocumentDate"/>
       <viewAttribute id="ProjectDate"/>
@@ -704,8 +692,6 @@ and &quot;ValidityEndDate&quot; = '9999-12-31' and &quot;ValidityEndDate_01&quot
       <mapping xsi:type="Calculation:AttributeMapping" target="EventDirector" source="EventDirector"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="EventCancelled" source="EventCancelled"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="EventDirector_Desc" source="EventDirector_Desc"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="CC_ActualAmount" source="CC_ActualAmount"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="CC_PlanAmount" source="CC_PlanAmount"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PostingDateTime" source="PostingDateTime"/>
     
       <mapping xsi:type="Calculation:AttributeMapping" target="ProjectDate" source="ProjectDate"/>
@@ -874,8 +860,6 @@ and &quot;ValidityEndDate&quot; = '9999-12-31' and &quot;ValidityEndDate_01&quot
       <viewAttribute id="EventDirector"/>
       <viewAttribute id="EventCancelled"/>
       <viewAttribute id="EventDirector_Desc"/>
-      <viewAttribute id="CC_ActualAmount" aggregationType="sum"/>
-      <viewAttribute id="CC_PlanAmount" aggregationType="sum"/>
     
       <viewAttribute id="PostingDateTime" aggregationType="min"/>
       <viewAttribute id="ProjectDate"/>
@@ -951,8 +935,6 @@ and &quot;ValidityEndDate&quot; = '9999-12-31' and &quot;ValidityEndDate_01&quot
       <mapping xsi:type="Calculation:AttributeMapping" target="EventDirector" source="EventDirector"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="EventCancelled" source="EventCancelled"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="EventDirector_Desc" source="EventDirector_Desc"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="CC_ActualAmount" source="CC_ActualAmount"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="CC_PlanAmount" source="CC_PlanAmount"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PostingDateTime" source="PostingDateTime"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ProjectDate" source="ProjectDate"/>
     </input>
@@ -1039,8 +1021,6 @@ and &quot;ValidityEndDate&quot; = '9999-12-31' and &quot;ValidityEndDate_01&quot
       <viewAttribute id="EventDirector"/>
       <viewAttribute id="EventCancelled"/>
       <viewAttribute id="EventDirector_Desc"/>
-      <viewAttribute id="CC_ActualAmount" aggregationType="sum"/>
-      <viewAttribute id="CC_PlanAmount" aggregationType="sum"/>
       <viewAttribute id="PostingDateTime" aggregationType="min"/>
       <viewAttribute id="ProjectDate"/>
     </viewAttributes>
@@ -1113,10 +1093,7 @@ and &quot;ValidityEndDate&quot; = '9999-12-31' and &quot;ValidityEndDate_01&quot
       <mapping xsi:type="Calculation:AttributeMapping" target="EventDirector" source="EventDirector"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="EventCancelled" source="EventCancelled"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="EventDirector_Desc" source="EventDirector_Desc"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="PostingDateTime" source="PostingDateTime"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="CC_ActualAmount" source="CC_ActualAmount"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="CC_PlanAmount" source="CC_PlanAmount"/>
-    </input>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PostingDateTime" source="PostingDateTime"/></input>
     <input node="get_project_date_sql">
       <mapping xsi:type="Calculation:AttributeMapping" target="ProjectDate" source="DATE_SQL"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PlannedEndDate" source="DATETIMESTAMP"/>
@@ -1300,140 +1277,140 @@ and &quot;ValidityEndDate&quot; = '9999-12-31' and &quot;ValidityEndDate_01&quot
       <keyMapping columnObjectName="EventDate_rollups" columnName="DebitCreditCode"/>
     </attribute>
   
-    <attribute id="CostCenterName" order="43" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="CostCenterName" order="41" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="CostCenterName"/>
   
       <keyMapping columnObjectName="EventDate_rollups" columnName="CostCenterName"/>
   
     </attribute>
-    <attribute id="GLAccountName" order="44" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="GLAccountName" order="42" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="GLAccountName"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="GLAccountName"/>
     </attribute>
-    <attribute id="ProfitCenterName" order="45" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="ProfitCenterName" order="43" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="ProfitCenterName"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="ProfitCenterName"/>
     </attribute>
-    <attribute id="AccountingDocumentType" order="46" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="AccountingDocumentType" order="44" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="AccountingDocumentType"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="AccountingDocumentType"/>
     </attribute>
-    <attribute id="AssignmentReference" order="47" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="AssignmentReference" order="45" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="AssignmentReference"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="AssignmentReference"/>
     </attribute>
-    <attribute id="AccountingDocument" order="48" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="AccountingDocument" order="46" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="AccountingDocument"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="AccountingDocument"/>
     </attribute>
-    <attribute id="ActualPlanJournalEntryItem" order="49" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="ActualPlanJournalEntryItem" order="47" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="ActualPlanJournalEntryItem"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="ActualPlanJournalEntryItem"/>
     </attribute>
-    <attribute id="LedgerGLLineItem" order="50" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="LedgerGLLineItem" order="48" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="LedgerGLLineItem"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="LedgerGLLineItem"/>
     </attribute>
-    <attribute id="FinancialPlanningEntryItem" order="51" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="FinancialPlanningEntryItem" order="49" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="FinancialPlanningEntryItem"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="FinancialPlanningEntryItem"/>
     </attribute>
   
-    <attribute id="WBSElement" order="52" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="WBSDescription">
+    <attribute id="WBSElement" order="50" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="WBSDescription">
       <descriptions defaultDescription="WBSElement"/>
   
       <keyMapping columnObjectName="EventDate_rollups" columnName="WBSElement"/>
   
     </attribute>
-    <attribute id="WBSDescription" order="53" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="WBSDescription" order="51" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="WBSDescription"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="WBSDescription"/>
     </attribute>
-    <attribute id="EventMonth" order="54" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="EventMonth" order="52" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="EventMonth"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="EventMonth"/>
     </attribute>
-    <attribute id="EventDay" order="55" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="EventDay" order="53" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="EventDay"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="EventDay"/>
     </attribute>
-    <attribute id="EventYear" order="56" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="EventYear" order="54" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="FYMONTH"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="EventYear"/>
     </attribute>
-    <attribute id="Genre" order="57" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="Genre_Desc">
+    <attribute id="Genre" order="55" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="Genre_Desc">
       <descriptions defaultDescription="Genre"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="Genre"/>
     </attribute>
-    <attribute id="GLAccount" order="58" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="GLAccountName">
+    <attribute id="GLAccount" order="56" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="GLAccountName">
       <descriptions defaultDescription="GLAccount"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="GLAccount"/>
     </attribute>
-    <attribute id="ChartOfAccounts" order="59" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="ChartOfAccounts" order="57" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="ChartOfAccounts"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="ChartOfAccounts"/>
     </attribute>
-    <attribute id="ProjectType_Desc" order="60" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="ProjectType_Desc" order="58" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="ProjectType_Desc"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="ProjectType_Desc"/>
     </attribute>
-    <attribute id="ProjectSubType_Desc" order="61" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="ProjectSubType_Desc" order="59" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="ProjectSubType_Desc"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="ProjectSubType_Desc"/>
     </attribute>
-    <attribute id="PromotionalItem_Desc" order="62" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="PromotionalItem_Desc" order="60" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="PromotionalItem_Desc"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="PromotionalItem_Desc"/>
     </attribute>
-    <attribute id="EventBudgeted_Desc" order="63" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="EventBudgeted_Desc" order="61" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="EventBudgeted_Desc"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="EventBudgeted_Desc"/>
     </attribute>
-    <attribute id="EventActual_Desc" order="64" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="EventActual_Desc" order="62" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="EventActual_Desc"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="EventActual_Desc"/>
     </attribute>
-    <attribute id="EventManager_Desc" order="65" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="EventManager_Desc" order="63" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="EventManager_Desc"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="EventManager_Desc"/>
     </attribute>
-    <attribute id="EventPromoter_Desc" order="66" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="EventPromoter_Desc" order="64" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="EventPromoter_Desc"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="EventPromoter_Desc"/>
     </attribute>
-    <attribute id="Agency_Desc" order="67" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="Agency_Desc" order="65" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Agency_Desc"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="Agency_Desc"/>
     </attribute>
-    <attribute id="Genre_Desc" order="68" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="Genre_Desc" order="66" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Genre_Desc"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="Genre_Desc"/>
     </attribute>
-    <attribute id="EventDirector" order="69" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="EventDirector_Desc">
+    <attribute id="EventDirector" order="67" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="EventDirector_Desc">
       <descriptions defaultDescription="EventDirector"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="EventDirector"/>
     </attribute>
-    <attribute id="EventCancelled" order="70" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="EventCancelled" order="68" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="EventCancelled"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="EventCancelled"/>
     </attribute>
-    <attribute id="EventDirector_Desc" order="71" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="EventDirector_Desc" order="69" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="EventDirector_Desc"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="EventDirector_Desc"/>
     </attribute>
-    <attribute id="DATASOURCE" order="72" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="DATASOURCE" order="70" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="DATASOURCE"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="DATASOURCE"/>
     </attribute>
-    <attribute id="DocumentDate" order="73" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="DocumentDate" order="71" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="DocumentDate"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="DocumentDate"/>
     </attribute>
-    <attribute id="ProjectDate" order="74" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="ProjectDate" order="72" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="ProjectDate"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="ProjectDate"/>
     </attribute>
-    <attribute id="PostingDate" order="75" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="PostingDate" order="73" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="PostingDate"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="PostingDate"/>
     </attribute>
@@ -1452,16 +1429,7 @@ and &quot;ValidityEndDate&quot; = '9999-12-31' and &quot;ValidityEndDate_01&quot
     <measure id="PlanAmountInTransactionCrcy" order="40" aggregationType="sum" measureType="simple">
       <descriptions defaultDescription="PlanAmountInTransactionCrcy"/>
       <measureMapping columnObjectName="EventDate_rollups" columnName="PlanAmountInTransactionCrcy"/>
-    </measure>
-    <measure id="CC_ActualAmount" order="41" aggregationType="sum" measureType="simple">
-      <descriptions defaultDescription="CC_ActualAmount"/>
-      <measureMapping columnObjectName="EventDate_rollups" columnName="CC_ActualAmount"/>
-    </measure>
-    <measure id="CC_PlanAmount" order="42" aggregationType="sum" measureType="simple">
-      <descriptions defaultDescription="CC_PlanAmount"/>
-      <measureMapping columnObjectName="EventDate_rollups" columnName="CC_PlanAmount"/>
-    </measure>
-  </baseMeasures>
+    </measure></baseMeasures>
   <calculatedMeasures/>
   <restrictedMeasures/>
   <localDimensions>

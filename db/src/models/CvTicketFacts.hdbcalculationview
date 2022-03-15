@@ -4,8 +4,8 @@
 <localVariables/>
 <variableMappings/>
 <dataSources>
-  <DataSource id="CvArchticsTickets">
-    <resourceUri>CvArchticsTickets</resourceUri>
+  <DataSource id="CvTicketsBase">
+    <resourceUri>CvTicketsBase</resourceUri>
   </DataSource>
   <DataSource id="CvEventAttributes">
     <resourceUri>CvEventAttributes</resourceUri>
@@ -137,6 +137,8 @@
       <viewAttribute id="tran_type"/>
       <viewAttribute id="upd_datetime"/>
       <viewAttribute id="upd_user"/>
+    
+      <viewAttribute id="sap_return_date"/>
     </viewAttributes>
     <calculatedViewAttributes>
       <calculatedViewAttribute id="CC_COMP_FLAG_COL" datatype="NVARCHAR" length="1" expressionLanguage="SQL">
@@ -146,7 +148,7 @@
  END</formula>
       </calculatedViewAttribute>
     </calculatedViewAttributes>
-    <input node="CvArchticsTickets"/>
+    <input node="CvTicketsBase"/>
   </calculationView>
   <calculationView xsi:type="Calculation:ProjectionView" id="P_EVENT_ATTR">
     <viewAttributes>
@@ -1156,7 +1158,9 @@
   
     <attribute id="sap_container_id" order="93" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="sap_container_id"/>
+  
       <keyMapping columnObjectName="Join_2" columnName="sap_container_id"/>
+  
     </attribute>
     <attribute id="acct_rep_full_name" order="94" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="acct_rep_full_name"/>
@@ -1173,10 +1177,6 @@
     <attribute id="add_user" order="97" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="add_user"/>
       <keyMapping columnObjectName="Join_2" columnName="add_user"/>
-    </attribute>
-    <attribute id="block_purchase_price" order="98" displayAttribute="false" attributeHierarchyActive="false">
-      <descriptions defaultDescription="block_purchase_price"/>
-      <keyMapping columnObjectName="Join_2" columnName="block_purchase_price"/>
     </attribute>
     <attribute id="class_name" order="99" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="class_name"/>
@@ -1598,6 +1598,11 @@
       <descriptions defaultDescription="disc_amount"/>
       <measureMapping columnObjectName="Join_2" columnName="disc_amount"/>
     </measure>
+  
+    <measure id="block_purchase_price" order="98" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="block_purchase_price"/>
+      <measureMapping columnObjectName="Join_2" columnName="block_purchase_price"/>
+    </measure>
   </baseMeasures>
   <calculatedMeasures/>
   <restrictedMeasures>
@@ -1611,7 +1616,7 @@
         </filter>
         <attributeName>CompFlag</attributeName>
       </restriction>
-    </measure>
+      </measure>
     <measure id="TicketsSoldPaid" order="59" aggregationType="sum" datatype="INTEGER" length="10" scale="0" baseMeasure="TicketsSold">
       <descriptions defaultDescription="TicketsSoldPaid">
         <comment text="num_seats that were NOT complimentary based on paid=owed=0"/>
@@ -1622,7 +1627,7 @@
         </filter>
         <attributeName>CompFlag</attributeName>
       </restriction>
-    </measure>
+      </measure>
     <measure id="PaidTicketsSuites" order="60" aggregationType="sum" datatype="INTEGER" length="10" scale="0" baseMeasure="TicketsSold">
       <descriptions defaultDescription="PaidTicketsSuites"/>
       <restriction logicalOperator="AND">
@@ -1637,7 +1642,7 @@
         </filter>
         <attributeName>SuitesFlag</attributeName>
       </restriction>
-    </measure>
+      </measure>
   
     <measure id="PaidTicketsArena" order="61" aggregationType="sum" datatype="INTEGER" length="10" scale="0" baseMeasure="TicketsSold">
       <descriptions defaultDescription="PaidTicketsArena"/>
@@ -1661,8 +1666,7 @@
         <attributeName>ArenaFlag</attributeName>
   
       </restriction>
-  
-    </measure>
+      </measure>
     <measure id="CompTicketsSuites" order="62" aggregationType="sum" datatype="INTEGER" length="10" scale="0" baseMeasure="TicketsSold">
       <descriptions defaultDescription="CompTicketsSuites"/>
       <restriction logicalOperator="AND">
@@ -1677,7 +1681,7 @@
         </filter>
         <attributeName>SuitesFlag</attributeName>
       </restriction>
-    </measure>
+      </measure>
   
     <measure id="CompTicketsArena" order="63" aggregationType="sum" datatype="INTEGER" length="10" scale="0" baseMeasure="TicketsSold">
       <descriptions defaultDescription="CompTicketsArena"/>
@@ -1701,8 +1705,7 @@
         <attributeName>ArenaFlag</attributeName>
   
       </restriction>
-  
-    </measure>
+      </measure>
   
     <measure id="PaidTicketsParking" order="66" aggregationType="sum" datatype="INTEGER" length="10" scale="0" baseMeasure="TicketsSold">
       <descriptions defaultDescription="PaidTicketsParking"/>
@@ -1726,8 +1729,7 @@
         <attributeName>CompFlag</attributeName>
   
       </restriction>
-  
-    </measure>
+      </measure>
     <measure id="CompTicketsParking" order="67" aggregationType="sum" datatype="INTEGER" length="10" scale="0" baseMeasure="TicketsSold">
       <descriptions defaultDescription="CompTicketsParking"/>
       <restriction logicalOperator="AND">
@@ -1742,7 +1744,7 @@
         </filter>
         <attributeName>CompFlag</attributeName>
       </restriction>
-    </measure>
+      </measure>
     <measure id="PaidTicketsLounge" order="68" aggregationType="sum" datatype="INTEGER" length="10" scale="0" baseMeasure="TicketsSold">
       <descriptions defaultDescription="PaidTicketsLounge"/>
       <restriction logicalOperator="AND">
@@ -1757,7 +1759,7 @@
         </filter>
         <attributeName>CompFlag</attributeName>
       </restriction>
-    </measure>
+      </measure>
     <measure id="CompTicketsLounge" order="69" aggregationType="sum" datatype="INTEGER" length="10" scale="0" baseMeasure="TicketsSold">
       <descriptions defaultDescription="CompTicketsLounge"/>
       <restriction logicalOperator="AND">
@@ -1772,7 +1774,7 @@
         </filter>
         <attributeName>CompFlag</attributeName>
       </restriction>
-    </measure>
+      </measure>
   
     <measure id="PurchasePriceArena" order="71" aggregationType="sum" datatype="DECIMAL" length="12" scale="2" baseMeasure="Purchase_Price">
       <descriptions defaultDescription="PurchasePriceArena"/>
@@ -1786,8 +1788,7 @@
         <attributeName>ArenaFlag</attributeName>
   
       </restriction>
-  
-    </measure>
+      </measure>
     <measure id="PurchasePriceSuites" order="72" aggregationType="sum" datatype="DECIMAL" length="12" scale="2" baseMeasure="Purchase_Price">
       <descriptions defaultDescription="PurchasePriceSuites"/>
       <restriction logicalOperator="AND">
@@ -1796,7 +1797,7 @@
         </filter>
         <attributeName>SuitesFlag</attributeName>
       </restriction>
-    </measure>
+      </measure>
     <measure id="PurchasePriceLounge" order="73" aggregationType="sum" datatype="DECIMAL" length="12" scale="2" baseMeasure="Purchase_Price">
       <descriptions defaultDescription="PurchasePriceLounge"/>
       <restriction logicalOperator="AND">
@@ -1805,7 +1806,7 @@
         </filter>
         <attributeName>LoungeFlag</attributeName>
       </restriction>
-    </measure>
+      </measure>
     <measure id="PurchasePriceParking" order="74" aggregationType="sum" datatype="DECIMAL" length="12" scale="2" baseMeasure="Purchase_Price">
       <descriptions defaultDescription="PurchasePriceParking"/>
       <restriction logicalOperator="AND">
@@ -1814,7 +1815,7 @@
         </filter>
         <attributeName>ParkingFlag</attributeName>
       </restriction>
-    </measure>
+      </measure>
   </restrictedMeasures>
   <localDimensions/>
 </logicalModel>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:DataFoundation="http://www.sap.com/ndb/BiModelDataFoundation.ecore" xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" id="CvEvents" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:DataFoundation="http://www.sap.com/ndb/BiModelDataFoundation.ecore" xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" id="CvEventsBAK" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
 <descriptions defaultDescription="CvEvents">
   <comment text=""/>
 </descriptions>
@@ -676,7 +676,7 @@
   
     </input>
   </calculationView>
-  <calculationView xsi:type="Calculation:AggregationView" id="P_TICKETS" filterExpressionLanguage="SQL">
+  <calculationView xsi:type="Calculation:AggregationView" id="P_TICKETS">
     <viewAttributes>
       <viewAttribute id="Project"/>
       <viewAttribute id="TicketsSoldTM"/>
@@ -750,9 +750,7 @@
       <viewAttribute id="PaidTicketsParkingTM"/>
       <viewAttribute id="CompTicketsParkingTM"/>
       <viewAttribute id="PaidTicketsLoungeTM"/>
-      <viewAttribute id="CompTicketsLoungeTM"/>
-      <viewAttribute id="ticket_status"/>
-    </viewAttributes>
+      <viewAttribute id="CompTicketsLoungeTM"/></viewAttributes>
     <calculatedViewAttributes/>
     <restrictedViewAttributes/>
     <input node="CvTicketFacts">
@@ -776,7 +774,6 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="EventDate" source="PlannedEndDate"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ArchticsEventDate" source="EventDate"/>
     </input>
-    <filter>&quot;ticket_status&quot; = 'A'</filter>
   </calculationView>
   <calculationView xsi:type="Calculation:AggregationView" id="P_ATTEND">
     <viewAttributes>
