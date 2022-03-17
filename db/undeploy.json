@@ -15,6 +15,5 @@
     "src/models/CvActualPlanJournalHistoricalEquivalent.hdbcalculationview",
     "src/virtualtable/YY1_ActualPlanJournalEntryCube.hdbvirtualtable",
     "src/models/CvManagementFinancials.hdbcalculationview",
-    "src/role/GRANT_RSS4HC_ODATA_ROLE_G.hdbrole",
-    "src/role/GRANT_RSS4HC_ODATA_ROLE.hdbrole"
+    "src/models/CvTicketFactsNew.hdbcalculationview"
 ]

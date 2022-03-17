@@ -13,11 +13,11 @@
   <DataSource id="A_ProfitCenterText">
     <resourceUri>A_ProfitCenterText</resourceUri>
   </DataSource>
-  <DataSource id="A_FunctionalAreaText">
-    <resourceUri>A_FunctionalAreaText</resourceUri>
-  </DataSource>
   <DataSource id="A_GLAccountText">
     <resourceUri>A_GLAccountText</resourceUri>
+  </DataSource>
+  <DataSource id="A_FunctionalAreaText">
+    <resourceUri>A_FunctionalAreaText</resourceUri>
   </DataSource>
 </dataSources>
 <calculationViews>
@@ -725,16 +725,6 @@
     </input>
     <joinAttribute name="functionalarea"/>
   </calculationView>
-  <calculationView xsi:type="Calculation:ProjectionView" id="FA_Name_from_S4" filterExpressionLanguage="SQL">
-    <viewAttributes>
-      <viewAttribute id="FunctionalAreaName"/>
-    
-      <viewAttribute id="FunctionalArea"/>
-      <viewAttribute id="Language"/></viewAttributes>
-    <calculatedViewAttributes/>
-    <input node="A_FunctionalAreaText"/>
-    <filter>&quot;Language&quot; = 'EN'</filter>
-  </calculationView>
   <calculationView xsi:type="Calculation:ProjectionView" id="GL_Account_Name_S4" filterExpressionLanguage="SQL">
     <viewAttributes>
       <viewAttribute id="GLAccountName"/>
@@ -745,6 +735,16 @@
       <viewAttribute id="Language"/></viewAttributes>
     <calculatedViewAttributes/>
     <input node="A_GLAccountText"/>
+    <filter>&quot;Language&quot; = 'EN'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="FA_Name_from_S4" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="FunctionalAreaName"/>
+    
+      <viewAttribute id="FunctionalArea"/>
+      <viewAttribute id="Language"/></viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="A_FunctionalAreaText"/>
     <filter>&quot;Language&quot; = 'EN'</filter>
   </calculationView>
 </calculationViews>
@@ -1265,14 +1265,14 @@
       <upperLeftCorner x="320" y="30"/>
       <rectangleSize width="136"/>
     </shape>
+    <shape expanded="true" modelObjectName="GL_Account_Name_S4" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="385" y="804"/>
+      <rectangleSize height="30" width="231"/>
+    </shape>
   
     <shape expanded="true" modelObjectName="FA_Name_from_S4" modelObjectNameSpace="CalculationView">
       <upperLeftCorner x="434" y="986"/>
       <rectangleSize height="30" width="216"/>
-    </shape>
-    <shape expanded="true" modelObjectName="GL_Account_Name_S4" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="385" y="804"/>
-      <rectangleSize height="30" width="231"/>
     </shape></shapes>
 </layout>
 </Calculation:scenario>
