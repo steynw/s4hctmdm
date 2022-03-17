@@ -854,7 +854,7 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="ArchticsEventDate" source="EventDate"/>
     </input>
   </calculationView>
-  <calculationView xsi:type="Calculation:AggregationView" id="P_AVAIL">
+  <calculationView xsi:type="Calculation:AggregationView" id="P_AVAIL" filterExpressionLanguage="SQL">
     <viewAttributes>
       <viewAttribute id="Project"/>
       <viewAttribute id="TicketsUnsoldTM"/>
@@ -919,6 +919,8 @@
       <viewAttribute id="EventDirectorDesc"/>
     
       <viewAttribute id="ArchticsEventDate"/>
+    
+      <viewAttribute id="Kill"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <restrictedViewAttributes/>
@@ -935,6 +937,8 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="EventDate" source="PlannedEndDate"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ArchticsEventDate" source="EventDate"/>
     </input>
+  
+    <filter>&quot;Kill&quot; != 'Y'</filter>
   </calculationView>
   <calculationView xsi:type="Calculation:AggregationView" id="S4_PROJECTDATA">
     <viewAttributes>

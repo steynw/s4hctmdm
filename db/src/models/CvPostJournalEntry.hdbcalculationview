@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CvPostJournalEntry" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
-<descriptions defaultDescription="CvPostJournalEntry"/>
+<descriptions defaultDescription="CvPostJournalEntry">
+  <comment text="."/>
+</descriptions>
 <localVariables>
   <variable id="IP_DocType" parameter="true">
     <descriptions defaultDescription=""/>
@@ -291,13 +293,13 @@ and &quot;AccountingDocumentHeaderText&quot; in ('S4T1M2 Archtics','S4T1M2 Host'
       <keyCalculation datatype="NVARCHAR" expressionLanguage="SQL" length="2">
         <formula>'$$IP_DocType$$'</formula>
       </keyCalculation>
-    </calculatedAttribute>
+      </calculatedAttribute>
     <calculatedAttribute id="AmountInTransactionCurrency" order="11" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="AmountInTransactionCurrency"/>
       <keyCalculation datatype="DECIMAL" expressionLanguage="SQL" length="13" scale="2">
         <formula>IFNULL(&quot;TMAmount&quot;, 0)- IFNULL(&quot;S4Amount&quot;, 0)</formula>
       </keyCalculation>
-    </calculatedAttribute>
+      </calculatedAttribute>
   </calculatedAttributes>
   <baseMeasures>
     <measure id="TMAmount" order="8" aggregationType="sum" measureType="simple">
@@ -316,13 +318,13 @@ and &quot;AccountingDocumentHeaderText&quot; in ('S4T1M2 Archtics','S4T1M2 Host'
 <layout>
   <shapes>
     <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
-      <upperLeftCorner x="239" y="112"/>
+      <upperLeftCorner x="239" y="105"/>
     
       <rectangleSize width="160"/>
     </shape>
   
     <shape expanded="true" modelObjectName="Projection_TM" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="108" y="477"/>
+      <upperLeftCorner x="109" y="477"/>
       <rectangleSize height="30" width="160"/>
     </shape>
     <shape expanded="true" modelObjectName="Projection_S4" modelObjectNameSpace="CalculationView">
@@ -335,7 +337,7 @@ and &quot;AccountingDocumentHeaderText&quot; in ('S4T1M2 Archtics','S4T1M2 Host'
     </shape>
   
     <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="239" y="217"/>
+      <upperLeftCorner x="239" y="210"/>
       <rectangleSize height="30" width="160"/>
     </shape>
     <shape modelObjectName="Aggregation_TM" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
