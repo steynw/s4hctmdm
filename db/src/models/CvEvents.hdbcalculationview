@@ -118,6 +118,11 @@
       <viewAttribute id="EventDirectorDesc"/>
     
       <viewAttribute id="ArchticsEventDate"/>
+    
+      <viewAttribute id="BlockPurchasePriceArenaTM" aggregationType="sum"/>
+      <viewAttribute id="BlockPurchasePriceSuitesTM" aggregationType="sum"/>
+      <viewAttribute id="BlockPurchasePriceLoungeTM" aggregationType="sum"/>
+      <viewAttribute id="BlockPurchasePriceParkingTM" aggregationType="sum"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="P_TICKETS" emptyUnionBehavior="NO_ROW">
@@ -214,6 +219,11 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="EventDirectorDesc" source="EventDirectorDesc"/>
     
       <mapping xsi:type="Calculation:AttributeMapping" target="ArchticsEventDate" source="ArchticsEventDate"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="BlockPurchasePriceArenaTM" source="BlockPurchasePriceArenaTM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BlockPurchasePriceSuitesTM" source="BlockPurchasePriceSuitesTM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BlockPurchasePriceLoungeTM" source="BlockPurchasePriceLoungeTM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BlockPurchasePriceParkingTM" source="BlockPurchasePriceParkingTM"/>
     </input>
   
     <input node="P_ATTEND" emptyUnionBehavior="NO_ROW">
@@ -404,6 +414,16 @@
   
       <mapping xsi:type="Calculation:AttributeMapping" target="ArchticsEventDate" source="ArchticsEventDate"/>
   
+    
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="BlockPurchasePriceArenaTM" null="true" value=""/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="BlockPurchasePriceSuitesTM" null="true" value=""/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="BlockPurchasePriceLoungeTM" null="true" value=""/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="BlockPurchasePriceParkingTM" null="true" value=""/>
+  
     </input>
     <input node="P_AVAIL" emptyUnionBehavior="NO_ROW">
       <mapping xsi:type="Calculation:AttributeMapping" target="Project" source="Project"/>
@@ -499,6 +519,11 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="EventDirectorDesc" source="EventDirectorDesc"/>
     
       <mapping xsi:type="Calculation:AttributeMapping" target="ArchticsEventDate" source="ArchticsEventDate"/>
+    
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="BlockPurchasePriceArenaTM" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="BlockPurchasePriceSuitesTM" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="BlockPurchasePriceLoungeTM" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="BlockPurchasePriceParkingTM" null="true" value=""/>
     </input>
   
     <input node="S4_PROJECTDATA" emptyUnionBehavior="NO_ROW">
@@ -674,6 +699,16 @@
   
       <mapping xsi:type="Calculation:ConstantAttributeMapping" target="ArchticsEventDate" null="true" value=""/>
   
+    
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="BlockPurchasePriceArenaTM" null="true" value=""/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="BlockPurchasePriceSuitesTM" null="true" value=""/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="BlockPurchasePriceLoungeTM" null="true" value=""/>
+  
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="BlockPurchasePriceParkingTM" null="true" value=""/>
+  
     </input>
   </calculationView>
   <calculationView xsi:type="Calculation:AggregationView" id="P_TICKETS" filterExpressionLanguage="SQL">
@@ -740,6 +775,12 @@
       <viewAttribute id="EventDirectorDesc"/>
       <viewAttribute id="ArchticsEventDate"/>
     
+      <viewAttribute id="BlockPurchasePriceArenaTM" aggregationType="sum"/>
+      <viewAttribute id="BlockPurchasePriceSuitesTM" aggregationType="sum"/>
+      <viewAttribute id="BlockPurchasePriceLoungeTM" aggregationType="sum"/>
+      <viewAttribute id="BlockPurchasePriceParkingTM" aggregationType="sum"/>
+    
+    
     
     
     
@@ -751,8 +792,7 @@
       <viewAttribute id="CompTicketsParkingTM"/>
       <viewAttribute id="PaidTicketsLoungeTM"/>
       <viewAttribute id="CompTicketsLoungeTM"/>
-      <viewAttribute id="ticket_status"/>
-    </viewAttributes>
+      <viewAttribute id="ticket_status"/></viewAttributes>
     <calculatedViewAttributes/>
     <restrictedViewAttributes/>
     <input node="CvTicketFacts">
@@ -775,6 +815,11 @@
     
       <mapping xsi:type="Calculation:AttributeMapping" target="EventDate" source="PlannedEndDate"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ArchticsEventDate" source="EventDate"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="BlockPurchasePriceArenaTM" source="BlockPurchasePriceArena"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BlockPurchasePriceSuitesTM" source="BlockPurchasePriceSuites"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BlockPurchasePriceLoungeTM" source="BlockPurchasePriceLounge"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BlockPurchasePriceParkingTM" source="BlockPurchasePriceParking"/>
     </input>
     <filter>&quot;ticket_status&quot; = 'A'</filter>
   </calculationView>
@@ -937,7 +982,6 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="EventDate" source="PlannedEndDate"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ArchticsEventDate" source="EventDate"/>
     </input>
-  
     <filter>&quot;Kill&quot; != 'Y'</filter>
   </calculationView>
   <calculationView xsi:type="Calculation:AggregationView" id="S4_PROJECTDATA">
@@ -1124,6 +1168,11 @@
       <viewAttribute id="EventDirectorDesc"/>
     
       <viewAttribute id="ArchticsEventDate"/>
+    
+      <viewAttribute id="BlockPurchasePriceArenaTM"/>
+      <viewAttribute id="BlockPurchasePriceSuitesTM"/>
+      <viewAttribute id="BlockPurchasePriceLoungeTM"/>
+      <viewAttribute id="BlockPurchasePriceParkingTM"/>
     </viewAttributes>
     <calculatedViewAttributes>
       <calculatedViewAttribute id="CC_DUMMY" datatype="INTEGER" expressionLanguage="SQL">
@@ -1223,6 +1272,11 @@
       <viewAttribute id="EventDirectorDesc"/>
     
       <viewAttribute id="ArchticsEventDate"/>
+    
+      <viewAttribute id="BlockPurchasePriceArenaTM" aggregationType="sum"/>
+      <viewAttribute id="BlockPurchasePriceSuitesTM" aggregationType="sum"/>
+      <viewAttribute id="BlockPurchasePriceLoungeTM" aggregationType="sum"/>
+      <viewAttribute id="BlockPurchasePriceParkingTM" aggregationType="sum"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="Union_1">
@@ -1314,6 +1368,11 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="EventDirectorDesc" source="EventDirectorDesc"/>
     
       <mapping xsi:type="Calculation:AttributeMapping" target="ArchticsEventDate" source="ArchticsEventDate"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="BlockPurchasePriceArenaTM" source="BlockPurchasePriceArenaTM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BlockPurchasePriceSuitesTM" source="BlockPurchasePriceSuitesTM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BlockPurchasePriceLoungeTM" source="BlockPurchasePriceLoungeTM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BlockPurchasePriceParkingTM" source="BlockPurchasePriceParkingTM"/>
     </input>
     <input node="SHARKS_CUDA_OPPONENT">
       <mapping xsi:type="Calculation:AttributeMapping" target="Opponent" source="Opponent"/>
@@ -1691,6 +1750,27 @@
       <unitCurrencyAttribute attributeName="Currency"/>
       <measureMapping columnObjectName="Projection_1" columnName="PurchasePriceParkingTM"/>
     </measure>
+  
+    <measure id="BlockPurchasePriceArenaTM" order="98" semanticType="amount" aggregationType="sum" measureType="amount">
+      <descriptions defaultDescription="BlockPurchasePriceArenaTM"/>
+      <unitCurrencyAttribute attributeName="Currency"/>
+      <measureMapping columnObjectName="Projection_1" columnName="BlockPurchasePriceArenaTM"/>
+    </measure>
+    <measure id="BlockPurchasePriceSuitesTM" order="99" semanticType="amount" aggregationType="sum" measureType="amount">
+      <descriptions defaultDescription="BlockPurchasePriceSuitesTM"/>
+      <unitCurrencyAttribute attributeName="Currency"/>
+      <measureMapping columnObjectName="Projection_1" columnName="BlockPurchasePriceSuitesTM"/>
+    </measure>
+    <measure id="BlockPurchasePriceLoungeTM" order="100" semanticType="amount" aggregationType="sum" measureType="amount">
+      <descriptions defaultDescription="BlockPurchasePriceLoungeTM"/>
+      <unitCurrencyAttribute attributeName="Currency"/>
+      <measureMapping columnObjectName="Projection_1" columnName="BlockPurchasePriceLoungeTM"/>
+    </measure>
+    <measure id="BlockPurchasePriceParkingTM" order="101" semanticType="amount" aggregationType="sum" measureType="amount">
+      <descriptions defaultDescription="BlockPurchasePriceParkingTM"/>
+      <unitCurrencyAttribute attributeName="Currency"/>
+      <measureMapping columnObjectName="Projection_1" columnName="BlockPurchasePriceParkingTM"/>
+    </measure>
   </baseMeasures>
   <calculatedMeasures>
     <measure id="AvgTicketPrice" order="3" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="13" scale="2" expressionLanguage="SQL">
@@ -1702,14 +1782,16 @@
  END
 
 </formula>
-    </measure>
+    
+      </measure>
   
     <measure id="GrossTicketReceipts" order="4" aggregationType="sum" measureType="amount" datatype="DECIMAL" length="13" scale="2" expressionLanguage="COLUMN_ENGINE" semanticType="amount">
       <descriptions defaultDescription="GrossTicketReceipts"/>
   
       <unitCurrencyAttribute attributeName="Currency"/>
-      <formula>&quot;GrossTicketReceiptsS4&quot; + &quot;PurchasePriceArenaTM&quot; + &quot;PurchasePriceSuitesTM&quot;</formula>
+      <formula>&quot;GrossTicketReceiptsS4&quot; + &quot;BlockPurchasePriceArenaTM&quot;</formula>
     
+      
       
       
       
@@ -1725,9 +1807,9 @@
         <comment text=""/>
       </descriptions>
       <unitCurrencyAttribute attributeName="Currency"/>
-      <formula>&quot;GrossPotentialTicketSalesS4&quot; +
-&quot;PurchasePriceArenaTM&quot; + &quot;PurchasePriceSuitesTM&quot; +
-&quot;ValueUnsoldArenaTM&quot;</formula>
+      <formula>&quot;GrossPotentialTicketSalesS4&quot; + &quot;BlockPurchasePriceArenaTM&quot;
++ &quot;ValueUnsoldArenaTM&quot;</formula>
+      
       
       
       
@@ -1746,12 +1828,14 @@
       
       
       
+      
       </measure>
     <measure id="NoShowSuites" order="20" aggregationType="sum" measureType="simple" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
       <descriptions defaultDescription="NoShowSuites"/>
       <formula>&quot;PaidTicketsSuitesTM&quot; + &quot;CompTicketsSuitesTM&quot; + &quot;PaidTicketsSuitesS4&quot; + &quot;CompTicketsSuitesS4&quot;
 - &quot;AttendanceSuitesTM&quot; - &quot;DropTicketsSuitesS4&quot;</formula>
     
+      
       
       
       
@@ -1777,6 +1861,7 @@
       
       
       
+      
       </measure>
     <measure id="OverallAttendance" order="31" aggregationType="sum" measureType="simple" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
       <descriptions defaultDescription="OverallAttendance">
@@ -1784,6 +1869,7 @@
       </descriptions>
       <formula>&quot;AttendanceArenaTM&quot; + &quot;AttendanceSuitesTM&quot; + &quot;DropTicketsArenaS4&quot; + &quot;DropTicketsSuitesS4&quot;</formula>
     
+      
       
       
       
@@ -1810,12 +1896,14 @@
       
       
       
+      
       </measure>
   
     <measure id="TicketsUnsold" order="34" aggregationType="sum" measureType="simple" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
       <descriptions defaultDescription="TicketsUnsold"/>
       <formula>&quot;TicketsUnsoldArenaTM&quot; + &quot;TicketsUnsoldSuitesTM&quot;</formula>
     
+      
       
       
       
@@ -1837,11 +1925,13 @@
       
       
       
+      
       </measure>
     <measure id="PaidTicketsSuites" order="36" aggregationType="sum" measureType="simple" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
       <descriptions defaultDescription="PaidTicketsSuites"/>
       <formula>&quot;PaidTicketsSuitesS4&quot; + &quot;PaidTicketsSuitesTM&quot; </formula>
     
+      
       
       
       
@@ -1863,11 +1953,13 @@
       
       
       
+      
       </measure>
     <measure id="CompTicketsArena" order="38" aggregationType="sum" measureType="simple" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
       <descriptions defaultDescription="CompTicketsArena"/>
       <formula>&quot;CompTicketsArenaTM&quot; + &quot;CompTicketsArenaS4&quot;</formula>
     
+      
       
       
       
@@ -1889,6 +1981,7 @@
       
       
       
+      
       </measure>
     <measure id="DropTicketsSuites" order="40" aggregationType="sum" measureType="simple" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
       <descriptions defaultDescription="DropTicketsSuites"/>
@@ -1902,11 +1995,13 @@
       
       
       
+      
       </measure>
     <measure id="DropTicketsArena" order="41" aggregationType="sum" measureType="simple" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
       <descriptions defaultDescription="DropTicketsArena"/>
       <formula>&quot;AttendanceArenaTM&quot; + &quot;DropTicketsArenaS4&quot;</formula>
     
+      
       
       
       
@@ -1982,8 +2077,8 @@
       <rectangleSize height="30" width="160"/>
     </shape>
     <shape expanded="true" modelObjectName="P_TICKETS" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="362" y="706"/>
-      <rectangleSize height="30" width="160"/>
+      <upperLeftCorner x="347" y="706"/>
+      <rectangleSize height="30" width="175"/>
     </shape>
   
     <shape expanded="true" modelObjectName="P_ATTEND" modelObjectNameSpace="CalculationView">

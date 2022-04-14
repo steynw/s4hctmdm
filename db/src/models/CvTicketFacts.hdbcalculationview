@@ -1120,413 +1120,413 @@
       <keyMapping columnObjectName="Join_2" columnName="GenreDesc"/>
     </attribute>
   
-    <attribute id="EventName" order="75" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="EventName" order="80" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="EventName"/>
   
       <keyMapping columnObjectName="Join_2" columnName="EventName"/>
   
     </attribute>
   
-    <attribute id="MultiType" order="76" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="MultiType" order="81" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="MultiType"/>
   
       <keyMapping columnObjectName="Join_2" columnName="MultiType"/>
   
     </attribute>
   
-    <attribute id="ProcessingStatus" order="77" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="ProcessingStatus" order="82" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="ProcessingStatus"/>
   
       <keyMapping columnObjectName="Join_2" columnName="ProcessingStatus"/>
   
     </attribute>
   
-    <attribute id="sell_location" order="78" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="sell_location" order="83" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="sell_location"/>
   
       <keyMapping columnObjectName="Join_2" columnName="sell_location"/>
   
     </attribute>
-    <attribute id="ticket_status" order="91" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="ticket_status" order="96" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="ticket_status"/>
       <keyMapping columnObjectName="Join_2" columnName="ticket_status"/>
     </attribute>
-    <attribute id="order_num" order="92" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="order_num" order="97" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="order_num"/>
       <keyMapping columnObjectName="Join_2" columnName="order_num"/>
     </attribute>
   
-    <attribute id="sap_container_id" order="93" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="sap_container_id" order="98" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="sap_container_id"/>
   
       <keyMapping columnObjectName="Join_2" columnName="sap_container_id"/>
   
     </attribute>
-    <attribute id="acct_rep_full_name" order="94" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="acct_rep_full_name" order="99" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="acct_rep_full_name"/>
       <keyMapping columnObjectName="Join_2" columnName="acct_rep_full_name"/>
     </attribute>
-    <attribute id="acct_rep_id" order="95" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="acct_rep_id" order="100" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="acct_rep_id"/>
       <keyMapping columnObjectName="Join_2" columnName="acct_rep_id"/>
     </attribute>
-    <attribute id="add_datetime" order="96" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="add_datetime" order="101" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="add_datetime"/>
       <keyMapping columnObjectName="Join_2" columnName="add_datetime"/>
     </attribute>
-    <attribute id="add_user" order="97" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="add_user" order="102" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="add_user"/>
       <keyMapping columnObjectName="Join_2" columnName="add_user"/>
     </attribute>
-    <attribute id="class_name" order="99" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="class_name" order="103" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="class_name"/>
       <keyMapping columnObjectName="Join_2" columnName="class_name"/>
     </attribute>
-    <attribute id="comp_code" order="100" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="comp_code" order="104" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="comp_code"/>
       <keyMapping columnObjectName="Join_2" columnName="comp_code"/>
     </attribute>
-    <attribute id="comp_name" order="101" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="comp_name" order="105" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="comp_name"/>
       <keyMapping columnObjectName="Join_2" columnName="comp_name"/>
     </attribute>
-    <attribute id="contract_id" order="102" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="contract_id" order="106" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="contract_id"/>
       <keyMapping columnObjectName="Join_2" columnName="contract_id"/>
     </attribute>
-    <attribute id="delivered_date" order="103" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="delivered_date" order="107" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="delivered_date"/>
       <keyMapping columnObjectName="Join_2" columnName="delivered_date"/>
     </attribute>
-    <attribute id="delivery_addr1" order="104" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="delivery_addr1" order="108" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="delivery_addr1"/>
       <keyMapping columnObjectName="Join_2" columnName="delivery_addr1"/>
     </attribute>
-    <attribute id="delivery_addr2" order="105" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="delivery_addr2" order="109" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="delivery_addr2"/>
       <keyMapping columnObjectName="Join_2" columnName="delivery_addr2"/>
     </attribute>
-    <attribute id="delivery_addr3" order="106" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="delivery_addr3" order="110" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="delivery_addr3"/>
       <keyMapping columnObjectName="Join_2" columnName="delivery_addr3"/>
     </attribute>
-    <attribute id="delivery_city" order="107" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="delivery_city" order="111" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="delivery_city"/>
       <keyMapping columnObjectName="Join_2" columnName="delivery_city"/>
     </attribute>
-    <attribute id="delivery_country" order="108" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="delivery_country" order="112" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="delivery_country"/>
       <keyMapping columnObjectName="Join_2" columnName="delivery_country"/>
     </attribute>
-    <attribute id="delivery_instructions" order="109" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="delivery_instructions" order="113" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="delivery_instructions"/>
       <keyMapping columnObjectName="Join_2" columnName="delivery_instructions"/>
     </attribute>
-    <attribute id="delivery_method" order="110" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="delivery_method" order="114" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="delivery_method"/>
       <keyMapping columnObjectName="Join_2" columnName="delivery_method"/>
     </attribute>
-    <attribute id="delivery_method_name" order="111" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="delivery_method_name" order="115" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="delivery_method_name"/>
       <keyMapping columnObjectName="Join_2" columnName="delivery_method_name"/>
     </attribute>
-    <attribute id="delivery_name_first" order="112" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="delivery_name_first" order="116" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="delivery_name_first"/>
       <keyMapping columnObjectName="Join_2" columnName="delivery_name_first"/>
     </attribute>
-    <attribute id="delivery_name_last" order="113" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="delivery_name_last" order="117" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="delivery_name_last"/>
       <keyMapping columnObjectName="Join_2" columnName="delivery_name_last"/>
     </attribute>
-    <attribute id="delivery_phone" order="114" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="delivery_phone" order="118" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="delivery_phone"/>
       <keyMapping columnObjectName="Join_2" columnName="delivery_phone"/>
     </attribute>
-    <attribute id="delivery_phone_formatted" order="115" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="delivery_phone_formatted" order="119" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="delivery_phone_formatted"/>
       <keyMapping columnObjectName="Join_2" columnName="delivery_phone_formatted"/>
     </attribute>
-    <attribute id="delivery_state" order="116" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="delivery_state" order="120" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="delivery_state"/>
       <keyMapping columnObjectName="Join_2" columnName="delivery_state"/>
     </attribute>
-    <attribute id="delivery_zip" order="117" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="delivery_zip" order="121" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="delivery_zip"/>
       <keyMapping columnObjectName="Join_2" columnName="delivery_zip"/>
     </attribute>
-    <attribute id="delivery_zip_formatted" order="118" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="delivery_zip_formatted" order="122" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="delivery_zip_formatted"/>
       <keyMapping columnObjectName="Join_2" columnName="delivery_zip_formatted"/>
     </attribute>
-    <attribute id="disc_code" order="119" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="disc_code" order="123" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="disc_code"/>
       <keyMapping columnObjectName="Join_2" columnName="disc_code"/>
     </attribute>
-    <attribute id="expanded" order="120" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="expanded" order="124" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="expanded"/>
       <keyMapping columnObjectName="Join_2" columnName="expanded"/>
     </attribute>
-    <attribute id="group_flag" order="121" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="group_flag" order="125" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="group_flag"/>
       <keyMapping columnObjectName="Join_2" columnName="group_flag"/>
     </attribute>
-    <attribute id="group_sales_name" order="122" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="group_sales_name" order="126" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="group_sales_name"/>
       <keyMapping columnObjectName="Join_2" columnName="group_sales_name"/>
     </attribute>
-    <attribute id="info" order="123" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="info" order="127" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="info"/>
       <keyMapping columnObjectName="Join_2" columnName="info"/>
     </attribute>
-    <attribute id="last_seat" order="124" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="last_seat" order="128" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="last_seat"/>
       <keyMapping columnObjectName="Join_2" columnName="last_seat"/>
     </attribute>
-    <attribute id="ledger_id" order="125" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="ledger_id" order="129" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="ledger_id"/>
       <keyMapping columnObjectName="Join_2" columnName="ledger_id"/>
     </attribute>
-    <attribute id="order_line_item" order="126" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="order_line_item" order="130" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="order_line_item"/>
       <keyMapping columnObjectName="Join_2" columnName="order_line_item"/>
     </attribute>
-    <attribute id="order_line_item_seq" order="127" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="order_line_item_seq" order="131" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="order_line_item_seq"/>
       <keyMapping columnObjectName="Join_2" columnName="order_line_item_seq"/>
     </attribute>
-    <attribute id="orig_acct_rep_id" order="128" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="orig_acct_rep_id" order="132" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="orig_acct_rep_id"/>
       <keyMapping columnObjectName="Join_2" columnName="orig_acct_rep_id"/>
     </attribute>
-    <attribute id="orig_datetime" order="129" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="orig_datetime" order="133" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="orig_datetime"/>
       <keyMapping columnObjectName="Join_2" columnName="orig_datetime"/>
     </attribute>
-    <attribute id="other_info_1" order="130" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="other_info_1" order="134" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="other_info_1"/>
       <keyMapping columnObjectName="Join_2" columnName="other_info_1"/>
     </attribute>
-    <attribute id="other_info_10" order="131" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="other_info_10" order="135" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="other_info_10"/>
       <keyMapping columnObjectName="Join_2" columnName="other_info_10"/>
     </attribute>
-    <attribute id="other_info_2" order="132" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="other_info_2" order="136" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="other_info_2"/>
       <keyMapping columnObjectName="Join_2" columnName="other_info_2"/>
     </attribute>
-    <attribute id="other_info_3" order="133" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="other_info_3" order="137" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="other_info_3"/>
       <keyMapping columnObjectName="Join_2" columnName="other_info_3"/>
     </attribute>
-    <attribute id="other_info_4" order="134" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="other_info_4" order="138" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="other_info_4"/>
       <keyMapping columnObjectName="Join_2" columnName="other_info_4"/>
     </attribute>
-    <attribute id="other_info_5" order="135" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="other_info_5" order="139" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="other_info_5"/>
       <keyMapping columnObjectName="Join_2" columnName="other_info_5"/>
     </attribute>
-    <attribute id="other_info_6" order="136" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="other_info_6" order="140" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="other_info_6"/>
       <keyMapping columnObjectName="Join_2" columnName="other_info_6"/>
     </attribute>
-    <attribute id="other_info_7" order="137" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="other_info_7" order="141" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="other_info_7"/>
       <keyMapping columnObjectName="Join_2" columnName="other_info_7"/>
     </attribute>
-    <attribute id="other_info_8" order="138" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="other_info_8" order="142" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="other_info_8"/>
       <keyMapping columnObjectName="Join_2" columnName="other_info_8"/>
     </attribute>
-    <attribute id="other_info_9" order="139" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="other_info_9" order="143" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="other_info_9"/>
       <keyMapping columnObjectName="Join_2" columnName="other_info_9"/>
     </attribute>
-    <attribute id="paid" order="140" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="paid" order="144" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="paid"/>
       <keyMapping columnObjectName="Join_2" columnName="paid"/>
     </attribute>
-    <attribute id="plan_datetime" order="141" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="plan_datetime" order="145" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="plan_datetime"/>
       <keyMapping columnObjectName="Join_2" columnName="plan_datetime"/>
     </attribute>
-    <attribute id="plan_event_id" order="142" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="plan_event_id" order="146" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="plan_event_id"/>
       <keyMapping columnObjectName="Join_2" columnName="plan_event_id"/>
     </attribute>
-    <attribute id="plan_event_name" order="143" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="plan_event_name" order="147" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="plan_event_name"/>
       <keyMapping columnObjectName="Join_2" columnName="plan_event_name"/>
     </attribute>
-    <attribute id="price_code" order="144" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="price_code" order="148" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="price_code"/>
       <keyMapping columnObjectName="Join_2" columnName="price_code"/>
     </attribute>
-    <attribute id="price_code_desc" order="145" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="price_code_desc" order="149" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="price_code_desc"/>
       <keyMapping columnObjectName="Join_2" columnName="price_code_desc"/>
     </attribute>
-    <attribute id="pricing_method" order="146" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="pricing_method" order="150" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="pricing_method"/>
       <keyMapping columnObjectName="Join_2" columnName="pricing_method"/>
     </attribute>
-    <attribute id="promo_code" order="147" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="promo_code" order="151" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="promo_code"/>
       <keyMapping columnObjectName="Join_2" columnName="promo_code"/>
     </attribute>
-    <attribute id="renewal_ind" order="148" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="renewal_ind" order="152" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="renewal_ind"/>
       <keyMapping columnObjectName="Join_2" columnName="renewal_ind"/>
     </attribute>
-    <attribute id="retail_acct_add_date" order="149" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="retail_acct_add_date" order="153" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="retail_acct_add_date"/>
       <keyMapping columnObjectName="Join_2" columnName="retail_acct_add_date"/>
     </attribute>
-    <attribute id="retail_acct_num" order="150" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="retail_acct_num" order="154" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="retail_acct_num"/>
       <keyMapping columnObjectName="Join_2" columnName="retail_acct_num"/>
     </attribute>
-    <attribute id="retail_face_value" order="151" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="retail_face_value" order="155" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="retail_face_value"/>
       <keyMapping columnObjectName="Join_2" columnName="retail_face_value"/>
     </attribute>
-    <attribute id="retail_face_value_tax" order="152" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="retail_face_value_tax" order="156" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="retail_face_value_tax"/>
       <keyMapping columnObjectName="Join_2" columnName="retail_face_value_tax"/>
     </attribute>
-    <attribute id="retail_facility_fee" order="153" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="retail_facility_fee" order="157" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="retail_facility_fee"/>
       <keyMapping columnObjectName="Join_2" columnName="retail_facility_fee"/>
     </attribute>
-    <attribute id="retail_mask" order="154" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="retail_mask" order="158" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="retail_mask"/>
       <keyMapping columnObjectName="Join_2" columnName="retail_mask"/>
     </attribute>
-    <attribute id="retail_mop" order="155" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="retail_mop" order="159" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="retail_mop"/>
       <keyMapping columnObjectName="Join_2" columnName="retail_mop"/>
     </attribute>
-    <attribute id="retail_price_level" order="156" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="retail_price_level" order="160" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="retail_price_level"/>
       <keyMapping columnObjectName="Join_2" columnName="retail_price_level"/>
     </attribute>
-    <attribute id="retail_qualifiers" order="157" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="retail_qualifiers" order="161" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="retail_qualifiers"/>
       <keyMapping columnObjectName="Join_2" columnName="retail_qualifiers"/>
     </attribute>
-    <attribute id="retail_service_charge" order="158" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="retail_service_charge" order="162" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="retail_service_charge"/>
       <keyMapping columnObjectName="Join_2" columnName="retail_service_charge"/>
     </attribute>
-    <attribute id="retail_service_charge_tax" order="159" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="retail_service_charge_tax" order="163" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="retail_service_charge_tax"/>
       <keyMapping columnObjectName="Join_2" columnName="retail_service_charge_tax"/>
     </attribute>
-    <attribute id="retail_distance_charge" order="160" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="retail_distance_charge" order="164" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="retail_distance_charge"/>
       <keyMapping columnObjectName="Join_2" columnName="retail_distance_charge"/>
     </attribute>
-    <attribute id="retail_system_name" order="161" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="retail_system_name" order="165" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="retail_system_name"/>
       <keyMapping columnObjectName="Join_2" columnName="retail_system_name"/>
     </attribute>
-    <attribute id="retail_ticket_type" order="162" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="retail_ticket_type" order="166" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="retail_ticket_type"/>
       <keyMapping columnObjectName="Join_2" columnName="retail_ticket_type"/>
     </attribute>
-    <attribute id="return_datetime" order="163" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="return_datetime" order="167" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="return_datetime"/>
       <keyMapping columnObjectName="Join_2" columnName="return_datetime"/>
     </attribute>
-    <attribute id="return_reason" order="164" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="return_reason" order="168" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="return_reason"/>
       <keyMapping columnObjectName="Join_2" columnName="return_reason"/>
     </attribute>
-    <attribute id="return_reason_desc" order="165" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="return_reason_desc" order="169" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="return_reason_desc"/>
       <keyMapping columnObjectName="Join_2" columnName="return_reason_desc"/>
     </attribute>
-    <attribute id="row_id" order="166" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="row_id" order="170" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="row_id"/>
       <keyMapping columnObjectName="Join_2" columnName="row_id"/>
     </attribute>
-    <attribute id="row_name" order="167" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="row_name" order="171" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="row_name"/>
       <keyMapping columnObjectName="Join_2" columnName="row_name"/>
     </attribute>
-    <attribute id="sales_source_date" order="168" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="sales_source_date" order="172" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="sales_source_date"/>
       <keyMapping columnObjectName="Join_2" columnName="sales_source_date"/>
     </attribute>
-    <attribute id="sales_source_name" order="169" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="sales_source_name" order="173" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="sales_source_name"/>
       <keyMapping columnObjectName="Join_2" columnName="sales_source_name"/>
     </attribute>
-    <attribute id="seat_num" order="170" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="seat_num" order="174" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="seat_num"/>
       <keyMapping columnObjectName="Join_2" columnName="seat_num"/>
     </attribute>
-    <attribute id="section_id" order="171" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="section_id" order="175" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="section_id"/>
       <keyMapping columnObjectName="Join_2" columnName="section_id"/>
     </attribute>
-    <attribute id="section_name" order="172" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="section_name" order="176" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="section_name"/>
       <keyMapping columnObjectName="Join_2" columnName="section_name"/>
     </attribute>
-    <attribute id="seq_id" order="173" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="seq_id" order="177" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="seq_id"/>
       <keyMapping columnObjectName="Join_2" columnName="seq_id"/>
     </attribute>
-    <attribute id="seq_num" order="174" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="seq_num" order="178" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="seq_num"/>
       <keyMapping columnObjectName="Join_2" columnName="seq_num"/>
     </attribute>
-    <attribute id="surchg_amount" order="175" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="surchg_amount" order="179" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="surchg_amount"/>
       <keyMapping columnObjectName="Join_2" columnName="surchg_amount"/>
     </attribute>
-    <attribute id="surchg_code_desc" order="176" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="surchg_code_desc" order="180" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="surchg_code_desc"/>
       <keyMapping columnObjectName="Join_2" columnName="surchg_code_desc"/>
     </attribute>
-    <attribute id="tax_rate_a" order="177" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="tax_rate_a" order="181" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="tax_rate_a"/>
       <keyMapping columnObjectName="Join_2" columnName="tax_rate_a"/>
     </attribute>
-    <attribute id="tax_rate_b" order="178" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="tax_rate_b" order="182" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="tax_rate_b"/>
       <keyMapping columnObjectName="Join_2" columnName="tax_rate_b"/>
     </attribute>
-    <attribute id="tax_rate_c" order="179" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="tax_rate_c" order="183" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="tax_rate_c"/>
       <keyMapping columnObjectName="Join_2" columnName="tax_rate_c"/>
     </attribute>
-    <attribute id="ticket_seq_id" order="180" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="ticket_seq_id" order="184" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="ticket_seq_id"/>
       <keyMapping columnObjectName="Join_2" columnName="ticket_seq_id"/>
     </attribute>
-    <attribute id="ticket_type" order="181" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="ticket_type" order="185" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="ticket_type"/>
       <keyMapping columnObjectName="Join_2" columnName="ticket_type"/>
     </attribute>
-    <attribute id="ticket_type_category" order="182" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="ticket_type_category" order="186" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="ticket_type_category"/>
       <keyMapping columnObjectName="Join_2" columnName="ticket_type_category"/>
     </attribute>
-    <attribute id="total_events" order="183" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="total_events" order="187" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="total_events"/>
       <keyMapping columnObjectName="Join_2" columnName="total_events"/>
     </attribute>
-    <attribute id="tran_type" order="184" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="tran_type" order="188" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="tran_type"/>
       <keyMapping columnObjectName="Join_2" columnName="tran_type"/>
     </attribute>
-    <attribute id="upd_datetime" order="185" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="upd_datetime" order="189" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="upd_datetime"/>
       <keyMapping columnObjectName="Join_2" columnName="upd_datetime"/>
     </attribute>
-    <attribute id="upd_user" order="186" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="upd_user" order="190" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="upd_user"/>
       <keyMapping columnObjectName="Join_2" columnName="upd_user"/>
     </attribute>
@@ -1550,60 +1550,60 @@
       <measureMapping columnObjectName="Join_2" columnName="purchase_price"/>
     </measure>
   
-    <measure id="pc_ticket" order="79" aggregationType="sum" measureType="simple">
-      <descriptions defaultDescription="pc_ticket"/>
-      <measureMapping columnObjectName="Join_2" columnName="pc_ticket"/>
-    </measure>
-    <measure id="pc_licfee" order="80" aggregationType="sum" measureType="simple">
-      <descriptions defaultDescription="pc_licfee"/>
-      <measureMapping columnObjectName="Join_2" columnName="pc_licfee"/>
-    </measure>
-    <measure id="pc_other1" order="81" aggregationType="sum" measureType="simple">
-      <descriptions defaultDescription="pc_other1"/>
-      <measureMapping columnObjectName="Join_2" columnName="pc_other1"/>
-    </measure>
-    <measure id="pc_other2" order="82" aggregationType="sum" measureType="simple">
-      <descriptions defaultDescription="pc_other2"/>
-      <measureMapping columnObjectName="Join_2" columnName="pc_other2"/>
-    </measure>
-    <measure id="pc_other3" order="83" aggregationType="sum" measureType="simple">
-      <descriptions defaultDescription="pc_other3"/>
-      <measureMapping columnObjectName="Join_2" columnName="pc_other3"/>
-    </measure>
-    <measure id="pc_other4" order="84" aggregationType="sum" measureType="simple">
-      <descriptions defaultDescription="pc_other4"/>
-      <measureMapping columnObjectName="Join_2" columnName="pc_other4"/>
-    </measure>
-    <measure id="pc_other5" order="85" aggregationType="sum" measureType="simple">
-      <descriptions defaultDescription="pc_other5"/>
-      <measureMapping columnObjectName="Join_2" columnName="pc_other5"/>
-    </measure>
-    <measure id="pc_other6" order="86" aggregationType="sum" measureType="simple">
-      <descriptions defaultDescription="pc_other6"/>
-      <measureMapping columnObjectName="Join_2" columnName="pc_other6"/>
-    </measure>
-    <measure id="pc_other7" order="87" aggregationType="sum" measureType="simple">
-      <descriptions defaultDescription="pc_other7"/>
-      <measureMapping columnObjectName="Join_2" columnName="pc_other7"/>
-    </measure>
-    <measure id="pc_other8" order="88" aggregationType="sum" measureType="simple">
-      <descriptions defaultDescription="pc_other8"/>
-      <measureMapping columnObjectName="Join_2" columnName="pc_other8"/>
-    </measure>
-    <measure id="pc_tax" order="89" aggregationType="sum" measureType="simple">
-      <descriptions defaultDescription="pc_tax"/>
-      <measureMapping columnObjectName="Join_2" columnName="pc_tax"/>
-    </measure>
-    <measure id="disc_amount" order="90" aggregationType="sum" measureType="simple">
-      <descriptions defaultDescription="disc_amount"/>
-      <measureMapping columnObjectName="Join_2" columnName="disc_amount"/>
-    </measure>
-  
-    <measure id="block_purchase_price" order="98" aggregationType="sum" measureType="simple">
+    <measure id="block_purchase_price" order="75" aggregationType="sum" measureType="simple">
       <descriptions defaultDescription="block_purchase_price"/>
       <measureMapping columnObjectName="Join_2" columnName="block_purchase_price"/>
     </measure>
-  </baseMeasures>
+  
+  
+    <measure id="pc_ticket" order="84" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_ticket"/>
+      <measureMapping columnObjectName="Join_2" columnName="pc_ticket"/>
+    </measure>
+    <measure id="pc_licfee" order="85" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_licfee"/>
+      <measureMapping columnObjectName="Join_2" columnName="pc_licfee"/>
+    </measure>
+    <measure id="pc_other1" order="86" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other1"/>
+      <measureMapping columnObjectName="Join_2" columnName="pc_other1"/>
+    </measure>
+    <measure id="pc_other2" order="87" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other2"/>
+      <measureMapping columnObjectName="Join_2" columnName="pc_other2"/>
+    </measure>
+    <measure id="pc_other3" order="88" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other3"/>
+      <measureMapping columnObjectName="Join_2" columnName="pc_other3"/>
+    </measure>
+    <measure id="pc_other4" order="89" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other4"/>
+      <measureMapping columnObjectName="Join_2" columnName="pc_other4"/>
+    </measure>
+    <measure id="pc_other5" order="90" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other5"/>
+      <measureMapping columnObjectName="Join_2" columnName="pc_other5"/>
+    </measure>
+    <measure id="pc_other6" order="91" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other6"/>
+      <measureMapping columnObjectName="Join_2" columnName="pc_other6"/>
+    </measure>
+    <measure id="pc_other7" order="92" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other7"/>
+      <measureMapping columnObjectName="Join_2" columnName="pc_other7"/>
+    </measure>
+    <measure id="pc_other8" order="93" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_other8"/>
+      <measureMapping columnObjectName="Join_2" columnName="pc_other8"/>
+    </measure>
+    <measure id="pc_tax" order="94" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="pc_tax"/>
+      <measureMapping columnObjectName="Join_2" columnName="pc_tax"/>
+    </measure>
+    <measure id="disc_amount" order="95" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="disc_amount"/>
+      <measureMapping columnObjectName="Join_2" columnName="disc_amount"/>
+    </measure></baseMeasures>
   <calculatedMeasures/>
   <restrictedMeasures>
     <measure id="TicketsSoldComp" order="58" aggregationType="sum" datatype="INTEGER" length="10" scale="0" baseMeasure="TicketsSold">
@@ -1616,7 +1616,7 @@
         </filter>
         <attributeName>CompFlag</attributeName>
       </restriction>
-      </measure>
+    </measure>
     <measure id="TicketsSoldPaid" order="59" aggregationType="sum" datatype="INTEGER" length="10" scale="0" baseMeasure="TicketsSold">
       <descriptions defaultDescription="TicketsSoldPaid">
         <comment text="num_seats that were NOT complimentary based on paid=owed=0"/>
@@ -1627,7 +1627,7 @@
         </filter>
         <attributeName>CompFlag</attributeName>
       </restriction>
-      </measure>
+    </measure>
     <measure id="PaidTicketsSuites" order="60" aggregationType="sum" datatype="INTEGER" length="10" scale="0" baseMeasure="TicketsSold">
       <descriptions defaultDescription="PaidTicketsSuites"/>
       <restriction logicalOperator="AND">
@@ -1642,7 +1642,7 @@
         </filter>
         <attributeName>SuitesFlag</attributeName>
       </restriction>
-      </measure>
+    </measure>
   
     <measure id="PaidTicketsArena" order="61" aggregationType="sum" datatype="INTEGER" length="10" scale="0" baseMeasure="TicketsSold">
       <descriptions defaultDescription="PaidTicketsArena"/>
@@ -1666,7 +1666,8 @@
         <attributeName>ArenaFlag</attributeName>
   
       </restriction>
-      </measure>
+  
+    </measure>
     <measure id="CompTicketsSuites" order="62" aggregationType="sum" datatype="INTEGER" length="10" scale="0" baseMeasure="TicketsSold">
       <descriptions defaultDescription="CompTicketsSuites"/>
       <restriction logicalOperator="AND">
@@ -1681,7 +1682,7 @@
         </filter>
         <attributeName>SuitesFlag</attributeName>
       </restriction>
-      </measure>
+    </measure>
   
     <measure id="CompTicketsArena" order="63" aggregationType="sum" datatype="INTEGER" length="10" scale="0" baseMeasure="TicketsSold">
       <descriptions defaultDescription="CompTicketsArena"/>
@@ -1705,7 +1706,8 @@
         <attributeName>ArenaFlag</attributeName>
   
       </restriction>
-      </measure>
+  
+    </measure>
   
     <measure id="PaidTicketsParking" order="66" aggregationType="sum" datatype="INTEGER" length="10" scale="0" baseMeasure="TicketsSold">
       <descriptions defaultDescription="PaidTicketsParking"/>
@@ -1729,7 +1731,8 @@
         <attributeName>CompFlag</attributeName>
   
       </restriction>
-      </measure>
+  
+    </measure>
     <measure id="CompTicketsParking" order="67" aggregationType="sum" datatype="INTEGER" length="10" scale="0" baseMeasure="TicketsSold">
       <descriptions defaultDescription="CompTicketsParking"/>
       <restriction logicalOperator="AND">
@@ -1744,7 +1747,7 @@
         </filter>
         <attributeName>CompFlag</attributeName>
       </restriction>
-      </measure>
+    </measure>
     <measure id="PaidTicketsLounge" order="68" aggregationType="sum" datatype="INTEGER" length="10" scale="0" baseMeasure="TicketsSold">
       <descriptions defaultDescription="PaidTicketsLounge"/>
       <restriction logicalOperator="AND">
@@ -1759,7 +1762,7 @@
         </filter>
         <attributeName>CompFlag</attributeName>
       </restriction>
-      </measure>
+    </measure>
     <measure id="CompTicketsLounge" order="69" aggregationType="sum" datatype="INTEGER" length="10" scale="0" baseMeasure="TicketsSold">
       <descriptions defaultDescription="CompTicketsLounge"/>
       <restriction logicalOperator="AND">
@@ -1774,7 +1777,7 @@
         </filter>
         <attributeName>CompFlag</attributeName>
       </restriction>
-      </measure>
+    </measure>
   
     <measure id="PurchasePriceArena" order="71" aggregationType="sum" datatype="DECIMAL" length="12" scale="2" baseMeasure="Purchase_Price">
       <descriptions defaultDescription="PurchasePriceArena"/>
@@ -1788,7 +1791,8 @@
         <attributeName>ArenaFlag</attributeName>
   
       </restriction>
-      </measure>
+  
+    </measure>
     <measure id="PurchasePriceSuites" order="72" aggregationType="sum" datatype="DECIMAL" length="12" scale="2" baseMeasure="Purchase_Price">
       <descriptions defaultDescription="PurchasePriceSuites"/>
       <restriction logicalOperator="AND">
@@ -1797,7 +1801,7 @@
         </filter>
         <attributeName>SuitesFlag</attributeName>
       </restriction>
-      </measure>
+    </measure>
     <measure id="PurchasePriceLounge" order="73" aggregationType="sum" datatype="DECIMAL" length="12" scale="2" baseMeasure="Purchase_Price">
       <descriptions defaultDescription="PurchasePriceLounge"/>
       <restriction logicalOperator="AND">
@@ -1806,7 +1810,7 @@
         </filter>
         <attributeName>LoungeFlag</attributeName>
       </restriction>
-      </measure>
+    </measure>
     <measure id="PurchasePriceParking" order="74" aggregationType="sum" datatype="DECIMAL" length="12" scale="2" baseMeasure="Purchase_Price">
       <descriptions defaultDescription="PurchasePriceParking"/>
       <restriction logicalOperator="AND">
@@ -1815,7 +1819,49 @@
         </filter>
         <attributeName>ParkingFlag</attributeName>
       </restriction>
-      </measure>
+    </measure>
+  
+    <measure id="BlockPurchasePriceArena" order="76" aggregationType="sum" datatype="DECIMAL" length="12" scale="2" baseMeasure="block_purchase_price">
+      <descriptions defaultDescription="BlockPurchasePriceArena"/>
+  
+      <restriction logicalOperator="AND">
+  
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="ArenaFlag">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="true"/>
+        </filter>
+  
+        <attributeName>ArenaFlag</attributeName>
+  
+      </restriction>
+  
+    </measure>
+    <measure id="BlockPurchasePriceSuites" order="77" aggregationType="sum" datatype="DECIMAL" length="12" scale="2" baseMeasure="block_purchase_price">
+      <descriptions defaultDescription="BlockPurchasePriceSuites"/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="SuitesFlag">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="true"/>
+        </filter>
+        <attributeName>SuitesFlag</attributeName>
+      </restriction>
+    </measure>
+    <measure id="BlockPurchasePriceLounge" order="78" aggregationType="sum" datatype="DECIMAL" length="12" scale="2" baseMeasure="block_purchase_price">
+      <descriptions defaultDescription="BlockPurchasePriceLounge"/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="LoungeFlag">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="true"/>
+        </filter>
+        <attributeName>LoungeFlag</attributeName>
+      </restriction>
+    </measure>
+    <measure id="BlockPurchasePriceParking" order="79" aggregationType="sum" datatype="DECIMAL" length="12" scale="2" baseMeasure="block_purchase_price">
+      <descriptions defaultDescription="BlockPurchasePriceParking"/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="ParkingFlag">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="true"/>
+        </filter>
+        <attributeName>ParkingFlag</attributeName>
+      </restriction>
+    </measure>
   </restrictedMeasures>
   <localDimensions/>
 </logicalModel>
@@ -1834,7 +1880,7 @@
   
     <shape expanded="true" modelObjectName="P_EVENT_ATTR" modelObjectNameSpace="CalculationView">
       <upperLeftCorner x="613" y="567"/>
-      <rectangleSize height="30" width="148"/>
+      <rectangleSize height="30" width="159"/>
     </shape>
     <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
       <upperLeftCorner x="361" y="427"/>
