@@ -19,7 +19,7 @@
   <DataSource id="get_posting_date_sql$$$$M_TIME_DIMENSION$$">
     <resourceUri>M_TIME_DIMENSION</resourceUri>
   </DataSource>
-  <DataSource id="get_project_date_sql$$$$M_TIME_DIMENSION$$">
+  <DataSource id="get_project_end_date_sql$$$$M_TIME_DIMENSION$$">
     <resourceUri>M_TIME_DIMENSION</resourceUri>
   </DataSource>
 </dataSources>
@@ -110,6 +110,9 @@
       <viewAttribute id="EventCancelled"/>
       <viewAttribute id="EventDirector_Desc"/>
       <viewAttribute id="PostingDateTime"/>
+    
+      <viewAttribute id="ProjectStartDate"/>
+      <viewAttribute id="ProjectEndDateTime"/>
     </viewAttributes>
     <calculatedViewAttributes>
       <calculatedViewAttribute id="CC_ActualAmount" datatype="DECIMAL" length="24" scale="3" expressionLanguage="SQL">
@@ -157,6 +160,8 @@ end</formula>
       <mapping xsi:type="Calculation:AttributeMapping" target="EventDirector_Desc" source="YY1_Info_31_PPH_Desc"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="EventCancelled" source="YY1_Info_32_PPH"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PostingDateTime" source="PostingDate"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectEndDateTime" source="ProjectEndDate"/>
     </input>
     <filter>&quot;Ledger&quot; = '0L' 
 and (&quot;Language&quot; = 'EN' or &quot;Language&quot; = '' or &quot;Language&quot; is null)
@@ -240,8 +245,10 @@ and &quot;ValidityEndDate&quot; = '9999-12-31' and &quot;ValidityEndDate_01&quot
       <viewAttribute id="EventDirector_Desc"/>
       <viewAttribute id="DATASOURCE"/>
       <viewAttribute id="DocumentDate"/>
-      <viewAttribute id="ProjectDate"/>
       <viewAttribute id="PostingDate"/>
+    
+      <viewAttribute id="ProjectStartDate" aggregationType="min"/>
+      <viewAttribute id="ProjectEndDate"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="Union_1">
@@ -316,16 +323,18 @@ and &quot;ValidityEndDate&quot; = '9999-12-31' and &quot;ValidityEndDate_01&quot
       <mapping xsi:type="Calculation:AttributeMapping" target="EventDirector_Desc" source="EventDirector_Desc"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="DATASOURCE" source="DATASOURCE"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="DocumentDate" source="DocumentDate"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectDate" source="ProjectDate"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PostingDate" source="PostingDate"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectStartDate" source="ProjectStartDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectEndDate" source="ProjectEndDate"/>
     </input>
     <input node="M_TIME_DIMENSION">
       <mapping xsi:type="Calculation:AttributeMapping" target="EventMonth" source="MONTH_CHAR"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="EventDay" source="DAY_OF_WEEK_CHAR"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="EventYear" source="FYEAR"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectDate" source="DATE_SQL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectEndDate" source="DATE_SQL"/>
     </input>
-    <joinAttribute name="ProjectDate"/>
+    <joinAttribute name="ProjectEndDate"/>
   </calculationView>
   <calculationView xsi:type="Calculation:UnionView" id="Union_1">
     <viewAttributes>
@@ -398,8 +407,10 @@ and &quot;ValidityEndDate&quot; = '9999-12-31' and &quot;ValidityEndDate_01&quot
       <viewAttribute id="EventDirector_Desc"/>
       <viewAttribute datatype="VARCHAR" length="10" id="DATASOURCE"/>
       <viewAttribute id="DocumentDate"/>
-      <viewAttribute id="ProjectDate"/>
       <viewAttribute id="PostingDate"/>
+    
+      <viewAttribute id="ProjectStartDate" aggregationType="min"/>
+      <viewAttribute id="ProjectEndDate"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="Join_3" emptyUnionBehavior="NO_ROW">
@@ -472,8 +483,10 @@ and &quot;ValidityEndDate&quot; = '9999-12-31' and &quot;ValidityEndDate_01&quot
     
       <mapping xsi:type="Calculation:ConstantAttributeMapping" target="DATASOURCE" null="false" value="S4JOURNAL"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="DocumentDate" source="DocumentDate"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectDate" source="ProjectDate"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PostingDate" source="PostingDate"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectStartDate" source="ProjectStartDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectEndDate" source="ProjectEndDate"/>
     </input>
     <input node="HISTORY_ENRICHED" emptyUnionBehavior="NO_ROW">
       <mapping xsi:type="Calculation:AttributeMapping" target="Ledger" source="Ledger"/>
@@ -545,8 +558,10 @@ and &quot;ValidityEndDate&quot; = '9999-12-31' and &quot;ValidityEndDate_01&quot
     
       <mapping xsi:type="Calculation:ConstantAttributeMapping" target="DATASOURCE" null="false" value="HISTORY"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="DocumentDate" source="DocumentDate"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectDate" source="PlannedEndDate"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PostingDate" source="PostingDate"/>
+    
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="ProjectStartDate" null="true" value=""/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectEndDate" source="ProjectEndDate"/>
     </input>
   </calculationView>
   <calculationView xsi:type="Calculation:JoinView" id="Join_3" cardinality="CN_1" joinType="leftOuter">
@@ -619,9 +634,11 @@ and &quot;ValidityEndDate&quot; = '9999-12-31' and &quot;ValidityEndDate_01&quot
       <viewAttribute id="EventDirector_Desc"/>
     
       <viewAttribute id="DocumentDate"/>
-      <viewAttribute id="ProjectDate"/>
       <viewAttribute id="PostingDate"/>
+      <viewAttribute id="ProjectStartDate" aggregationType="min"/>
+      <viewAttribute id="ProjectEndDate"/>
       <viewAttribute id="PostingDateTime" aggregationType="min"/>
+      <viewAttribute id="ProjectEndDateTime" aggregationType="min"/>
       <viewAttribute hidden="true" id="JOIN$DocumentDate$DATETIMESTAMP"/>
     </viewAttributes>
     <calculatedViewAttributes/>
@@ -693,9 +710,10 @@ and &quot;ValidityEndDate&quot; = '9999-12-31' and &quot;ValidityEndDate_01&quot
       <mapping xsi:type="Calculation:AttributeMapping" target="EventCancelled" source="EventCancelled"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="EventDirector_Desc" source="EventDirector_Desc"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PostingDateTime" source="PostingDateTime"/>
-    
-      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectDate" source="ProjectDate"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PostingDate" source="PostingDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectStartDate" source="ProjectStartDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectEndDateTime" source="ProjectEndDateTime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectEndDate" source="ProjectEndDate"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$DocumentDate$DATETIMESTAMP" source="DocumentDate"/>
     </input>
     <input node="get_doc_date_sql">
@@ -767,6 +785,8 @@ and &quot;ValidityEndDate&quot; = '9999-12-31' and &quot;ValidityEndDate_01&quot
       <viewAttribute id="PlannedEndDate"/>
     
       <viewAttribute id="PostingDate"/>
+      <viewAttribute id="ProjectEndDate"/>
+    
       <viewAttribute id="ProjectControllingArea"/>
       <viewAttribute id="ProjectCreationDateTime"/>
       <viewAttribute id="ProjectCreatedByUser"/>
@@ -862,8 +882,12 @@ and &quot;ValidityEndDate&quot; = '9999-12-31' and &quot;ValidityEndDate_01&quot
       <viewAttribute id="EventDirector_Desc"/>
     
       <viewAttribute id="PostingDateTime" aggregationType="min"/>
-      <viewAttribute id="ProjectDate"/>
       <viewAttribute id="PostingDate"/>
+      <viewAttribute id="ProjectStartDate" aggregationType="min"/>
+      <viewAttribute id="ProjectEndDateTime" aggregationType="min"/>
+      <viewAttribute id="ProjectEndDate"/>
+    
+    
     
       <viewAttribute id="DocumentDate" aggregationType="min"/></viewAttributes>
     <calculatedViewAttributes/>
@@ -936,7 +960,10 @@ and &quot;ValidityEndDate&quot; = '9999-12-31' and &quot;ValidityEndDate_01&quot
       <mapping xsi:type="Calculation:AttributeMapping" target="EventCancelled" source="EventCancelled"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="EventDirector_Desc" source="EventDirector_Desc"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PostingDateTime" source="PostingDateTime"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectDate" source="ProjectDate"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectStartDate" source="ProjectStartDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectEndDateTime" source="ProjectEndDateTime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectEndDate" source="ProjectEndDate"/>
     </input>
     <input node="get_posting_date_sql">
       <mapping xsi:type="Calculation:AttributeMapping" target="PostingDate" source="DATE_SQL"/>
@@ -952,7 +979,7 @@ and &quot;ValidityEndDate&quot; = '9999-12-31' and &quot;ValidityEndDate_01&quot
     <calculatedViewAttributes/>
     <input node="get_doc_date_sql$$$$M_TIME_DIMENSION$$"/>
   </calculationView>
-  <calculationView xsi:type="Calculation:JoinView" id="Join_2" cardinality="CN_N" joinType="leftOuter">
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2" cardinality="CN_1" joinType="leftOuter">
     <viewAttributes>
       <viewAttribute id="Ledger"/>
       <viewAttribute id="CompanyCode"/>
@@ -1022,7 +1049,10 @@ and &quot;ValidityEndDate&quot; = '9999-12-31' and &quot;ValidityEndDate_01&quot
       <viewAttribute id="EventCancelled"/>
       <viewAttribute id="EventDirector_Desc"/>
       <viewAttribute id="PostingDateTime" aggregationType="min"/>
-      <viewAttribute id="ProjectDate"/>
+    
+      <viewAttribute id="ProjectStartDate" aggregationType="min"/>
+      <viewAttribute id="ProjectEndDateTime" aggregationType="min"/>
+      <viewAttribute id="ProjectEndDate"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="S4Journal">
@@ -1093,12 +1123,15 @@ and &quot;ValidityEndDate&quot; = '9999-12-31' and &quot;ValidityEndDate_01&quot
       <mapping xsi:type="Calculation:AttributeMapping" target="EventDirector" source="EventDirector"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="EventCancelled" source="EventCancelled"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="EventDirector_Desc" source="EventDirector_Desc"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="PostingDateTime" source="PostingDateTime"/></input>
-    <input node="get_project_date_sql">
-      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectDate" source="DATE_SQL"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedEndDate" source="DATETIMESTAMP"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PostingDateTime" source="PostingDateTime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectStartDate" source="ProjectStartDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectEndDateTime" source="ProjectEndDateTime"/>
     </input>
-    <joinAttribute name="PlannedEndDate"/>
+    <input node="get_project_end_date_sql">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectEndDate" source="DATE_SQL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectEndDateTime" source="DATETIMESTAMP"/>
+    </input>
+    <joinAttribute name="ProjectEndDateTime"/>
   </calculationView>
   <calculationView xsi:type="Calculation:ProjectionView" id="get_posting_date_sql">
     <viewAttributes>
@@ -1108,13 +1141,13 @@ and &quot;ValidityEndDate&quot; = '9999-12-31' and &quot;ValidityEndDate_01&quot
     <calculatedViewAttributes/>
     <input node="get_posting_date_sql$$$$M_TIME_DIMENSION$$"/>
   </calculationView>
-  <calculationView xsi:type="Calculation:ProjectionView" id="get_project_date_sql">
+  <calculationView xsi:type="Calculation:ProjectionView" id="get_project_end_date_sql">
     <viewAttributes>
       <viewAttribute id="DATE_SQL"/>
     
       <viewAttribute id="DATETIMESTAMP"/></viewAttributes>
     <calculatedViewAttributes/>
-    <input node="get_project_date_sql$$$$M_TIME_DIMENSION$$"/>
+    <input node="get_project_end_date_sql$$$$M_TIME_DIMENSION$$"/>
   </calculationView>
 </calculationViews>
 <logicalModel id="EventDate_rollups">
@@ -1406,13 +1439,20 @@ and &quot;ValidityEndDate&quot; = '9999-12-31' and &quot;ValidityEndDate_01&quot
       <descriptions defaultDescription="DocumentDate"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="DocumentDate"/>
     </attribute>
-    <attribute id="ProjectDate" order="72" displayAttribute="false" attributeHierarchyActive="false">
-      <descriptions defaultDescription="ProjectDate"/>
-      <keyMapping columnObjectName="EventDate_rollups" columnName="ProjectDate"/>
-    </attribute>
-    <attribute id="PostingDate" order="73" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="PostingDate" order="72" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="PostingDate"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="PostingDate"/>
+    </attribute>
+  
+    <attribute id="ProjectStartDate" order="73" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProjectStartDate"/>
+  
+      <keyMapping columnObjectName="EventDate_rollups" columnName="ProjectStartDate"/>
+  
+    </attribute>
+    <attribute id="ProjectDate" order="74" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProjectDate"/>
+      <keyMapping columnObjectName="EventDate_rollups" columnName="ProjectEndDate"/>
     </attribute>
   </attributes>
   <calculatedAttributes/>
@@ -1520,9 +1560,9 @@ and &quot;ValidityEndDate&quot; = '9999-12-31' and &quot;ValidityEndDate_01&quot
     </shape>
     <shape modelObjectName="S4Journal" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="20" y="30"/>
-      <rectangleSize width="250"/>
+      <rectangleSize width="194"/>
     </shape>
-    <shape modelObjectName="get_project_date_sql" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+    <shape modelObjectName="get_project_end_date_sql" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="320" y="30"/>
       <rectangleSize width="184"/>
     </shape>
@@ -1530,9 +1570,9 @@ and &quot;ValidityEndDate&quot; = '9999-12-31' and &quot;ValidityEndDate_01&quot
       <upperLeftCorner x="136" y="967"/>
       <rectangleSize height="30" width="198"/>
     </shape>
-    <shape expanded="true" modelObjectName="get_project_date_sql" modelObjectNameSpace="CalculationView">
+    <shape expanded="true" modelObjectName="get_project_end_date_sql" modelObjectNameSpace="CalculationView">
       <upperLeftCorner x="52" y="1192"/>
-      <rectangleSize height="30" width="193"/>
+      <rectangleSize height="30" width="249"/>
     </shape></shapes>
 </layout>
 </Calculation:scenario>

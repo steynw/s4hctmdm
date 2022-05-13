@@ -7,11 +7,17 @@
   <DataSource id="YY1_EnterpriseProject">
     <resourceUri>YY1_EnterpriseProject</resourceUri>
   </DataSource>
-  <DataSource id="Without_Currency$$$$YY1_EnterpriseProject$$">
-    <resourceUri>YY1_EnterpriseProject</resourceUri>
+  <DataSource id="M_TIME_DIMENSION">
+    <resourceUri>M_TIME_DIMENSION</resourceUri>
   </DataSource>
   <DataSource id="A_CompanyCode">
     <resourceUri>A_CompanyCode</resourceUri>
+  </DataSource>
+  <DataSource id="Without_Currency$$$$YY1_EnterpriseProject$$">
+    <resourceUri>YY1_EnterpriseProject</resourceUri>
+  </DataSource>
+  <DataSource id="get_project_end_date_sql_2$$$$M_TIME_DIMENSION$$">
+    <resourceUri>M_TIME_DIMENSION</resourceUri>
   </DataSource>
 </dataSources>
 <calculationViews>
@@ -74,6 +80,9 @@
       <viewAttribute id="YY1_Info_32_PPH"/>
     
       <viewAttribute id="ProcessingStatus"/>
+    
+      <viewAttribute id="ProjectStartDateTime"/>
+      <viewAttribute id="ProjectEndDateTime"/>
     </viewAttributes>
     <calculatedViewAttributes>
       <calculatedViewAttribute id="PlannedEndDate" datatype="DATE" expressionLanguage="SQL">
@@ -82,12 +91,20 @@
       <calculatedViewAttribute id="PlannedStartDate" datatype="DATE" expressionLanguage="SQL">
         <formula>TO_DATE(&quot;PlannedStartDateTime&quot;)</formula>
       </calculatedViewAttribute>
-    </calculatedViewAttributes>
+    
+      <calculatedViewAttribute id="ProjectStartDate" datatype="DATE" expressionLanguage="SQL">
+    
+        <formula>TO_DATE(&quot;ProjectStartDateTime&quot;)</formula>
+    
+      </calculatedViewAttribute></calculatedViewAttributes>
     <input node="YY1_EnterpriseProject">
     
     
       <mapping xsi:type="Calculation:AttributeMapping" target="PlannedEndDateTime" source="PlannedEndDate"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PlannedStartDateTime" source="PlannedStartDate"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectStartDateTime" source="ProjectStartDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectEndDateTime" source="ProjectEndDate"/>
     </input>
     <filter>&quot;Currency&quot; &gt; ''</filter>
   </calculationView>
@@ -149,9 +166,14 @@
       <viewAttribute id="ProcessingStatus"/>
       <viewAttribute id="PlannedEndDate"/>
       <viewAttribute id="PlannedStartDate"/>
+    
+      <viewAttribute id="ProjectStartDateTime"/>
+      <viewAttribute id="ProjectStartDate"/>
+      <viewAttribute id="ProjectEndDateTime"/>
+      <viewAttribute id="ProjectEndDate"/>
     </viewAttributes>
     <calculatedViewAttributes/>
-    <input node="With_Currency" emptyUnionBehavior="NO_ROW">
+    <input node="Join_1" emptyUnionBehavior="NO_ROW">
       <mapping xsi:type="Calculation:AttributeMapping" target="ProjectDescription" source="ProjectDescription"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="Project" source="Project"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="CreationDateTime" source="CreationDateTime"/>
@@ -208,6 +230,11 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="ProcessingStatus" source="ProcessingStatus"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PlannedEndDate" source="PlannedEndDate"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PlannedStartDate" source="PlannedStartDate"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectStartDateTime" source="ProjectStartDateTime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectStartDate" source="ProjectStartDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectEndDateTime" source="ProjectEndDateTime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectEndDate" source="ProjectEndDate"/>
     </input>
     <input node="Get_CompCodeCurrency" emptyUnionBehavior="NO_ROW">
       <mapping xsi:type="Calculation:AttributeMapping" target="ProjectDescription" source="ProjectDescription"/>
@@ -266,7 +293,143 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="ProcessingStatus" source="ProcessingStatus"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PlannedEndDate" source="PlannedEndDate"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PlannedStartDate" source="PlannedStartDate"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectStartDateTime" source="ProjectStartDateTime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectStartDate" source="ProjectStartDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectEndDateTime" source="ProjectEndDateTime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectEndDate" source="ProjectEndDate"/>
     </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="ProjectDescription"/>
+      <viewAttribute id="Project"/>
+      <viewAttribute id="CreationDateTime"/>
+      <viewAttribute id="CreatedByUser"/>
+      <viewAttribute id="Currency"/>
+      <viewAttribute id="FunctionalArea"/>
+      <viewAttribute id="ControllingArea"/>
+      <viewAttribute id="CompanyCode"/>
+      <viewAttribute id="ProfitCenter"/>
+      <viewAttribute id="PlannedEndDateTime"/>
+      <viewAttribute id="PlannedStartDateTime"/>
+      <viewAttribute id="YY1_Info_1_PPH"/>
+      <viewAttribute id="YY1_Info_2_PPH"/>
+      <viewAttribute id="YY1_Info_3_PPH"/>
+      <viewAttribute id="YY1_Info_4_PPH"/>
+      <viewAttribute id="YY1_Info_5_PPH"/>
+      <viewAttribute id="YY1_Info_6_PPH"/>
+      <viewAttribute id="YY1_Info_7_PPH"/>
+      <viewAttribute id="YY1_Info_8_PPH"/>
+      <viewAttribute id="YY1_Info_9_PPH"/>
+      <viewAttribute id="YY1_Info_10_PPH"/>
+      <viewAttribute id="YY1_Info_11_PPH"/>
+      <viewAttribute id="YY1_Info_12_PPH"/>
+      <viewAttribute id="YY1_Info_13_PPH"/>
+      <viewAttribute id="YY1_Info_14_PPH"/>
+      <viewAttribute id="YY1_Info_15_PPH"/>
+      <viewAttribute id="YY1_Info_16_PPH"/>
+      <viewAttribute id="YY1_Info_17_PPH"/>
+      <viewAttribute id="YY1_Info_18_PPH"/>
+      <viewAttribute id="YY1_Info_19_PPH"/>
+      <viewAttribute id="YY1_Info_20_PPH"/>
+      <viewAttribute id="YY1_Info_21_PPH"/>
+      <viewAttribute id="YY1_Info_22_PPH"/>
+      <viewAttribute id="YY1_Info_23_PPH"/>
+      <viewAttribute id="YY1_Info_24_PPH"/>
+      <viewAttribute id="YY1_Info_25_PPH"/>
+      <viewAttribute id="YY1_Info_26_PPH"/>
+      <viewAttribute id="YY1_Info_27_PPH"/>
+      <viewAttribute id="YY1_Info_28_PPH"/>
+      <viewAttribute id="YY1_Info_29_PPH"/>
+      <viewAttribute id="YY1_Info_1_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_2_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_10_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_14_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_15_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_16_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_17_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_18_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_30_PPH"/>
+      <viewAttribute id="YY1_Info_30_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_31_PPH"/>
+      <viewAttribute id="YY1_Info_31_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_32_PPH"/>
+      <viewAttribute id="ProcessingStatus"/>
+      <viewAttribute id="PlannedEndDate"/>
+      <viewAttribute id="PlannedStartDate"/>
+      <viewAttribute id="ProjectStartDateTime"/>
+      <viewAttribute id="ProjectStartDate"/>
+      <viewAttribute id="ProjectEndDateTime"/>
+      <viewAttribute id="ProjectEndDate"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="With_Currency">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectDescription" source="ProjectDescription"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Project" source="Project"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CreationDateTime" source="CreationDateTime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CreatedByUser" source="CreatedByUser"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Currency" source="Currency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FunctionalArea" source="FunctionalArea"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ControllingArea" source="ControllingArea"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProfitCenter" source="ProfitCenter"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedEndDateTime" source="PlannedEndDateTime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedStartDateTime" source="PlannedStartDateTime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_1_PPH" source="YY1_Info_1_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_2_PPH" source="YY1_Info_2_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_3_PPH" source="YY1_Info_3_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_4_PPH" source="YY1_Info_4_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_5_PPH" source="YY1_Info_5_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_6_PPH" source="YY1_Info_6_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_7_PPH" source="YY1_Info_7_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_8_PPH" source="YY1_Info_8_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_9_PPH" source="YY1_Info_9_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_10_PPH" source="YY1_Info_10_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_11_PPH" source="YY1_Info_11_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_12_PPH" source="YY1_Info_12_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_13_PPH" source="YY1_Info_13_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_14_PPH" source="YY1_Info_14_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_15_PPH" source="YY1_Info_15_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_16_PPH" source="YY1_Info_16_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_17_PPH" source="YY1_Info_17_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_18_PPH" source="YY1_Info_18_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_19_PPH" source="YY1_Info_19_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_20_PPH" source="YY1_Info_20_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_21_PPH" source="YY1_Info_21_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_22_PPH" source="YY1_Info_22_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_23_PPH" source="YY1_Info_23_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_24_PPH" source="YY1_Info_24_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_25_PPH" source="YY1_Info_25_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_26_PPH" source="YY1_Info_26_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_27_PPH" source="YY1_Info_27_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_28_PPH" source="YY1_Info_28_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_29_PPH" source="YY1_Info_29_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_1_PPH_Desc" source="YY1_Info_1_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_2_PPH_Desc" source="YY1_Info_2_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_10_PPH_Desc" source="YY1_Info_10_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_14_PPH_Desc" source="YY1_Info_14_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_15_PPH_Desc" source="YY1_Info_15_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_16_PPH_Desc" source="YY1_Info_16_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_17_PPH_Desc" source="YY1_Info_17_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_18_PPH_Desc" source="YY1_Info_18_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_30_PPH" source="YY1_Info_30_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_30_PPH_Desc" source="YY1_Info_30_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_31_PPH" source="YY1_Info_31_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_31_PPH_Desc" source="YY1_Info_31_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_32_PPH" source="YY1_Info_32_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProcessingStatus" source="ProcessingStatus"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectStartDateTime" source="ProjectStartDateTime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedEndDate" source="PlannedEndDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedStartDate" source="PlannedStartDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectStartDate" source="ProjectStartDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectEndDateTime" source="ProjectEndDateTime"/>
+    </input>
+    <input node="get_project_end_date_sql">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectEndDate" source="DATE_SQL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectEndDateTime" source="DATETIMESTAMP"/>
+    </input>
+    <joinAttribute name="ProjectEndDateTime"/>
   </calculationView>
   <calculationView xsi:type="Calculation:JoinView" id="Get_CompCodeCurrency" cardinality="CN_1" joinType="leftOuter">
     <viewAttributes>
@@ -327,7 +490,153 @@
       <viewAttribute id="ProcessingStatus"/>
       <viewAttribute id="PlannedEndDate"/>
       <viewAttribute id="PlannedStartDate"/>
+      <viewAttribute id="ProjectStartDateTime"/>
+      <viewAttribute id="ProjectStartDate"/>
+      <viewAttribute id="ProjectEndDateTime"/>
+      <viewAttribute id="ProjectEndDate"/>
+    
       <viewAttribute id="Currency"/></viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectDescription" source="ProjectDescription"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Project" source="Project"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CreationDateTime" source="CreationDateTime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CreatedByUser" source="CreatedByUser"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Currency" source="Currency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FunctionalArea" source="FunctionalArea"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ControllingArea" source="ControllingArea"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProfitCenter" source="ProfitCenter"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedEndDateTime" source="PlannedEndDateTime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedStartDateTime" source="PlannedStartDateTime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_1_PPH" source="YY1_Info_1_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_2_PPH" source="YY1_Info_2_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_3_PPH" source="YY1_Info_3_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_4_PPH" source="YY1_Info_4_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_5_PPH" source="YY1_Info_5_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_6_PPH" source="YY1_Info_6_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_7_PPH" source="YY1_Info_7_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_8_PPH" source="YY1_Info_8_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_9_PPH" source="YY1_Info_9_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_10_PPH" source="YY1_Info_10_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_11_PPH" source="YY1_Info_11_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_12_PPH" source="YY1_Info_12_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_13_PPH" source="YY1_Info_13_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_14_PPH" source="YY1_Info_14_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_15_PPH" source="YY1_Info_15_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_16_PPH" source="YY1_Info_16_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_17_PPH" source="YY1_Info_17_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_18_PPH" source="YY1_Info_18_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_19_PPH" source="YY1_Info_19_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_20_PPH" source="YY1_Info_20_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_21_PPH" source="YY1_Info_21_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_22_PPH" source="YY1_Info_22_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_23_PPH" source="YY1_Info_23_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_24_PPH" source="YY1_Info_24_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_25_PPH" source="YY1_Info_25_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_26_PPH" source="YY1_Info_26_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_27_PPH" source="YY1_Info_27_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_28_PPH" source="YY1_Info_28_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_29_PPH" source="YY1_Info_29_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_1_PPH_Desc" source="YY1_Info_1_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_2_PPH_Desc" source="YY1_Info_2_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_10_PPH_Desc" source="YY1_Info_10_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_14_PPH_Desc" source="YY1_Info_14_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_15_PPH_Desc" source="YY1_Info_15_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_16_PPH_Desc" source="YY1_Info_16_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_17_PPH_Desc" source="YY1_Info_17_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_18_PPH_Desc" source="YY1_Info_18_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_30_PPH" source="YY1_Info_30_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_30_PPH_Desc" source="YY1_Info_30_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_31_PPH" source="YY1_Info_31_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_31_PPH_Desc" source="YY1_Info_31_PPH_Desc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_32_PPH" source="YY1_Info_32_PPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProcessingStatus" source="ProcessingStatus"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedEndDate" source="PlannedEndDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedStartDate" source="PlannedStartDate"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectStartDateTime" source="ProjectStartDateTime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectEndDateTime" source="ProjectEndDateTime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectStartDate" source="ProjectStartDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectEndDate" source="ProjectEndDate"/>
+    </input>
+    <input node="Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCodeCurrency" source="CompanyCodeCurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+    </input>
+    <joinAttribute name="CompanyCode"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="get_project_end_date_sql">
+    <viewAttributes>
+      <viewAttribute id="DATE_SQL"/>
+    
+      <viewAttribute id="DATETIMESTAMP"/></viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="M_TIME_DIMENSION"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2" cardinality="C1_N" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="ProjectDescription"/>
+      <viewAttribute id="Project"/>
+      <viewAttribute id="CreationDateTime"/>
+      <viewAttribute id="CreatedByUser"/>
+      <viewAttribute id="Currency"/>
+      <viewAttribute id="FunctionalArea"/>
+      <viewAttribute id="ControllingArea"/>
+      <viewAttribute id="CompanyCode"/>
+      <viewAttribute id="ProfitCenter"/>
+      <viewAttribute id="PlannedEndDateTime"/>
+      <viewAttribute id="PlannedStartDateTime"/>
+      <viewAttribute id="YY1_Info_1_PPH"/>
+      <viewAttribute id="YY1_Info_2_PPH"/>
+      <viewAttribute id="YY1_Info_3_PPH"/>
+      <viewAttribute id="YY1_Info_4_PPH"/>
+      <viewAttribute id="YY1_Info_5_PPH"/>
+      <viewAttribute id="YY1_Info_6_PPH"/>
+      <viewAttribute id="YY1_Info_7_PPH"/>
+      <viewAttribute id="YY1_Info_8_PPH"/>
+      <viewAttribute id="YY1_Info_9_PPH"/>
+      <viewAttribute id="YY1_Info_10_PPH"/>
+      <viewAttribute id="YY1_Info_11_PPH"/>
+      <viewAttribute id="YY1_Info_12_PPH"/>
+      <viewAttribute id="YY1_Info_13_PPH"/>
+      <viewAttribute id="YY1_Info_14_PPH"/>
+      <viewAttribute id="YY1_Info_15_PPH"/>
+      <viewAttribute id="YY1_Info_16_PPH"/>
+      <viewAttribute id="YY1_Info_17_PPH"/>
+      <viewAttribute id="YY1_Info_18_PPH"/>
+      <viewAttribute id="YY1_Info_19_PPH"/>
+      <viewAttribute id="YY1_Info_20_PPH"/>
+      <viewAttribute id="YY1_Info_21_PPH"/>
+      <viewAttribute id="YY1_Info_22_PPH"/>
+      <viewAttribute id="YY1_Info_23_PPH"/>
+      <viewAttribute id="YY1_Info_24_PPH"/>
+      <viewAttribute id="YY1_Info_25_PPH"/>
+      <viewAttribute id="YY1_Info_26_PPH"/>
+      <viewAttribute id="YY1_Info_27_PPH"/>
+      <viewAttribute id="YY1_Info_28_PPH"/>
+      <viewAttribute id="YY1_Info_29_PPH"/>
+      <viewAttribute id="YY1_Info_1_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_2_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_10_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_14_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_15_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_16_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_17_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_18_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_30_PPH"/>
+      <viewAttribute id="YY1_Info_30_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_31_PPH"/>
+      <viewAttribute id="YY1_Info_31_PPH_Desc"/>
+      <viewAttribute id="YY1_Info_32_PPH"/>
+      <viewAttribute id="ProcessingStatus"/>
+      <viewAttribute id="PlannedEndDate"/>
+      <viewAttribute id="PlannedStartDate"/>
+      <viewAttribute id="ProjectStartDateTime"/>
+      <viewAttribute id="ProjectEndDateTime"/>
+      <viewAttribute id="ProjectStartDate"/>
+      <viewAttribute id="ProjectEndDate"/>
+    </viewAttributes>
     <calculatedViewAttributes/>
     <input node="Without_Currency">
       <mapping xsi:type="Calculation:AttributeMapping" target="ProjectDescription" source="ProjectDescription"/>
@@ -386,12 +695,25 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="ProcessingStatus" source="ProcessingStatus"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PlannedEndDate" source="PlannedEndDate"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PlannedStartDate" source="PlannedStartDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectStartDateTime" source="ProjectStartDateTime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectEndDateTime" source="ProjectEndDateTime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectStartDate" source="ProjectStartDate"/>
     </input>
-    <input node="Projection_1">
-      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCodeCurrency" source="CompanyCodeCurrency"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+    <input node="get_project_end_date_sql_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectEndDate" source="DATE_SQL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectEndDateTime" source="DATETIMESTAMP"/>
     </input>
-    <joinAttribute name="CompanyCode"/>
+    <joinAttribute name="ProjectEndDateTime"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="CompanyCodeCurrency"/>
+    
+      <viewAttribute id="CompanyCode"/></viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="A_CompanyCode">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCodeCurrency" source="Currency"/>
+    </input>
   </calculationView>
   <calculationView xsi:type="Calculation:ProjectionView" id="Without_Currency" filterExpressionLanguage="SQL">
     <viewAttributes>
@@ -449,6 +771,9 @@
       <viewAttribute id="YY1_Info_31_PPH_Desc"/>
       <viewAttribute id="YY1_Info_32_PPH"/>
       <viewAttribute id="ProcessingStatus"/>
+    
+      <viewAttribute id="ProjectStartDateTime"/>
+      <viewAttribute id="ProjectEndDateTime"/>
     </viewAttributes>
     <calculatedViewAttributes>
       <calculatedViewAttribute id="PlannedEndDate" datatype="DATE" expressionLanguage="SQL">
@@ -457,22 +782,28 @@
       <calculatedViewAttribute id="PlannedStartDate" datatype="DATE" expressionLanguage="SQL">
         <formula>TO_DATE(&quot;PlannedStartDateTime&quot;)</formula>
       </calculatedViewAttribute>
-    </calculatedViewAttributes>
+    
+      <calculatedViewAttribute id="ProjectStartDate" datatype="DATE" expressionLanguage="SQL">
+    
+        <formula>TO_DATE(&quot;ProjectStartDateTime&quot;)</formula>
+    
+      </calculatedViewAttribute></calculatedViewAttributes>
     <input emptyUnionBehavior="undefined" node="Without_Currency$$$$YY1_EnterpriseProject$$">
       <mapping xsi:type="Calculation:AttributeMapping" target="PlannedEndDateTime" source="PlannedEndDate"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PlannedStartDateTime" source="PlannedStartDate"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectStartDateTime" source="ProjectStartDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectEndDateTime" source="ProjectEndDate"/>
     </input>
     <filter>&quot;Currency&quot; = ''</filter>
   </calculationView>
-  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+  <calculationView xsi:type="Calculation:ProjectionView" id="get_project_end_date_sql_2">
     <viewAttributes>
-      <viewAttribute id="CompanyCodeCurrency"/>
+      <viewAttribute id="DATE_SQL"/>
     
-      <viewAttribute id="CompanyCode"/></viewAttributes>
+      <viewAttribute id="DATETIMESTAMP"/></viewAttributes>
     <calculatedViewAttributes/>
-    <input node="A_CompanyCode">
-      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCodeCurrency" source="Currency"/>
-    </input>
+    <input emptyUnionBehavior="undefined" node="get_project_end_date_sql_2$$$$M_TIME_DIMENSION$$"/>
   </calculationView>
 </calculationViews>
 <logicalModel id="Union_1">
@@ -627,11 +958,11 @@
     </attribute>
     <attribute id="CompTicketsArena" order="38" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="CompDropsArena"/>
-      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_25_PPH"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_26_PPH"/>
     </attribute>
     <attribute id="CompTicketsSuite" order="39" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="CompTicketsSuite"/>
-      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_26_PPH"/>
+      <keyMapping columnObjectName="Union_1" columnName="YY1_Info_25_PPH"/>
     </attribute>
     <attribute id="DropTicketsSuites" order="40" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="DropTicketsSuites"/>
@@ -713,6 +1044,25 @@
       <keyMapping columnObjectName="Union_1" columnName="ProcessingStatus"/>
   
     </attribute>
+  
+    <attribute id="ProjectStartDateTime" order="59" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProjectStartDateTime"/>
+  
+      <keyMapping columnObjectName="Union_1" columnName="ProjectStartDateTime"/>
+  
+    </attribute>
+    <attribute id="ProjectStartDate" order="60" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProjectStartDate"/>
+      <keyMapping columnObjectName="Union_1" columnName="ProjectStartDate"/>
+    </attribute>
+    <attribute id="ProjectEndDateTime" order="61" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProjectEndDateTime"/>
+      <keyMapping columnObjectName="Union_1" columnName="ProjectEndDateTime"/>
+    </attribute>
+    <attribute id="ProjectEndDate" order="62" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProjectEndDate"/>
+      <keyMapping columnObjectName="Union_1" columnName="ProjectEndDate"/>
+    </attribute>
   </attributes>
   <calculatedAttributes>
     <calculatedAttribute id="Weather" order="42" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
@@ -746,19 +1096,31 @@
     </shape>
   
     <shape expanded="true" modelObjectName="With_Currency" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="-81" y="400"/>
+      <upperLeftCorner x="-198" y="501"/>
       <rectangleSize height="30" width="160"/>
     </shape>
   
     <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="100" y="209"/>
+      <upperLeftCorner x="100" y="211"/>
       <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-198" y="353"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="With_Currency" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="get_project_end_date_sql" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="136"/>
     </shape>
     <shape expanded="true" modelObjectName="Get_CompCodeCurrency" modelObjectNameSpace="CalculationView">
       <upperLeftCorner x="231" y="400"/>
       <rectangleSize height="30" width="211"/>
     </shape>
-    <shape modelObjectName="Without_Currency" modelObjectNameSpace="Get_CompCodeCurrency" modelObjectType="JoinNodeInput">
+    <shape modelObjectName="Join_2" modelObjectNameSpace="Get_CompCodeCurrency" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="20" y="30"/>
       <rectangleSize width="250"/>
     </shape>
@@ -766,14 +1128,35 @@
       <upperLeftCorner x="320" y="30"/>
       <rectangleSize width="136"/>
     </shape>
-  
-    <shape expanded="true" modelObjectName="Without_Currency" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="260" y="639"/>
-      <rectangleSize width="160"/>
+    <shape expanded="true" modelObjectName="get_project_end_date_sql" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-18" y="490"/>
+      <rectangleSize height="30" width="204"/>
     </shape>
+    <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="250" y="643"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Without_Currency" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="get_project_end_date_sql_2" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="177"/>
+    </shape>
+  
     <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
       <upperLeftCorner x="449" y="549"/>
       <rectangleSize height="30" width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Without_Currency" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="250" y="788"/>
+      <rectangleSize width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="get_project_end_date_sql_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="459" y="784"/>
+      <rectangleSize width="226"/>
     </shape></shapes>
 </layout>
 </Calculation:scenario>

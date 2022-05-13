@@ -628,6 +628,9 @@
       <viewAttribute id="total_events"/>
       <viewAttribute id="unsold_qual_id"/>
       <viewAttribute id="unsold_type"/>
+    
+      <viewAttribute id="ProjectStartDate"/>
+      <viewAttribute id="ProjectEndDate"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="Join_2"/>
@@ -818,6 +821,9 @@
       <viewAttribute id="total_events" aggregationType="sum"/>
       <viewAttribute id="unsold_qual_id" aggregationType="sum"/>
       <viewAttribute id="unsold_type"/>
+    
+      <viewAttribute id="ProjectStartDate"/>
+      <viewAttribute id="ProjectEndDate"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="Join_1">
@@ -1003,6 +1009,8 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="EventCancelled" source="EventCancelled"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="MultiType" source="MultiType"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ProcessingStatus" source="ProcessingStatus"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectStartDate" source="ProjectStartDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectEndDate" source="ProjectEndDate"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="Project" source="Project"/>
     </input>
     <joinAttribute name="Project"/>
@@ -1060,7 +1068,10 @@
     
     
     
-      <viewAttribute id="Project"/></viewAttributes>
+      <viewAttribute id="Project"/>
+      <viewAttribute id="ProjectStartDate"/>
+      <viewAttribute id="ProjectEndDate"/>
+    </viewAttributes>
     <calculatedViewAttributes/>
     <input node="CvEnterpriseProject">
       <mapping xsi:type="Calculation:AttributeMapping" target="ProjectCreationDateTime" source="CreationDateTime"/>
@@ -1793,6 +1804,15 @@
     <attribute id="unsold_type" order="185" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="unsold_type"/>
       <keyMapping columnObjectName="Projection_1" columnName="unsold_type"/>
+    </attribute>
+  
+    <attribute id="ProjectStartDate" order="186" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProjectStartDate"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ProjectStartDate"/>
+    </attribute>
+    <attribute id="ProjectEndDate" order="187" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProjectEndDate"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ProjectEndDate"/>
     </attribute>
   </attributes>
   <calculatedAttributes/>

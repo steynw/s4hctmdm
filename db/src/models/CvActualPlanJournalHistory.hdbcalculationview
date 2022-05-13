@@ -13,11 +13,11 @@
   <DataSource id="A_ProfitCenterText">
     <resourceUri>A_ProfitCenterText</resourceUri>
   </DataSource>
-  <DataSource id="A_FunctionalAreaText">
-    <resourceUri>A_FunctionalAreaText</resourceUri>
-  </DataSource>
   <DataSource id="A_GLAccountText">
     <resourceUri>A_GLAccountText</resourceUri>
+  </DataSource>
+  <DataSource id="A_FunctionalAreaText">
+    <resourceUri>A_FunctionalAreaText</resourceUri>
   </DataSource>
 </dataSources>
 <calculationViews>
@@ -193,6 +193,9 @@
       <viewAttribute id="GLAccountLongName"/>
       <viewAttribute id="ProfitCenterName"/>
       <viewAttribute id="ProfitCenterLongName"/>
+    
+      <viewAttribute id="ProjectEndDateTime" aggregationType="min"/>
+      <viewAttribute id="ProjectEndDate"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="Join_4">
@@ -309,6 +312,8 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="EventCancelled" source="EventCancelled"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="MultiType" source="MultiType"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ProcessingStatus" source="ProcessingStatus"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectEndDateTime" source="ProjectEndDateTime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectEndDate" source="ProjectEndDate"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="project" source="Project"/>
     </input>
     <joinAttribute name="project"/>
@@ -486,7 +491,10 @@
       <viewAttribute id="MultiType"/>
       <viewAttribute id="ProcessingStatus"/>
     
-      <viewAttribute id="Project"/></viewAttributes>
+      <viewAttribute id="Project"/>
+      <viewAttribute id="ProjectEndDateTime"/>
+      <viewAttribute id="ProjectEndDate"/>
+    </viewAttributes>
     <calculatedViewAttributes/>
     <input node="CvEnterpriseProject">
       <mapping xsi:type="Calculation:AttributeMapping" target="ProjectCreationDateTime" source="CreationDateTime"/>
@@ -725,16 +733,6 @@
     </input>
     <joinAttribute name="functionalarea"/>
   </calculationView>
-  <calculationView xsi:type="Calculation:ProjectionView" id="FA_Name_from_S4" filterExpressionLanguage="SQL">
-    <viewAttributes>
-      <viewAttribute id="FunctionalAreaName"/>
-    
-      <viewAttribute id="FunctionalArea"/>
-      <viewAttribute id="Language"/></viewAttributes>
-    <calculatedViewAttributes/>
-    <input node="A_FunctionalAreaText"/>
-    <filter>&quot;Language&quot; = 'EN'</filter>
-  </calculationView>
   <calculationView xsi:type="Calculation:ProjectionView" id="GL_Account_Name_S4" filterExpressionLanguage="SQL">
     <viewAttributes>
       <viewAttribute id="GLAccountName"/>
@@ -745,6 +743,16 @@
       <viewAttribute id="Language"/></viewAttributes>
     <calculatedViewAttributes/>
     <input node="A_GLAccountText"/>
+    <filter>&quot;Language&quot; = 'EN'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="FA_Name_from_S4" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="FunctionalAreaName"/>
+    
+      <viewAttribute id="FunctionalArea"/>
+      <viewAttribute id="Language"/></viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="A_FunctionalAreaText"/>
     <filter>&quot;Language&quot; = 'EN'</filter>
   </calculationView>
 </calculationViews>
@@ -1145,6 +1153,15 @@
       <descriptions defaultDescription="ProfitCenterLongName"/>
       <keyMapping columnObjectName="Join_1" columnName="ProfitCenterLongName"/>
     </attribute>
+  
+    <attribute id="ProjectEndDateTime" order="107" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProjectEndDateTime"/>
+      <keyMapping columnObjectName="Join_1" columnName="ProjectEndDateTime"/>
+    </attribute>
+    <attribute id="ProjectEndDate" order="108" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProjectEndDate"/>
+      <keyMapping columnObjectName="Join_1" columnName="ProjectEndDate"/>
+    </attribute>
   </attributes>
   <calculatedAttributes/>
   <baseMeasures>
@@ -1265,14 +1282,14 @@
       <upperLeftCorner x="320" y="30"/>
       <rectangleSize width="136"/>
     </shape>
+    <shape expanded="true" modelObjectName="GL_Account_Name_S4" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="385" y="804"/>
+      <rectangleSize height="30" width="231"/>
+    </shape>
   
     <shape expanded="true" modelObjectName="FA_Name_from_S4" modelObjectNameSpace="CalculationView">
       <upperLeftCorner x="434" y="986"/>
       <rectangleSize height="30" width="216"/>
-    </shape>
-    <shape expanded="true" modelObjectName="GL_Account_Name_S4" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="385" y="804"/>
-      <rectangleSize height="30" width="231"/>
     </shape></shapes>
 </layout>
 </Calculation:scenario>

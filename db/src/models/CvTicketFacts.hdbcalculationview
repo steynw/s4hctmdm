@@ -628,6 +628,9 @@
       <viewAttribute id="tran_type"/>
       <viewAttribute id="upd_datetime"/>
       <viewAttribute id="upd_user"/>
+    
+      <viewAttribute id="ProjectStartDate"/>
+      <viewAttribute id="ProjectEndDate"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="Join_1">
@@ -812,6 +815,8 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="EventCancelled" source="EventCancelled"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="MultiType" source="MultiType"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ProcessingStatus" source="ProcessingStatus"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectStartDate" source="ProjectStartDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectEndDate" source="ProjectEndDate"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="Project" source="Project"/>
     </input>
     <joinAttribute name="Project"/>
@@ -864,6 +869,9 @@
       <viewAttribute id="EventCancelled"/>
       <viewAttribute id="MultiType"/>
       <viewAttribute id="ProcessingStatus"/>
+      <viewAttribute id="ProjectStartDate"/>
+      <viewAttribute id="ProjectEndDate"/>
+    
     
     
     
@@ -1529,6 +1537,17 @@
     <attribute id="upd_user" order="190" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="upd_user"/>
       <keyMapping columnObjectName="Join_2" columnName="upd_user"/>
+    </attribute>
+  
+    <attribute id="ProjectStartDate" order="191" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProjectStartDate"/>
+  
+      <keyMapping columnObjectName="Join_2" columnName="ProjectStartDate"/>
+  
+    </attribute>
+    <attribute id="ProjectEndDate" order="192" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProjectEndDate"/>
+      <keyMapping columnObjectName="Join_2" columnName="ProjectEndDate"/>
     </attribute>
   </attributes>
   <calculatedAttributes/>

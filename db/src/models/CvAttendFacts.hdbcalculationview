@@ -170,7 +170,10 @@
       <viewAttribute id="seat_num"/>
       <viewAttribute id="section_id"/>
       <viewAttribute id="section_name"/>
-      <viewAttribute id="upd_datetime"/></viewAttributes>
+      <viewAttribute id="upd_datetime"/>
+      <viewAttribute id="ProjectStartDate"/>
+      <viewAttribute id="ProjectEndDate"/>
+    </viewAttributes>
     <calculatedViewAttributes/>
     <input node="Join_2"/>
   </calculationView>
@@ -246,7 +249,10 @@
       <viewAttribute id="seat_num" aggregationType="sum"/>
       <viewAttribute id="section_id" aggregationType="sum"/>
       <viewAttribute id="section_name"/>
-      <viewAttribute id="upd_datetime" aggregationType="min"/></viewAttributes>
+      <viewAttribute id="upd_datetime" aggregationType="min"/>
+      <viewAttribute id="ProjectStartDate"/>
+      <viewAttribute id="ProjectEndDate"/>
+    </viewAttributes>
     <calculatedViewAttributes/>
     <input node="Join_1">
       <mapping xsi:type="Calculation:AttributeMapping" target="event_id" source="event_id"/>
@@ -317,6 +323,8 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="EventCancelled" source="EventCancelled"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="MultiType" source="MultiType"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ProcessingStatus" source="ProcessingStatus"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectStartDate" source="ProjectStartDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectEndDate" source="ProjectEndDate"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="Project" source="Project"/>
     </input>
     <joinAttribute name="Project"/>
@@ -375,7 +383,10 @@
     
     
     
-      <viewAttribute id="Project"/></viewAttributes>
+      <viewAttribute id="Project"/>
+      <viewAttribute id="ProjectStartDate"/>
+      <viewAttribute id="ProjectEndDate"/>
+    </viewAttributes>
     <calculatedViewAttributes/>
     <input node="CvEnterpriseProject">
       <mapping xsi:type="Calculation:AttributeMapping" target="ProjectCreationDateTime" source="CreationDateTime"/>
@@ -651,7 +662,16 @@
     <attribute id="upd_datetime" order="68" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="upd_datetime"/>
       <keyMapping columnObjectName="Projection_1" columnName="upd_datetime"/>
-    </attribute></attributes>
+    </attribute>
+    <attribute id="ProjectStartDate" order="69" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProjectStartDate"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ProjectStartDate"/>
+    </attribute>
+    <attribute id="ProjectEndDate" order="70" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProjectEndDate"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ProjectEndDate"/>
+    </attribute>
+  </attributes>
   <calculatedAttributes/>
   <baseMeasures>
     <measure id="AttendanceNum" order="55" aggregationType="sum" measureType="simple">
@@ -669,7 +689,7 @@
         </filter>
         <attributeName>ArenaFlag</attributeName>
       </restriction>
-    </measure>
+      </measure>
     <measure id="AttendanceSuites" order="57" aggregationType="sum" datatype="INTEGER" baseMeasure="AttendanceNum" length="10" scale="0">
       <descriptions defaultDescription="AttendanceSuites"/>
       <restriction logicalOperator="AND">
@@ -678,7 +698,7 @@
         </filter>
         <attributeName>SuitesFlag</attributeName>
       </restriction>
-    </measure>
+      </measure>
     <measure id="AttendanceLounge" order="58" aggregationType="sum" datatype="INTEGER" baseMeasure="AttendanceNum" length="10" scale="0">
       <descriptions defaultDescription="AttendanceLounge"/>
       <restriction logicalOperator="AND">
@@ -687,7 +707,7 @@
         </filter>
         <attributeName>LoungeFlag</attributeName>
       </restriction>
-    </measure>
+      </measure>
     <measure id="AttendanceParking" order="59" aggregationType="sum" datatype="INTEGER" baseMeasure="AttendanceNum" length="10" scale="0">
       <descriptions defaultDescription="AttendanceParking"/>
       <restriction logicalOperator="AND">
@@ -696,7 +716,7 @@
         </filter>
         <attributeName>ParkingFlag</attributeName>
       </restriction>
-    </measure>
+      </measure>
   </restrictedMeasures>
   <localDimensions/>
 </logicalModel>

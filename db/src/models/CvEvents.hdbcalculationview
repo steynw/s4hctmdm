@@ -52,8 +52,6 @@
       <viewAttribute id="AttendanceParkingTM" aggregationType="sum"/>
     
       <viewAttribute id="AttendanceLoungeTM" aggregationType="sum"/>
-    
-      <viewAttribute id="PlannedEndDate" aggregationType="min"/>
       <viewAttribute id="ProjectDescription"/>
       <viewAttribute id="ProjectCreationDateTime" aggregationType="min"/>
       <viewAttribute id="ProjectCreatedByUser"/>
@@ -62,7 +60,6 @@
       <viewAttribute id="ControllingArea"/>
       <viewAttribute id="CompanyCode"/>
       <viewAttribute id="ProfitCenter"/>
-      <viewAttribute id="PlannedStartDate" aggregationType="min"/>
       <viewAttribute id="Type"/>
       <viewAttribute id="TypeDesc"/>
       <viewAttribute id="SubType"/>
@@ -94,7 +91,7 @@
       <viewAttribute id="RentDeal"/>
       <viewAttribute id="Genre"/>
       <viewAttribute id="GenreDesc"/>
-      <viewAttribute id="EventDate"/>
+      <viewAttribute id="EventDate" datatype="DATE" length="10"/>
     
       <viewAttribute id="ParkingRate" aggregationType="sum"/>
     
@@ -123,6 +120,9 @@
       <viewAttribute id="BlockPurchasePriceSuitesTM" aggregationType="sum"/>
       <viewAttribute id="BlockPurchasePriceLoungeTM" aggregationType="sum"/>
       <viewAttribute id="BlockPurchasePriceParkingTM" aggregationType="sum"/>
+    
+      <viewAttribute id="ProjectStartDate"/>
+      <viewAttribute id="ProjectEndDate"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="P_TICKETS" emptyUnionBehavior="NO_ROW">
@@ -153,8 +153,6 @@
       <mapping xsi:type="Calculation:ConstantAttributeMapping" target="AttendanceParkingTM" null="true" value=""/>
     
       <mapping xsi:type="Calculation:ConstantAttributeMapping" target="AttendanceLoungeTM" null="true" value=""/>
-    
-      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedEndDate" source="PlannedEndDate"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ProjectDescription" source="ProjectDescription"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ProjectCreationDateTime" source="ProjectCreationDateTime"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ProjectCreatedByUser" source="ProjectCreatedByUser"/>
@@ -163,7 +161,6 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="ControllingArea" source="ControllingArea"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ProfitCenter" source="ProfitCenter"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedStartDate" source="PlannedStartDate"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="Type" source="Type"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="TypeDesc" source="TypeDesc"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="SubType" source="SubType"/>
@@ -195,7 +192,7 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="RentDeal" source="RentDeal"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="Genre" source="Genre"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="GenreDesc" source="GenreDesc"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="EventDate" source="EventDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventDate" source="ProjectEndDate"/>
     
       <mapping xsi:type="Calculation:AttributeMapping" target="ParkingRate" source="ParkingRate"/>
     
@@ -224,6 +221,9 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="BlockPurchasePriceSuitesTM" source="BlockPurchasePriceSuitesTM"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="BlockPurchasePriceLoungeTM" source="BlockPurchasePriceLoungeTM"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="BlockPurchasePriceParkingTM" source="BlockPurchasePriceParkingTM"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectStartDate" source="ProjectStartDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectEndDate" source="ProjectEndDate"/>
     </input>
   
     <input node="P_ATTEND" emptyUnionBehavior="NO_ROW">
@@ -282,10 +282,6 @@
   
       <mapping xsi:type="Calculation:AttributeMapping" target="AttendanceLoungeTM" source="AttendanceLoungeTM"/>
   
-    
-  
-      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedEndDate" source="PlannedEndDate"/>
-  
       <mapping xsi:type="Calculation:AttributeMapping" target="ProjectDescription" source="ProjectDescription"/>
   
       <mapping xsi:type="Calculation:AttributeMapping" target="ProjectCreationDateTime" source="ProjectCreationDateTime"/>
@@ -301,8 +297,6 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
   
       <mapping xsi:type="Calculation:AttributeMapping" target="ProfitCenter" source="ProfitCenter"/>
-  
-      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedStartDate" source="PlannedStartDate"/>
   
       <mapping xsi:type="Calculation:AttributeMapping" target="Type" source="Type"/>
   
@@ -366,7 +360,7 @@
   
       <mapping xsi:type="Calculation:AttributeMapping" target="GenreDesc" source="GenreDesc"/>
   
-      <mapping xsi:type="Calculation:AttributeMapping" target="EventDate" source="EventDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventDate" source="ProjectEndDate"/>
   
     
   
@@ -424,6 +418,12 @@
   
       <mapping xsi:type="Calculation:ConstantAttributeMapping" target="BlockPurchasePriceParkingTM" null="true" value=""/>
   
+    
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectStartDate" source="ProjectStartDate"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectEndDate" source="ProjectEndDate"/>
+  
     </input>
     <input node="P_AVAIL" emptyUnionBehavior="NO_ROW">
       <mapping xsi:type="Calculation:AttributeMapping" target="Project" source="Project"/>
@@ -453,8 +453,6 @@
       <mapping xsi:type="Calculation:ConstantAttributeMapping" target="AttendanceParkingTM" null="true" value=""/>
     
       <mapping xsi:type="Calculation:ConstantAttributeMapping" target="AttendanceLoungeTM" null="true" value=""/>
-    
-      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedEndDate" source="PlannedEndDate"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ProjectDescription" source="ProjectDescription"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ProjectCreationDateTime" source="ProjectCreationDateTime"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ProjectCreatedByUser" source="ProjectCreatedByUser"/>
@@ -463,7 +461,6 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="ControllingArea" source="ControllingArea"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ProfitCenter" source="ProfitCenter"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedStartDate" source="PlannedStartDate"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="Type" source="Type"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="TypeDesc" source="TypeDesc"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="SubType" source="SubType"/>
@@ -495,7 +492,7 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="RentDeal" source="RentDeal"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="Genre" source="Genre"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="GenreDesc" source="GenreDesc"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="EventDate" source="EventDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventDate" source="ProjectEndDate"/>
     
       <mapping xsi:type="Calculation:AttributeMapping" target="ParkingRate" source="ParkingRate"/>
     
@@ -524,6 +521,9 @@
       <mapping xsi:type="Calculation:ConstantAttributeMapping" target="BlockPurchasePriceSuitesTM" null="true" value=""/>
       <mapping xsi:type="Calculation:ConstantAttributeMapping" target="BlockPurchasePriceLoungeTM" null="true" value=""/>
       <mapping xsi:type="Calculation:ConstantAttributeMapping" target="BlockPurchasePriceParkingTM" null="true" value=""/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectStartDate" source="ProjectStartDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectEndDate" source="ProjectEndDate"/>
     </input>
   
     <input node="S4_PROJECTDATA" emptyUnionBehavior="NO_ROW">
@@ -567,10 +567,6 @@
   
       <mapping xsi:type="Calculation:ConstantAttributeMapping" target="AttendanceLoungeTM" null="true" value=""/>
   
-    
-  
-      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedEndDate" source="PlannedEndDate"/>
-  
       <mapping xsi:type="Calculation:AttributeMapping" target="ProjectDescription" source="ProjectDescription"/>
   
       <mapping xsi:type="Calculation:AttributeMapping" target="ProjectCreationDateTime" source="ProjectCreationDateTime"/>
@@ -586,8 +582,6 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
   
       <mapping xsi:type="Calculation:AttributeMapping" target="ProfitCenter" source="ProfitCenter"/>
-  
-      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedStartDate" source="PlannedStartDate"/>
   
       <mapping xsi:type="Calculation:AttributeMapping" target="Type" source="Type"/>
   
@@ -651,7 +645,7 @@
   
       <mapping xsi:type="Calculation:AttributeMapping" target="GenreDesc" source="GenreDesc"/>
   
-      <mapping xsi:type="Calculation:AttributeMapping" target="EventDate" source="PlannedEndDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EventDate" source="ProjectEndDate"/>
   
     
   
@@ -709,6 +703,12 @@
   
       <mapping xsi:type="Calculation:ConstantAttributeMapping" target="BlockPurchasePriceParkingTM" null="true" value=""/>
   
+    
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectStartDate" source="ProjectStartDate"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectEndDate" source="ProjectEndDate"/>
+  
     </input>
   </calculationView>
   <calculationView xsi:type="Calculation:AggregationView" id="P_TICKETS" filterExpressionLanguage="SQL">
@@ -721,8 +721,6 @@
       <viewAttribute id="PaidTicketsArenaTM"/>
       <viewAttribute id="CompTicketsSuitesTM"/>
       <viewAttribute id="CompTicketsArenaTM"/>
-    
-      <viewAttribute id="PlannedEndDate"/>
       <viewAttribute id="ProjectDescription"/>
       <viewAttribute id="ProjectCreationDateTime"/>
       <viewAttribute id="ProjectCreatedByUser"/>
@@ -731,7 +729,6 @@
       <viewAttribute id="ControllingArea"/>
       <viewAttribute id="CompanyCode"/>
       <viewAttribute id="ProfitCenter"/>
-      <viewAttribute id="PlannedStartDate"/>
       <viewAttribute id="Type"/>
       <viewAttribute id="TypeDesc"/>
       <viewAttribute id="SubType"/>
@@ -763,7 +760,6 @@
       <viewAttribute id="RentDeal"/>
       <viewAttribute id="Genre"/>
       <viewAttribute id="GenreDesc"/>
-      <viewAttribute id="EventDate"/>
       <viewAttribute id="ParkingRate"/>
       <viewAttribute id="PurchasePriceArenaTM" aggregationType="sum"/>
       <viewAttribute id="PurchasePriceSuitesTM" aggregationType="sum"/>
@@ -792,7 +788,10 @@
       <viewAttribute id="CompTicketsParkingTM"/>
       <viewAttribute id="PaidTicketsLoungeTM"/>
       <viewAttribute id="CompTicketsLoungeTM"/>
-      <viewAttribute id="ticket_status"/></viewAttributes>
+      <viewAttribute id="ticket_status"/>
+      <viewAttribute id="ProjectStartDate"/>
+      <viewAttribute id="ProjectEndDate"/>
+    </viewAttributes>
     <calculatedViewAttributes/>
     <restrictedViewAttributes/>
     <input node="CvTicketFacts">
@@ -812,8 +811,6 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="PurchasePriceSuitesTM" source="PurchasePriceSuites"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PurchasePriceLoungeTM" source="PurchasePriceLounge"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PurchasePriceParkingTM" source="PurchasePriceParking"/>
-    
-      <mapping xsi:type="Calculation:AttributeMapping" target="EventDate" source="PlannedEndDate"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ArchticsEventDate" source="EventDate"/>
     
       <mapping xsi:type="Calculation:AttributeMapping" target="BlockPurchasePriceArenaTM" source="BlockPurchasePriceArena"/>
@@ -832,8 +829,6 @@
       <viewAttribute id="AttendanceParkingTM"/>
     
       <viewAttribute id="AttendanceLoungeTM"/>
-    
-      <viewAttribute id="PlannedEndDate"/>
       <viewAttribute id="ProjectDescription"/>
       <viewAttribute id="ProjectCreationDateTime"/>
       <viewAttribute id="ProjectCreatedByUser"/>
@@ -842,7 +837,6 @@
       <viewAttribute id="ControllingArea"/>
       <viewAttribute id="CompanyCode"/>
       <viewAttribute id="ProfitCenter"/>
-      <viewAttribute id="PlannedStartDate"/>
       <viewAttribute id="Type"/>
       <viewAttribute id="TypeDesc"/>
       <viewAttribute id="SubType"/>
@@ -874,7 +868,6 @@
       <viewAttribute id="RentDeal"/>
       <viewAttribute id="Genre"/>
       <viewAttribute id="GenreDesc"/>
-      <viewAttribute id="EventDate"/>
     
       <viewAttribute id="ParkingRate"/>
     
@@ -886,6 +879,9 @@
       <viewAttribute id="EventDirectorDesc"/>
     
       <viewAttribute id="ArchticsEventDate"/>
+    
+      <viewAttribute id="ProjectStartDate"/>
+      <viewAttribute id="ProjectEndDate"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <restrictedViewAttributes/>
@@ -894,8 +890,6 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="AttendanceSuitesTM" source="AttendanceSuites"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="AttendanceParkingTM" source="AttendanceParking"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="AttendanceLoungeTM" source="AttendanceLounge"/>
-    
-      <mapping xsi:type="Calculation:AttributeMapping" target="EventDate" source="PlannedEndDate"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ArchticsEventDate" source="EventDate"/>
     </input>
   </calculationView>
@@ -906,8 +900,6 @@
       <viewAttribute id="TicketsUnsoldArenaTM"/>
       <viewAttribute id="TicketsUnsoldSuitesTM"/>
       <viewAttribute id="TicketsUnsoldParkingTM"/>
-    
-      <viewAttribute id="PlannedEndDate"/>
       <viewAttribute id="ProjectDescription"/>
       <viewAttribute id="ProjectCreationDateTime"/>
       <viewAttribute id="ProjectCreatedByUser"/>
@@ -916,7 +908,6 @@
       <viewAttribute id="ControllingArea"/>
       <viewAttribute id="CompanyCode"/>
       <viewAttribute id="ProfitCenter"/>
-      <viewAttribute id="PlannedStartDate"/>
       <viewAttribute id="Type"/>
       <viewAttribute id="TypeDesc"/>
       <viewAttribute id="SubType"/>
@@ -948,7 +939,6 @@
       <viewAttribute id="RentDeal"/>
       <viewAttribute id="Genre"/>
       <viewAttribute id="GenreDesc"/>
-      <viewAttribute id="EventDate"/>
     
       <viewAttribute id="ParkingRate"/>
     
@@ -966,6 +956,9 @@
       <viewAttribute id="ArchticsEventDate"/>
     
       <viewAttribute id="Kill"/>
+    
+      <viewAttribute id="ProjectStartDate"/>
+      <viewAttribute id="ProjectEndDate"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <restrictedViewAttributes/>
@@ -978,8 +971,6 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="ValueUnsoldArenaTM" source="ValueUnsoldArena"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ValueUnsoldSuitesTM" source="ValueUnsoldSuites"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ValueUnsoldParkingTM" source="ValueUnsoldParking"/>
-    
-      <mapping xsi:type="Calculation:AttributeMapping" target="EventDate" source="PlannedEndDate"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ArchticsEventDate" source="EventDate"/>
     </input>
     <filter>&quot;Kill&quot; != 'Y'</filter>
@@ -996,7 +987,6 @@
       <viewAttribute id="GrossPotentialTicketSalesS4"/>
     
       <viewAttribute id="CompTicketsSuitesS4"/>
-      <viewAttribute id="PlannedEndDate"/>
     
       <viewAttribute id="ProjectDescription"/>
       <viewAttribute id="ProjectCreationDateTime"/>
@@ -1006,7 +996,6 @@
       <viewAttribute id="ControllingArea"/>
       <viewAttribute id="CompanyCode"/>
       <viewAttribute id="ProfitCenter"/>
-      <viewAttribute id="PlannedStartDate"/>
       <viewAttribute id="Type"/>
       <viewAttribute id="TypeDesc"/>
       <viewAttribute id="SubType"/>
@@ -1051,6 +1040,8 @@
     
       <viewAttribute id="EventDirector"/>
       <viewAttribute id="EventDirectorDesc"/>
+      <viewAttribute id="ProjectStartDate"/>
+      <viewAttribute id="ProjectEndDate"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <restrictedViewAttributes/>
@@ -1100,8 +1091,6 @@
       <viewAttribute id="AttendanceParkingTM"/>
     
       <viewAttribute id="AttendanceLoungeTM"/>
-    
-      <viewAttribute id="PlannedEndDate"/>
       <viewAttribute id="ProjectDescription"/>
       <viewAttribute id="ProjectCreationDateTime"/>
       <viewAttribute id="ProjectCreatedByUser"/>
@@ -1110,7 +1099,6 @@
       <viewAttribute id="ControllingArea"/>
       <viewAttribute id="CompanyCode"/>
       <viewAttribute id="ProfitCenter"/>
-      <viewAttribute id="PlannedStartDate"/>
       <viewAttribute id="Type"/>
       <viewAttribute id="TypeDesc"/>
       <viewAttribute id="SubType"/>
@@ -1173,6 +1161,9 @@
       <viewAttribute id="BlockPurchasePriceSuitesTM"/>
       <viewAttribute id="BlockPurchasePriceLoungeTM"/>
       <viewAttribute id="BlockPurchasePriceParkingTM"/>
+    
+      <viewAttribute id="ProjectStartDate"/>
+      <viewAttribute id="ProjectEndDate"/>
     </viewAttributes>
     <calculatedViewAttributes>
       <calculatedViewAttribute id="CC_DUMMY" datatype="INTEGER" expressionLanguage="SQL">
@@ -1207,7 +1198,6 @@
       <viewAttribute id="AttendanceSuitesTM" aggregationType="sum"/>
       <viewAttribute id="AttendanceParkingTM" aggregationType="sum"/>
       <viewAttribute id="AttendanceLoungeTM" aggregationType="sum"/>
-      <viewAttribute id="PlannedEndDate" aggregationType="min"/>
       <viewAttribute id="ProjectDescription"/>
       <viewAttribute id="ProjectCreationDateTime" aggregationType="min"/>
       <viewAttribute id="ProjectCreatedByUser"/>
@@ -1216,7 +1206,6 @@
       <viewAttribute id="ControllingArea"/>
       <viewAttribute id="CompanyCode"/>
       <viewAttribute id="ProfitCenter"/>
-      <viewAttribute id="PlannedStartDate" aggregationType="min"/>
       <viewAttribute id="Type"/>
       <viewAttribute id="TypeDesc"/>
       <viewAttribute id="SubType"/>
@@ -1277,6 +1266,9 @@
       <viewAttribute id="BlockPurchasePriceSuitesTM" aggregationType="sum"/>
       <viewAttribute id="BlockPurchasePriceLoungeTM" aggregationType="sum"/>
       <viewAttribute id="BlockPurchasePriceParkingTM" aggregationType="sum"/>
+    
+      <viewAttribute id="ProjectStartDate"/>
+      <viewAttribute id="ProjectEndDate"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="Union_1">
@@ -1304,7 +1296,6 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="AttendanceSuitesTM" source="AttendanceSuitesTM"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="AttendanceParkingTM" source="AttendanceParkingTM"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="AttendanceLoungeTM" source="AttendanceLoungeTM"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedEndDate" source="PlannedEndDate"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ProjectDescription" source="ProjectDescription"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ProjectCreationDateTime" source="ProjectCreationDateTime"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ProjectCreatedByUser" source="ProjectCreatedByUser"/>
@@ -1313,7 +1304,6 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="ControllingArea" source="ControllingArea"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ProfitCenter" source="ProfitCenter"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedStartDate" source="PlannedStartDate"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="Type" source="Type"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="TypeDesc" source="TypeDesc"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="SubType" source="SubType"/>
@@ -1373,6 +1363,9 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="BlockPurchasePriceSuitesTM" source="BlockPurchasePriceSuitesTM"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="BlockPurchasePriceLoungeTM" source="BlockPurchasePriceLoungeTM"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="BlockPurchasePriceParkingTM" source="BlockPurchasePriceParkingTM"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectStartDate" source="ProjectStartDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProjectEndDate" source="ProjectEndDate"/>
     </input>
     <input node="SHARKS_CUDA_OPPONENT">
       <mapping xsi:type="Calculation:AttributeMapping" target="Opponent" source="Opponent"/>
@@ -1411,197 +1404,194 @@
       <keyMapping columnObjectName="Projection_1" columnName="DATASOURCE"/>
   
     </attribute>
-  
-    <attribute id="PlannedEndDate" order="42" displayAttribute="false" attributeHierarchyActive="false" semanticType="date">
-      <descriptions defaultDescription="PlannedEndDate"/>
-  
-      <keyMapping columnObjectName="Projection_1" columnName="PlannedEndDate"/>
-  
-    </attribute>
-    <attribute id="ProjectCreationDateTime" order="43" displayAttribute="false" attributeHierarchyActive="false" semanticType="date">
+    <attribute id="ProjectCreationDateTime" order="42" displayAttribute="false" attributeHierarchyActive="false" semanticType="date">
       <descriptions defaultDescription="ProjectCreationDateTime"/>
       <keyMapping columnObjectName="Projection_1" columnName="ProjectCreationDateTime"/>
     </attribute>
-    <attribute id="ProjectCreatedByUser" order="44" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="ProjectCreatedByUser" order="43" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="ProjectCreatedByUser"/>
       <keyMapping columnObjectName="Projection_1" columnName="ProjectCreatedByUser"/>
     </attribute>
-    <attribute id="Currency" order="45" displayAttribute="false" attributeHierarchyActive="false" semanticType="currencyCode">
+    <attribute id="Currency" order="44" displayAttribute="false" attributeHierarchyActive="false" semanticType="currencyCode">
       <descriptions defaultDescription="Currency"/>
       <keyMapping columnObjectName="Projection_1" columnName="Currency"/>
     </attribute>
-    <attribute id="FunctionalArea" order="46" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="FunctionalArea" order="45" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="FunctionalArea"/>
       <keyMapping columnObjectName="Projection_1" columnName="FunctionalArea"/>
     </attribute>
-    <attribute id="ControllingArea" order="47" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="ControllingArea" order="46" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="ControllingArea"/>
       <keyMapping columnObjectName="Projection_1" columnName="ControllingArea"/>
     </attribute>
-    <attribute id="CompanyCode" order="48" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="CompanyCode" order="47" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="CompanyCode"/>
       <keyMapping columnObjectName="Projection_1" columnName="CompanyCode"/>
     </attribute>
-    <attribute id="ProfitCenter" order="49" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="ProfitCenter" order="48" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="ProfitCenter"/>
       <keyMapping columnObjectName="Projection_1" columnName="ProfitCenter"/>
     </attribute>
-    <attribute id="PlannedStartDate" order="50" displayAttribute="false" attributeHierarchyActive="false" semanticType="date">
-      <descriptions defaultDescription="PlannedStartDate"/>
-      <keyMapping columnObjectName="Projection_1" columnName="PlannedStartDate"/>
-    </attribute>
-    <attribute id="Type" order="51" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="TypeDesc">
+    <attribute id="Type" order="49" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="TypeDesc">
       <descriptions defaultDescription="Type"/>
       <keyMapping columnObjectName="Projection_1" columnName="Type"/>
     </attribute>
-    <attribute id="TypeDesc" order="52" displayAttribute="false" attributeHierarchyActive="false" hidden="true">
+    <attribute id="TypeDesc" order="50" displayAttribute="false" attributeHierarchyActive="false" hidden="true">
       <descriptions defaultDescription="TypeDesc"/>
       <keyMapping columnObjectName="Projection_1" columnName="TypeDesc"/>
     </attribute>
-    <attribute id="SubType" order="53" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="SubTypeDesc">
+    <attribute id="SubType" order="51" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="SubTypeDesc">
       <descriptions defaultDescription="SubType"/>
       <keyMapping columnObjectName="Projection_1" columnName="SubType"/>
     </attribute>
-    <attribute id="SubTypeDesc" order="54" displayAttribute="false" attributeHierarchyActive="false" hidden="true">
+    <attribute id="SubTypeDesc" order="52" displayAttribute="false" attributeHierarchyActive="false" hidden="true">
       <descriptions defaultDescription="SubTypeDesc"/>
       <keyMapping columnObjectName="Projection_1" columnName="SubTypeDesc"/>
     </attribute>
-    <attribute id="Rank" order="55" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="Rank" order="53" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Rank"/>
       <keyMapping columnObjectName="Projection_1" columnName="Rank"/>
     </attribute>
-    <attribute id="EventStartTime" order="56" displayAttribute="false" attributeHierarchyActive="false" semanticType="date">
+    <attribute id="EventStartTime" order="54" displayAttribute="false" attributeHierarchyActive="false" semanticType="date">
       <descriptions defaultDescription="EventStartTime"/>
       <keyMapping columnObjectName="Projection_1" columnName="EventStartTime"/>
     </attribute>
-    <attribute id="DoorsOpen" order="57" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="DoorsOpen" order="55" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="DoorsOpen"/>
       <keyMapping columnObjectName="Projection_1" columnName="DoorsOpen"/>
     </attribute>
-    <attribute id="ClubOpen" order="58" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="ClubOpen" order="56" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="ClubOpen"/>
       <keyMapping columnObjectName="Projection_1" columnName="ClubOpen"/>
     </attribute>
-    <attribute id="LoungeOpen" order="59" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="LoungeOpen" order="57" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="LoungeOpen"/>
       <keyMapping columnObjectName="Projection_1" columnName="LoungeOpen"/>
     </attribute>
-    <attribute id="SuitesOpen" order="60" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="SuitesOpen" order="58" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="SuitesOpen"/>
       <keyMapping columnObjectName="Projection_1" columnName="SuitesOpen"/>
     </attribute>
-    <attribute id="CompareCode" order="61" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="CompareCode" order="59" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="CompareCode"/>
       <keyMapping columnObjectName="Projection_1" columnName="CompareCode"/>
     </attribute>
-    <attribute id="PromotionalItem" order="62" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="PromotionalItemDesc">
+    <attribute id="PromotionalItem" order="60" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="PromotionalItemDesc">
       <descriptions defaultDescription="PromotionalItem"/>
       <keyMapping columnObjectName="Projection_1" columnName="PromotionalItem"/>
     </attribute>
-    <attribute id="PromotionalItemDesc" order="63" displayAttribute="false" attributeHierarchyActive="false" hidden="true">
+    <attribute id="PromotionalItemDesc" order="61" displayAttribute="false" attributeHierarchyActive="false" hidden="true">
       <descriptions defaultDescription="PromotionalItemDesc"/>
       <keyMapping columnObjectName="Projection_1" columnName="PromotionalItemDesc"/>
     </attribute>
-    <attribute id="EventInTicketMaster" order="64" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="EventInTicketMaster" order="62" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="EventInTicketMaster"/>
       <keyMapping columnObjectName="Projection_1" columnName="EventInTicketMaster"/>
     </attribute>
-    <attribute id="MerchDeal" order="65" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="MerchDeal" order="63" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="MerchDeal"/>
       <keyMapping columnObjectName="Projection_1" columnName="MerchDeal"/>
     </attribute>
-    <attribute id="EventMoved" order="66" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="EventMoved" order="64" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="EventMoved"/>
       <keyMapping columnObjectName="Projection_1" columnName="EventMoved"/>
     </attribute>
-    <attribute id="EventCancelled" order="67" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="EventCancelled" order="65" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="EventCancelled"/>
       <keyMapping columnObjectName="Projection_1" columnName="EventCancelled"/>
     </attribute>
-    <attribute id="Weather" order="68" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="Weather" order="66" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Weather"/>
       <keyMapping columnObjectName="Projection_1" columnName="Weather"/>
     </attribute>
-    <attribute id="Budget" order="69" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="BudgetDesc">
+    <attribute id="Budget" order="67" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="BudgetDesc">
       <descriptions defaultDescription="Budget"/>
       <keyMapping columnObjectName="Projection_1" columnName="Budget"/>
     </attribute>
-    <attribute id="BudgetDesc" order="70" displayAttribute="false" attributeHierarchyActive="false" hidden="true">
+    <attribute id="BudgetDesc" order="68" displayAttribute="false" attributeHierarchyActive="false" hidden="true">
       <descriptions defaultDescription="BudgetDesc"/>
       <keyMapping columnObjectName="Projection_1" columnName="BudgetDesc"/>
     </attribute>
-    <attribute id="Actual" order="71" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="ActualDesc">
+    <attribute id="Actual" order="69" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="ActualDesc">
       <descriptions defaultDescription="Actual"/>
       <keyMapping columnObjectName="Projection_1" columnName="Actual"/>
     </attribute>
-    <attribute id="ActualDesc" order="72" displayAttribute="false" attributeHierarchyActive="false" hidden="true">
+    <attribute id="ActualDesc" order="70" displayAttribute="false" attributeHierarchyActive="false" hidden="true">
       <descriptions defaultDescription="ActualDesc"/>
       <keyMapping columnObjectName="Projection_1" columnName="ActualDesc"/>
     </attribute>
-    <attribute id="EventManager" order="73" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="EventManagerDesc">
+    <attribute id="EventManager" order="71" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="EventManagerDesc">
       <descriptions defaultDescription="EventManager"/>
       <keyMapping columnObjectName="Projection_1" columnName="EventManager"/>
     </attribute>
-    <attribute id="EventManagerDesc" order="74" displayAttribute="false" attributeHierarchyActive="false" hidden="true">
+    <attribute id="EventManagerDesc" order="72" displayAttribute="false" attributeHierarchyActive="false" hidden="true">
       <descriptions defaultDescription="EventManagerDesc"/>
       <keyMapping columnObjectName="Projection_1" columnName="EventManagerDesc"/>
     </attribute>
-    <attribute id="Promoter" order="75" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="PromoterDesc">
+    <attribute id="Promoter" order="73" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="PromoterDesc">
       <descriptions defaultDescription="Promoter"/>
       <keyMapping columnObjectName="Projection_1" columnName="Promoter"/>
     </attribute>
-    <attribute id="PromoterDesc" order="76" displayAttribute="false" attributeHierarchyActive="false" hidden="true">
+    <attribute id="PromoterDesc" order="74" displayAttribute="false" attributeHierarchyActive="false" hidden="true">
       <descriptions defaultDescription="PromoterDesc"/>
       <keyMapping columnObjectName="Projection_1" columnName="PromoterDesc"/>
     </attribute>
-    <attribute id="Agency" order="77" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="AgencyDesc">
+    <attribute id="Agency" order="75" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="AgencyDesc">
       <descriptions defaultDescription="Agency"/>
       <keyMapping columnObjectName="Projection_1" columnName="Agency"/>
     </attribute>
-    <attribute id="AgencyDesc" order="78" displayAttribute="false" attributeHierarchyActive="false" hidden="true">
+    <attribute id="AgencyDesc" order="76" displayAttribute="false" attributeHierarchyActive="false" hidden="true">
       <descriptions defaultDescription="AgencyDesc"/>
       <keyMapping columnObjectName="Projection_1" columnName="AgencyDesc"/>
     </attribute>
-    <attribute id="RentDeal" order="79" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="RentDeal" order="77" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="RentDeal"/>
       <keyMapping columnObjectName="Projection_1" columnName="RentDeal"/>
     </attribute>
-    <attribute id="Genre" order="80" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="GenreDesc">
+    <attribute id="Genre" order="78" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="GenreDesc">
       <descriptions defaultDescription="Genre"/>
       <keyMapping columnObjectName="Projection_1" columnName="Genre"/>
     </attribute>
-    <attribute id="GenreDesc" order="81" displayAttribute="false" attributeHierarchyActive="false" hidden="true">
+    <attribute id="GenreDesc" order="79" displayAttribute="false" attributeHierarchyActive="false" hidden="true">
       <descriptions defaultDescription="GenreDesc"/>
       <keyMapping columnObjectName="Projection_1" columnName="GenreDesc"/>
     </attribute>
-    <attribute id="ParkingRate" order="82" displayAttribute="false" attributeHierarchyActive="false" semanticType="amount">
+    <attribute id="ParkingRate" order="80" displayAttribute="false" attributeHierarchyActive="false" semanticType="amount">
       <descriptions defaultDescription="ParkingRate"/>
       <unitCurrencyAttribute attributeName="Currency"/>
       <keyMapping columnObjectName="Projection_1" columnName="ParkingRate"/>
     </attribute>
-    <attribute id="Opponent" order="83" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="Opponent" order="81" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Opponent"/>
       <keyMapping columnObjectName="Projection_1" columnName="Opponent"/>
     </attribute>
-    <attribute id="MultiType" order="93" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="MultiType" order="91" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="MultiType"/>
       <keyMapping columnObjectName="Projection_1" columnName="MultiType"/>
     </attribute>
-    <attribute id="ProcessingStatus" order="94" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="ProcessingStatus" order="92" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="ProcessingStatus"/>
       <keyMapping columnObjectName="Projection_1" columnName="ProcessingStatus"/>
     </attribute>
-    <attribute id="EventDirector" order="95" descriptionColumnName="EventDirectorDesc" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="EventDirector" order="93" descriptionColumnName="EventDirectorDesc" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="EventDirector"/>
       <keyMapping columnObjectName="Projection_1" columnName="EventDirector"/>
     </attribute>
-    <attribute id="EventDirectorDesc" hidden="true" order="96" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="EventDirectorDesc" hidden="true" order="94" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="EventDirectorDesc"/>
       <keyMapping columnObjectName="Projection_1" columnName="EventDirectorDesc"/>
     </attribute>
-    <attribute id="ArchticsEventDate" order="97" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="ArchticsEventDate" order="95" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="ArchticsEventDate"/>
       <keyMapping columnObjectName="Projection_1" columnName="ArchticsEventDate"/>
+    </attribute>
+    <attribute id="ProjectStartDate" order="100" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProjectStartDate"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ProjectStartDate"/>
+    </attribute>
+    <attribute id="ProjectEndDate" order="101" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProjectEndDate"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ProjectEndDate"/>
     </attribute>
     <attribute id="EventDate$local">
       <descriptions defaultDescription="EventDate"/>
@@ -1702,71 +1692,71 @@
       <descriptions defaultDescription="AttendanceLoungeTM"/>
       <measureMapping columnObjectName="Projection_1" columnName="AttendanceLoungeTM"/>
     </measure>
-    <measure id="CapacityS4" order="84" aggregationType="sum" measureType="simple">
+    <measure id="CapacityS4" order="82" aggregationType="sum" measureType="simple">
       <descriptions defaultDescription="CapacityS4"/>
       <measureMapping columnObjectName="Projection_1" columnName="CapacityS4"/>
     </measure>
   
-    <measure id="ValueUnsoldArenaTM" order="85" aggregationType="sum" measureType="amount" semanticType="amount">
+    <measure id="ValueUnsoldArenaTM" order="83" aggregationType="sum" measureType="amount" semanticType="amount">
       <descriptions defaultDescription="ValueUnsoldArenaTM"/>
   
       <unitCurrencyAttribute attributeName="Currency"/>
       <measureMapping columnObjectName="Projection_1" columnName="ValueUnsoldArenaTM"/>
     </measure>
-    <measure id="ValueUnsoldSuitesTM" order="86" aggregationType="sum" measureType="amount" semanticType="amount">
+    <measure id="ValueUnsoldSuitesTM" order="84" aggregationType="sum" measureType="amount" semanticType="amount">
       <descriptions defaultDescription="ValueUnsoldSuitesTM"/>
       <unitCurrencyAttribute attributeName="Currency"/>
       <measureMapping columnObjectName="Projection_1" columnName="ValueUnsoldSuitesTM"/>
     </measure>
-    <measure id="ValueUnsoldParkingTM" order="87" aggregationType="sum" measureType="amount" semanticType="amount">
+    <measure id="ValueUnsoldParkingTM" order="85" aggregationType="sum" measureType="amount" semanticType="amount">
       <descriptions defaultDescription="ValueUnsoldParkingTM"/>
       <unitCurrencyAttribute attributeName="Currency"/>
       <measureMapping columnObjectName="Projection_1" columnName="ValueUnsoldParkingTM"/>
     </measure>
   
-    <measure id="PurchasePriceArenaTM" order="88" aggregationType="sum" measureType="amount" semanticType="amount">
+    <measure id="PurchasePriceArenaTM" order="86" aggregationType="sum" measureType="amount" semanticType="amount">
       <descriptions defaultDescription="PurchasePriceArenaTM"/>
   
       <unitCurrencyAttribute attributeName="Currency"/>
       <measureMapping columnObjectName="Projection_1" columnName="PurchasePriceArenaTM"/>
     </measure>
-    <measure id="PurchasePriceSuitesTM" order="89" aggregationType="sum" measureType="amount" semanticType="amount">
+    <measure id="PurchasePriceSuitesTM" order="87" aggregationType="sum" measureType="amount" semanticType="amount">
       <descriptions defaultDescription="PurchasePriceSuitesTM"/>
       <unitCurrencyAttribute attributeName="Currency"/>
       <measureMapping columnObjectName="Projection_1" columnName="PurchasePriceSuitesTM"/>
     </measure>
-    <measure id="GrossTicketReceiptsS4" order="90" aggregationType="sum" measureType="amount" semanticType="amount">
+    <measure id="GrossTicketReceiptsS4" order="88" aggregationType="sum" measureType="amount" semanticType="amount">
       <descriptions defaultDescription="GrossTicketReceiptsS4"/>
       <unitCurrencyAttribute attributeName="Currency"/>
       <measureMapping columnObjectName="Projection_1" columnName="GrossTicketReceiptsS4"/>
     </measure>
-    <measure id="PurchasePriceLoungeTM" order="91" aggregationType="sum" measureType="amount" semanticType="amount">
+    <measure id="PurchasePriceLoungeTM" order="89" aggregationType="sum" measureType="amount" semanticType="amount">
       <descriptions defaultDescription="PurchasePriceLoungeTM"/>
       <unitCurrencyAttribute attributeName="Currency"/>
       <measureMapping columnObjectName="Projection_1" columnName="PurchasePriceLoungeTM"/>
     </measure>
-    <measure id="PurchasePriceParkingTM" order="92" aggregationType="sum" measureType="amount" semanticType="amount">
+    <measure id="PurchasePriceParkingTM" order="90" aggregationType="sum" measureType="amount" semanticType="amount">
       <descriptions defaultDescription="PurchasePriceParkingTM"/>
       <unitCurrencyAttribute attributeName="Currency"/>
       <measureMapping columnObjectName="Projection_1" columnName="PurchasePriceParkingTM"/>
     </measure>
   
-    <measure id="BlockPurchasePriceArenaTM" order="98" semanticType="amount" aggregationType="sum" measureType="amount">
+    <measure id="BlockPurchasePriceArenaTM" order="96" semanticType="amount" aggregationType="sum" measureType="amount">
       <descriptions defaultDescription="BlockPurchasePriceArenaTM"/>
       <unitCurrencyAttribute attributeName="Currency"/>
       <measureMapping columnObjectName="Projection_1" columnName="BlockPurchasePriceArenaTM"/>
     </measure>
-    <measure id="BlockPurchasePriceSuitesTM" order="99" semanticType="amount" aggregationType="sum" measureType="amount">
+    <measure id="BlockPurchasePriceSuitesTM" order="97" semanticType="amount" aggregationType="sum" measureType="amount">
       <descriptions defaultDescription="BlockPurchasePriceSuitesTM"/>
       <unitCurrencyAttribute attributeName="Currency"/>
       <measureMapping columnObjectName="Projection_1" columnName="BlockPurchasePriceSuitesTM"/>
     </measure>
-    <measure id="BlockPurchasePriceLoungeTM" order="100" semanticType="amount" aggregationType="sum" measureType="amount">
+    <measure id="BlockPurchasePriceLoungeTM" order="98" semanticType="amount" aggregationType="sum" measureType="amount">
       <descriptions defaultDescription="BlockPurchasePriceLoungeTM"/>
       <unitCurrencyAttribute attributeName="Currency"/>
       <measureMapping columnObjectName="Projection_1" columnName="BlockPurchasePriceLoungeTM"/>
     </measure>
-    <measure id="BlockPurchasePriceParkingTM" order="101" semanticType="amount" aggregationType="sum" measureType="amount">
+    <measure id="BlockPurchasePriceParkingTM" order="99" semanticType="amount" aggregationType="sum" measureType="amount">
       <descriptions defaultDescription="BlockPurchasePriceParkingTM"/>
       <unitCurrencyAttribute attributeName="Currency"/>
       <measureMapping columnObjectName="Projection_1" columnName="BlockPurchasePriceParkingTM"/>
@@ -1783,6 +1773,8 @@
 
 </formula>
     
+      
+      
       </measure>
   
     <measure id="GrossTicketReceipts" order="4" aggregationType="sum" measureType="amount" datatype="DECIMAL" length="13" scale="2" expressionLanguage="COLUMN_ENGINE" semanticType="amount">
@@ -1791,6 +1783,8 @@
       <unitCurrencyAttribute attributeName="Currency"/>
       <formula>&quot;GrossTicketReceiptsS4&quot; + &quot;BlockPurchasePriceArenaTM&quot;</formula>
     
+      
+      
       
       
       
@@ -1816,6 +1810,8 @@
       
       
       
+      
+      
       </measure>
     <measure id="Capacity" order="6" aggregationType="sum" measureType="simple" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
       <descriptions defaultDescription="Capacity">
@@ -1829,12 +1825,16 @@
       
       
       
+      
+      
       </measure>
     <measure id="NoShowSuites" order="20" aggregationType="sum" measureType="simple" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
       <descriptions defaultDescription="NoShowSuites"/>
       <formula>&quot;PaidTicketsSuitesTM&quot; + &quot;CompTicketsSuitesTM&quot; + &quot;PaidTicketsSuitesS4&quot; + &quot;CompTicketsSuitesS4&quot;
 - &quot;AttendanceSuitesTM&quot; - &quot;DropTicketsSuitesS4&quot;</formula>
     
+      
+      
       
       
       
@@ -1862,6 +1862,8 @@
       
       
       
+      
+      
       </measure>
     <measure id="OverallAttendance" order="31" aggregationType="sum" measureType="simple" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
       <descriptions defaultDescription="OverallAttendance">
@@ -1869,6 +1871,8 @@
       </descriptions>
       <formula>&quot;AttendanceArenaTM&quot; + &quot;AttendanceSuitesTM&quot; + &quot;DropTicketsArenaS4&quot; + &quot;DropTicketsSuitesS4&quot;</formula>
     
+      
+      
       
       
       
@@ -1897,12 +1901,16 @@
       
       
       
+      
+      
       </measure>
   
     <measure id="TicketsUnsold" order="34" aggregationType="sum" measureType="simple" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
       <descriptions defaultDescription="TicketsUnsold"/>
       <formula>&quot;TicketsUnsoldArenaTM&quot; + &quot;TicketsUnsoldSuitesTM&quot;</formula>
     
+      
+      
       
       
       
@@ -1926,11 +1934,15 @@
       
       
       
+      
+      
       </measure>
     <measure id="PaidTicketsSuites" order="36" aggregationType="sum" measureType="simple" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
       <descriptions defaultDescription="PaidTicketsSuites"/>
       <formula>&quot;PaidTicketsSuitesS4&quot; + &quot;PaidTicketsSuitesTM&quot; </formula>
     
+      
+      
       
       
       
@@ -1954,11 +1966,15 @@
       
       
       
+      
+      
       </measure>
     <measure id="CompTicketsArena" order="38" aggregationType="sum" measureType="simple" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
       <descriptions defaultDescription="CompTicketsArena"/>
       <formula>&quot;CompTicketsArenaTM&quot; + &quot;CompTicketsArenaS4&quot;</formula>
     
+      
+      
       
       
       
@@ -1982,6 +1998,8 @@
       
       
       
+      
+      
       </measure>
     <measure id="DropTicketsSuites" order="40" aggregationType="sum" measureType="simple" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
       <descriptions defaultDescription="DropTicketsSuites"/>
@@ -1996,11 +2014,15 @@
       
       
       
+      
+      
       </measure>
     <measure id="DropTicketsArena" order="41" aggregationType="sum" measureType="simple" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
       <descriptions defaultDescription="DropTicketsArena"/>
       <formula>&quot;AttendanceArenaTM&quot; + &quot;DropTicketsArenaS4&quot;</formula>
     
+      
+      
       
       
       
@@ -2122,7 +2144,7 @@
     </shape>
     <shape modelObjectName="CvTimeDim" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
       <upperLeftCorner x="394" y="34"/>
-      <rectangleSize width="178"/>
+      <rectangleSize width="191.5419921875"/>
     </shape>
   </shapes>
 </layout>
