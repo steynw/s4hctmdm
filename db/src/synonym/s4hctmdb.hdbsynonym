@@ -88,5 +88,11 @@
         "object": "tm.jeheaderlog",
         "schema": "S4HCTM"
       }
-    }
+    },
+    "tm.historicalopponents_prd": {
+        "target": {
+          "object": "tm.historicalopponents_prd",
+          "schema": "S4HCTM"
+        }
+    }    
   }
