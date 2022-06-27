@@ -213,7 +213,19 @@ WITH CREDENTIAL TYPE 'PASSWORD' USING
 <password>FxEUjxDdxqbRrntipRpUgUl{AWCgmvYTS9lfgjDN</password>
 </CredentialEntry>'; 
 
-
+-- switching to this one for reporting to eliminate all the language filters, created by ErickG, May 2022
+CREATE REMOTE SOURCE "RS_ODATA_S4HC_YY1_ACTUALPLANJRLENITMCUBE_CDS" ADAPTER "ODataAdapter" AT LOCATION DPSERVER CONFIGURATION 
+'<?xml version="1.0" encoding="UTF-8"?>
+<ConnectionProperties name="connection_properties">
+<PropertyEntry name="URL">https://my304590-api.s4hana.ondemand.com/sap/opu/odata/sap/YY1_ACTUALPLANJRLENITMCUBE_CDS</PropertyEntry>
+<PropertyEntry name="proxyserver"></PropertyEntry>
+<PropertyEntry name="proxyport"></PropertyEntry>
+<PropertyEntry name="supportformatquery"></PropertyEntry>
+</ConnectionProperties>' 
+WITH CREDENTIAL TYPE 'PASSWORD' USING 
+'<CredentialEntry name="password"><user>USR_HANA_DB_READ</user>
+<password>FxEUjxDdxqbRrntipRpUgUl{AWCgmvYTS9lfgjDN</password>
+</CredentialEntry>'; 
 
 -- new
 CREATE REMOTE SOURCE "RS_ODATA_S4HC_YY1_JOURNAL_ENTRY_ITEM_CUBE" ADAPTER "ODataAdapter" 
@@ -298,7 +310,7 @@ GRANT CREATE VIRTUAL TABLE ON REMOTE SOURCE RS_ODATA_S4HC_GLACCOUNTINCHARTOFACCO
 GRANT CREATE VIRTUAL TABLE ON REMOTE SOURCE RS_ODATA_S4HC_PROFITCENTER TO S4HCTM."s4hctm::s4_odata_helper_role_g#" WITH GRANT OPTION; 
 GRANT CREATE VIRTUAL TABLE ON REMOTE SOURCE RS_ODATA_S4HC_COMPANYCODE TO S4HCTM."s4hctm::s4_odata_helper_role_g#" WITH GRANT OPTION; 
 GRANT CREATE VIRTUAL TABLE ON REMOTE SOURCE RS_ODATA_S4HC_YY1_INTERCOMPANYDEBIT TO S4HCTM."s4hctm::s4_odata_helper_role_g#" WITH GRANT OPTION; 
-
+GRANT CREATE VIRTUAL TABLE ON REMOTE SOURCE RS_ODATA_S4HC_YY1_ACTUALPLANJRLENITMCUBE_CDS TO S4HCTM."s4hctm::s4_odata_helper_role_g#" WITH GRANT OPTION; 
 ---- Grant role to the UPS User
 GRANT S4HCTM."s4hctm::s4_odata_helper_role_g#" TO UPS_TMDB_USER WITH ADMIN OPTION;  
 GRANT S4HCTM."s4hctm::read_access_g#" TO UPS_TMDB_USER WITH ADMIN OPTION;  

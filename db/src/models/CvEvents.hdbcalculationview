@@ -18,8 +18,8 @@
   <DataSource id="CvEnterpriseProject">   
     <resourceUri>CvEnterpriseProject</resourceUri>   
   </DataSource>   
-  <DataSource id="tm.events_prd">   
-    <resourceUri>tm.events_prd</resourceUri>   
+  <DataSource id="CvOpponents">   
+    <resourceUri>CvOpponents</resourceUri>   
   </DataSource>   
 </dataSources>
 <calculationViews>
@@ -91,7 +91,7 @@
       <viewAttribute id="RentDeal"/>
       <viewAttribute id="Genre"/>
       <viewAttribute id="GenreDesc"/>
-      <viewAttribute id="EventDate" datatype="DATE" length="10"/>
+      <viewAttribute id="EventDate"/>
     
       <viewAttribute id="ParkingRate" aggregationType="sum"/>
     
@@ -760,6 +760,8 @@
       <viewAttribute id="RentDeal"/>
       <viewAttribute id="Genre"/>
       <viewAttribute id="GenreDesc"/>
+      <viewAttribute id="ProjectEndDate"/>
+    
       <viewAttribute id="ParkingRate"/>
       <viewAttribute id="PurchasePriceArenaTM" aggregationType="sum"/>
       <viewAttribute id="PurchasePriceSuitesTM" aggregationType="sum"/>
@@ -775,6 +777,7 @@
       <viewAttribute id="BlockPurchasePriceSuitesTM" aggregationType="sum"/>
       <viewAttribute id="BlockPurchasePriceLoungeTM" aggregationType="sum"/>
       <viewAttribute id="BlockPurchasePriceParkingTM" aggregationType="sum"/>
+      <viewAttribute id="ProjectStartDate"/>
     
     
     
@@ -788,10 +791,7 @@
       <viewAttribute id="CompTicketsParkingTM"/>
       <viewAttribute id="PaidTicketsLoungeTM"/>
       <viewAttribute id="CompTicketsLoungeTM"/>
-      <viewAttribute id="ticket_status"/>
-      <viewAttribute id="ProjectStartDate"/>
-      <viewAttribute id="ProjectEndDate"/>
-    </viewAttributes>
+      <viewAttribute id="ticket_status"/></viewAttributes>
     <calculatedViewAttributes/>
     <restrictedViewAttributes/>
     <input node="CvTicketFacts">
@@ -868,6 +868,8 @@
       <viewAttribute id="RentDeal"/>
       <viewAttribute id="Genre"/>
       <viewAttribute id="GenreDesc"/>
+      <viewAttribute id="ProjectEndDate"/>
+    
     
       <viewAttribute id="ParkingRate"/>
     
@@ -880,9 +882,7 @@
     
       <viewAttribute id="ArchticsEventDate"/>
     
-      <viewAttribute id="ProjectStartDate"/>
-      <viewAttribute id="ProjectEndDate"/>
-    </viewAttributes>
+      <viewAttribute id="ProjectStartDate"/></viewAttributes>
     <calculatedViewAttributes/>
     <restrictedViewAttributes/>
     <input node="CvAttendFacts">
@@ -939,6 +939,8 @@
       <viewAttribute id="RentDeal"/>
       <viewAttribute id="Genre"/>
       <viewAttribute id="GenreDesc"/>
+      <viewAttribute id="ProjectEndDate"/>
+    
     
       <viewAttribute id="ParkingRate"/>
     
@@ -955,11 +957,9 @@
     
       <viewAttribute id="ArchticsEventDate"/>
     
-      <viewAttribute id="Kill"/>
-    
       <viewAttribute id="ProjectStartDate"/>
-      <viewAttribute id="ProjectEndDate"/>
-    </viewAttributes>
+    
+      <viewAttribute id="Kill"/></viewAttributes>
     <calculatedViewAttributes/>
     <restrictedViewAttributes/>
     <input node="CvAvailSeatsFacts">
@@ -1027,6 +1027,8 @@
       <viewAttribute id="RentDeal"/>
       <viewAttribute id="Genre"/>
       <viewAttribute id="GenreDesc"/>
+      <viewAttribute id="ProjectEndDate"/>
+    
     
       <viewAttribute id="ParkingRate"/>
     
@@ -1040,9 +1042,7 @@
     
       <viewAttribute id="EventDirector"/>
       <viewAttribute id="EventDirectorDesc"/>
-      <viewAttribute id="ProjectStartDate"/>
-      <viewAttribute id="ProjectEndDate"/>
-    </viewAttributes>
+      <viewAttribute id="ProjectStartDate"/></viewAttributes>
     <calculatedViewAttributes/>
     <restrictedViewAttributes/>
     <input node="CvEnterpriseProject">
@@ -1134,8 +1134,6 @@
     
       <viewAttribute id="ParkingRate"/>
     
-      <viewAttribute id="Opponent"/>
-    
       <viewAttribute id="CapacityS4"/>
     
       <viewAttribute id="ValueUnsoldArenaTM"/>
@@ -1164,6 +1162,8 @@
     
       <viewAttribute id="ProjectStartDate"/>
       <viewAttribute id="ProjectEndDate"/>
+    
+      <viewAttribute id="Opponent"/>
     </viewAttributes>
     <calculatedViewAttributes>
       <calculatedViewAttribute id="CC_DUMMY" datatype="INTEGER" expressionLanguage="SQL">
@@ -1172,7 +1172,7 @@
     </calculatedViewAttributes>
     <input node="Join_1"/>
   </calculationView>
-  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_1" joinType="leftOuter">
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" joinType="leftOuter">
     <viewAttributes>
       <viewAttribute id="Project"/>
       <viewAttribute id="TicketsSoldTM" aggregationType="sum"/>
@@ -1239,7 +1239,6 @@
       <viewAttribute id="GenreDesc"/>
       <viewAttribute id="EventDate"/>
       <viewAttribute id="ParkingRate" aggregationType="sum"/>
-      <viewAttribute id="Opponent" aggregationType="max"/>
     
       <viewAttribute id="CapacityS4"/>
     
@@ -1269,6 +1268,8 @@
     
       <viewAttribute id="ProjectStartDate"/>
       <viewAttribute id="ProjectEndDate"/>
+    
+      <viewAttribute id="Opponent"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="Union_1">
@@ -1367,25 +1368,19 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="ProjectStartDate" source="ProjectStartDate"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ProjectEndDate" source="ProjectEndDate"/>
     </input>
-    <input node="SHARKS_CUDA_OPPONENT">
+    <input node="Opponents">
       <mapping xsi:type="Calculation:AttributeMapping" target="Opponent" source="Opponent"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="Project" source="line10"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Project" source="Project"/>
     </input>
     <joinAttribute name="Project"/>
   </calculationView>
-  <calculationView xsi:type="Calculation:AggregationView" id="SHARKS_CUDA_OPPONENT" filterExpressionLanguage="SQL">
+  <calculationView xsi:type="Calculation:ProjectionView" id="Opponents" filterExpressionLanguage="SQL">
     <viewAttributes>
-      <viewAttribute id="Opponent" aggregationType="max"/>
-    
-      <viewAttribute id="line10"/>
-      <viewAttribute id="event_name"/></viewAttributes>
+      <viewAttribute id="Project"/>
+      <viewAttribute id="Opponent"/>
+    </viewAttributes>
     <calculatedViewAttributes/>
-    <restrictedViewAttributes/>
-    <input node="tm.events_prd">
-      <mapping xsi:type="Calculation:AttributeMapping" target="Opponent" source="team"/>
-    </input>
-    <filter>left (&quot;event_name&quot;,3) IN ('EBC','ESH')</filter>
-  </calculationView>
+    <input node="CvOpponents"/></calculationView>
 </calculationViews>
 <logicalModel id="Projection_1">
   <attributes>
@@ -1561,37 +1556,37 @@
       <unitCurrencyAttribute attributeName="Currency"/>
       <keyMapping columnObjectName="Projection_1" columnName="ParkingRate"/>
     </attribute>
-    <attribute id="Opponent" order="81" displayAttribute="false" attributeHierarchyActive="false">
-      <descriptions defaultDescription="Opponent"/>
-      <keyMapping columnObjectName="Projection_1" columnName="Opponent"/>
-    </attribute>
-    <attribute id="MultiType" order="91" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="MultiType" order="90" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="MultiType"/>
       <keyMapping columnObjectName="Projection_1" columnName="MultiType"/>
     </attribute>
-    <attribute id="ProcessingStatus" order="92" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="ProcessingStatus" order="91" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="ProcessingStatus"/>
       <keyMapping columnObjectName="Projection_1" columnName="ProcessingStatus"/>
     </attribute>
-    <attribute id="EventDirector" order="93" descriptionColumnName="EventDirectorDesc" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="EventDirector" order="92" descriptionColumnName="EventDirectorDesc" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="EventDirector"/>
       <keyMapping columnObjectName="Projection_1" columnName="EventDirector"/>
     </attribute>
-    <attribute id="EventDirectorDesc" hidden="true" order="94" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="EventDirectorDesc" hidden="true" order="93" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="EventDirectorDesc"/>
       <keyMapping columnObjectName="Projection_1" columnName="EventDirectorDesc"/>
     </attribute>
-    <attribute id="ArchticsEventDate" order="95" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="ArchticsEventDate" order="94" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="ArchticsEventDate"/>
       <keyMapping columnObjectName="Projection_1" columnName="ArchticsEventDate"/>
     </attribute>
-    <attribute id="ProjectStartDate" order="100" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="ProjectStartDate" order="99" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="ProjectStartDate"/>
       <keyMapping columnObjectName="Projection_1" columnName="ProjectStartDate"/>
     </attribute>
-    <attribute id="ProjectEndDate" order="101" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="ProjectEndDate" order="100" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="ProjectEndDate"/>
       <keyMapping columnObjectName="Projection_1" columnName="ProjectEndDate"/>
+    </attribute>
+    <attribute id="Opponent" order="101" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Opponent"/>
+      <keyMapping columnObjectName="Projection_1" columnName="Opponent"/>
     </attribute>
     <attribute id="EventDate$local">
       <descriptions defaultDescription="EventDate"/>
@@ -1692,71 +1687,71 @@
       <descriptions defaultDescription="AttendanceLoungeTM"/>
       <measureMapping columnObjectName="Projection_1" columnName="AttendanceLoungeTM"/>
     </measure>
-    <measure id="CapacityS4" order="82" aggregationType="sum" measureType="simple">
+    <measure id="CapacityS4" order="81" aggregationType="sum" measureType="simple">
       <descriptions defaultDescription="CapacityS4"/>
       <measureMapping columnObjectName="Projection_1" columnName="CapacityS4"/>
     </measure>
   
-    <measure id="ValueUnsoldArenaTM" order="83" aggregationType="sum" measureType="amount" semanticType="amount">
+    <measure id="ValueUnsoldArenaTM" order="82" aggregationType="sum" measureType="amount" semanticType="amount">
       <descriptions defaultDescription="ValueUnsoldArenaTM"/>
   
       <unitCurrencyAttribute attributeName="Currency"/>
       <measureMapping columnObjectName="Projection_1" columnName="ValueUnsoldArenaTM"/>
     </measure>
-    <measure id="ValueUnsoldSuitesTM" order="84" aggregationType="sum" measureType="amount" semanticType="amount">
+    <measure id="ValueUnsoldSuitesTM" order="83" aggregationType="sum" measureType="amount" semanticType="amount">
       <descriptions defaultDescription="ValueUnsoldSuitesTM"/>
       <unitCurrencyAttribute attributeName="Currency"/>
       <measureMapping columnObjectName="Projection_1" columnName="ValueUnsoldSuitesTM"/>
     </measure>
-    <measure id="ValueUnsoldParkingTM" order="85" aggregationType="sum" measureType="amount" semanticType="amount">
+    <measure id="ValueUnsoldParkingTM" order="84" aggregationType="sum" measureType="amount" semanticType="amount">
       <descriptions defaultDescription="ValueUnsoldParkingTM"/>
       <unitCurrencyAttribute attributeName="Currency"/>
       <measureMapping columnObjectName="Projection_1" columnName="ValueUnsoldParkingTM"/>
     </measure>
   
-    <measure id="PurchasePriceArenaTM" order="86" aggregationType="sum" measureType="amount" semanticType="amount">
+    <measure id="PurchasePriceArenaTM" order="85" aggregationType="sum" measureType="amount" semanticType="amount">
       <descriptions defaultDescription="PurchasePriceArenaTM"/>
   
       <unitCurrencyAttribute attributeName="Currency"/>
       <measureMapping columnObjectName="Projection_1" columnName="PurchasePriceArenaTM"/>
     </measure>
-    <measure id="PurchasePriceSuitesTM" order="87" aggregationType="sum" measureType="amount" semanticType="amount">
+    <measure id="PurchasePriceSuitesTM" order="86" aggregationType="sum" measureType="amount" semanticType="amount">
       <descriptions defaultDescription="PurchasePriceSuitesTM"/>
       <unitCurrencyAttribute attributeName="Currency"/>
       <measureMapping columnObjectName="Projection_1" columnName="PurchasePriceSuitesTM"/>
     </measure>
-    <measure id="GrossTicketReceiptsS4" order="88" aggregationType="sum" measureType="amount" semanticType="amount">
+    <measure id="GrossTicketReceiptsS4" order="87" aggregationType="sum" measureType="amount" semanticType="amount">
       <descriptions defaultDescription="GrossTicketReceiptsS4"/>
       <unitCurrencyAttribute attributeName="Currency"/>
       <measureMapping columnObjectName="Projection_1" columnName="GrossTicketReceiptsS4"/>
     </measure>
-    <measure id="PurchasePriceLoungeTM" order="89" aggregationType="sum" measureType="amount" semanticType="amount">
+    <measure id="PurchasePriceLoungeTM" order="88" aggregationType="sum" measureType="amount" semanticType="amount">
       <descriptions defaultDescription="PurchasePriceLoungeTM"/>
       <unitCurrencyAttribute attributeName="Currency"/>
       <measureMapping columnObjectName="Projection_1" columnName="PurchasePriceLoungeTM"/>
     </measure>
-    <measure id="PurchasePriceParkingTM" order="90" aggregationType="sum" measureType="amount" semanticType="amount">
+    <measure id="PurchasePriceParkingTM" order="89" aggregationType="sum" measureType="amount" semanticType="amount">
       <descriptions defaultDescription="PurchasePriceParkingTM"/>
       <unitCurrencyAttribute attributeName="Currency"/>
       <measureMapping columnObjectName="Projection_1" columnName="PurchasePriceParkingTM"/>
     </measure>
   
-    <measure id="BlockPurchasePriceArenaTM" order="96" semanticType="amount" aggregationType="sum" measureType="amount">
+    <measure id="BlockPurchasePriceArenaTM" order="95" semanticType="amount" aggregationType="sum" measureType="amount">
       <descriptions defaultDescription="BlockPurchasePriceArenaTM"/>
       <unitCurrencyAttribute attributeName="Currency"/>
       <measureMapping columnObjectName="Projection_1" columnName="BlockPurchasePriceArenaTM"/>
     </measure>
-    <measure id="BlockPurchasePriceSuitesTM" order="97" semanticType="amount" aggregationType="sum" measureType="amount">
+    <measure id="BlockPurchasePriceSuitesTM" order="96" semanticType="amount" aggregationType="sum" measureType="amount">
       <descriptions defaultDescription="BlockPurchasePriceSuitesTM"/>
       <unitCurrencyAttribute attributeName="Currency"/>
       <measureMapping columnObjectName="Projection_1" columnName="BlockPurchasePriceSuitesTM"/>
     </measure>
-    <measure id="BlockPurchasePriceLoungeTM" order="98" semanticType="amount" aggregationType="sum" measureType="amount">
+    <measure id="BlockPurchasePriceLoungeTM" order="97" semanticType="amount" aggregationType="sum" measureType="amount">
       <descriptions defaultDescription="BlockPurchasePriceLoungeTM"/>
       <unitCurrencyAttribute attributeName="Currency"/>
       <measureMapping columnObjectName="Projection_1" columnName="BlockPurchasePriceLoungeTM"/>
     </measure>
-    <measure id="BlockPurchasePriceParkingTM" order="99" semanticType="amount" aggregationType="sum" measureType="amount">
+    <measure id="BlockPurchasePriceParkingTM" order="98" semanticType="amount" aggregationType="sum" measureType="amount">
       <descriptions defaultDescription="BlockPurchasePriceParkingTM"/>
       <unitCurrencyAttribute attributeName="Currency"/>
       <measureMapping columnObjectName="Projection_1" columnName="BlockPurchasePriceParkingTM"/>
@@ -1775,6 +1770,7 @@
     
       
       
+      
       </measure>
   
     <measure id="GrossTicketReceipts" order="4" aggregationType="sum" measureType="amount" datatype="DECIMAL" length="13" scale="2" expressionLanguage="COLUMN_ENGINE" semanticType="amount">
@@ -1783,6 +1779,7 @@
       <unitCurrencyAttribute attributeName="Currency"/>
       <formula>&quot;GrossTicketReceiptsS4&quot; + &quot;BlockPurchasePriceArenaTM&quot;</formula>
     
+      
       
       
       
@@ -1812,6 +1809,7 @@
       
       
       
+      
       </measure>
     <measure id="Capacity" order="6" aggregationType="sum" measureType="simple" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
       <descriptions defaultDescription="Capacity">
@@ -1827,12 +1825,14 @@
       
       
       
+      
       </measure>
     <measure id="NoShowSuites" order="20" aggregationType="sum" measureType="simple" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
       <descriptions defaultDescription="NoShowSuites"/>
       <formula>&quot;PaidTicketsSuitesTM&quot; + &quot;CompTicketsSuitesTM&quot; + &quot;PaidTicketsSuitesS4&quot; + &quot;CompTicketsSuitesS4&quot;
 - &quot;AttendanceSuitesTM&quot; - &quot;DropTicketsSuitesS4&quot;</formula>
     
+      
       
       
       
@@ -1864,6 +1864,7 @@
       
       
       
+      
       </measure>
     <measure id="OverallAttendance" order="31" aggregationType="sum" measureType="simple" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
       <descriptions defaultDescription="OverallAttendance">
@@ -1871,6 +1872,7 @@
       </descriptions>
       <formula>&quot;AttendanceArenaTM&quot; + &quot;AttendanceSuitesTM&quot; + &quot;DropTicketsArenaS4&quot; + &quot;DropTicketsSuitesS4&quot;</formula>
     
+      
       
       
       
@@ -1903,12 +1905,14 @@
       
       
       
+      
       </measure>
   
     <measure id="TicketsUnsold" order="34" aggregationType="sum" measureType="simple" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
       <descriptions defaultDescription="TicketsUnsold"/>
       <formula>&quot;TicketsUnsoldArenaTM&quot; + &quot;TicketsUnsoldSuitesTM&quot;</formula>
     
+      
       
       
       
@@ -1936,11 +1940,13 @@
       
       
       
+      
       </measure>
     <measure id="PaidTicketsSuites" order="36" aggregationType="sum" measureType="simple" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
       <descriptions defaultDescription="PaidTicketsSuites"/>
       <formula>&quot;PaidTicketsSuitesS4&quot; + &quot;PaidTicketsSuitesTM&quot; </formula>
     
+      
       
       
       
@@ -1968,11 +1974,13 @@
       
       
       
+      
       </measure>
     <measure id="CompTicketsArena" order="38" aggregationType="sum" measureType="simple" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
       <descriptions defaultDescription="CompTicketsArena"/>
       <formula>&quot;CompTicketsArenaTM&quot; + &quot;CompTicketsArenaS4&quot;</formula>
     
+      
       
       
       
@@ -2000,6 +2008,7 @@
       
       
       
+      
       </measure>
     <measure id="DropTicketsSuites" order="40" aggregationType="sum" measureType="simple" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
       <descriptions defaultDescription="DropTicketsSuites"/>
@@ -2016,11 +2025,13 @@
       
       
       
+      
       </measure>
     <measure id="DropTicketsArena" order="41" aggregationType="sum" measureType="simple" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
       <descriptions defaultDescription="DropTicketsArena"/>
       <formula>&quot;AttendanceArenaTM&quot; + &quot;DropTicketsArenaS4&quot;</formula>
     
+      
       
       
       
@@ -2130,11 +2141,11 @@
       <upperLeftCorner x="20" y="30"/>
       <rectangleSize width="250"/>
     </shape>
-    <shape modelObjectName="SHARKS_CUDA_OPPONENT" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+    <shape modelObjectName="Opponents" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="320" y="30"/>
       <rectangleSize width="230"/>
     </shape>
-    <shape expanded="true" modelObjectName="SHARKS_CUDA_OPPONENT" modelObjectNameSpace="CalculationView">
+    <shape expanded="true" modelObjectName="Opponents" modelObjectNameSpace="CalculationView">
       <upperLeftCorner x="938" y="538"/>
       <rectangleSize height="30" width="249"/>
     </shape>
@@ -2144,7 +2155,7 @@
     </shape>
     <shape modelObjectName="CvTimeDim" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
       <upperLeftCorner x="394" y="34"/>
-      <rectangleSize width="191.5419921875"/>
+      <rectangleSize width="191"/>
     </shape>
   </shapes>
 </layout>

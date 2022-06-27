@@ -4,8 +4,8 @@
 <localVariables/>
 <variableMappings/>
 <dataSources>
-  <DataSource id="YY1_ActualPlanJournalEntry">
-    <resourceUri>YY1_ActualPlanJournalEntry</resourceUri>
+  <DataSource id="YY1_ActualPlanJrlEnItmCube">
+    <resourceUri>YY1_ActualPlanJrlEnItmCube</resourceUri>
   </DataSource>
   <DataSource id="M_TIME_DIMENSION">
     <resourceUri>M_TIME_DIMENSION</resourceUri>
@@ -66,7 +66,6 @@
       <viewAttribute id="ActualAmountInTransactionCrcy"/>
       <viewAttribute id="AmountInTransactionCurrency"/>
       <viewAttribute id="PlanAmountInTransactionCrcy"/>
-      <viewAttribute id="DebitCreditCode"/>
       <viewAttribute id="PlannedStartDate"/>
       <viewAttribute id="PlannedEndDate"/>
     
@@ -75,14 +74,6 @@
       <viewAttribute id="GLAccountName"/>
     
       <viewAttribute id="ProfitCenterName"/>
-      <viewAttribute id="Language_03"/>
-      <viewAttribute id="Language_02"/>
-      <viewAttribute id="Language_01"/>
-      <viewAttribute id="Language_04"/>
-      <viewAttribute id="Language"/>
-      <viewAttribute id="ValidityEndDate_03"/>
-      <viewAttribute id="ValidityEndDate_01"/>
-      <viewAttribute id="ValidityEndDate"/>
       <viewAttribute id="AccountingDocumentType"/>
       <viewAttribute id="AssignmentReference"/>
       <viewAttribute id="AccountingDocument"/>
@@ -114,20 +105,8 @@
       <viewAttribute id="ProjectStartDate"/>
       <viewAttribute id="ProjectEndDateTime"/>
     </viewAttributes>
-    <calculatedViewAttributes>
-      <calculatedViewAttribute id="CC_ActualAmount" datatype="DECIMAL" length="24" scale="3" expressionLanguage="SQL">
-        <formula>case &quot;DebitCreditCode&quot;
-when 'S' then &quot;ActualAmountInTransactionCrcy&quot;
-else abs(&quot;ActualAmountInTransactionCrcy&quot;)
-end</formula>
-      </calculatedViewAttribute>
-      <calculatedViewAttribute id="CC_PlanAmount" datatype="DECIMAL" length="24" scale="3" expressionLanguage="SQL">
-        <formula>case &quot;DebitCreditCode&quot;
-when 'S' then &quot;PlanAmountInTransactionCrcy&quot;
-else abs(&quot;PlanAmountInTransactionCrcy&quot;)
-end</formula>
-      </calculatedViewAttribute></calculatedViewAttributes>
-    <input node="YY1_ActualPlanJournalEntry">
+    <calculatedViewAttributes/>
+    <input node="YY1_ActualPlanJrlEnItmCube">
       <mapping xsi:type="Calculation:AttributeMapping" target="ProjectType" source="YY1_Info_1_PPH"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ProjectType_Desc" source="YY1_Info_1_PPH_Desc"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ProjectSubType" source="YY1_Info_2_PPH"/>
@@ -162,12 +141,10 @@ end</formula>
       <mapping xsi:type="Calculation:AttributeMapping" target="PostingDateTime" source="PostingDate"/>
     
       <mapping xsi:type="Calculation:AttributeMapping" target="ProjectEndDateTime" source="ProjectEndDate"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="WBSDescription" source="WBSElementDescription"/>
     </input>
-    <filter>&quot;Ledger&quot; = '0L' 
-and (&quot;Language&quot; = 'EN' or &quot;Language&quot; = '' or &quot;Language&quot; is null)
-and (&quot;Language_01&quot; = 'EN' or &quot;Language_01&quot; = '' or &quot;Language_01&quot; is null)
-and (&quot;Language_04&quot; = 'EN' or &quot;Language_04&quot; = '' or &quot;Language_04&quot; is null)
-and &quot;ValidityEndDate&quot; = '9999-12-31' and &quot;ValidityEndDate_01&quot; = '9999-12-31'</filter>
+    <filter>&quot;Ledger&quot; = '0L'</filter>
   </calculationView>
   <calculationView xsi:type="Calculation:JoinView" id="EventDate_rollups" cardinality="CN_1" joinType="leftOuter">
     <viewAttributes>
@@ -209,7 +186,6 @@ and &quot;ValidityEndDate&quot; = '9999-12-31' and &quot;ValidityEndDate_01&quot
       <viewAttribute id="ActualAmountInTransactionCrcy" aggregationType="sum"/>
       <viewAttribute id="AmountInTransactionCurrency" aggregationType="sum"/>
       <viewAttribute id="PlanAmountInTransactionCrcy" aggregationType="sum"/>
-      <viewAttribute id="DebitCreditCode"/>
       <viewAttribute id="PlannedStartDate" aggregationType="min"/>
       <viewAttribute id="PlannedEndDate" aggregationType="min"/>
       <viewAttribute id="CostCenterName"/>
@@ -290,7 +266,6 @@ and &quot;ValidityEndDate&quot; = '9999-12-31' and &quot;ValidityEndDate_01&quot
       <mapping xsi:type="Calculation:AttributeMapping" target="ActualAmountInTransactionCrcy" source="ActualAmountInTransactionCrcy"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="AmountInTransactionCurrency" source="AmountInTransactionCurrency"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PlanAmountInTransactionCrcy" source="PlanAmountInTransactionCrcy"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="DebitCreditCode" source="DebitCreditCode"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PlannedStartDate" source="PlannedStartDate"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PlannedEndDate" source="PlannedEndDate"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="CostCenterName" source="CostCenterName"/>
@@ -376,7 +351,6 @@ and &quot;ValidityEndDate&quot; = '9999-12-31' and &quot;ValidityEndDate_01&quot
       <viewAttribute id="ActualAmountInTransactionCrcy" aggregationType="sum"/>
       <viewAttribute id="AmountInTransactionCurrency" aggregationType="sum"/>
       <viewAttribute id="PlanAmountInTransactionCrcy" aggregationType="sum"/>
-      <viewAttribute id="DebitCreditCode"/>
       <viewAttribute id="PlannedStartDate" aggregationType="min"/>
       <viewAttribute id="PlannedEndDate" aggregationType="min"/>
       <viewAttribute id="CostCenterName"/>
@@ -452,7 +426,6 @@ and &quot;ValidityEndDate&quot; = '9999-12-31' and &quot;ValidityEndDate_01&quot
       <mapping xsi:type="Calculation:AttributeMapping" target="ActualAmountInTransactionCrcy" source="ActualAmountInTransactionCrcy"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="AmountInTransactionCurrency" source="AmountInTransactionCurrency"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PlanAmountInTransactionCrcy" source="PlanAmountInTransactionCrcy"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="DebitCreditCode" source="DebitCreditCode"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PlannedStartDate" source="PlannedStartDate"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PlannedEndDate" source="PlannedEndDate"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="CostCenterName" source="CostCenterName"/>
@@ -527,7 +500,6 @@ and &quot;ValidityEndDate&quot; = '9999-12-31' and &quot;ValidityEndDate_01&quot
       <mapping xsi:type="Calculation:AttributeMapping" target="ActualAmountInTransactionCrcy" source="HistoricalAmount"/>
       <mapping xsi:type="Calculation:ConstantAttributeMapping" target="AmountInTransactionCurrency" null="true" value=""/>
       <mapping xsi:type="Calculation:ConstantAttributeMapping" target="PlanAmountInTransactionCrcy" null="true" value=""/>
-      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="DebitCreditCode" null="true" value=""/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PlannedStartDate" source="PlannedStartDateTime"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PlannedEndDate" source="PlannedEndDateTime"/>
       <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CostCenterName" null="true" value=""/>
@@ -604,7 +576,6 @@ and &quot;ValidityEndDate&quot; = '9999-12-31' and &quot;ValidityEndDate_01&quot
       <viewAttribute id="ActualAmountInTransactionCrcy" aggregationType="sum"/>
       <viewAttribute id="AmountInTransactionCurrency" aggregationType="sum"/>
       <viewAttribute id="PlanAmountInTransactionCrcy" aggregationType="sum"/>
-      <viewAttribute id="DebitCreditCode"/>
       <viewAttribute id="PlannedStartDate" aggregationType="min"/>
       <viewAttribute id="PlannedEndDate" aggregationType="min"/>
       <viewAttribute id="CostCenterName"/>
@@ -681,7 +652,6 @@ and &quot;ValidityEndDate&quot; = '9999-12-31' and &quot;ValidityEndDate_01&quot
       <mapping xsi:type="Calculation:AttributeMapping" target="ActualAmountInTransactionCrcy" source="ActualAmountInTransactionCrcy"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="AmountInTransactionCurrency" source="AmountInTransactionCurrency"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PlanAmountInTransactionCrcy" source="PlanAmountInTransactionCrcy"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="DebitCreditCode" source="DebitCreditCode"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PlannedStartDate" source="PlannedStartDate"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PlannedEndDate" source="PlannedEndDate"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="CostCenterName" source="CostCenterName"/>
@@ -782,10 +752,10 @@ and &quot;ValidityEndDate&quot; = '9999-12-31' and &quot;ValidityEndDate_01&quot
       <viewAttribute id="EventDirectorDesc"/>
       <viewAttribute id="DocumentDate"/>
     
-      <viewAttribute id="PlannedEndDate"/>
-    
       <viewAttribute id="PostingDate"/>
       <viewAttribute id="ProjectEndDate"/>
+    
+      <viewAttribute id="PlannedEndDate"/>
     
       <viewAttribute id="ProjectControllingArea"/>
       <viewAttribute id="ProjectCreationDateTime"/>
@@ -852,7 +822,6 @@ and &quot;ValidityEndDate&quot; = '9999-12-31' and &quot;ValidityEndDate_01&quot
       <viewAttribute id="ActualAmountInTransactionCrcy" aggregationType="sum"/>
       <viewAttribute id="AmountInTransactionCurrency" aggregationType="sum"/>
       <viewAttribute id="PlanAmountInTransactionCrcy" aggregationType="sum"/>
-      <viewAttribute id="DebitCreditCode"/>
       <viewAttribute id="PlannedStartDate" aggregationType="min"/>
       <viewAttribute id="PlannedEndDate" aggregationType="min"/>
       <viewAttribute id="CostCenterName"/>
@@ -930,7 +899,6 @@ and &quot;ValidityEndDate&quot; = '9999-12-31' and &quot;ValidityEndDate_01&quot
       <mapping xsi:type="Calculation:AttributeMapping" target="ActualAmountInTransactionCrcy" source="ActualAmountInTransactionCrcy"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="AmountInTransactionCurrency" source="AmountInTransactionCurrency"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PlanAmountInTransactionCrcy" source="PlanAmountInTransactionCrcy"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="DebitCreditCode" source="DebitCreditCode"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PlannedStartDate" source="PlannedStartDate"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PlannedEndDate" source="PlannedEndDate"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="CostCenterName" source="CostCenterName"/>
@@ -1019,7 +987,6 @@ and &quot;ValidityEndDate&quot; = '9999-12-31' and &quot;ValidityEndDate_01&quot
       <viewAttribute id="ActualAmountInTransactionCrcy" aggregationType="sum"/>
       <viewAttribute id="AmountInTransactionCurrency" aggregationType="sum"/>
       <viewAttribute id="PlanAmountInTransactionCrcy" aggregationType="sum"/>
-      <viewAttribute id="DebitCreditCode"/>
       <viewAttribute id="PlannedStartDate" aggregationType="min"/>
       <viewAttribute id="PlannedEndDate" aggregationType="min"/>
       <viewAttribute id="CostCenterName"/>
@@ -1094,7 +1061,6 @@ and &quot;ValidityEndDate&quot; = '9999-12-31' and &quot;ValidityEndDate_01&quot
       <mapping xsi:type="Calculation:AttributeMapping" target="ActualAmountInTransactionCrcy" source="ActualAmountInTransactionCrcy"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="AmountInTransactionCurrency" source="AmountInTransactionCurrency"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PlanAmountInTransactionCrcy" source="PlanAmountInTransactionCrcy"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="DebitCreditCode" source="DebitCreditCode"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PlannedStartDate" source="PlannedStartDate"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PlannedEndDate" source="PlannedEndDate"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="CostCenterName" source="CostCenterName"/>
@@ -1305,168 +1271,164 @@ and &quot;ValidityEndDate&quot; = '9999-12-31' and &quot;ValidityEndDate_01&quot
       <descriptions defaultDescription="PlannedEndDate"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="PlannedEndDate"/>
     </attribute>
-    <attribute id="DebitCreditCode" order="37" displayAttribute="false" attributeHierarchyActive="false">
-      <descriptions defaultDescription="DebitCreditCode"/>
-      <keyMapping columnObjectName="EventDate_rollups" columnName="DebitCreditCode"/>
-    </attribute>
   
-    <attribute id="CostCenterName" order="41" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="CostCenterName" order="40" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="CostCenterName"/>
   
       <keyMapping columnObjectName="EventDate_rollups" columnName="CostCenterName"/>
   
     </attribute>
-    <attribute id="GLAccountName" order="42" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="GLAccountName" order="41" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="GLAccountName"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="GLAccountName"/>
     </attribute>
-    <attribute id="ProfitCenterName" order="43" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="ProfitCenterName" order="42" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="ProfitCenterName"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="ProfitCenterName"/>
     </attribute>
-    <attribute id="AccountingDocumentType" order="44" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="AccountingDocumentType" order="43" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="AccountingDocumentType"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="AccountingDocumentType"/>
     </attribute>
-    <attribute id="AssignmentReference" order="45" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="AssignmentReference" order="44" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="AssignmentReference"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="AssignmentReference"/>
     </attribute>
-    <attribute id="AccountingDocument" order="46" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="AccountingDocument" order="45" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="AccountingDocument"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="AccountingDocument"/>
     </attribute>
-    <attribute id="ActualPlanJournalEntryItem" order="47" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="ActualPlanJournalEntryItem" order="46" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="ActualPlanJournalEntryItem"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="ActualPlanJournalEntryItem"/>
     </attribute>
-    <attribute id="LedgerGLLineItem" order="48" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="LedgerGLLineItem" order="47" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="LedgerGLLineItem"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="LedgerGLLineItem"/>
     </attribute>
-    <attribute id="FinancialPlanningEntryItem" order="49" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="FinancialPlanningEntryItem" order="48" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="FinancialPlanningEntryItem"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="FinancialPlanningEntryItem"/>
     </attribute>
   
-    <attribute id="WBSElement" order="50" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="WBSDescription">
+    <attribute id="WBSElement" order="49" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="WBSDescription">
       <descriptions defaultDescription="WBSElement"/>
   
       <keyMapping columnObjectName="EventDate_rollups" columnName="WBSElement"/>
   
     </attribute>
-    <attribute id="WBSDescription" order="51" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="WBSDescription" order="50" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="WBSDescription"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="WBSDescription"/>
     </attribute>
-    <attribute id="EventMonth" order="52" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="EventMonth" order="51" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="EventMonth"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="EventMonth"/>
     </attribute>
-    <attribute id="EventDay" order="53" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="EventDay" order="52" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="EventDay"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="EventDay"/>
     </attribute>
-    <attribute id="EventYear" order="54" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="EventYear" order="53" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="FYMONTH"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="EventYear"/>
     </attribute>
-    <attribute id="Genre" order="55" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="Genre_Desc">
+    <attribute id="Genre" order="54" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="Genre_Desc">
       <descriptions defaultDescription="Genre"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="Genre"/>
     </attribute>
-    <attribute id="GLAccount" order="56" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="GLAccountName">
+    <attribute id="GLAccount" order="55" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="GLAccountName">
       <descriptions defaultDescription="GLAccount"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="GLAccount"/>
     </attribute>
-    <attribute id="ChartOfAccounts" order="57" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="ChartOfAccounts" order="56" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="ChartOfAccounts"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="ChartOfAccounts"/>
     </attribute>
-    <attribute id="ProjectType_Desc" order="58" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="ProjectType_Desc" order="57" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="ProjectType_Desc"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="ProjectType_Desc"/>
     </attribute>
-    <attribute id="ProjectSubType_Desc" order="59" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="ProjectSubType_Desc" order="58" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="ProjectSubType_Desc"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="ProjectSubType_Desc"/>
     </attribute>
-    <attribute id="PromotionalItem_Desc" order="60" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="PromotionalItem_Desc" order="59" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="PromotionalItem_Desc"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="PromotionalItem_Desc"/>
     </attribute>
-    <attribute id="EventBudgeted_Desc" order="61" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="EventBudgeted_Desc" order="60" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="EventBudgeted_Desc"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="EventBudgeted_Desc"/>
     </attribute>
-    <attribute id="EventActual_Desc" order="62" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="EventActual_Desc" order="61" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="EventActual_Desc"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="EventActual_Desc"/>
     </attribute>
-    <attribute id="EventManager_Desc" order="63" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="EventManager_Desc" order="62" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="EventManager_Desc"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="EventManager_Desc"/>
     </attribute>
-    <attribute id="EventPromoter_Desc" order="64" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="EventPromoter_Desc" order="63" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="EventPromoter_Desc"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="EventPromoter_Desc"/>
     </attribute>
-    <attribute id="Agency_Desc" order="65" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="Agency_Desc" order="64" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Agency_Desc"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="Agency_Desc"/>
     </attribute>
-    <attribute id="Genre_Desc" order="66" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="Genre_Desc" order="65" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Genre_Desc"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="Genre_Desc"/>
     </attribute>
-    <attribute id="EventDirector" order="67" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="EventDirector_Desc">
+    <attribute id="EventDirector" order="66" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="EventDirector_Desc">
       <descriptions defaultDescription="EventDirector"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="EventDirector"/>
     </attribute>
-    <attribute id="EventCancelled" order="68" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="EventCancelled" order="67" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="EventCancelled"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="EventCancelled"/>
     </attribute>
-    <attribute id="EventDirector_Desc" order="69" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="EventDirector_Desc" order="68" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="EventDirector_Desc"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="EventDirector_Desc"/>
     </attribute>
-    <attribute id="DATASOURCE" order="70" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="DATASOURCE" order="69" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="DATASOURCE"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="DATASOURCE"/>
     </attribute>
-    <attribute id="DocumentDate" order="71" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="DocumentDate" order="70" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="DocumentDate"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="DocumentDate"/>
     </attribute>
-    <attribute id="PostingDate" order="72" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="PostingDate" order="71" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="PostingDate"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="PostingDate"/>
     </attribute>
   
-    <attribute id="ProjectStartDate" order="73" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="ProjectStartDate" order="72" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="ProjectStartDate"/>
   
       <keyMapping columnObjectName="EventDate_rollups" columnName="ProjectStartDate"/>
   
     </attribute>
-    <attribute id="ProjectDate" order="74" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="ProjectDate" order="73" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="ProjectDate"/>
       <keyMapping columnObjectName="EventDate_rollups" columnName="ProjectEndDate"/>
     </attribute>
   </attributes>
   <calculatedAttributes/>
   <baseMeasures>
-    <measure id="AmountInTransactionCurrency" order="38" aggregationType="sum" measureType="simple">
+    <measure id="AmountInTransactionCurrency" order="37" aggregationType="sum" measureType="simple">
       <descriptions defaultDescription="AmountInTransactionCurrency"/>
       <measureMapping columnObjectName="EventDate_rollups" columnName="AmountInTransactionCurrency"/>
     </measure>
   
-    <measure id="ActualAmountInTransactionCrcy" order="39" aggregationType="sum" measureType="simple">
+    <measure id="ActualAmountInTransactionCrcy" order="38" aggregationType="sum" measureType="simple">
       <descriptions defaultDescription="ActualAmountInTransactionCrcy"/>
       <measureMapping columnObjectName="EventDate_rollups" columnName="ActualAmountInTransactionCrcy"/>
     </measure>
-    <measure id="PlanAmountInTransactionCrcy" order="40" aggregationType="sum" measureType="simple">
+    <measure id="PlanAmountInTransactionCrcy" order="39" aggregationType="sum" measureType="simple">
       <descriptions defaultDescription="PlanAmountInTransactionCrcy"/>
       <measureMapping columnObjectName="EventDate_rollups" columnName="PlanAmountInTransactionCrcy"/>
     </measure></baseMeasures>

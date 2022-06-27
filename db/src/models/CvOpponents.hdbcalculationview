@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CvOpponents" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="CvOpponents"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="tm.events_prd">
+    <resourceUri>tm.events_prd</resourceUri>
+  </DataSource>
+  <DataSource id="tm.historicalopponents_prd">
+    <resourceUri>tm.historicalopponents_prd</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="ONLY_GAMES_AFTER_20210512" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="Project"/>
+      <viewAttribute id="Opponent"/>
+    
+      <viewAttribute id="line9"/>
+    
+      <viewAttribute id="event_date"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="tm.events_prd">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Project" source="line10"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Opponent" source="team"/>
+    </input>
+    <filter>&quot;Opponent&quot; &gt; '' 
+AND &quot;line9&quot; IN ('AHL','NHL')
+AND &quot;event_date&quot; &gt; '2021-05-12'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_1">
+    <viewAttributes>
+      <viewAttribute keepFlag="true" id="Project"/>
+      <viewAttribute id="Opponent" aggregationType="max"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="DATASOURCE" datatype="NVARCHAR" length="13" expressionLanguage="SQL">
+        <formula>'Ticketmaster'</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <restrictedViewAttributes/>
+    <input node="ONLY_GAMES_AFTER_20210512"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="project"/>
+      <viewAttribute id="opponent"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="DATASOURCE" datatype="NVARCHAR" length="13" expressionLanguage="SQL">
+        <formula>'HISTORY_FILE'</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="tm.historicalopponents_prd"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:UnionView" id="Union_1">
+    <viewAttributes>
+      <viewAttribute id="Project"/>
+      <viewAttribute id="Opponent"/>
+    
+      <viewAttribute id="DATASOURCE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Aggregation_1" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Project" source="Project"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Opponent" source="Opponent"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="DATASOURCE" source="DATASOURCE"/>
+    </input>
+    <input node="Projection_1" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Project" source="project"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Opponent" source="opponent"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="DATASOURCE" source="DATASOURCE"/>
+    </input>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Union_1">
+  <attributes>
+    <attribute id="Project" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Project"/>
+      <keyMapping columnObjectName="Union_1" columnName="Project"/>
+    </attribute>
+    <attribute id="Opponent" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Opponent"/>
+      <keyMapping columnObjectName="Union_1" columnName="Opponent"/>
+    </attribute>
+  
+    <attribute id="DATASOURCE" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DATASOURCE"/>
+  
+      <keyMapping columnObjectName="Union_1" columnName="DATASOURCE"/>
+  
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="ONLY_GAMES_AFTER_20210512" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-153" y="455"/>
+      <rectangleSize height="30" width="305"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Aggregation_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-80" y="319"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="260" y="317"/>
+      <rectangleSize height="30" width="236"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="198"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

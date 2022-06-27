@@ -7,14 +7,14 @@
   <DataSource id="YY1_EnterpriseProject">
     <resourceUri>YY1_EnterpriseProject</resourceUri>
   </DataSource>
-  <DataSource id="M_TIME_DIMENSION">
-    <resourceUri>M_TIME_DIMENSION</resourceUri>
-  </DataSource>
   <DataSource id="A_CompanyCode">
     <resourceUri>A_CompanyCode</resourceUri>
   </DataSource>
   <DataSource id="Without_Currency$$$$YY1_EnterpriseProject$$">
     <resourceUri>YY1_EnterpriseProject</resourceUri>
+  </DataSource>
+  <DataSource id="M_TIME_DIMENSION">
+    <resourceUri>M_TIME_DIMENSION</resourceUri>
   </DataSource>
   <DataSource id="get_project_end_date_sql_2$$$$M_TIME_DIMENSION$$">
     <resourceUri>M_TIME_DIMENSION</resourceUri>
@@ -566,14 +566,6 @@
     </input>
     <joinAttribute name="CompanyCode"/>
   </calculationView>
-  <calculationView xsi:type="Calculation:ProjectionView" id="get_project_end_date_sql">
-    <viewAttributes>
-      <viewAttribute id="DATE_SQL"/>
-    
-      <viewAttribute id="DATETIMESTAMP"/></viewAttributes>
-    <calculatedViewAttributes/>
-    <input node="M_TIME_DIMENSION"/>
-  </calculationView>
   <calculationView xsi:type="Calculation:JoinView" id="Join_2" cardinality="C1_N" joinType="leftOuter">
     <viewAttributes>
       <viewAttribute id="ProjectDescription"/>
@@ -797,11 +789,19 @@
     </input>
     <filter>&quot;Currency&quot; = ''</filter>
   </calculationView>
-  <calculationView xsi:type="Calculation:ProjectionView" id="get_project_end_date_sql_2">
+  <calculationView xsi:type="Calculation:ProjectionView" id="get_project_end_date_sql">
     <viewAttributes>
       <viewAttribute id="DATE_SQL"/>
     
       <viewAttribute id="DATETIMESTAMP"/></viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="M_TIME_DIMENSION"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="get_project_end_date_sql_2">
+    <viewAttributes>
+      <viewAttribute id="DATETIMESTAMP"/>
+      <viewAttribute id="DATE_SQL"/>
+    </viewAttributes>
     <calculatedViewAttributes/>
     <input emptyUnionBehavior="undefined" node="get_project_end_date_sql_2$$$$M_TIME_DIMENSION$$"/>
   </calculationView>
@@ -1069,7 +1069,7 @@
       <keyCalculation datatype="NVARCHAR" expressionLanguage="SQL" length="10">
         <formula>'TBD'</formula>
       </keyCalculation>
-    </calculatedAttribute>
+      </calculatedAttribute>
   
     <calculatedAttribute id="MultiType" order="57" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="MultiType"/>
@@ -1082,8 +1082,7 @@
  END</formula>
   
       </keyCalculation>
-  
-    </calculatedAttribute>
+      </calculatedAttribute>
   </calculatedAttributes>
   <baseMeasures/>
   <calculatedMeasures/>
@@ -1128,10 +1127,6 @@
       <upperLeftCorner x="320" y="30"/>
       <rectangleSize width="136"/>
     </shape>
-    <shape expanded="true" modelObjectName="get_project_end_date_sql" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="-18" y="490"/>
-      <rectangleSize height="30" width="204"/>
-    </shape>
     <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
       <upperLeftCorner x="250" y="643"/>
       <rectangleSize height="30" width="160"/>
@@ -1153,6 +1148,10 @@
     <shape expanded="true" modelObjectName="Without_Currency" modelObjectNameSpace="CalculationView">
       <upperLeftCorner x="250" y="788"/>
       <rectangleSize width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="get_project_end_date_sql" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-18" y="490"/>
+      <rectangleSize height="30" width="204"/>
     </shape>
     <shape expanded="true" modelObjectName="get_project_end_date_sql_2" modelObjectNameSpace="CalculationView">
       <upperLeftCorner x="459" y="784"/>

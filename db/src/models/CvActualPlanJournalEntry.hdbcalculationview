@@ -47,7 +47,6 @@
       <viewAttribute id="YY1_Info_18_PPH_Desc"/>
       <viewAttribute id="ActualAmountInTransactionCrcy" aggregationType="sum"/>
       <viewAttribute id="PlanAmountInTransactionCrcy" aggregationType="sum"/>
-      <viewAttribute id="DebitCreditCode"/>
       <viewAttribute id="PlannedStartDate" aggregationType="min"/>
       <viewAttribute id="PlannedEndDate" aggregationType="min"/>
       <viewAttribute id="CostCenterName"/>
@@ -125,7 +124,6 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="YY1_Info_18_PPH_Desc" source="Agency_Desc"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ActualAmountInTransactionCrcy" source="ActualAmountInTransactionCrcy"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PlanAmountInTransactionCrcy" source="PlanAmountInTransactionCrcy"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="DebitCreditCode" source="DebitCreditCode"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PlannedStartDate" source="PlannedStartDate"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="PlannedEndDate" source="PlannedEndDate"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="CostCenterName" source="CostCenterName"/>
@@ -204,7 +202,6 @@
       <viewAttribute id="Agency_Desc"/>
       <viewAttribute id="ActualAmountInTransactionCrcy" aggregationType="sum"/>
       <viewAttribute id="PlanAmountInTransactionCrcy" aggregationType="sum"/>
-      <viewAttribute id="DebitCreditCode"/>
       <viewAttribute id="PlannedStartDate"/>
       <viewAttribute id="PlannedEndDate"/>
       <viewAttribute id="CostCenterName"/>
@@ -363,181 +360,177 @@
       <descriptions defaultDescription="TransactionCurrency"/>
       <keyMapping columnObjectName="Union_1" columnName="TransactionCurrency"/>
     </attribute>
-    <attribute id="DebitCreditCode" order="28" displayAttribute="false" attributeHierarchyActive="false">
-      <descriptions defaultDescription="DebitCreditCode"/>
-      <keyMapping columnObjectName="Union_1" columnName="DebitCreditCode"/>
-    </attribute>
-    <attribute id="Project" order="31" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="ProjectDescription">
+    <attribute id="Project" order="30" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="ProjectDescription">
       <descriptions defaultDescription="Project"/>
       <keyMapping columnObjectName="Union_1" columnName="Project"/>
     </attribute>
-    <attribute id="ProjectDescription" order="32" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="ProjectDescription" order="31" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="ProjectDescription"/>
       <keyMapping columnObjectName="Union_1" columnName="ProjectDescription"/>
     </attribute>
-    <attribute id="ProjectType" order="33" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="ProjectType_Desc">
+    <attribute id="ProjectType" order="32" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="ProjectType_Desc">
       <descriptions defaultDescription="ProjectType"/>
       <keyMapping columnObjectName="Union_1" columnName="YY1_Info_1_PPH"/>
     </attribute>
-    <attribute id="ProjectType_Desc" order="34" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="ProjectType_Desc" order="33" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="ProjectType_Desc"/>
       <keyMapping columnObjectName="Union_1" columnName="YY1_Info_1_PPH_Desc"/>
     </attribute>
-    <attribute id="ProjectSubType" order="35" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="ProjectSubType_Desc">
+    <attribute id="ProjectSubType" order="34" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="ProjectSubType_Desc">
       <descriptions defaultDescription="ProjectSubType"/>
       <keyMapping columnObjectName="Union_1" columnName="YY1_Info_2_PPH"/>
     </attribute>
-    <attribute id="ProjectSubType_Desc" order="36" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="ProjectSubType_Desc" order="35" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="ProjectSubType_Desc"/>
       <keyMapping columnObjectName="Union_1" columnName="YY1_Info_2_PPH_Desc"/>
     </attribute>
-    <attribute id="EventCancelled" order="37" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="EventCancelled" order="36" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="EventCancelled"/>
       <keyMapping columnObjectName="Union_1" columnName="YY1_Info_32_PPH"/>
     </attribute>
   
-    <attribute id="Rank" order="38" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="Rank" order="37" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Rank"/>
   
       <keyMapping columnObjectName="Union_1" columnName="YY1_Info_3_PPH"/>
   
     </attribute>
-    <attribute id="EventStartTime" order="39" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="EventStartTime" order="38" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="EventStartTime"/>
       <keyMapping columnObjectName="Union_1" columnName="YY1_Info_4_PPH"/>
     </attribute>
-    <attribute id="DoorsOpen" order="40" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="DoorsOpen" order="39" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="DoorsOpen"/>
       <keyMapping columnObjectName="Union_1" columnName="YY1_Info_5_PPH"/>
     </attribute>
-    <attribute id="ClubOpens" order="41" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="ClubOpens" order="40" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="ClubOpens"/>
       <keyMapping columnObjectName="Union_1" columnName="YY1_Info_6_PPH"/>
     </attribute>
-    <attribute id="LoungeOpen" order="42" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="LoungeOpen" order="41" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="LoungeOpen"/>
       <keyMapping columnObjectName="Union_1" columnName="YY1_Info_7_PPH"/>
     </attribute>
-    <attribute id="SuitesOpen" order="43" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="SuitesOpen" order="42" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="SuitesOpen"/>
       <keyMapping columnObjectName="Union_1" columnName="YY1_Info_8_PPH"/>
     </attribute>
-    <attribute id="CompCode" order="44" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="CompCode" order="43" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="CompCode"/>
       <keyMapping columnObjectName="Union_1" columnName="YY1_Info_9_PPH"/>
     </attribute>
-    <attribute id="PromotionalItem" order="45" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="PromotionalItem_Desc">
+    <attribute id="PromotionalItem" order="44" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="PromotionalItem_Desc">
       <descriptions defaultDescription="PromotionalItem"/>
       <keyMapping columnObjectName="Union_1" columnName="YY1_Info_10_PPH"/>
     </attribute>
-    <attribute id="PromotionalItem_Desc" order="46" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="PromotionalItem_Desc" order="45" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="PromotionalItem_Desc"/>
       <keyMapping columnObjectName="Union_1" columnName="YY1_Info_10_PPH_Desc"/>
     </attribute>
-    <attribute id="EventInTicketMaster" order="47" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="EventInTicketMaster" order="46" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="EventInTicketMaster"/>
       <keyMapping columnObjectName="Union_1" columnName="YY1_Info_11_PPH"/>
     </attribute>
-    <attribute id="MerchDeal" order="48" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="MerchDeal" order="47" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="MerchDeal"/>
       <keyMapping columnObjectName="Union_1" columnName="YY1_Info_12_PPH"/>
     </attribute>
-    <attribute id="EventMoved" order="49" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="EventMoved" order="48" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="EventMoved"/>
       <keyMapping columnObjectName="Union_1" columnName="YY1_Info_13_PPH"/>
     </attribute>
-    <attribute id="EventBudgeted" order="50" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="EventBudgeted_Desc">
+    <attribute id="EventBudgeted" order="49" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="EventBudgeted_Desc">
       <descriptions defaultDescription="EventBudgeted"/>
       <keyMapping columnObjectName="Union_1" columnName="YY1_Info_14_PPH"/>
     </attribute>
-    <attribute id="EventBudgeted_Desc" order="51" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="EventBudgeted_Desc" order="50" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="EventBudgeted_Desc"/>
       <keyMapping columnObjectName="Union_1" columnName="YY1_Info_14_PPH_Desc"/>
     </attribute>
-    <attribute id="EventActual" order="52" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="EventActual_Desc">
+    <attribute id="EventActual" order="51" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="EventActual_Desc">
       <descriptions defaultDescription="EventActual"/>
       <keyMapping columnObjectName="Union_1" columnName="YY1_Info_15_PPH"/>
     </attribute>
-    <attribute id="EventActual_Desc" order="53" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="EventActual_Desc" order="52" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="EventActual_Desc"/>
       <keyMapping columnObjectName="Union_1" columnName="YY1_Info_15_PPH_Desc"/>
     </attribute>
-    <attribute id="EventManager" order="54" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="EventManager_Desc">
+    <attribute id="EventManager" order="53" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="EventManager_Desc">
       <descriptions defaultDescription="EventManager"/>
       <keyMapping columnObjectName="Union_1" columnName="YY1_Info_16_PPH"/>
     </attribute>
-    <attribute id="EventManager_Desc" order="55" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="EventManager_Desc" order="54" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="EventManager_Desc"/>
       <keyMapping columnObjectName="Union_1" columnName="YY1_Info_16_PPH_Desc"/>
     </attribute>
-    <attribute id="EventDirector" order="56" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="EventDirector_Desc">
+    <attribute id="EventDirector" order="55" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="EventDirector_Desc">
       <descriptions defaultDescription="EventDirector"/>
       <keyMapping columnObjectName="Union_1" columnName="YY1_Info_31_PPH"/>
     </attribute>
-    <attribute id="EventDirector_Desc" order="57" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="EventDirector_Desc" order="56" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="EventDirector_Desc"/>
       <keyMapping columnObjectName="Union_1" columnName="YY1_Info_31_PPH_Desc"/>
     </attribute>
-    <attribute id="EventPromoter" order="58" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="EventPromoter_Desc">
+    <attribute id="EventPromoter" order="57" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="EventPromoter_Desc">
       <descriptions defaultDescription="EventPromoter"/>
       <keyMapping columnObjectName="Union_1" columnName="YY1_Info_17_PPH"/>
     </attribute>
-    <attribute id="EventPromoter_Desc" order="59" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="EventPromoter_Desc" order="58" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="EventPromoter_Desc"/>
       <keyMapping columnObjectName="Union_1" columnName="YY1_Info_17_PPH_Desc"/>
     </attribute>
-    <attribute id="Agency" order="60" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="Agency_Desc">
+    <attribute id="Agency" order="59" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="Agency_Desc">
       <descriptions defaultDescription="Agency"/>
       <keyMapping columnObjectName="Union_1" columnName="YY1_Info_18_PPH"/>
     </attribute>
-    <attribute id="Agency_Desc" order="61" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="Agency_Desc" order="60" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Agency_Desc"/>
       <keyMapping columnObjectName="Union_1" columnName="YY1_Info_18_PPH_Desc"/>
     </attribute>
   
-    <attribute id="PlannedStartDate" order="62" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="PlannedStartDate" order="61" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="PlannedStartDate"/>
   
       <keyMapping columnObjectName="Union_1" columnName="PlannedStartDate"/>
   
     </attribute>
-    <attribute id="PlannedEndDate" order="63" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="PlannedEndDate" order="62" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="PlannedEndDate"/>
       <keyMapping columnObjectName="Union_1" columnName="PlannedEndDate"/>
     </attribute>
-    <attribute id="ProjectDate" order="64" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="ProjectDate" order="63" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="ProjectDate"/>
       <keyMapping columnObjectName="Union_1" columnName="ProjectDate"/>
     </attribute>
-    <attribute id="EventYear" order="65" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="EventYear" order="64" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="FYMONTH"/>
       <keyMapping columnObjectName="Union_1" columnName="EventYear"/>
     </attribute>
-    <attribute id="EventMonth" order="66" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="EventMonth" order="65" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="EventMonth"/>
       <keyMapping columnObjectName="Union_1" columnName="EventMonth"/>
     </attribute>
-    <attribute id="EventDay" order="67" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="EventDay" order="66" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="EventDay"/>
       <keyMapping columnObjectName="Union_1" columnName="EventDay"/>
     </attribute>
-    <attribute id="Genre" order="68" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="Genre_Desc">
+    <attribute id="Genre" order="67" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="Genre_Desc">
       <descriptions defaultDescription="Genre"/>
       <keyMapping columnObjectName="Union_1" columnName="YY1_Info_30_PPH"/>
     </attribute>
-    <attribute id="Genre_Desc" order="69" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="Genre_Desc" order="68" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Genre_Desc"/>
       <keyMapping columnObjectName="Union_1" columnName="YY1_Info_30_PPH_Desc"/>
     </attribute>
-    <attribute id="DATASOURCE" order="70" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="DATASOURCE" order="69" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="DATASOURCE"/>
       <keyMapping columnObjectName="Union_1" columnName="DATASOURCE"/>
     </attribute>
-    <attribute id="FunctionalArea" order="71" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="FunctionalAreaName">
+    <attribute id="FunctionalArea" order="70" displayAttribute="false" attributeHierarchyActive="false" descriptionColumnName="FunctionalAreaName">
       <descriptions defaultDescription="FunctionalArea"/>
       <keyMapping columnObjectName="Union_1" columnName="FunctionalArea"/>
     </attribute>
-    <attribute id="FunctionalAreaName" order="72" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="FunctionalAreaName" order="71" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="FunctionalAreaName"/>
       <keyMapping columnObjectName="Union_1" columnName="FunctionalAreaName"/>
     </attribute>
@@ -545,20 +538,20 @@
   <calculatedAttributes/>
   <baseMeasures>
   
-    <measure id="ActualAmountInTransactionCrcy" order="29" aggregationType="sum" measureType="simple">
+    <measure id="ActualAmountInTransactionCrcy" order="28" aggregationType="sum" measureType="simple">
       <descriptions defaultDescription="ActualAmountInTransactionCrcy"/>
       <measureMapping columnObjectName="Union_1" columnName="ActualAmountInTransactionCrcy"/>
     </measure>
-    <measure id="PlanAmountInTransactionCrcy" order="30" aggregationType="sum" measureType="simple">
+    <measure id="PlanAmountInTransactionCrcy" order="29" aggregationType="sum" measureType="simple">
       <descriptions defaultDescription="PlanAmountInTransactionCrcy"/>
       <measureMapping columnObjectName="Union_1" columnName="PlanAmountInTransactionCrcy"/>
     </measure></baseMeasures>
   <calculatedMeasures>
-    <measure id="CC_ActualAmountInTransactionCrcy_flipped" order="73" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="24" scale="3" expressionLanguage="SQL">
+    <measure id="CC_ActualAmountInTransactionCrcy_flipped" order="72" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="24" scale="3" expressionLanguage="SQL">
       <descriptions defaultDescription="ActualAmountInTransactionCrcy (flipped sign)"/>
       <formula>&quot;ActualAmountInTransactionCrcy&quot; * -1</formula>
     </measure>
-    <measure id="CC_PlanAmountInTransactionCrcy_flipped" order="74" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="24" scale="3" expressionLanguage="SQL">
+    <measure id="CC_PlanAmountInTransactionCrcy_flipped" order="73" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="24" scale="3" expressionLanguage="SQL">
       <descriptions defaultDescription="PlanAmountInTransactionCrcy (flipped sign)"/>
       <formula>&quot;PlanAmountInTransactionCrcy&quot; * -1</formula>
     </measure>
